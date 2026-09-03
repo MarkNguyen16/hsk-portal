@@ -452,7 +452,7 @@ table.data-table tr:hover {
       <a href="index.html" class="back-link" title="Về trang chủ chọn đề">
         <span>⬅</span> Cổng Đề Thi
       </a>
-      <img src="images/logo.png" alt="Logo HSK Nha Trang" style="width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo Tiếng Trung HSK Nha Trang" class="center-logo" style="width:46px;height:46px;border-radius:12px;object-fit:contain;background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);">
       <div class="brand-title">
         <h1>BẢNG ĐIỀU KHIỂN GIÁO VIÊN (TEACHER DASHBOARD)</h1>
         <p>Trung tâm Tiếng Trung HSK Nha Trang • Hệ thống Quản trị & Giám sát Khảo thí</p>
@@ -889,7 +889,7 @@ function renderTable() {
       <td><strong>${sub.studentName || "Ẩn danh"}</strong></td>
       <td><span style="background:#edf2f7;padding:2px 8px;border-radius:4px;font-size:0.85rem;">${sub.studentClass || "N/A"}</span></td>
       <td><span style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:600;font-size:0.82rem;">${sub.examCode || "H31002"}</span></td>
-      <td>#${sub.attemptCount || 1}</td>
+      <td>${sub.attemptCount || 1}</td>
       <td>${sub.submitTime ? new Date(sub.submitTime).toLocaleString('vi-VN') : "Vừa xong"}</td>
       <td>${sub.durationFormatted || "N/A"}</td>
       <td><strong style="color:var(--primary-dark);font-size:1.05rem;">${sub.score10}</strong></td>
@@ -934,7 +934,7 @@ function viewDetails(idx) {
   const item = allSubmissions[idx];
   if (!item) return;
   let info = `Thí sinh: ${item.studentName} (Lớp ${item.studentClass})\n`;
-  info += `Bài thi: ${item.examCode || 'H31002'} • Lần: #${item.attemptCount} • Điểm /10: ${item.score10} • Điểm HSK: ${item.hskTotal}/300\n`;
+  info += `Bài thi: ${item.examCode || 'H31002'} • Lần: ${item.attemptCount} • Điểm /10: ${item.score10} • Điểm HSK: ${item.hskTotal}/300\n`;
   info += `Thời gian nộp: ${new Date(item.submitTime).toLocaleString('vi-VN')}\n`;
   info += `Thời lượng làm bài: ${item.durationFormatted}\n`;
   info += `Kết quả: ${item.isPassed ? 'ĐẠT CHUẨN' : 'CHƯA ĐẠT'}\n`;

@@ -36,7 +36,7 @@ body {
   background-color: var(--bg-cream);
   color: var(--text-main);
   line-height: 1.6;
-  padding-bottom: 90px;
+  padding-bottom: 30px;
 }
 
 .chinese {
@@ -47,11 +47,61 @@ body {
 header.app-header {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: #FFFFFF;
-  padding: 18px 24px;
+  padding: 14px 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: all 0.3s ease;
+}
+
+/* Auto-collapsed Slim Header when scrolling down */
+body.scrolled-down header.app-header {
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+body.scrolled-down .brand-text p {
+  display: none;
+}
+
+body.scrolled-down .brand-text h1 {
+  font-size: 1.05rem;
+}
+
+body.scrolled-down .center-logo {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+/* Nav bar auto-collapse & sticky adjustment */
+.nav-bar {
+  background: #FFFFFF;
+  border-bottom: 2px solid var(--border-color);
+  position: sticky;
+  top: 72px;
+  z-index: 90;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+
+body.scrolled-down .nav-bar {
+  top: 52px;
+  padding: 2px 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+}
+
+/* Slimmer nav tabs when doing exam */
+body.scrolled-down .nav-tab {
+  padding: 8px 14px;
+  font-size: 0.88rem;
+}
+
+/* Compact side-drawer adjustment */
+body.scrolled-down .navigator-drawer {
+  top: 105px;
+  height: calc(100vh - 120px);
 }
 
 .header-inner {
@@ -163,14 +213,6 @@ header.app-header {
 }
 
 /* Nav tabs */
-.nav-bar {
-  background: #FFFFFF;
-  border-bottom: 2px solid var(--border-color);
-  position: sticky;
-  top: 76px;
-  z-index: 90;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
 
 .nav-inner {
   max-width: 1200px;
@@ -783,17 +825,13 @@ main.app-main {
   text-decoration: line-through;
 }
 
-/* Footer Controls */
+/* Footer Controls - Static to maximize reading view */
 footer.app-footer {
   background: #fff;
   border-top: 1px solid var(--border-color);
-  padding: 16px 20px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
-  z-index: 95;
+  padding: 24px 20px;
+  margin-top: 50px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
 }
 
 .footer-inner {
@@ -1114,10 +1152,9 @@ body.font-kaiti .chinese {
 body.font-heiti .chinese {
   font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
 }
-body.font-size-sm .chinese { font-size: 0.92em; }
 body.font-size-md .chinese { font-size: 1.0em; }
-body.font-size-lg .chinese { font-size: 1.15em; }
-body.font-size-xl .chinese { font-size: 1.3em; }
+body.font-size-lg .chinese { font-size: 1.3em !important; line-height: 1.6 !important; }
+body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !important; }
 
 
 /* Official Exam Image Frame */
@@ -1337,7 +1374,7 @@ body.font-size-xl .chinese { font-size: 1.3em; }
       <a href="index.html" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;font-size:0.85rem;background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;margin-right:8px;font-weight:600;transition:all 0.2s;" title="Quay về danh mục đề thi">
         <span>⬅</span> Cổng Đề Thi
       </a>
-      <img src="images/logo.png" alt="Logo HSK Nha Trang" style="width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo Tiếng Trung HSK Nha Trang" class="center-logo" style="width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);transition:all 0.3s ease;">
       <div class="brand-text">
         <h1>HSK 3 - BÀI THI MÔ PHỎNG ĐỀ 2 (H31002)</h1>
         <p>Trung tâm Tiếng Trung HSK Nha Trang • Hệ thống Khảo thí & Chấm điểm Tự động</p>
@@ -1366,17 +1403,14 @@ body.font-size-xl .chinese { font-size: 1.3em; }
         📋 Trạng thái làm bài (<span id="navAnsweredCount">0</span>/80)
       </button>
     </div>
-    <div class="progress-container">
-      <span>Tiến độ:</span>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progressBarFill"></div>
+    
       </div>
       <span id="progressText">0/80</span>
     </div>
     <div style="display:flex;align-items:center;gap:8px;padding-left:12px;border-left:1px solid #cbd5e0;margin-left:8px;">
       <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);">Font chữ:</span>
       <button class="btn-audio-subtle" id="btnFontToggle" onclick="toggleChineseFont()" title="Chuyển đổi font chữ Hắc thể / Khải thể" style="font-size:0.82rem;padding:3px 8px;">
-        🅰️ 楷体 (Khải thể)
+        楷体
       </button>
       <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);margin-left:4px;">Cỡ:</span>
       <button class="btn-audio-subtle" onclick="setChineseFontSize('md')" id="btnSizeMd" title="Cỡ chuẩn" style="padding:2px 8px;font-size:0.82rem;font-weight:bold;">Chuẩn</button>
@@ -3136,7 +3170,7 @@ function renderExam() {
   secListening.innerHTML = `
     <div class="section-card-header">
       <div class="section-title">
-        <span>🎧</span> Nhất: Phần Nghe (一、听力)
+        <span>🎧</span> Phần 1: Nghe hiểu (一、听力)
       </div>
       <div class="section-badge">40 Câu (约 35 分钟)</div>
     </div>
@@ -3436,7 +3470,7 @@ function renderExam() {
   secReading.innerHTML = `
     <div class="section-card-header">
       <div class="section-title">
-        <span>📖</span> Nhị: Phần Đọc hiểu (二、阅读)
+        <span>📖</span> Phần 2: Đọc hiểu (二、阅读)
       </div>
       <div class="section-badge">30 Câu (30 分钟)</div>
     </div>
@@ -3743,7 +3777,7 @@ function renderExam() {
   secWriting.innerHTML = `
     <div class="section-card-header">
       <div class="section-title">
-        <span>✍️</span> Tam: Phần Viết (三、书写)
+        <span>✍️</span> Phần 3: Viết (三、书写)
       </div>
       <div class="section-badge">10 Câu (15 分钟)</div>
     </div>
@@ -3995,7 +4029,7 @@ function startExamSession() {
   localStorage.setItem("hsk3_student_class", classInput);
   
   document.getElementById("studentInfoBadge").innerHTML = `
-    <span>👤 ${studentInfo.name} (${studentInfo.className})</span> &nbsp;|&nbsp; <span>Lần làm: #${studentInfo.attemptCount}</span>
+    <span>👤 ${studentInfo.name} (${studentInfo.className})</span> &nbsp;|&nbsp; <span>Lần làm: ${studentInfo.attemptCount}</span>
   `;
   
   document.getElementById("welcomeModal").classList.add("hidden");
@@ -4213,7 +4247,7 @@ function submitExam(autoSubmitted) {
 
   // UI Updates in Modal
   document.getElementById("score10Display").textContent = examState.score10;
-  document.getElementById("resultModalSubtitle").textContent = `Thí sinh: ${studentInfo.name} (${studentInfo.className}) • Lần làm thứ #${studentInfo.attemptCount} • Thời gian: ${durationFormatted}`;
+  document.getElementById("resultModalSubtitle").textContent = `Thí sinh: ${studentInfo.name} (${studentInfo.className}) • Lần làm thứ ${studentInfo.attemptCount} • Thời gian: ${durationFormatted}`;
   
   const badge = document.getElementById("resultStatusBadge");
   if (isPassed) {
@@ -4296,7 +4330,7 @@ function retryExamWithShuffle() {
   examState.remainingSeconds = studentInfo.examModeMinutes > 0 ? studentInfo.examModeMinutes * 60 : 90 * 60;
   
   document.getElementById("studentInfoBadge").innerHTML = `
-    <span>👤 ${studentInfo.name} (${studentInfo.className})</span> &nbsp;|&nbsp; <span>Lần làm: #${studentInfo.attemptCount}</span>
+    <span>👤 ${studentInfo.name} (${studentInfo.className})</span> &nbsp;|&nbsp; <span>Lần làm: ${studentInfo.attemptCount}</span>
   `;
   
   document.getElementById("resultModal").classList.add("hidden");
@@ -4674,7 +4708,7 @@ function applyFontPreferences() {
   document.body.classList.add(isKaiTi ? "font-kaiti" : "font-heiti");
   const btn = document.getElementById("btnFontToggle");
   if (btn) {
-    btn.innerHTML = isKaiTi ? "🅰️ 黑体 (Hắc thể)" : "🅰️ 楷体 (Khải thể)";
+    btn.innerHTML = isKaiTi ? "黑体" : "楷体";
   }
   
   document.body.classList.remove("font-size-sm", "font-size-md", "font-size-lg", "font-size-xl");
