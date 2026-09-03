@@ -44,64 +44,133 @@ body {
 }
 
 /* Header & Sticky Bar */
+/* Single Ultra-Slim Sticky Exam Header (~46px, < 6% screen height) */
 header.app-header {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: #FFFFFF;
-  padding: 14px 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  padding: 0 16px;
+  height: 48px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
-/* Auto-collapsed Slim Header when scrolling down */
-body.scrolled-down header.app-header {
-  padding: 8px 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+.header-inner {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 
-body.scrolled-down .brand-text p {
-  display: none;
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-body.scrolled-down .brand-text h1 {
+.btn-home-compact {
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255,255,255,0.18);
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.2s;
+}
+
+.btn-home-compact:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.center-logo {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #fff;
+  padding: 1px;
+}
+
+.exam-title-compact {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fff;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+}
+
+.timer-badge {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(217, 184, 108, 0.4);
+  padding: 4px 14px;
+  border-radius: 18px;
+  font-weight: 800;
   font-size: 1.05rem;
+  color: #fff;
 }
 
-body.scrolled-down .center-logo {
-  width: 32px !important;
-  height: 32px !important;
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Nav bar auto-collapse & sticky adjustment */
-.nav-bar {
-  background: #FFFFFF;
-  border-bottom: 2px solid var(--border-color);
-  position: sticky;
-  top: 72px;
-  z-index: 90;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  transition: all 0.3s ease;
+.btn-nav-navigator {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 12px;
+  border-radius: 18px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
 }
 
-body.scrolled-down .nav-bar {
-  top: 52px;
-  padding: 2px 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(8px);
+.btn-nav-navigator:hover {
+  background: var(--gold);
+  color: var(--primary-dark);
+  border-color: var(--gold);
 }
 
-/* Slimmer nav tabs when doing exam */
-body.scrolled-down .nav-tab {
-  padding: 8px 14px;
+.btn-header-submit {
+  background: var(--gold);
+  color: var(--primary-dark);
+  border: none;
+  font-weight: 800;
   font-size: 0.88rem;
+  padding: 6px 16px;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.2s;
 }
 
-/* Compact side-drawer adjustment */
-body.scrolled-down .navigator-drawer {
-  top: 105px;
-  height: calc(100vh - 120px);
+.btn-header-submit:hover {
+  background: #ecd395;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .hide-mobile { display: none !important; }
 }
 
 .header-inner {
@@ -1243,11 +1312,11 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 /* Non-obscuring Persistent Right Sidebar */
 .navigator-drawer {
   position: fixed;
-  top: 130px;
+  top: 50px;
   right: -360px;
   width: 340px;
   max-width: 85vw;
-  height: calc(100vh - 205px);
+  height: calc(100vh - 54px);
   background: #FFFFFF;
   border-left: 2px solid var(--border-color);
   border-top: 2px solid var(--border-color);
@@ -1367,59 +1436,51 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 </head>
 <body>
 
-<!-- Global Header -->
+<!-- Single Ultra-Slim Sticky Exam Header (~48px, < 6% screen height) -->
 <header class="app-header">
   <div class="header-inner">
-    <div class="brand">
-      <a href="index.html" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;font-size:0.85rem;background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;margin-right:8px;font-weight:600;transition:all 0.2s;" title="Quay về danh mục đề thi">
-        <span>⬅</span> Cổng Đề Thi
+    <div class="header-left">
+      <a href="index.html" class="btn-home-compact" title="Quay về danh mục đề thi">
+        <span>⬅</span> <span class="hide-mobile">Cổng Đề</span>
       </a>
-      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo Tiếng Trung HSK Nha Trang" class="center-logo" style="width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);transition:all 0.3s ease;">
-      <div class="brand-text">
-        <h1>HSK 3 - BÀI THI MÔ PHỎNG ĐỀ 2 (H31002)</h1>
-        <p>Trung tâm Tiếng Trung HSK Nha Trang • Hệ thống Khảo thí & Chấm điểm Tự động</p>
-      </div>
+      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" class="center-logo">
+      <span class="exam-title-compact hide-mobile">HSK 3 - Đề 02 (H31002)</span>
     </div>
-    <div class="header-status">
-      <div class="student-info-badge" id="studentInfoBadge">
-        <span>👤 Chưa đăng nhập</span>
-      </div>
+    
+    <div class="header-center">
       <div class="timer-badge" id="timerBadge">
         <span>⏱️ 90:00</span>
       </div>
+    </div>
+    
+    <div class="header-right">
+      <button class="btn-nav-navigator" id="btnToggleNav" onclick="toggleExamNavigator()" title="Mở bảng trạng thái làm bài bên lề phải">
+        📋 Trạng thái làm bài (<span id="navAnsweredCount">0</span>/80)
+      </button>
       <button class="btn-header-submit" onclick="confirmSubmitExam()">Nộp Bài</button>
     </div>
   </div>
 </header>
 
-<!-- Navigation bar with Section shortcuts & Progress -->
-<div class="nav-bar">
-  <div class="nav-inner">
-    <div class="nav-tabs">
-      <div class="nav-tab active" onclick="scrollToSection('sec-listening')">🎧 1. Nghe (1-40)</div>
-      <div class="nav-tab" onclick="scrollToSection('sec-reading')">📖 2. Đọc hiểu (41-70)</div>
-      <div class="nav-tab" onclick="scrollToSection('sec-writing')">✍️ 3. Viết (71-80)</div>
-      <button class="btn-nav-navigator" id="btnToggleNav" onclick="toggleExamNavigator()" title="Mở bảng trạng thái làm bài bên lề phải" style="background:var(--primary);color:#fff;border-color:var(--primary);">
-        📋 Trạng thái làm bài (<span id="navAnsweredCount">0</span>/80)
-      </button>
+<!-- In-page Section Shortcuts & Audio Player (Normal document flow, scrolls naturally) -->
+<div style="max-width:1000px;margin:14px auto 0;padding:0 16px;">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--border-color);border-radius:10px;padding:8px 16px;">
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span style="font-weight:700;font-size:0.85rem;color:var(--text-muted);">Chuyển nhanh:</span>
+      <button class="btn-audio-subtle" onclick="scrollToSection('sec-listening')">🎧 1. Nghe (1-40)</button>
+      <button class="btn-audio-subtle" onclick="scrollToSection('sec-reading')">📖 2. Đọc (41-70)</button>
+      <button class="btn-audio-subtle" onclick="scrollToSection('sec-writing')">✍️ 3. Viết (71-80)</button>
     </div>
-    
-      </div>
-      <span id="progressText">0/80</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;padding-left:12px;border-left:1px solid #cbd5e0;margin-left:8px;">
-      <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);">Font chữ:</span>
-      <button class="btn-audio-subtle" id="btnFontToggle" onclick="toggleChineseFont()" title="Chuyển đổi font chữ Hắc thể / Khải thể" style="font-size:0.82rem;padding:3px 8px;">
-        楷体
-      </button>
-      <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);margin-left:4px;">Cỡ:</span>
-      <button class="btn-audio-subtle" onclick="setChineseFontSize('md')" id="btnSizeMd" title="Cỡ chuẩn" style="padding:2px 8px;font-size:0.82rem;font-weight:bold;">Chuẩn</button>
-      <button class="btn-audio-subtle" onclick="setChineseFontSize('lg')" id="btnSizeLg" title="Cỡ lớn" style="padding:2px 8px;font-size:0.88rem;font-weight:bold;">Lớn</button>
-      <button class="btn-audio-subtle" onclick="setChineseFontSize('xl')" id="btnSizeXl" title="Cỡ rất lớn" style="padding:2px 8px;font-size:0.95rem;font-weight:bold;">Rất lớn</button>
+    <div class="audio-file-input-wrapper">
+      <span id="audioStatusIndicator" class="status-badge online" style="background:#e0f2fe;color:#0369a1;padding:3px 10px;border-radius:12px;font-size:0.8rem;font-weight:600;">
+        🎧 Audio: audio/H31002.mp3
+      </span>
+      <label for="localAudioFile" style="cursor:pointer;text-decoration:underline;font-size:0.8rem;color:var(--primary);">Chọn file khác</label>
+      <input type="file" id="localAudioFile" accept="audio/mp3,audio/*" onchange="loadLocalAudio(this)" style="display:none;">
+      <audio id="globalAudioPlayer" preload="auto" src="audio/H31002.mp3" style="display:none;"></audio>
     </div>
   </div>
 </div>
-
 <!-- Audio Master Bar -->
 <div class="audio-player-bar">
   <div class="audio-player-inner">
@@ -1477,6 +1538,19 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
       <div class="form-group">
         <label class="form-label">Lớp / Khóa học (*)</label>
         <input type="text" class="form-input" id="inputStudentClass" placeholder="Ví dụ: HSK3-K24">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Kiểu chữ tiếng Hán (Font chữ)</label>
+        <div style="display:flex;gap:10px;">
+          <div class="mode-card selected" id="optFontHeiti" onclick="selectExamFont('heiti', this)" style="flex:1;text-align:center;padding:10px;">
+            <div style="font-weight:700;font-size:1.05rem;" class="chinese">黑体 (Heiti)</div>
+            <small style="color:var(--text-muted);">Font tiêu chuẩn</small>
+          </div>
+          <div class="mode-card" id="optFontKaiti" onclick="selectExamFont('kaiti', this)" style="flex:1;text-align:center;padding:10px;">
+            <div style="font-weight:700;font-size:1.05rem;font-family:'KaiTi','STKaiti','楷体',serif;" class="chinese">楷体 (KaiTi)</div>
+            <small style="color:var(--text-muted);">Font Khải thể</small>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label class="form-label">Mã truy cập đề thi (*) <small style="color:var(--text-muted);font-weight:normal;">(Do giáo viên cấp, mặc định: HSK32026)</small></label>
@@ -3993,11 +4067,10 @@ function onCharInputChange(qId, val) {
 
 function updateProgress() {
   const answeredCount = Object.keys(examState.answers).length;
-  const fill = document.getElementById("progressBarFill");
-  const text = document.getElementById("progressText");
-  const pct = Math.round((answeredCount / examState.totalQuestions) * 100);
-  fill.style.width = pct + "%";
-  text.textContent = `${answeredCount}/${examState.totalQuestions} (${pct}%)`;
+  const navCount = document.getElementById("navAnsweredCount");
+  if (navCount) navCount.textContent = answeredCount;
+  const drawerCount = document.getElementById("drawerCountText");
+  if (drawerCount) drawerCount.textContent = `${answeredCount}/80`;
 }
 
 /* --- TIMER & SESSIONS --- */
@@ -4037,6 +4110,7 @@ function startExamSession() {
   examState.startTime = new Date();
   examState.remainingSeconds = studentInfo.examModeMinutes > 0 ? studentInfo.examModeMinutes * 60 : 90 * 60;
   
+  applySelectedFont();
   randomizeExamData();
   renderExam();
   
@@ -4700,6 +4774,26 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 /* --- FONT & TYPOGRAPHY LOGIC --- */
+
+let selectedExamFont = localStorage.getItem("hsk_pref_font") || "heiti";
+
+function selectExamFont(fontKey, element) {
+  selectedExamFont = fontKey;
+  localStorage.setItem("hsk_pref_font", fontKey);
+  document.getElementById("optFontHeiti").classList.remove("selected");
+  document.getElementById("optFontKaiti").classList.remove("selected");
+  element.classList.add("selected");
+}
+
+function applySelectedFont() {
+  document.body.classList.remove("font-kaiti", "font-heiti");
+  if (selectedExamFont === "kaiti") {
+    document.body.classList.add("font-kaiti");
+  } else {
+    document.body.classList.add("font-heiti");
+  }
+}
+
 let isKaiTi = localStorage.getItem("hsk_pref_font") === "kaiti";
 let currentFontSize = localStorage.getItem("hsk_pref_size") || "md";
 
