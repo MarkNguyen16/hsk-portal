@@ -452,7 +452,7 @@ table.data-table tr:hover {
       <a href="index.html" class="back-link" title="Về trang chủ chọn đề">
         <span>⬅</span> Cổng Đề Thi
       </a>
-      <div class="brand-icon">HSK</div>
+      <img src="images/logo.png" alt="Logo HSK Nha Trang" style="width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);">
       <div class="brand-title">
         <h1>BẢNG ĐIỀU KHIỂN GIÁO VIÊN (TEACHER DASHBOARD)</h1>
         <p>Trung tâm Tiếng Trung HSK Nha Trang • Hệ thống Quản trị & Giám sát Khảo thí</p>
@@ -487,16 +487,14 @@ table.data-table tr:hover {
     <div class="auth-body" id="loginForm">
       <div class="form-group">
         <label class="form-label">Tài khoản / Email giáo viên:</label>
-        <input type="text" class="form-input" id="loginUser" placeholder="Email hoặc tên đăng nhập..." value="admin">
+        <input type="text" class="form-input" id="loginUser" placeholder="Email hoặc tên đăng nhập..." value="">
       </div>
       <div class="form-group">
         <label class="form-label">Mật khẩu:</label>
-        <input type="password" class="form-input" id="loginPass" placeholder="Nhập mật khẩu..." value="HSKteacher@2026">
+        <input type="password" class="form-input" id="loginPass" placeholder="Nhập mật khẩu..." value="">
       </div>
       <button class="btn-auth-submit" onclick="handleTeacherLogin()">Đăng Nhập Vào Hệ Thống ➔</button>
-      <small style="color:var(--text-muted);display:block;margin-top:12px;text-align:center;">
-        Mật khẩu quản trị mặc định: <code>HSKteacher@2026</code> (hoặc <code>123456</code>)
-      </small>
+
     </div>
 
     <!-- Register Form -->
@@ -516,9 +514,7 @@ table.data-table tr:hover {
       <div class="form-group">
         <label class="form-label">Mã kích hoạt Giáo viên (*):</label>
         <input type="password" class="form-input" id="regSecretKey" placeholder="Nhập mã bảo mật trung tâm...">
-        <small style="color:var(--text-muted);display:block;margin-top:4px;">
-          Mã kích hoạt nội bộ trung tâm mặc định: <code>HSKTEACHER2026</code>
-        </small>
+
       </div>
       <button class="btn-auth-submit" style="background:var(--gold-dark);" onclick="handleTeacherRegister()">Tạo Tài Khoản Giáo Viên ➔</button>
     </div>

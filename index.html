@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cổng Luyện Thi HSK Đa Cấp Độ (HSK 3 - 6) - Tiếng Trung HSK Nha Trang</title>
+<title>Cổng Luyện Thi HSK Đa Cấp Độ & Bài Tập Chuẩn - Tiếng Trung HSK Nha Trang</title>
 <style>
 :root {
   --primary: #176B63;
@@ -33,7 +33,7 @@ body {
 header.portal-header {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: #fff;
-  padding: 18px 24px;
+  padding: 16px 24px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.12);
   position: sticky;
   top: 0;
@@ -56,18 +56,14 @@ header.portal-header {
   gap: 14px;
 }
 
-.brand-icon {
-  background: var(--gold);
-  color: var(--primary-dark);
-  font-weight: 900;
-  font-size: 1.3rem;
+.brand img.center-logo {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  object-fit: contain;
+  background: #fff;
+  padding: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .brand-title h1 {
@@ -77,7 +73,7 @@ header.portal-header {
 }
 
 .brand-title p {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--gold-light);
 }
 
@@ -87,7 +83,7 @@ header.portal-header {
   padding: 8px 18px;
   border-radius: 20px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   text-decoration: none;
   transition: all 0.2s;
   display: inline-flex;
@@ -104,7 +100,7 @@ header.portal-header {
 .hero-section {
   background: #fff;
   border-bottom: 1px solid var(--border-color);
-  padding: 36px 20px;
+  padding: 32px 20px;
   text-align: center;
 }
 
@@ -117,20 +113,20 @@ header.portal-header {
   font-size: 1.85rem;
   color: var(--primary-dark);
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .hero-inner p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .student-quick-bar {
   background: var(--primary-subtle);
   border: 1px solid #cce5e1;
   border-radius: 12px;
-  padding: 14px 20px;
+  padding: 12px 18px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -142,7 +138,7 @@ header.portal-header {
   padding: 8px 14px;
   border: 1.5px solid var(--border-color);
   border-radius: 8px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   outline: none;
 }
 
@@ -157,6 +153,7 @@ header.portal-header {
   padding: 8px 18px;
   border-radius: 8px;
   font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -164,27 +161,28 @@ header.portal-header {
   background: var(--primary-dark);
 }
 
-/* Level Selector Tabs */
+/* Level Tabs */
 .level-tabs-bar {
   background: #fff;
   border-bottom: 2px solid var(--border-color);
   position: sticky;
-  top: 84px;
+  top: 80px;
   z-index: 90;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
 .level-tabs-inner {
   max-width: 1240px;
   margin: 0 auto;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   padding: 0 16px;
   overflow-x: auto;
 }
 
 .level-tab-btn {
-  padding: 14px 24px;
-  font-size: 1.05rem;
+  padding: 13px 20px;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-muted);
   border: none;
@@ -204,10 +202,18 @@ header.portal-header {
   border-bottom-color: var(--primary);
 }
 
-/* Catalog Content */
+.level-tab-btn.highlight-tab {
+  color: #b45309;
+}
+.level-tab-btn.highlight-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Catalog */
 main.portal-main {
   max-width: 1240px;
-  margin: 28px auto;
+  margin: 26px auto;
   padding: 0 16px;
 }
 
@@ -215,13 +221,13 @@ main.portal-main {
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 20px 24px;
-  margin-bottom: 24px;
+  padding: 18px 24px;
+  margin-bottom: 22px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
 .level-banner h3 {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   color: var(--primary-dark);
   font-weight: 800;
   margin-bottom: 4px;
@@ -229,7 +235,7 @@ main.portal-main {
 
 .level-banner p {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   margin-bottom: 8px;
 }
 
@@ -238,8 +244,8 @@ main.portal-main {
   background: var(--gold-light);
   color: #78350f;
   font-weight: 600;
-  font-size: 0.85rem;
-  padding: 4px 12px;
+  font-size: 0.82rem;
+  padding: 3px 12px;
   border-radius: 20px;
 }
 
@@ -302,7 +308,7 @@ main.portal-main {
 }
 
 .exam-name {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: #1a202c;
   margin-bottom: 6px;
@@ -324,7 +330,7 @@ main.portal-main {
   font-weight: 700;
   padding: 8px 14px;
   border-radius: 6px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   transition: background 0.2s;
 }
 
@@ -340,7 +346,7 @@ main.portal-main {
   font-weight: 600;
   padding: 8px 14px;
   border-radius: 6px;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   cursor: not-allowed;
 }
 
@@ -348,7 +354,7 @@ main.portal-main {
 footer.portal-footer {
   background: #fff;
   border-top: 1px solid var(--border-color);
-  padding: 28px 20px;
+  padding: 26px 20px;
   text-align: center;
   margin-top: 45px;
   color: var(--text-muted);
@@ -361,22 +367,22 @@ footer.portal-footer {
 <header class="portal-header">
   <div class="header-inner">
     <div class="brand">
-      <div class="brand-icon">HSK</div>
+      <img src="images/logo.png" alt="Logo Tiếng Trung HSK Nha Trang" class="center-logo">
       <div class="brand-title">
         <h1>TRUNG TÂM TIẾNG TRUNG HSK NHA TRANG</h1>
-        <p>Hệ thống Khảo thí & Luyện thi HSK Đa cấp độ (HSK 3, 4, 5, 6)</p>
+        <p>Hệ thống Khảo thí & Luyện thi Tiếng Trung Trực tuyến (HSK, HSK 3.0 & Bài tập chuẩn)</p>
       </div>
     </div>
     <div>
-      <a href="teacher.html" class="btn-nav-teacher">🔒 Khu Vực Giáo Viên</a>
+      <a href="teacher.html" class="btn-nav-teacher">🔒 Bảng Điều Khiển Giáo Viên</a>
     </div>
   </div>
 </header>
 
 <section class="hero-section">
   <div class="hero-inner">
-    <h2>Cổng Thi Thử & Luyện Đề HSK Trực Tuyến</h2>
-    <p>Hệ thống bài thi mô phỏng tiêu chuẩn quốc tế • Tích hợp âm thanh, tranh vẽ và chấm điểm tự động</p>
+    <h2>Cổng Khảo Thí & Luyện Đề HSK Trực Tuyến</h2>
+    <p>Đầy đủ đề thi các cấp độ HSK, Chuẩn mới HSK 3.0 và Bài tập Giáo trình Chuẩn HSK Standard Course</p>
     
     <div class="student-quick-bar">
       <span>👤 Thông tin học viên:</span>
@@ -388,10 +394,12 @@ footer.portal-footer {
   </div>
 </section>
 
-<!-- Level Tabs -->
+<!-- Level Tabs with HSK 3.0 and Bài tập HSK chuẩn -->
 <div class="level-tabs-bar">
   <div class="level-tabs-inner">
     <button class="level-tab-btn active" onclick="switchLevel('HSK3', this)">HSK 3 (10 Đề)</button>
+    <button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK30', this)">⭐ HSK 3.0 (Chuẩn Mới)</button>
+    <button class="level-tab-btn highlight-tab" onclick="switchLevel('WORKBOOK', this)">📖 Bài Tập HSK Chuẩn</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK4', this)">HSK 4 (10 Đề)</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK5', this)">HSK 5 (10 Đề)</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK6', this)">HSK 6 (10 Đề)</button>
@@ -400,18 +408,18 @@ footer.portal-footer {
 
 <main class="portal-main">
   <div id="levelContainer">
-    <!-- Injected by JavaScript -->
+    <!-- Rendered via JS -->
   </div>
 </main>
 
 <footer class="portal-footer">
   <p><strong>Trung tâm Tiếng Trung HSK Nha Trang</strong> • Công ty TNHH Giáo dục Ngoại ngữ Triều Dương</p>
-  <p style="margin-top:4px;">Hệ thống triển khai trên nền tảng Vercel • Kết nối Firebase Realtime Database</p>
+  <p style="margin-top:4px;">Cổng khảo thí triển khai trên nền tảng Vercel • Kết nối Firebase Realtime Database</p>
   <p style="margin-top:8px;"><a href="teacher.html" style="color:var(--primary);font-weight:600;text-decoration:none;">🔒 Đăng nhập Bảng Điều Khiển Dành Cho Giáo Viên</a></p>
 </footer>
 
 <script>
-const EXAM_DATABASE = {"HSK3": {"title": "HSK Cấp 3 (HSK 3级)", "desc": "Yêu cầu nắm vững 600 từ vựng. Đạt chuẩn có thể giao tiếp cơ bản trong học tập, công việc và cuộc sống hàng ngày tại Trung Quốc.", "specs": "80 câu (Nghe 40 - Đọc 30 - Viết 10) • 90 phút • Điểm đỗ: 180/300", "exams": [{"num": 1, "code": "H31001", "status": "pending", "title": "HSK 3 - Đề thi số 01", "link": "#"}, {"num": 2, "code": "H31002", "status": "active", "title": "HSK 3 - Đề thi số 02", "link": "de-2.html"}, {"num": 3, "code": "H31003", "status": "pending", "title": "HSK 3 - Đề thi số 03", "link": "#"}, {"num": 4, "code": "H31004", "status": "pending", "title": "HSK 3 - Đề thi số 04", "link": "#"}, {"num": 5, "code": "H31005", "status": "pending", "title": "HSK 3 - Đề thi số 05", "link": "#"}, {"num": 6, "code": "H31006", "status": "pending", "title": "HSK 3 - Đề thi số 06", "link": "#"}, {"num": 7, "code": "H31007", "status": "pending", "title": "HSK 3 - Đề thi số 07", "link": "#"}, {"num": 8, "code": "H31008", "status": "pending", "title": "HSK 3 - Đề thi số 08", "link": "#"}, {"num": 9, "code": "H31009", "status": "pending", "title": "HSK 3 - Đề thi số 09", "link": "#"}, {"num": 10, "code": "H31010", "status": "pending", "title": "HSK 3 - Đề thi số 10", "link": "#"}]}, "HSK4": {"title": "HSK Cấp 4 (HSK 4级)", "desc": "Yêu cầu nắm vững 1200 từ vựng. Đạt chuẩn có thể đàm thoại lưu loát bằng tiếng Trung với người bản ngữ về nhiều chủ đề phong phú.", "specs": "100 câu (Nghe 45 - Đọc 40 - Viết 15) • 105 phút • Điểm đỗ: 180/300", "exams": [{"num": 1, "code": "H41001", "status": "pending", "title": "HSK 4 - Đề thi số 01", "link": "#"}, {"num": 2, "code": "H41002", "status": "pending", "title": "HSK 4 - Đề thi số 02", "link": "#"}, {"num": 3, "code": "H41003", "status": "pending", "title": "HSK 4 - Đề thi số 03", "link": "#"}, {"num": 4, "code": "H41004", "status": "pending", "title": "HSK 4 - Đề thi số 04", "link": "#"}, {"num": 5, "code": "H41005", "status": "pending", "title": "HSK 4 - Đề thi số 05", "link": "#"}, {"num": 6, "code": "H41006", "status": "pending", "title": "HSK 4 - Đề thi số 06", "link": "#"}, {"num": 7, "code": "H41007", "status": "pending", "title": "HSK 4 - Đề thi số 07", "link": "#"}, {"num": 8, "code": "H41008", "status": "pending", "title": "HSK 4 - Đề thi số 08", "link": "#"}, {"num": 9, "code": "H41009", "status": "pending", "title": "HSK 4 - Đề thi số 09", "link": "#"}, {"num": 10, "code": "H41010", "status": "pending", "title": "HSK 4 - Đề thi số 10", "link": "#"}]}, "HSK5": {"title": "HSK Cấp 5 (HSK 5级)", "desc": "Yêu cầu nắm vững 2500 từ vựng. Đạt chuẩn có thể đọc báo, xem phim truyền hình tiếng Trung và viết diễn văn hoàn chỉnh.", "specs": "100 câu (Nghe 45 - Đọc 45 - Viết 10) • 125 phút • Điểm đỗ: 180/300", "exams": [{"num": 1, "code": "H51001", "status": "pending", "title": "HSK 5 - Đề thi số 01", "link": "#"}, {"num": 2, "code": "H51002", "status": "pending", "title": "HSK 5 - Đề thi số 02", "link": "#"}, {"num": 3, "code": "H51003", "status": "pending", "title": "HSK 5 - Đề thi số 03", "link": "#"}, {"num": 4, "code": "H51004", "status": "pending", "title": "HSK 5 - Đề thi số 04", "link": "#"}, {"num": 5, "code": "H51005", "status": "pending", "title": "HSK 5 - Đề thi số 05", "link": "#"}, {"num": 6, "code": "H51006", "status": "pending", "title": "HSK 5 - Đề thi số 06", "link": "#"}, {"num": 7, "code": "H51007", "status": "pending", "title": "HSK 5 - Đề thi số 07", "link": "#"}, {"num": 8, "code": "H51008", "status": "pending", "title": "HSK 5 - Đề thi số 08", "link": "#"}, {"num": 9, "code": "H51009", "status": "pending", "title": "HSK 5 - Đề thi số 09", "link": "#"}, {"num": 10, "code": "H51010", "status": "pending", "title": "HSK 5 - Đề thi số 10", "link": "#"}]}, "HSK6": {"title": "HSK Cấp 6 (HSK 6级)", "desc": "Yêu cầu nắm vững từ 5000 từ vựng trở lên. Trình độ cao cấp, dễ dàng tiếp nhận và diễn đạt ý kiến lưu loát bằng văn bản hoặc khẩu ngữ.", "specs": "101 câu (Nghe 50 - Đọc 50 - Viết 1) • 140 phút • Điểm đỗ: 180/300", "exams": [{"num": 1, "code": "H61001", "status": "pending", "title": "HSK 6 - Đề thi số 01", "link": "#"}, {"num": 2, "code": "H61002", "status": "pending", "title": "HSK 6 - Đề thi số 02", "link": "#"}, {"num": 3, "code": "H61003", "status": "pending", "title": "HSK 6 - Đề thi số 03", "link": "#"}, {"num": 4, "code": "H61004", "status": "pending", "title": "HSK 6 - Đề thi số 04", "link": "#"}, {"num": 5, "code": "H61005", "status": "pending", "title": "HSK 6 - Đề thi số 05", "link": "#"}, {"num": 6, "code": "H61006", "status": "pending", "title": "HSK 6 - Đề thi số 06", "link": "#"}, {"num": 7, "code": "H61007", "status": "pending", "title": "HSK 6 - Đề thi số 07", "link": "#"}, {"num": 8, "code": "H61008", "status": "pending", "title": "HSK 6 - Đề thi số 08", "link": "#"}, {"num": 9, "code": "H61009", "status": "pending", "title": "HSK 6 - Đề thi số 09", "link": "#"}, {"num": 10, "code": "H61010", "status": "pending", "title": "HSK 6 - Đề thi số 10", "link": "#"}]}};
+const EXAM_DATABASE = {"HSK3": {"title": "HSK Cấp 3 (Bộ 10 Đề Thi Chuẩn H31001 - H31010)", "desc": "Bộ đề thi mô phỏng tiêu chuẩn HSK 3 quốc tế. Đầy đủ 3 phần Nghe hiểu, Đọc hiểu và Viết. Tự động tính điểm, có phát âm và chấm tự động.", "specs": "80 câu (Nghe 40 - Đọc 30 - Viết 10) • Thời gian: 90 phút • Điểm đỗ: 180/300", "type": "exam", "items": [{"num": 1, "code": "H31001", "status": "pending", "title": "HSK 3 - Đề thi số 01", "desc": "Đề thi mô phỏng số 1", "link": "#"}, {"num": 2, "code": "H31002", "status": "active", "title": "HSK 3 - Đề thi số 02", "desc": "Đề thi chuẩn H31002 hoàn chỉnh", "link": "de-2.html"}, {"num": 3, "code": "H31003", "status": "pending", "title": "HSK 3 - Đề thi số 03", "desc": "Đề thi mô phỏng số 3", "link": "#"}, {"num": 4, "code": "H31004", "status": "pending", "title": "HSK 3 - Đề thi số 04", "desc": "Đề thi mô phỏng số 4", "link": "#"}, {"num": 5, "code": "H31005", "status": "pending", "title": "HSK 3 - Đề thi số 05", "desc": "Đề thi mô phỏng số 5", "link": "#"}, {"num": 6, "code": "H31006", "status": "pending", "title": "HSK 3 - Đề thi số 06", "desc": "Đề thi mô phỏng số 6", "link": "#"}, {"num": 7, "code": "H31007", "status": "pending", "title": "HSK 3 - Đề thi số 07", "desc": "Đề thi mô phỏng số 7", "link": "#"}, {"num": 8, "code": "H31008", "status": "pending", "title": "HSK 3 - Đề thi số 08", "desc": "Đề thi mô phỏng số 8", "link": "#"}, {"num": 9, "code": "H31009", "status": "pending", "title": "HSK 3 - Đề thi số 09", "desc": "Đề thi mô phỏng số 9", "link": "#"}, {"num": 10, "code": "H31010", "status": "pending", "title": "HSK 3 - Đề thi số 10", "desc": "Đề thi mô phỏng số 10", "link": "#"}]}, "HSK30": {"title": "HSK 3.0 (Khung Tiêu Chuẩn Mới 9 Cấp Độ - 新HSK 3.0)", "desc": "Chương trình khảo thí theo Tiêu chuẩn Đánh giá Năng lực Giáo dục Tiếng Hán Quốc tế mới nhất (Cấp 1 đến Cấp 9). Bổ sung âm tiết, chữ Hán, từ vựng và ngữ pháp toàn diện.", "specs": "Cấp 1 (500 từ) • Cấp 2 (1272 từ) • Cấp 3 (2245 từ) • Cấp 4 (3245 từ) • Cấp 5 (4316 từ) • Cấp 6 (5456 từ) • Cấp 7-9 (11092 từ)", "type": "hsk30", "items": [{"num": 1, "code": "HSK3.0-L1", "status": "pending", "title": "HSK 3.0 - Sơ cấp 1", "desc": "Đề thi thử định dạng HSK 3.0 cấp 1", "link": "#"}, {"num": 2, "code": "HSK3.0-L2", "status": "pending", "title": "HSK 3.0 - Sơ cấp 2", "desc": "Đề thi thử định dạng HSK 3.0 cấp 2", "link": "#"}, {"num": 3, "code": "HSK3.0-L3", "status": "pending", "title": "HSK 3.0 - Sơ cấp 3", "desc": "Đề thi thử định dạng HSK 3.0 cấp 3", "link": "#"}, {"num": 4, "code": "HSK3.0-L4", "status": "pending", "title": "HSK 3.0 - Trung cấp 4", "desc": "Đề thi thử định dạng HSK 3.0 cấp 4", "link": "#"}, {"num": 5, "code": "HSK3.0-L5", "status": "pending", "title": "HSK 3.0 - Trung cấp 5", "desc": "Đề thi thử định dạng HSK 3.0 cấp 5", "link": "#"}, {"num": 6, "code": "HSK3.0-L6", "status": "pending", "title": "HSK 3.0 - Trung cấp 6", "desc": "Đề thi thử định dạng HSK 3.0 cấp 6", "link": "#"}, {"num": 7, "code": "HSK3.0-L7-9", "status": "pending", "title": "HSK 3.0 - Cao cấp (7 - 9)", "desc": "Đề thi năng lực dịch thuật & khẩu ngữ cao cấp", "link": "#"}]}, "WORKBOOK": {"title": "Bài Tập HSK Chuẩn (Giáo Trình Chuẩn HSK Standard Course)", "desc": "Hệ thống bài tập củng cố bám sát 20 bài học của Sách Bài Tập (Workbook) HSK Standard Course 3 do BLCUP và Khổng Tử Học Viện biên soạn.", "specs": "20 Bài học thực hành (Nghe - Đọc - Viết - Nhận diện chữ Hán)", "type": "workbook", "items": [{"num": 1, "code": "SC3-B01", "status": "pending", "title": "Bài 1: 周末你有什么打算", "desc": "Kế hoạch cuối tuần của bạn là gì?", "link": "#"}, {"num": 2, "code": "SC3-B02", "status": "pending", "title": "Bài 2: 他什么时候回来", "desc": "Khi nào anh ấy quay lại?", "link": "#"}, {"num": 3, "code": "SC3-B03", "status": "pending", "title": "Bài 3: 桌子上放着很多饮料", "desc": "Trên bàn đặt rất nhiều đồ uống", "link": "#"}, {"num": 4, "code": "SC3-B04", "status": "pending", "title": "Bài 4: 她总是笑着跟客人说话", "desc": "Cô ấy luôn tươi cười nói chuyện với khách", "link": "#"}, {"num": 5, "code": "SC3-B05", "status": "pending", "title": "Bài 5: 我最近越来越胖了", "desc": "Dạo này tôi ngày càng mập ra", "link": "#"}, {"num": 6, "code": "SC3-B06", "status": "pending", "title": "Bài 6: 怎么突然找不到了", "desc": "Sao đột nhiên lại không tìm thấy", "link": "#"}, {"num": 7, "code": "SC3-B07", "status": "pending", "title": "Bài 7: 我跟她都认识五年了", "desc": "Tôi với cô ấy quen nhau được 5 năm rồi", "link": "#"}, {"num": 8, "code": "SC3-B08", "status": "pending", "title": "Bài 8: 你去哪儿我就去哪儿", "desc": "Bạn đi đâu tôi đi đó", "link": "#"}, {"num": 9, "code": "SC3-B09", "status": "pending", "title": "Bài 9: 她的汉语说得跟中国人一样好", "desc": "Tiếng Trung của cô ấy nói giỏi như người bản xứ", "link": "#"}, {"num": 10, "code": "SC3-B10", "status": "pending", "title": "Bài 10: 数学比历史难多了", "desc": "Toán học khó hơn lịch sử nhiều", "link": "#"}, {"num": 11, "code": "SC3-B11", "status": "pending", "title": "Bài 11: 别忘了把空调关了", "desc": "Đừng quên tắt máy điều hòa", "link": "#"}, {"num": 12, "code": "SC3-B12", "status": "pending", "title": "Bài 12: 把重要的东西放在我这儿吧", "desc": "Hãy để đồ quan trọng ở chỗ tôi", "link": "#"}, {"num": 13, "code": "SC3-B13", "status": "pending", "title": "Bài 13: 我是走回来的", "desc": "Tôi là đi bộ về đấy", "link": "#"}, {"num": 14, "code": "SC3-B14", "status": "pending", "title": "Bài 14: 你把水果拿过来", "desc": "Bạn mang hoa quả lại đây", "link": "#"}, {"num": 15, "code": "SC3-B15", "status": "pending", "title": "Bài 15: 其他都没什么问题", "desc": "Những thứ khác đều không vấn đề gì", "link": "#"}, {"num": 16, "code": "SC3-B16", "status": "pending", "title": "Bài 16: 我现在累得下了班就想睡觉", "desc": "Bây giờ tôi mệt đến mức tan ca là muốn ngủ", "link": "#"}, {"num": 17, "code": "SC3-B17", "status": "pending", "title": "Bài 17: 谁都有办法看好你的“病”", "desc": "Ai cũng có cách chữa khỏi bệnh của bạn", "link": "#"}, {"num": 18, "code": "SC3-B18", "status": "pending", "title": "Bài 18: 我相信他们会同意的", "desc": "Tôi tin rằng họ sẽ đồng ý thôi", "link": "#"}, {"num": 19, "code": "SC3-B19", "status": "pending", "title": "Bài 19: 你没看出来吗", "desc": "Bạn không nhận ra sao?", "link": "#"}, {"num": 20, "code": "SC3-B20", "status": "pending", "title": "Bài 20: 我被他影响了", "desc": "Tôi đã bị anh ấy ảnh hưởng rồi", "link": "#"}]}, "HSK4": {"title": "HSK Cấp 4 (Bộ 10 Đề Thi Chuẩn H41001 - H41010)", "desc": "Bộ đề thi mô phỏng tiêu chuẩn HSK 4 quốc tế. Đàm thoại lưu loát bằng tiếng Trung với người bản ngữ về nhiều chủ đề phong phú.", "specs": "100 câu (Nghe 45 - Đọc 40 - Viết 15) • 105 phút • Điểm đỗ: 180/300", "type": "exam", "items": [{"num": 1, "code": "H41001", "status": "pending", "title": "HSK 4 - Đề thi số 01", "desc": "Đề thi mô phỏng HSK 4 số 01", "link": "#"}, {"num": 2, "code": "H41002", "status": "pending", "title": "HSK 4 - Đề thi số 02", "desc": "Đề thi mô phỏng HSK 4 số 02", "link": "#"}, {"num": 3, "code": "H41003", "status": "pending", "title": "HSK 4 - Đề thi số 03", "desc": "Đề thi mô phỏng HSK 4 số 03", "link": "#"}, {"num": 4, "code": "H41004", "status": "pending", "title": "HSK 4 - Đề thi số 04", "desc": "Đề thi mô phỏng HSK 4 số 04", "link": "#"}, {"num": 5, "code": "H41005", "status": "pending", "title": "HSK 4 - Đề thi số 05", "desc": "Đề thi mô phỏng HSK 4 số 05", "link": "#"}, {"num": 6, "code": "H41006", "status": "pending", "title": "HSK 4 - Đề thi số 06", "desc": "Đề thi mô phỏng HSK 4 số 06", "link": "#"}, {"num": 7, "code": "H41007", "status": "pending", "title": "HSK 4 - Đề thi số 07", "desc": "Đề thi mô phỏng HSK 4 số 07", "link": "#"}, {"num": 8, "code": "H41008", "status": "pending", "title": "HSK 4 - Đề thi số 08", "desc": "Đề thi mô phỏng HSK 4 số 08", "link": "#"}, {"num": 9, "code": "H41009", "status": "pending", "title": "HSK 4 - Đề thi số 09", "desc": "Đề thi mô phỏng HSK 4 số 09", "link": "#"}, {"num": 10, "code": "H41010", "status": "pending", "title": "HSK 4 - Đề thi số 10", "desc": "Đề thi mô phỏng HSK 4 số 10", "link": "#"}]}, "HSK5": {"title": "HSK Cấp 5 (Bộ 10 Đề Thi Chuẩn H51001 - H51010)", "desc": "Bộ đề thi mô phỏng tiêu chuẩn HSK 5 quốc tế. Đọc báo, xem phim truyền hình tiếng Trung và viết diễn văn hoàn chỉnh.", "specs": "100 câu (Nghe 45 - Đọc 45 - Viết 10) • 125 phút • Điểm đỗ: 180/300", "type": "exam", "items": [{"num": 1, "code": "H51001", "status": "pending", "title": "HSK 5 - Đề thi số 01", "desc": "Đề thi mô phỏng HSK 5 số 01", "link": "#"}, {"num": 2, "code": "H51002", "status": "pending", "title": "HSK 5 - Đề thi số 02", "desc": "Đề thi mô phỏng HSK 5 số 02", "link": "#"}, {"num": 3, "code": "H51003", "status": "pending", "title": "HSK 5 - Đề thi số 03", "desc": "Đề thi mô phỏng HSK 5 số 03", "link": "#"}, {"num": 4, "code": "H51004", "status": "pending", "title": "HSK 5 - Đề thi số 04", "desc": "Đề thi mô phỏng HSK 5 số 04", "link": "#"}, {"num": 5, "code": "H51005", "status": "pending", "title": "HSK 5 - Đề thi số 05", "desc": "Đề thi mô phỏng HSK 5 số 05", "link": "#"}, {"num": 6, "code": "H51006", "status": "pending", "title": "HSK 5 - Đề thi số 06", "desc": "Đề thi mô phỏng HSK 5 số 06", "link": "#"}, {"num": 7, "code": "H51007", "status": "pending", "title": "HSK 5 - Đề thi số 07", "desc": "Đề thi mô phỏng HSK 5 số 07", "link": "#"}, {"num": 8, "code": "H51008", "status": "pending", "title": "HSK 5 - Đề thi số 08", "desc": "Đề thi mô phỏng HSK 5 số 08", "link": "#"}, {"num": 9, "code": "H51009", "status": "pending", "title": "HSK 5 - Đề thi số 09", "desc": "Đề thi mô phỏng HSK 5 số 09", "link": "#"}, {"num": 10, "code": "H51010", "status": "pending", "title": "HSK 5 - Đề thi số 10", "desc": "Đề thi mô phỏng HSK 5 số 10", "link": "#"}]}, "HSK6": {"title": "HSK Cấp 6 (Bộ 10 Đề Thi Chuẩn H61001 - H61010)", "desc": "Bộ đề thi mô phỏng tiêu chuẩn HSK 6 cao cấp quốc tế. Tiếp nhận và diễn đạt ý kiến lưu loát bằng văn bản hoặc khẩu ngữ.", "specs": "101 câu (Nghe 50 - Đọc 50 - Viết 1) • 140 phút • Điểm đỗ: 180/300", "type": "exam", "items": [{"num": 1, "code": "H61001", "status": "pending", "title": "HSK 6 - Đề thi số 01", "desc": "Đề thi mô phỏng HSK 6 số 01", "link": "#"}, {"num": 2, "code": "H61002", "status": "pending", "title": "HSK 6 - Đề thi số 02", "desc": "Đề thi mô phỏng HSK 6 số 02", "link": "#"}, {"num": 3, "code": "H61003", "status": "pending", "title": "HSK 6 - Đề thi số 03", "desc": "Đề thi mô phỏng HSK 6 số 03", "link": "#"}, {"num": 4, "code": "H61004", "status": "pending", "title": "HSK 6 - Đề thi số 04", "desc": "Đề thi mô phỏng HSK 6 số 04", "link": "#"}, {"num": 5, "code": "H61005", "status": "pending", "title": "HSK 6 - Đề thi số 05", "desc": "Đề thi mô phỏng HSK 6 số 05", "link": "#"}, {"num": 6, "code": "H61006", "status": "pending", "title": "HSK 6 - Đề thi số 06", "desc": "Đề thi mô phỏng HSK 6 số 06", "link": "#"}, {"num": 7, "code": "H61007", "status": "pending", "title": "HSK 6 - Đề thi số 07", "desc": "Đề thi mô phỏng HSK 6 số 07", "link": "#"}, {"num": 8, "code": "H61008", "status": "pending", "title": "HSK 6 - Đề thi số 08", "desc": "Đề thi mô phỏng HSK 6 số 08", "link": "#"}, {"num": 9, "code": "H61009", "status": "pending", "title": "HSK 6 - Đề thi số 09", "desc": "Đề thi mô phỏng HSK 6 số 09", "link": "#"}, {"num": 10, "code": "H61010", "status": "pending", "title": "HSK 6 - Đề thi số 10", "desc": "Đề thi mô phỏng HSK 6 số 10", "link": "#"}]}};
 
 let currentLevel = "HSK3";
 
@@ -442,12 +450,12 @@ function renderLevel(lvlKey) {
     <div class="level-banner">
       <h3>${lvl.title}</h3>
       <p>${lvl.desc}</p>
-      <div class="badge-specs">📋 Quy cách đề: ${lvl.specs}</div>
+      <div class="badge-specs">📋 ${lvl.specs}</div>
     </div>
     <div class="exam-grid">
   `;
 
-  lvl.exams.forEach(ex => {
+  lvl.items.forEach(ex => {
     const isActive = (ex.status === "active");
     html += `
       <div class="exam-card ${isActive ? 'active-exam' : ''}">
@@ -460,12 +468,12 @@ function renderLevel(lvlKey) {
           </div>
           <h4 class="exam-name">${ex.title}</h4>
           <p class="exam-short-desc">
-            ${isActive ? 'Đề thi chuẩn cấu trúc HSK gồm Nghe, Đọc, Viết. Tích hợp audio và chấm điểm tự động.' : 'Đề thi mô phỏng chuẩn cấu trúc. Đang cập nhật câu hỏi và ngân hàng đề.'}
+            ${ex.desc || 'Đang cập nhật nội dung bài thi.'}
           </p>
         </div>
         ${isActive 
           ? `<a href="${ex.link}" class="btn-launch" onclick="prepareEnterExam()">Vào Thi Ngay ➔</a>` 
-          : `<span class="btn-disabled">Đang chuẩn bị đề</span>`}
+          : `<span class="btn-disabled">Đang chuẩn bị</span>`}
       </div>
     `;
   });
@@ -486,7 +494,7 @@ function saveStudentProfile() {
   localStorage.setItem("hsk3_student_name", name);
   localStorage.setItem("hsk3_student_class", cls);
   if (code) localStorage.setItem("hsk_custom_access_code", code);
-  alert("Đã lưu thông tin học viên thành công! Bạn có thể chọn đề thi để bắt đầu.");
+  alert("Đã lưu thông tin học viên thành công! Bạn có thể chọn bài thi hoặc bài tập để bắt đầu.");
 }
 
 function prepareEnterExam() {
