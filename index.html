@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cổng Thi Thử & Luyện Thi HSK - Tiếng Trung HSK Nha Trang</title>
+<style>
+:root {
+  --primary: #176B63;
+  --primary-dark: #0D423D;
+  --primary-light: #208b81;
+  --primary-subtle: #e6f3f1;
+  --gold: #D9B86C;
+  --gold-dark: #b59447;
+  --gold-light: #faecd0;
+  --bg-cream: #F7F3E8;
+  --card-bg: #FFFFFF;
+  --text-main: #2D3748;
+  --text-muted: #718096;
+  --border-color: #E2DAC7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+header.portal-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  padding: 20px 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  background: var(--gold);
+  color: var(--primary-dark);
+  font-weight: 900;
+  font-size: 1.3rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.brand-title h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.brand-title p {
+  font-size: 0.85rem;
+  color: var(--gold-light);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-nav-teacher {
+  background: var(--gold);
+  color: var(--primary-dark);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-nav-teacher:hover {
+  background: #ecd395;
+  transform: translateY(-1px);
+}
+
+/* Hero */
+.hero-section {
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 45px 24px;
+  text-align: center;
+}
+
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-inner h2 {
+  font-size: 2rem;
+  color: var(--primary-dark);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.hero-inner p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.student-quick-bar {
+  background: var(--primary-subtle);
+  border: 1px solid #cce5e1;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.student-quick-bar input {
+  padding: 8px 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.student-quick-bar input:focus {
+  border-color: var(--primary);
+}
+
+.btn-save-profile {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-save-profile:hover {
+  background: var(--primary-dark);
+}
+
+/* Main catalog */
+main.portal-main {
+  max-width: 1200px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.catalog-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.level-pills {
+  display: flex;
+  gap: 8px;
+}
+
+.level-pill {
+  padding: 6px 14px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.level-pill.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.exam-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 22px;
+}
+
+.exam-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.exam-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.exam-card.active-exam {
+  border-top: 5px solid var(--primary);
+}
+
+.exam-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.exam-badge {
+  background: var(--primary-subtle);
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.exam-badge.ready {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.exam-code {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.exam-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 8px;
+}
+
+.exam-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.exam-specs {
+  display: flex;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #4a5568;
+  margin-bottom: 20px;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 10px 0;
+}
+
+.exam-specs span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-start-exam {
+  display: block;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.btn-start-exam:hover {
+  background: var(--primary-dark);
+}
+
+.btn-disabled {
+  display: block;
+  text-align: center;
+  background: #e2e8f0;
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: not-allowed;
+}
+
+/* Footer */
+footer.portal-footer {
+  background: #fff;
+  border-top: 1px solid var(--border-color);
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 50px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+</style>
+</head>
+<body>
+
+<header class="portal-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">HSK</div>
+      <div class="brand-title">
+        <h1>TIẾNG TRUNG HSK NHA TRANG</h1>
+        <p>Cổng Khảo Thí & Luyện Thi Trực Tuyến Đa Đề</p>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="teacher.html" class="btn-nav-teacher">🔒 Bảng Điều Khiển Giáo Viên</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="hero-inner">
+    <h2>Hệ Thống Luyện Thi & Khảo Thí HSK Trực Tuyến</h2>
+    <p>Chấm điểm tự động tức thì • Tích hợp âm thanh và hình ảnh chuẩn đề thi • Báo cáo kết quả trực tiếp cho Giáo viên</p>
+    
+    <div class="student-quick-bar">
+      <span>👤 Thông tin của bạn:</span>
+      <input type="text" id="quickName" placeholder="Họ và tên thí sinh...">
+      <input type="text" id="quickClass" placeholder="Lớp (vd: HSK3-K24)...">
+      <button class="btn-save-profile" onclick="saveProfile()">Lưu Thông Tin</button>
+    </div>
+  </div>
+</section>
+
+<main class="portal-main">
+  <div class="catalog-header">
+    <div class="catalog-title">
+      <span>📚</span> Danh Mục Đề Thi
+    </div>
+    <div class="level-pills">
+      <div class="level-pill active">Tất cả</div>
+      <div class="level-pill">HSK 3</div>
+      <div class="level-pill">HSK 4</div>
+      <div class="level-pill">HSKK</div>
+    </div>
+  </div>
+
+  <div class="exam-grid">
+    <!-- Exam 1: De 2 (Active) -->
+    <div class="exam-card active-exam">
+      <div>
+        <div class="exam-card-header">
+          <span class="exam-badge ready">● Đang mở thi</span>
+          <span class="exam-code">Mã đề: H31002</span>
+        </div>
+        <h3 class="exam-title">HSK 3 - Đề Thi Số 02</h3>
+        <p class="exam-desc">
+          Đề thi mô phỏng tiêu chuẩn HSK cấp 3 với đầy đủ 3 phần: Nghe hiểu tranh vẽ, Đọc hiểu ghép câu và Viết sắp xếp từ. Tự động xoay đáp án mỗi lượt làm bài.
+        </p>
+        <div class="exam-specs">
+          <span>📝 80 câu</span>
+          <span>⏱️ 90 phút</span>
+          <span>🎯 Đạt ≥ 180/300</span>
+        </div>
+      </div>
+      <a href="de-2.html" class="btn-start-exam" onclick="prepareLaunch(event)">Bắt Đầu Thi Ngay ➔</a>
+    </div>
+
+    <!-- Exam 2: De 1 (Coming Soon) -->
+    <div class="exam-card">
+      <div>
+        <div class="exam-card-header">
+          <span class="exam-badge">Đang cập nhật</span>
+          <span class="exam-code">Mã đề: H31001</span>
+        </div>
+        <h3 class="exam-title">HSK 3 - Đề Thi Số 01</h3>
+        <p class="exam-desc">
+          Đề thi chuẩn HSK 3 số 1 với hệ thống 80 câu hỏi ngữ pháp và từ vựng cốt lõi. Sẵn sàng tích hợp khi giảng viên nạp file đề.
+        </p>
+        <div class="exam-specs">
+          <span>📝 80 câu</span>
+          <span>⏱️ 90 phút</span>
+          <span>🎯 Đạt ≥ 180/300</span>
+        </div>
+      </div>
+      <span class="btn-disabled">Sắp mở</span>
+    </div>
+
+    <!-- Exam 3: De 3 (Coming Soon) -->
+    <div class="exam-card">
+      <div>
+        <div class="exam-card-header">
+          <span class="exam-badge">Đang cập nhật</span>
+          <span class="exam-code">Mã đề: H31003</span>
+        </div>
+        <h3 class="exam-title">HSK 3 - Đề Thi Số 03</h3>
+        <p class="exam-desc">
+          Đề thi tăng cường kỹ năng phân tích đọc hiểu và nghe hội thoại nâng cao của trình độ HSK 3.
+        </p>
+        <div class="exam-specs">
+          <span>📝 80 câu</span>
+          <span>⏱️ 90 phút</span>
+          <span>🎯 Đạt ≥ 180/300</span>
+        </div>
+      </div>
+      <span class="btn-disabled">Sắp mở</span>
+    </div>
+  </div>
+</main>
+
+<footer class="portal-footer">
+  <p><strong>Trung tâm Tiếng Trung HSK Nha Trang</strong></p>
+  <p style="margin-top:4px;">Cổng khảo thí được thiết kế để triển khai nhanh chóng trên Vercel / GitHub Pages.</p>
+  <p style="margin-top:8px;"><a href="teacher.html" style="color:var(--primary);text-decoration:none;font-weight:600;">🔒 Đăng nhập Bảng Điều Khiển Dành Cho Giáo Viên</a></p>
+</footer>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const name = localStorage.getItem("hsk3_student_name") || "";
+  const cls = localStorage.getItem("hsk3_student_class") || "";
+  if (name) document.getElementById("quickName").value = name;
+  if (cls) document.getElementById("quickClass").value = cls;
+});
+
+function saveProfile() {
+  const name = document.getElementById("quickName").value.trim();
+  const cls = document.getElementById("quickClass").value.trim();
+  if (!name) {
+    alert("Vui lòng nhập họ tên của bạn!");
+    return;
+  }
+  localStorage.setItem("hsk3_student_name", name);
+  localStorage.setItem("hsk3_student_class", cls);
+  alert("Đã lưu thông tin thí sinh thành công! Thông tin này sẽ tự động điền vào các bài thi.");
+}
+
+function prepareLaunch(e) {
+  const name = document.getElementById("quickName").value.trim();
+  const cls = document.getElementById("quickClass").value.trim();
+  if (name) localStorage.setItem("hsk3_student_name", name);
+  if (cls) localStorage.setItem("hsk3_student_class", cls);
+}
+</script>
+</body>
+</html>

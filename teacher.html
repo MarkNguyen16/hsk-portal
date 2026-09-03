@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK 3 - Bảng Điều Khiển Giáo Viên (Teacher Dashboard)</title>
+<style>
+:root {
+  --primary: #176B63;
+  --primary-dark: #0D423D;
+  --primary-light: #208b81;
+  --primary-subtle: #e6f3f1;
+  --gold: #D9B86C;
+  --gold-dark: #b59447;
+  --gold-light: #faecd0;
+  --bg-cream: #F7F3E8;
+  --card-bg: #FFFFFF;
+  --text-main: #2D3748;
+  --text-muted: #718096;
+  --border-color: #E2DAC7;
+  --success: #2E7D32;
+  --success-bg: #E8F5E9;
+  --danger: #C62828;
+  --danger-bg: #FFEBEE;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  line-height: 1.6;
+  padding-bottom: 60px;
+}
+
+/* Header */
+header.dash-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  padding: 20px 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  background: var(--gold);
+  color: var(--primary-dark);
+  font-weight: 900;
+  font-size: 1.3rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.brand-title h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.brand-title p {
+  font-size: 0.85rem;
+  color: var(--gold-light);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-pill {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-pill-gold {
+  background: var(--gold);
+  color: var(--primary-dark);
+}
+
+.btn-pill-gold:hover {
+  background: #e5ca89;
+  transform: translateY(-1px);
+}
+
+.btn-pill-outline {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.btn-pill-outline:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+/* Main Container */
+main.dash-main {
+  max-width: 1280px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* Stats Overview */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stat-icon-blue { background: #e0f2fe; color: #0284c7; }
+.stat-icon-green { background: #dcfce7; color: #16a34a; }
+.stat-icon-gold { background: #fef3c7; color: #d97706; }
+.stat-icon-purple { background: #f3e8ff; color: #9333ea; }
+
+.stat-info .stat-val {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  line-height: 1.2;
+}
+
+.stat-info .stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Action & Filter Toolbar */
+.toolbar-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 8px 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  outline: none;
+  min-width: 220px;
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(23,107,99,0.15);
+}
+
+.select-filter {
+  padding: 8px 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  outline: none;
+  background: #fff;
+  color: var(--text-main);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.status-badge.online { background: #dcfce7; color: #16a34a; }
+.status-badge.offline { background: #f1f5f9; color: #64748b; }
+
+/* Table Card */
+.table-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+table.data-table th {
+  background: #f8fafc;
+  color: var(--text-muted);
+  font-weight: 700;
+  padding: 12px 16px;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+table.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+table.data-table tr:hover {
+  background-color: #fafdfc;
+}
+
+.tag-score-pass {
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.tag-score-fail {
+  background: #fee2e2;
+  color: #b91c1c;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.btn-action-sm {
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-action-sm:hover {
+  background: var(--primary-subtle);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Modals */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.modal-card {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  padding: 18px 24px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+}
+
+.hidden { display: none !important; }
+
+/* Print styles */
+@media print {
+  header.dash-header, .toolbar-card, .btn-action-sm, .header-actions { display: none !important; }
+  body { background: #fff; color: #000; padding: 0; }
+  .table-card { border: none; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="dash-header">
+  <div class="header-inner">
+    
+    <div class="brand">
+      <a href="index.html" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;font-size:0.85rem;background:rgba(255,255,255,0.15);padding:6px 12px;border-radius:20px;margin-right:8px;" title="Về trang chủ cổng đề">
+        <span>⬅</span> Cổng Đề Thi
+      </a>
+      <div class="brand-icon">HSK</div>
+
+      <div class="brand-title">
+        <h1>BẢNG ĐIỀU KHIỂN GIÁO VIÊN (TEACHER DASHBOARD)</h1>
+        <p>Trung tâm Tiếng Trung HSK Nha Trang • Giám sát & Quản lý điểm số thời gian thực</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-pill btn-pill-outline" onclick="openBatchModal()">📋 Nhập Mã Hàng Loạt</button>
+      <button class="btn-pill btn-pill-outline" onclick="openSettingsModal()">⚙️ Cấu Hình Cloud</button>
+      <button class="btn-pill btn-pill-gold" onclick="exportExcelCSV()">📥 Xuất Bảng Điểm (Excel/CSV)</button>
+    </div>
+  </div>
+</header>
+
+<!-- Main Body -->
+<main class="dash-main">
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon-wrap stat-icon-blue">📝</div>
+      <div class="stat-info">
+        <div class="stat-val" id="totalSubmissions">0</div>
+        <div class="stat-label">Tổng lượt nộp bài</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrap stat-icon-gold">⭐</div>
+      <div class="stat-info">
+        <div class="stat-val" id="avgScore10">0.0</div>
+        <div class="stat-label">Điểm trung bình (/10)</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrap stat-icon-purple">🎯</div>
+      <div class="stat-info">
+        <div class="stat-val" id="avgHskScore">0 / 300</div>
+        <div class="stat-label">Điểm HSK trung bình</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrap stat-icon-green">🏆</div>
+      <div class="stat-info">
+        <div class="stat-val" id="passRate">0%</div>
+        <div class="stat-label">Tỷ lệ Đạt HSK 3 (≥180)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toolbar Filter -->
+  <div class="toolbar-card">
+    <div class="filter-group">
+      <input type="text" class="search-input" id="searchName" placeholder="🔍 Tìm theo họ tên học sinh..." oninput="filterData()">
+      <select class="select-filter" id="filterClass" onchange="filterData()">
+        <option value="ALL">-- Tất cả các lớp --</option>
+      </select>
+      <select class="select-filter" id="filterResult" onchange="filterData()">
+        <option value="ALL">-- Tất cả kết quả --</option>
+        <option value="PASS">Chỉ học sinh ĐẠT (≥180)</option>
+        <option value="FAIL">Chưa đạt (&lt;180)</option>
+      </select>
+      <select class="select-filter" id="sortBy" onchange="filterData()">
+        <option value="TIME_DESC">Thời gian nộp: Mới nhất</option>
+        <option value="SCORE_DESC">Điểm: Cao nhất</option>
+        <option value="SCORE_ASC">Điểm: Thấp nhất</option>
+        <option value="NAME_ASC">Họ tên: A -> Z</option>
+      </select>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span class="status-badge online" id="connectionBadge">🟢 Cloud Sync: Sẵn sàng</span>
+      <button class="btn-action-sm" onclick="syncFromCloud(true)">🔄 Làm Mới Dữ Liệu</button>
+      <button class="btn-action-sm" onclick="window.print()">🖨 In Báo Cáo</button>
+    </div>
+  </div>
+
+  <!-- Live Table Card -->
+  <div class="table-card">
+    <div class="table-responsive">
+      <table class="data-table" id="submissionsTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Họ và Tên</th>
+            <th>Lớp</th>
+            <th>Lần</th>
+            <th>Thời gian nộp</th>
+            <th>Thời lượng</th>
+            <th>Điểm /10</th>
+            <th>Tổng HSK /300</th>
+            <th>Nghe / Đọc / Viết</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Rendered via JS -->
+        </tbody>
+      </table>
+    </div>
+    <div id="emptyState" style="text-align:center;padding:40px 20px;color:var(--text-muted);display:none;">
+      <div style="font-size:2.5rem;margin-bottom:8px;">📭</div>
+      <p style="font-weight:600;">Chưa có dữ liệu bài nộp nào.</p>
+      <p style="font-size:0.85rem;margin-top:4px;">Khi học sinh nộp bài, kết quả sẽ tự động hiển thị tại đây theo thời gian thực.</p>
+    </div>
+  </div>
+</main>
+
+<!-- Batch Import Modal -->
+<div class="modal-backdrop hidden" id="batchModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>📋 Nhập Mã Xác Thực Hàng Loạt Từ Zalo / Tin Nhắn</h3>
+      <button onclick="closeBatchModal()" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:12px;">
+        Học sinh chỉ cần bấm nút <em>"Sao chép Mã xác thực"</em> sau khi nộp bài và gửi mã qua Zalo. Bạn chỉ việc copy tất cả tin nhắn và dán vào ô bên dưới, hệ thống sẽ tự bóc tách và nạp vào bảng điểm.
+      </p>
+      <textarea id="batchTextarea" rows="8" class="form-input" style="font-family:monospace;font-size:0.85rem;" placeholder="Dán các chuỗi mã xác thực vào đây (mỗi mã 1 dòng hoặc cách nhau bởi dấu cách/tin nhắn)..."></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-action-sm" onclick="closeBatchModal()">Hủy</button>
+      <button class="btn-pill btn-pill-gold" onclick="processBatchCodes()">Xử lý & Thêm vào Bảng điểm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal-backdrop hidden" id="settingsModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>⚙️ Cấu Hình Kết Nối Cloud Database (Firebase / RestDB)</h3>
+      <button onclick="closeSettingsModal()" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Cloud Database URL (Firebase Realtime DB hoặc REST Endpoint):</label>
+        <input type="text" class="form-input" id="cfgDbUrl" placeholder="https://your-project-default-rtdb.firebaseio.com/hsk3_submissions">
+        <small style="color:var(--text-muted);display:block;margin-top:4px;">
+          Nếu để trống, hệ thống sẽ lưu trữ và quản lý trong bộ nhớ trình duyệt của máy này.
+        </small>
+      </div>
+
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:0.85rem;">
+        <strong>💡 Hướng dẫn tạo Firebase Realtime DB miễn phí (30 giây):</strong>
+        <ol style="margin-left:18px;margin-top:6px;line-height:1.6;">
+          <li>Truy cập <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a>, đăng nhập bằng Gmail cá nhân.</li>
+          <li>Bấm <strong>Add project</strong> (Tạo dự án mới đặt tên bất kỳ, ví dụ: <code>HSK3-Results</code>).</li>
+          <li>Vào menu trái chọn <strong>Build</strong> > <strong>Realtime Database</strong> > Bấm <strong>Create Database</strong>.</li>
+          <li>Ở mục <strong>Rules</strong>, đặt <code>".read": true, ".write": true</code> để cho phép gửi điểm.</li>
+          <li>Sao chép đường link URL (dạng <code>https://...firebaseio.com</code>) và dán vào ô bên trên.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-action-sm" onclick="closeSettingsModal()">Đóng</button>
+      <button class="btn-pill btn-pill-gold" onclick="saveSettings()">Lưu Cấu Hình</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// State
+let allSubmissions = [];
+let CLOUD_DB_URL = localStorage.getItem("hsk3_cloud_db_url") || "";
+
+function initDashboard() {
+  // Load local data first
+  try {
+    allSubmissions = JSON.parse(localStorage.getItem("hsk3_all_class_submissions") || "[]");
+  } catch (e) { allSubmissions = []; }
+
+  // Sync from cloud if URL configured
+  if (CLOUD_DB_URL) {
+    syncFromCloud(false);
+  } else {
+    renderTable();
+  }
+
+  // Auto-sync every 15s
+  setInterval(() => {
+    if (CLOUD_DB_URL) syncFromCloud(false);
+  }, 15000);
+}
+
+function syncFromCloud(showNotification) {
+  if (!CLOUD_DB_URL) {
+    if (showNotification) alert("Chưa cấu hình Cloud Database URL. Dữ liệu đang được lưu cục bộ trên máy.");
+    return;
+  }
+
+  const endpoint = CLOUD_DB_URL.endsWith(".json") ? CLOUD_DB_URL : CLOUD_DB_URL + ".json";
+  
+  document.getElementById("connectionBadge").innerHTML = "⏳ Đang đồng bộ...";
+  document.getElementById("connectionBadge").className = "status-badge offline";
+
+  fetch(endpoint)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("connectionBadge").innerHTML = "🟢 Cloud Sync: Đang kết nối";
+      document.getElementById("connectionBadge").className = "status-badge online";
+      
+      if (data) {
+        // Firebase returns object of objects
+        let cloudList = [];
+        if (Array.isArray(data)) {
+          cloudList = data.filter(Boolean);
+        } else if (typeof data === 'object') {
+          cloudList = Object.keys(data).map(k => ({ ...data[k], _id: k }));
+        }
+        
+        // Merge with local submissions
+        allSubmissions = cloudList;
+        localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
+      }
+      renderTable();
+      if (showNotification) alert("Đã cập nhật dữ liệu mới nhất từ Cloud Database!");
+    })
+    .catch(err => {
+      console.error("Cloud sync failed:", err);
+      document.getElementById("connectionBadge").innerHTML = "⚠️ Lỗi kết nối Cloud";
+      document.getElementById("connectionBadge").className = "status-badge offline";
+      renderTable();
+    });
+}
+
+function renderTable() {
+  const tbody = document.getElementById("tableBody");
+  const empty = document.getElementById("emptyState");
+  tbody.innerHTML = "";
+
+  // Populate Classes filter
+  const classSelect = document.getElementById("filterClass");
+  const currentClassVal = classSelect.value;
+  const classes = [...new Set(allSubmissions.map(s => s.studentClass).filter(Boolean))];
+  
+  classSelect.innerHTML = '<option value="ALL">-- Tất cả các lớp --</option>';
+  classes.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = "Lớp: " + c;
+    if (c === currentClassVal) opt.selected = true;
+    classSelect.appendChild(opt);
+  });
+
+  // Filter & Sort
+  const search = document.getElementById("searchName").value.trim().toLowerCase();
+  const clsFilter = classSelect.value;
+  const resFilter = document.getElementById("filterResult").value;
+  const sortBy = document.getElementById("sortBy").value;
+
+  let filtered = allSubmissions.filter(s => {
+    const matchName = (s.studentName || "").toLowerCase().includes(search);
+    const matchClass = (clsFilter === "ALL" || s.studentClass === clsFilter);
+    const isPass = (s.hskTotal >= 180 || s.isPassed);
+    const matchRes = (resFilter === "ALL" || (resFilter === "PASS" && isPass) || (resFilter === "FAIL" && !isPass));
+    return matchName && matchClass && matchRes;
+  });
+
+  // Sorting
+  filtered.sort((a, b) => {
+    if (sortBy === "TIME_DESC") return new Date(b.submitTime || 0) - new Date(a.submitTime || 0);
+    if (sortBy === "SCORE_DESC") return (parseFloat(b.score10) || 0) - (parseFloat(a.score10) || 0);
+    if (sortBy === "SCORE_ASC") return (parseFloat(a.score10) || 0) - (parseFloat(b.score10) || 0);
+    if (sortBy === "NAME_ASC") return (a.studentName || "").localeCompare(b.studentName || "");
+    return 0;
+  });
+
+  // Update Overview Stats
+  updateOverviewStats(filtered);
+
+  if (!filtered.length) {
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+
+  filtered.forEach((sub, idx) => {
+    const isPass = (sub.hskTotal >= 180 || sub.isPassed);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${idx + 1}</td>
+      <td><strong>${sub.studentName || "Ẩn danh"}</strong></td>
+      <td><span style="background:#edf2f7;padding:2px 8px;border-radius:4px;font-size:0.85rem;">${sub.studentClass || "N/A"}</span></td>
+      <td>#${sub.attemptCount || 1}</td>
+      <td>${sub.submitTime ? new Date(sub.submitTime).toLocaleString('vi-VN') : "Vừa xong"}</td>
+      <td>${sub.durationFormatted || "N/A"}</td>
+      <td><strong style="color:var(--primary-dark);font-size:1.05rem;">${sub.score10}</strong></td>
+      <td><strong>${sub.hskTotal || 0}</strong> / 300</td>
+      <td style="font-size:0.82rem;color:var(--text-muted);">
+        L:${sub.hskListening || 0} | R:${sub.hskReading || 0} | W:${sub.hskWriting || 0}
+      </td>
+      <td>
+        <span class="${isPass ? 'tag-score-pass' : 'tag-score-fail'}">
+          ${isPass ? 'ĐẠT HSK 3' : 'CHƯA ĐẠT'}
+        </span>
+      </td>
+      <td>
+        <button class="btn-action-sm" onclick="viewDetails(${idx})" title="Xem chi tiết câu đúng/sai">🔍 Chi tiết</button>
+        <button class="btn-action-sm" style="color:var(--danger);" onclick="deleteItem(${idx})" title="Xóa">✕</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function updateOverviewStats(list) {
+  document.getElementById("totalSubmissions").textContent = list.length;
+  if (!list.length) {
+    document.getElementById("avgScore10").textContent = "0.0";
+    document.getElementById("avgHskScore").textContent = "0 / 300";
+    document.getElementById("passRate").textContent = "0%";
+    return;
+  }
+
+  const sum10 = list.reduce((acc, s) => acc + (parseFloat(s.score10) || 0), 0);
+  const sumHsk = list.reduce((acc, s) => acc + (parseInt(s.hskTotal) || 0), 0);
+  const passCount = list.filter(s => (s.hskTotal >= 180 || s.isPassed)).length;
+
+  document.getElementById("avgScore10").textContent = (sum10 / list.length).toFixed(1);
+  document.getElementById("avgHskScore").textContent = Math.round(sumHsk / list.length) + " / 300";
+  document.getElementById("passRate").textContent = Math.round((passCount / list.length) * 100) + "%";
+}
+
+function filterData() {
+  renderTable();
+}
+
+function viewDetails(idx) {
+  const item = allSubmissions[idx];
+  if (!item) return;
+  let info = `Thí sinh: ${item.studentName} (Lớp ${item.studentClass})\n`;
+  info += `Lần làm: #${item.attemptCount} • Điểm /10: ${item.score10} • Điểm HSK: ${item.hskTotal}/300\n`;
+  info += `Thời gian nộp: ${new Date(item.submitTime).toLocaleString('vi-VN')}\n`;
+  info += `Thời lượng làm bài: ${item.durationFormatted}\n\n`;
+  info += `Số câu đúng: ${item.correctCount || 0}/${item.totalQuestions || 80}\n`;
+  alert(info);
+}
+
+function deleteItem(idx) {
+  if (confirm("Bạn có chắc chắn muốn xóa bản ghi kết quả này?")) {
+    allSubmissions.splice(idx, 1);
+    localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
+    renderTable();
+  }
+}
+
+/* --- EXPORT CSV --- */
+function exportExcelCSV() {
+  if (!allSubmissions.length) {
+    alert("Không có dữ liệu bài nộp để xuất!");
+    return;
+  }
+
+  let csv = "\uFEFFSTT,Họ và tên,Lớp,Lần làm,Thời gian nộp,Thời lượng,Điểm /10,Tổng HSK /300,Điểm Nghe /100,Điểm Đọc /100,Điểm Viết /100,Số câu đúng,Trạng thái\n";
+  
+  allSubmissions.forEach((s, i) => {
+    const isPass = (s.hskTotal >= 180 || s.isPassed);
+    csv += `"${i+1}","${s.studentName || ''}","${s.studentClass || ''}","${s.attemptCount || 1}","${new Date(s.submitTime).toLocaleString('vi-VN')}","${s.durationFormatted || ''}","${s.score10 || 0}","${s.hskTotal || 0}","${s.hskListening || 0}","${s.hskReading || 0}","${s.hskWriting || 0}","${s.correctCount || 0}/${s.totalQuestions || 80}","${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `BangDiem_HSK3_Lop_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+/* --- BATCH MODAL --- */
+function openBatchModal() {
+  document.getElementById("batchModal").classList.remove("hidden");
+  document.getElementById("batchTextarea").value = "";
+}
+
+function closeBatchModal() {
+  document.getElementById("batchModal").classList.add("hidden");
+}
+
+function processBatchCodes() {
+  const text = document.getElementById("batchTextarea").value.trim();
+  if (!text) {
+    alert("Vui lòng dán chuỗi mã xác thực!");
+    return;
+  }
+
+  // Regex to extract base64 JSON tokens
+  const tokens = text.match(/[A-Za-z0-9+/=]{20,}/g) || [];
+  let added = 0;
+
+  tokens.forEach(tok => {
+    try {
+      const decoded = atob(tok);
+      const parsed = JSON.parse(decoded);
+      if (parsed.name && parsed.score) {
+        allSubmissions.unshift({
+          studentName: parsed.name,
+          studentClass: parsed.class || "Chung",
+          attemptCount: parsed.attempt || 1,
+          score10: parsed.score,
+          hskTotal: parsed.hskTotal || Math.round(parseFloat(parsed.score) * 30),
+          submitTime: parsed.date || new Date().toISOString(),
+          durationFormatted: "Đã nộp",
+          isPassed: (parsed.hskTotal >= 180 || parseFloat(parsed.score) >= 6.0),
+          correctCount: Math.round((parseFloat(parsed.score) / 10) * 80),
+          totalQuestions: 80
+        });
+        added++;
+      }
+    } catch(e) {}
+  });
+
+  if (added > 0) {
+    localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
+    renderTable();
+    closeBatchModal();
+    alert(`Đã nhận diện và nạp thành công ${added} kết quả bài nộp của học viên!`);
+  } else {
+    alert("Không tìm thấy mã xác thực hợp lệ trong đoạn văn bản bạn dán!");
+  }
+}
+
+/* --- SETTINGS MODAL --- */
+function openSettingsModal() {
+  document.getElementById("settingsModal").classList.remove("hidden");
+  document.getElementById("cfgDbUrl").value = CLOUD_DB_URL;
+}
+
+function closeSettingsModal() {
+  document.getElementById("settingsModal").classList.add("hidden");
+}
+
+function saveSettings() {
+  const url = document.getElementById("cfgDbUrl").value.trim();
+  CLOUD_DB_URL = url;
+  localStorage.setItem("hsk3_cloud_db_url", url);
+  closeSettingsModal();
+  syncFromCloud(true);
+}
+
+// Start on load
+window.addEventListener("DOMContentLoaded", initDashboard);
+</script>
+</body>
+</html>
