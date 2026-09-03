@@ -1444,7 +1444,8 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
         <span>⬅</span> <span class="hide-mobile">Cổng Đề</span>
       </a>
       <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" class="center-logo">
-      <span class="exam-title-compact hide-mobile">HSK 3 - Đề 02 (H31002)</span>
+      <span class="exam-title-compact hide-mobile">HSK 3 - Đề 02</span>
+      <span id="studentInfoBadge" class="hide-mobile" style="font-size:0.8rem;color:var(--gold-light);background:rgba(0,0,0,0.25);padding:3px 10px;border-radius:12px;"></span>
     </div>
     
     <div class="header-center">
@@ -4081,9 +4082,13 @@ function selectExamMode(mins, element) {
 }
 
 function startExamSession() {
-  const nameInput = document.getElementById("inputStudentName").value.trim();
-  const classInput = document.getElementById("inputStudentClass").value.trim();
-  const accessCode = document.getElementById("inputAccessCode").value.trim();
+  const nameEl = document.getElementById("inputStudentName");
+  const classEl = document.getElementById("inputStudentClass");
+  const accessEl = document.getElementById("inputAccessCode");
+  
+  const nameInput = nameEl ? nameEl.value.trim() : "";
+  const classInput = classEl ? classEl.value.trim() : "";
+  const accessCode = accessEl ? accessEl.value.trim() : "";
   
   if (!nameInput || !classInput) {
     alert("Vui lòng nhập Họ tên và Lớp trước khi bắt đầu bài thi!");
@@ -4101,23 +4106,29 @@ function startExamSession() {
   localStorage.setItem("hsk3_student_name", nameInput);
   localStorage.setItem("hsk3_student_class", classInput);
   
-  document.getElementById("studentInfoBadge").innerHTML = `
-    <span>👤 ${studentInfo.name} (${studentInfo.className})</span> &nbsp;|&nbsp; <span>Lần làm: ${studentInfo.attemptCount}</span>
-  `;
+  const badge = document.getElementById("studentInfoBadge");
+  if (badge) {
+    badge.innerHTML = `👤 ${studentInfo.name} (${studentInfo.className}) • Lần làm: ${studentInfo.attemptCount}`;
+  }
   
-  document.getElementById("welcomeModal").classList.add("hidden");
+  const modal = document.getElementById("welcomeModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  }
   
   examState.startTime = new Date();
   examState.remainingSeconds = studentInfo.examModeMinutes > 0 ? studentInfo.examModeMinutes * 60 : 90 * 60;
   
-  applySelectedFont();
-  randomizeExamData();
-  renderExam();
+  if (typeof applySelectedFont === "function") applySelectedFont();
+  if (typeof randomizeExamData === "function") randomizeExamData();
+  if (typeof renderExam === "function") renderExam();
   
   if (studentInfo.examModeMinutes > 0) {
     startTimer();
   } else {
-    document.getElementById("timerBadge").innerHTML = "<span>⏱️ Không giới hạn</span>";
+    const tBadge = document.getElementById("timerBadge");
+    if (tBadge) tBadge.innerHTML = "<span>⏱️ Không giới hạn</span>";
   }
 }
 
@@ -4403,9 +4414,10 @@ function retryExamWithShuffle() {
   examState.startTime = new Date();
   examState.remainingSeconds = studentInfo.examModeMinutes > 0 ? studentInfo.examModeMinutes * 60 : 90 * 60;
   
-  document.getElementById("studentInfoBadge").innerHTML = `
-    <span>👤 ${studentInfo.name} (${studentInfo.className})</span> &nbsp;|&nbsp; <span>Lần làm: ${studentInfo.attemptCount}</span>
-  `;
+  const retryBadge = document.getElementById("studentInfoBadge");
+  if (retryBadge) {
+    retryBadge.innerHTML = `👤 ${studentInfo.name} (${studentInfo.className}) • Lần làm: ${studentInfo.attemptCount}`;
+  }
   
   document.getElementById("resultModal").classList.add("hidden");
   document.getElementById("examContainer").classList.remove("review-mode");
