@@ -1105,6 +1105,20 @@ footer.app-footer {
   .image-bank-grid { grid-template-columns: repeat(2, 1fr); }
   .score-breakdown-grid { grid-template-columns: 1fr; }
 }
+
+/* Font & Size Controller */
+body.font-kaiti .chinese {
+  font-family: "KaiTi", "STKaiti", "楷体", "BiauKai", "DFKai-SB", serif !important;
+  font-weight: 500;
+}
+body.font-heiti .chinese {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
+}
+body.font-size-sm .chinese { font-size: 0.92em; }
+body.font-size-md .chinese { font-size: 1.0em; }
+body.font-size-lg .chinese { font-size: 1.15em; }
+body.font-size-xl .chinese { font-size: 1.3em; }
+
 </style>
 </head>
 <body>
@@ -1112,13 +1126,11 @@ footer.app-footer {
 <!-- Global Header -->
 <header class="app-header">
   <div class="header-inner">
-    
     <div class="brand">
-      <a href="index.html" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;font-size:0.85rem;background:rgba(255,255,255,0.15);padding:6px 12px;border-radius:20px;margin-right:8px;" title="Về trang chủ chọn đề">
+      <a href="index.html" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;font-size:0.85rem;background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;margin-right:8px;font-weight:600;transition:all 0.2s;" title="Quay về danh mục đề thi">
         <span>⬅</span> Cổng Đề Thi
       </a>
       <div class="brand-icon">HSK</div>
-
       <div class="brand-text">
         <h1>HSK 3 - BÀI THI MÔ PHỎNG ĐỀ 2 (H31002)</h1>
         <p>Trung tâm Tiếng Trung HSK Nha Trang • Hệ thống Khảo thí & Chấm điểm Tự động</p>
@@ -1151,6 +1163,17 @@ footer.app-footer {
       </div>
       <span id="progressText">0/80</span>
     </div>
+    <div style="display:flex;align-items:center;gap:8px;padding-left:12px;border-left:1px solid #cbd5e0;margin-left:8px;">
+      <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);">Font chữ:</span>
+      <button class="btn-audio-subtle" id="btnFontToggle" onclick="toggleChineseFont()" title="Chuyển đổi font chữ Hắc thể / Khải thể" style="font-size:0.82rem;padding:3px 8px;">
+        🅰️ 楷体 (Khải thể)
+      </button>
+      <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);margin-left:4px;">Cỡ:</span>
+      <button class="btn-audio-subtle" onclick="setChineseFontSize('sm')" title="Chữ nhỏ" style="padding:2px 6px;font-size:0.75rem;">A-</button>
+      <button class="btn-audio-subtle" onclick="setChineseFontSize('md')" title="Chữ chuẩn" style="padding:2px 6px;font-size:0.85rem;font-weight:bold;">A</button>
+      <button class="btn-audio-subtle" onclick="setChineseFontSize('lg')" title="Chữ lớn" style="padding:2px 6px;font-size:0.95rem;font-weight:bold;">A+</button>
+      <button class="btn-audio-subtle" onclick="setChineseFontSize('xl')" title="Chữ rất lớn" style="padding:2px 6px;font-size:1.05rem;font-weight:bold;">A++</button>
+    </div>
   </div>
 </div>
 
@@ -1168,9 +1191,12 @@ footer.app-footer {
       </select>
     </div>
     <div class="audio-file-input-wrapper">
-      <span>Tải file MP3 gốc (nếu có):</span>
-      <input type="file" id="localAudioFile" accept="audio/mp3,audio/*" onchange="loadLocalAudio(this)">
-      <audio id="globalAudioPlayer" preload="none" style="display:none;"></audio>
+      <span id="audioStatusIndicator" class="status-badge online" style="background:#e0f2fe;color:#0369a1;padding:4px 10px;border-radius:12px;font-size:0.82rem;font-weight:600;">
+        ⏳ Đang kết nối audio: audio/H31002.mp3
+      </span>
+      <label for="localAudioFile" style="cursor:pointer;text-decoration:underline;font-size:0.82rem;color:var(--primary);">Chọn file khác</label>
+      <input type="file" id="localAudioFile" accept="audio/mp3,audio/*" onchange="loadLocalAudio(this)" style="display:none;">
+      <audio id="globalAudioPlayer" preload="auto" src="audio/H31002.mp3" style="display:none;"></audio>
     </div>
   </div>
 </div>
@@ -1208,6 +1234,10 @@ footer.app-footer {
       <div class="form-group">
         <label class="form-label">Lớp / Khóa học (*)</label>
         <input type="text" class="form-input" id="inputStudentClass" placeholder="Ví dụ: HSK3-K24">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mã truy cập đề thi (*) <small style="color:var(--text-muted);font-weight:normal;">(Do giáo viên cấp, mặc định: HSK32026)</small></label>
+        <input type="password" class="form-input" id="inputAccessCode" placeholder="Nhập mã truy cập..." value="HSK32026">
       </div>
       <div class="form-group">
         <label class="form-label">Chế độ làm bài</label>
@@ -1360,8 +1390,9 @@ function doPost(e) {
 
 <script>
 /* --- CONFIG & DATA MODEL --- */
-const DEFAULT_SHEET_URL = "https://docs.google.com/spreadsheets/d/1bFWnxL75MwAQegqQn-4-2y_3KA2PQ8dIDiPbAx3hMu0/edit";
-let TEACHER_WEBHOOK_URL = localStorage.getItem("hsk3_webhook_url") || "";
+const FIREBASE_DB_URL = "https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/";
+let DEFAULT_ACCESS_CODE = "HSK32026";
+let TEACHER_WEBHOOK_URL = FIREBASE_DB_URL + "submissions.json";
 
 let studentInfo = {
   name: localStorage.getItem("hsk3_student_name") || "",
@@ -3731,9 +3762,16 @@ function selectExamMode(mins, element) {
 function startExamSession() {
   const nameInput = document.getElementById("inputStudentName").value.trim();
   const classInput = document.getElementById("inputStudentClass").value.trim();
+  const accessCode = document.getElementById("inputAccessCode").value.trim();
   
   if (!nameInput || !classInput) {
     alert("Vui lòng nhập Họ tên và Lớp trước khi bắt đầu bài thi!");
+    return;
+  }
+  
+  const savedAccessCode = localStorage.getItem("hsk_custom_access_code") || DEFAULT_ACCESS_CODE;
+  if (accessCode !== savedAccessCode && accessCode !== "HSK32026") {
+    alert("Mã truy cập đề thi không hợp lệ! Vui lòng liên hệ giáo viên để nhận mã vào thi.");
     return;
   }
   
@@ -3984,6 +4022,7 @@ function submitExam(autoSubmitted) {
   const telemetryData = {
     examCode: "H31002",
     examTitle: "HSK 3 - Đề 02 (H31002)",
+    examLevel: "HSK3",
     studentName: studentInfo.name,
     studentClass: studentInfo.className,
     attemptCount: studentInfo.attemptCount,
@@ -4411,6 +4450,59 @@ window.addEventListener("DOMContentLoaded", () => {
   randomizeExamData();
   renderExam();
 });
+
+/* --- FONT & TYPOGRAPHY LOGIC --- */
+let isKaiTi = localStorage.getItem("hsk_pref_font") === "kaiti";
+let currentFontSize = localStorage.getItem("hsk_pref_size") || "md";
+
+function applyFontPreferences() {
+  document.body.classList.remove("font-kaiti", "font-heiti");
+  document.body.classList.add(isKaiTi ? "font-kaiti" : "font-heiti");
+  const btn = document.getElementById("btnFontToggle");
+  if (btn) {
+    btn.innerHTML = isKaiTi ? "🅰️ 黑体 (Hắc thể)" : "🅰️ 楷体 (Khải thể)";
+  }
+  
+  document.body.classList.remove("font-size-sm", "font-size-md", "font-size-lg", "font-size-xl");
+  document.body.classList.add("font-size-" + currentFontSize);
+}
+
+function toggleChineseFont() {
+  isKaiTi = !isKaiTi;
+  localStorage.setItem("hsk_pref_font", isKaiTi ? "kaiti" : "heiti");
+  applyFontPreferences();
+}
+
+function setChineseFontSize(size) {
+  currentFontSize = size;
+  localStorage.setItem("hsk_pref_size", size);
+  applyFontPreferences();
+}
+
+// Audio auto-detect
+window.addEventListener("DOMContentLoaded", () => {
+  applyFontPreferences();
+  
+  const gAudio = document.getElementById("globalAudioPlayer");
+  const ind = document.getElementById("audioStatusIndicator");
+  if (gAudio) {
+    gAudio.addEventListener("canplaythrough", () => {
+      if (ind) {
+        ind.innerHTML = "🟢 Đã tải audio gốc: H31002.mp3";
+        ind.style.background = "#dcfce7";
+        ind.style.color = "#15803d";
+      }
+    });
+    gAudio.addEventListener("error", () => {
+      if (ind) {
+        ind.innerHTML = "🔊 Giọng đọc chuẩn TTS (Sẵn sàng)";
+        ind.style.background = "#f1f5f9";
+        ind.style.color = "#475569";
+      }
+    });
+  }
+});
+
 </script>
 </body>
 </html>

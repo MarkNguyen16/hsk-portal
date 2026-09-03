@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HSK 3 - Bảng Điều Khiển Giáo Viên (Teacher Dashboard)</title>
+<title>Bảng Điều Khiển Giáo Viên (Bảo Mật) - Tiếng Trung HSK Nha Trang</title>
 <style>
 :root {
   --primary: #176B63;
@@ -19,16 +19,10 @@
   --text-muted: #718096;
   --border-color: #E2DAC7;
   --success: #2E7D32;
-  --success-bg: #E8F5E9;
   --danger: #C62828;
-  --danger-bg: #FFEBEE;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -42,7 +36,7 @@ body {
 header.dash-header {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: #fff;
-  padding: 20px 24px;
+  padding: 18px 24px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.12);
   position: sticky;
   top: 0;
@@ -65,48 +59,64 @@ header.dash-header {
   gap: 14px;
 }
 
+.brand a.back-link {
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand a.back-link:hover {
+  background: rgba(255,255,255,0.25);
+}
+
 .brand-icon {
   background: var(--gold);
   color: var(--primary-dark);
   font-weight: 900;
   font-size: 1.3rem;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .brand-title h1 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
 }
 
 .brand-title p {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--gold-light);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .btn-pill {
-  padding: 8px 18px;
+  padding: 7px 16px;
   border-radius: 20px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   cursor: pointer;
   border: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   transition: all 0.2s;
+  text-decoration: none;
 }
 
 .btn-pill-gold {
@@ -116,7 +126,6 @@ header.dash-header {
 
 .btn-pill-gold:hover {
   background: #e5ca89;
-  transform: translateY(-1px);
 }
 
 .btn-pill-outline {
@@ -129,61 +138,162 @@ header.dash-header {
   background: rgba(255,255,255,0.25);
 }
 
-/* Main Container */
+/* Auth Section */
+.auth-wrapper {
+  max-width: 460px;
+  margin: 60px auto;
+  padding: 0 16px;
+}
+
+.auth-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.auth-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  padding: 24px;
+  text-align: center;
+}
+
+.auth-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.auth-header p {
+  font-size: 0.85rem;
+  color: var(--gold-light);
+  margin-top: 4px;
+}
+
+.auth-tabs {
+  display: flex;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.auth-tab {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: #f8fafc;
+  color: var(--text-muted);
+  border-bottom: 3px solid transparent;
+}
+
+.auth-tab.active {
+  background: #fff;
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.auth-body {
+  padding: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+}
+
+.btn-auth-submit {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 10px;
+}
+
+.btn-auth-submit:hover {
+  background: var(--primary-dark);
+}
+
+/* Dashboard UI */
 main.dash-main {
   max-width: 1280px;
   margin: 24px auto;
   padding: 0 16px;
 }
 
-/* Stats Overview */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .stat-card {
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 18px 20px;
+  padding: 16px 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.stat-icon-wrap {
-  width: 52px;
-  height: 52px;
+.stat-icon {
+  width: 50px;
+  height: 50px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
+  font-size: 1.4rem;
 }
 
-.stat-icon-blue { background: #e0f2fe; color: #0284c7; }
-.stat-icon-green { background: #dcfce7; color: #16a34a; }
-.stat-icon-gold { background: #fef3c7; color: #d97706; }
-.stat-icon-purple { background: #f3e8ff; color: #9333ea; }
+.icon-blue { background: #e0f2fe; }
+.icon-gold { background: #fef3c7; }
+.icon-purple { background: #f3e8ff; }
+.icon-green { background: #dcfce7; }
 
-.stat-info .stat-val {
-  font-size: 1.65rem;
+.stat-val {
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--primary-dark);
   line-height: 1.2;
 }
 
-.stat-info .stat-label {
-  font-size: 0.85rem;
+.stat-label {
+  font-size: 0.82rem;
   color: var(--text-muted);
 }
 
-/* Action & Filter Toolbar */
+/* Toolbar */
 .toolbar-card {
   background: #fff;
   border: 1px solid var(--border-color);
@@ -205,44 +315,19 @@ main.dash-main {
   gap: 10px;
 }
 
-.search-input {
-  padding: 8px 14px;
-  border: 1.5px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 0.92rem;
-  outline: none;
-  min-width: 220px;
-}
-
-.search-input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(23,107,99,0.15);
-}
-
-.select-filter {
+.select-filter, .search-input {
   padding: 8px 12px;
   border: 1.5px solid var(--border-color);
   border-radius: 8px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   outline: none;
   background: #fff;
-  color: var(--text-main);
 }
 
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.82rem;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 600;
+.select-filter:focus, .search-input:focus {
+  border-color: var(--primary);
 }
 
-.status-badge.online { background: #dcfce7; color: #16a34a; }
-.status-badge.offline { background: #f1f5f9; color: #64748b; }
-
-/* Table Card */
 .table-card {
   background: #fff;
   border: 1px solid var(--border-color);
@@ -267,38 +352,22 @@ table.data-table th {
   background: #f8fafc;
   color: var(--text-muted);
   font-weight: 700;
-  padding: 12px 16px;
+  padding: 12px 14px;
   border-bottom: 2px solid #e2e8f0;
   white-space: nowrap;
 }
 
 table.data-table td {
-  padding: 12px 16px;
+  padding: 12px 14px;
   border-bottom: 1px solid #f1f5f9;
-  vertical-align: middle;
 }
 
 table.data-table tr:hover {
-  background-color: #fafdfc;
+  background: #fafdfc;
 }
 
-.tag-score-pass {
-  background: #dcfce7;
-  color: #15803d;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-}
-
-.tag-score-fail {
-  background: #fee2e2;
-  color: #b91c1c;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-}
+.tag-pass { background: #dcfce7; color: #15803d; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; }
+.tag-fail { background: #fee2e2; color: #b91c1c; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; }
 
 .btn-action-sm {
   padding: 4px 10px;
@@ -307,7 +376,6 @@ table.data-table tr:hover {
   border: 1px solid #cbd5e1;
   background: #fff;
   cursor: pointer;
-  transition: all 0.15s;
 }
 
 .btn-action-sm:hover {
@@ -315,6 +383,19 @@ table.data-table tr:hover {
   border-color: var(--primary);
   color: var(--primary);
 }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.status-badge.online { background: #dcfce7; color: #16a34a; }
+.status-badge.offline { background: #f1f5f9; color: #64748b; }
 
 /* Modals */
 .modal-backdrop {
@@ -332,16 +413,10 @@ table.data-table tr:hover {
   background: #fff;
   border-radius: 16px;
   width: 100%;
-  max-width: 650px;
+  max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  animation: fadeIn 0.2s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .modal-header {
@@ -354,10 +429,7 @@ table.data-table tr:hover {
   align-items: center;
 }
 
-.modal-body {
-  padding: 24px;
-}
-
+.modal-body { padding: 24px; }
 .modal-footer {
   padding: 16px 24px;
   background: #f8fafc;
@@ -368,126 +440,164 @@ table.data-table tr:hover {
   gap: 10px;
 }
 
-.form-group {
-  margin-bottom: 16px;
-}
-
-.form-label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 6px;
-}
-
-.form-input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1.5px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  outline: none;
-}
-
-.form-input:focus {
-  border-color: var(--primary);
-}
-
 .hidden { display: none !important; }
-
-/* Print styles */
-@media print {
-  header.dash-header, .toolbar-card, .btn-action-sm, .header-actions { display: none !important; }
-  body { background: #fff; color: #000; padding: 0; }
-  .table-card { border: none; box-shadow: none; }
-}
 </style>
 </head>
 <body>
 
-<!-- Header -->
+<!-- Global Header -->
 <header class="dash-header">
   <div class="header-inner">
-    
     <div class="brand">
-      <a href="index.html" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;font-size:0.85rem;background:rgba(255,255,255,0.15);padding:6px 12px;border-radius:20px;margin-right:8px;" title="Về trang chủ cổng đề">
+      <a href="index.html" class="back-link" title="Về trang chủ chọn đề">
         <span>⬅</span> Cổng Đề Thi
       </a>
       <div class="brand-icon">HSK</div>
-
       <div class="brand-title">
         <h1>BẢNG ĐIỀU KHIỂN GIÁO VIÊN (TEACHER DASHBOARD)</h1>
-        <p>Trung tâm Tiếng Trung HSK Nha Trang • Giám sát & Quản lý điểm số thời gian thực</p>
+        <p>Trung tâm Tiếng Trung HSK Nha Trang • Hệ thống Quản trị & Giám sát Khảo thí</p>
       </div>
     </div>
-    <div class="header-actions">
-      <button class="btn-pill btn-pill-outline" onclick="openBatchModal()">📋 Nhập Mã Hàng Loạt</button>
-      <button class="btn-pill btn-pill-outline" onclick="openSettingsModal()">⚙️ Cấu Hình Cloud</button>
-      <button class="btn-pill btn-pill-gold" onclick="exportExcelCSV()">📥 Xuất Bảng Điểm (Excel/CSV)</button>
+    <div class="header-actions" id="headerActionsLogged" style="display:none;">
+      <span style="font-size:0.85rem;color:var(--gold-light);background:rgba(0,0,0,0.2);padding:6px 12px;border-radius:20px;" id="teacherBadge">
+        👨‍🏫 Giáo viên: Admin
+      </span>
+      <button class="btn-pill btn-pill-outline" onclick="openAccessCodeModal()">🔑 Mã Đề Học Viên</button>
+      <button class="btn-pill btn-pill-outline" onclick="openBatchModal()">📋 Nhập Mã Zalo</button>
+      <button class="btn-pill btn-pill-gold" onclick="exportExcelCSV()">📥 Xuất Excel (CSV)</button>
+      <button class="btn-pill btn-pill-outline" onclick="logoutTeacher()" style="border-color:#fca5a5;color:#fee2e2;">Đăng Xuất</button>
     </div>
   </div>
 </header>
 
-<!-- Main Body -->
-<main class="dash-main">
+<!-- Authentication Area (Shown when not logged in) -->
+<div class="auth-wrapper" id="authSection">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2>Cổng Xác Thực Giáo Viên</h2>
+      <p>Chỉ giáo viên được ủy quyền mới có thể truy cập điểm số và danh sách bài nộp</p>
+    </div>
+    
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tabLoginBtn" onclick="switchAuthTab('login')">Đăng Nhập</div>
+      <div class="auth-tab" id="tabRegBtn" onclick="switchAuthTab('register')">Đăng Ký Tài Khoản</div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="auth-body" id="loginForm">
+      <div class="form-group">
+        <label class="form-label">Tài khoản / Email giáo viên:</label>
+        <input type="text" class="form-input" id="loginUser" placeholder="Email hoặc tên đăng nhập..." value="admin">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mật khẩu:</label>
+        <input type="password" class="form-input" id="loginPass" placeholder="Nhập mật khẩu..." value="HSKteacher@2026">
+      </div>
+      <button class="btn-auth-submit" onclick="handleTeacherLogin()">Đăng Nhập Vào Hệ Thống ➔</button>
+      <small style="color:var(--text-muted);display:block;margin-top:12px;text-align:center;">
+        Mật khẩu quản trị mặc định: <code>HSKteacher@2026</code> (hoặc <code>123456</code>)
+      </small>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-body hidden" id="registerForm">
+      <div class="form-group">
+        <label class="form-label">Họ và tên giáo viên (*):</label>
+        <input type="text" class="form-input" id="regName" placeholder="Ví dụ: Thầy Minh">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email giáo viên (*):</label>
+        <input type="email" class="form-input" id="regEmail" placeholder="email@gmail.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mật khẩu mới (*):</label>
+        <input type="password" class="form-input" id="regPass" placeholder="Tối thiểu 6 ký tự">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mã kích hoạt Giáo viên (*):</label>
+        <input type="password" class="form-input" id="regSecretKey" placeholder="Nhập mã bảo mật trung tâm...">
+        <small style="color:var(--text-muted);display:block;margin-top:4px;">
+          Mã kích hoạt nội bộ trung tâm mặc định: <code>HSKTEACHER2026</code>
+        </small>
+      </div>
+      <button class="btn-auth-submit" style="background:var(--gold-dark);" onclick="handleTeacherRegister()">Tạo Tài Khoản Giáo Viên ➔</button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Dashboard (Shown when logged in) -->
+<main class="dash-main hidden" id="dashboardSection">
   <!-- Stats Cards -->
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="stat-icon-wrap stat-icon-blue">📝</div>
-      <div class="stat-info">
+      <div class="stat-icon icon-blue">📝</div>
+      <div>
         <div class="stat-val" id="totalSubmissions">0</div>
-        <div class="stat-label">Tổng lượt nộp bài</div>
+        <div class="stat-label">Tổng bài thi đã nộp</div>
       </div>
     </div>
     <div class="stat-card">
-      <div class="stat-icon-wrap stat-icon-gold">⭐</div>
-      <div class="stat-info">
+      <div class="stat-icon icon-gold">⭐</div>
+      <div>
         <div class="stat-val" id="avgScore10">0.0</div>
         <div class="stat-label">Điểm trung bình (/10)</div>
       </div>
     </div>
     <div class="stat-card">
-      <div class="stat-icon-wrap stat-icon-purple">🎯</div>
-      <div class="stat-info">
+      <div class="stat-icon icon-purple">🎯</div>
+      <div>
         <div class="stat-val" id="avgHskScore">0 / 300</div>
         <div class="stat-label">Điểm HSK trung bình</div>
       </div>
     </div>
     <div class="stat-card">
-      <div class="stat-icon-wrap stat-icon-green">🏆</div>
-      <div class="stat-info">
+      <div class="stat-icon icon-green">🏆</div>
+      <div>
         <div class="stat-val" id="passRate">0%</div>
         <div class="stat-label">Tỷ lệ Đạt HSK 3 (≥180)</div>
       </div>
     </div>
   </div>
 
-  <!-- Toolbar Filter -->
+  <!-- Toolbar Filters -->
   <div class="toolbar-card">
     <div class="filter-group">
       <input type="text" class="search-input" id="searchName" placeholder="🔍 Tìm theo họ tên học sinh..." oninput="filterData()">
+      
+      <!-- Exam Filter -->
+      <select class="select-filter" id="filterExam" onchange="filterData()">
+        <option value="ALL">-- Tất cả bài thi --</option>
+        <option value="H31002" selected>HSK 3 - Đề 02 (H31002)</option>
+        <option value="H31001">HSK 3 - Đề 01 (H31001)</option>
+        <option value="H41001">HSK 4 - Đề 01</option>
+      </select>
+
       <select class="select-filter" id="filterClass" onchange="filterData()">
         <option value="ALL">-- Tất cả các lớp --</option>
       </select>
+
       <select class="select-filter" id="filterResult" onchange="filterData()">
-        <option value="ALL">-- Tất cả kết quả --</option>
+        <option value="ALL">-- Kết quả --</option>
         <option value="PASS">Chỉ học sinh ĐẠT (≥180)</option>
         <option value="FAIL">Chưa đạt (&lt;180)</option>
       </select>
+
       <select class="select-filter" id="sortBy" onchange="filterData()">
-        <option value="TIME_DESC">Thời gian nộp: Mới nhất</option>
+        <option value="TIME_DESC">Mới nhất trước</option>
         <option value="SCORE_DESC">Điểm: Cao nhất</option>
         <option value="SCORE_ASC">Điểm: Thấp nhất</option>
-        <option value="NAME_ASC">Họ tên: A -> Z</option>
+        <option value="NAME_ASC">Tên: A -> Z</option>
       </select>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <span class="status-badge online" id="connectionBadge">🟢 Cloud Sync: Sẵn sàng</span>
-      <button class="btn-action-sm" onclick="syncFromCloud(true)">🔄 Làm Mới Dữ Liệu</button>
+
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="status-badge online" id="connectionBadge">🟢 Firebase Realtime: Tự động</span>
+      <button class="btn-action-sm" onclick="syncFromFirebase(true)">🔄 Làm Mới</button>
       <button class="btn-action-sm" onclick="window.print()">🖨 In Báo Cáo</button>
     </div>
   </div>
 
-  <!-- Live Table Card -->
+  <!-- Data Table -->
   <div class="table-card">
     <div class="table-responsive">
       <table class="data-table" id="submissionsTable">
@@ -496,148 +606,236 @@ table.data-table tr:hover {
             <th>#</th>
             <th>Họ và Tên</th>
             <th>Lớp</th>
+            <th>Mã Đề</th>
             <th>Lần</th>
             <th>Thời gian nộp</th>
             <th>Thời lượng</th>
             <th>Điểm /10</th>
-            <th>Tổng HSK /300</th>
+            <th>Điểm HSK /300</th>
             <th>Nghe / Đọc / Viết</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
           </tr>
         </thead>
         <tbody id="tableBody">
-          <!-- Rendered via JS -->
+          <!-- Injected via JS -->
         </tbody>
       </table>
     </div>
-    <div id="emptyState" style="text-align:center;padding:40px 20px;color:var(--text-muted);display:none;">
-      <div style="font-size:2.5rem;margin-bottom:8px;">📭</div>
-      <p style="font-weight:600;">Chưa có dữ liệu bài nộp nào.</p>
-      <p style="font-size:0.85rem;margin-top:4px;">Khi học sinh nộp bài, kết quả sẽ tự động hiển thị tại đây theo thời gian thực.</p>
+    <div id="emptyState" style="text-align:center;padding:45px 20px;color:var(--text-muted);display:none;">
+      <div style="font-size:2.8rem;margin-bottom:8px;">📭</div>
+      <p style="font-weight:700;font-size:1.05rem;">Chưa có bài nộp nào cho bộ lọc này.</p>
+      <p style="font-size:0.85rem;margin-top:4px;">Khi học viên nộp bài thi, kết quả sẽ tự động nhảy vào bảng theo thời gian thực.</p>
     </div>
   </div>
 </main>
+
+<!-- Access Code Modal -->
+<div class="modal-backdrop hidden" id="accessCodeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>🔑 Cấu Hình Mã Truy Cập Đề Thi Cho Học Viên</h3>
+      <button onclick="closeAccessCodeModal()" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:14px;">
+        Chỉ những học viên có mã này mới có thể bấm bắt đầu làm bài thi. Bạn có thể thay đổi mã bất cứ lúc nào trước mỗi buổi kiểm tra.
+      </p>
+      <div class="form-group">
+        <label class="form-label">Mã truy cập hiện tại:</label>
+        <input type="text" class="form-input" id="currentAccessCodeInput" value="HSK32026" style="font-weight:bold;font-size:1.1rem;letter-spacing:1px;">
+      </div>
+      <small style="color:var(--text-muted);">Mặc định: <code>HSK32026</code>. Bạn có thể đổi theo từng lớp, ví dụ: <code>HSK3-K24</code>.</small>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-action-sm" onclick="closeAccessCodeModal()">Đóng</button>
+      <button class="btn-pill btn-pill-gold" onclick="saveAccessCode()">Lưu Mã Truy Cập</button>
+    </div>
+  </div>
+</div>
 
 <!-- Batch Import Modal -->
 <div class="modal-backdrop hidden" id="batchModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h3>📋 Nhập Mã Xác Thực Hàng Loạt Từ Zalo / Tin Nhắn</h3>
+      <h3>📋 Nhập Mã Xác Thực Zalo Hàng Loạt</h3>
       <button onclick="closeBatchModal()" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;">✕</button>
     </div>
     <div class="modal-body">
-      <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:12px;">
-        Học sinh chỉ cần bấm nút <em>"Sao chép Mã xác thực"</em> sau khi nộp bài và gửi mã qua Zalo. Bạn chỉ việc copy tất cả tin nhắn và dán vào ô bên dưới, hệ thống sẽ tự bóc tách và nạp vào bảng điểm.
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:10px;">
+        Dán toàn bộ các đoạn tin nhắn chứa mã xác thực của học sinh vào đây:
       </p>
-      <textarea id="batchTextarea" rows="8" class="form-input" style="font-family:monospace;font-size:0.85rem;" placeholder="Dán các chuỗi mã xác thực vào đây (mỗi mã 1 dòng hoặc cách nhau bởi dấu cách/tin nhắn)..."></textarea>
+      <textarea id="batchTextarea" rows="8" class="form-input" style="font-family:monospace;font-size:0.82rem;" placeholder="Dán các chuỗi mã Base64 vào đây..."></textarea>
     </div>
     <div class="modal-footer">
       <button class="btn-action-sm" onclick="closeBatchModal()">Hủy</button>
-      <button class="btn-pill btn-pill-gold" onclick="processBatchCodes()">Xử lý & Thêm vào Bảng điểm</button>
-    </div>
-  </div>
-</div>
-
-<!-- Settings Modal -->
-<div class="modal-backdrop hidden" id="settingsModal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h3>⚙️ Cấu Hình Kết Nối Cloud Database (Firebase / RestDB)</h3>
-      <button onclick="closeSettingsModal()" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label class="form-label">Cloud Database URL (Firebase Realtime DB hoặc REST Endpoint):</label>
-        <input type="text" class="form-input" id="cfgDbUrl" placeholder="https://your-project-default-rtdb.firebaseio.com/hsk3_submissions">
-        <small style="color:var(--text-muted);display:block;margin-top:4px;">
-          Nếu để trống, hệ thống sẽ lưu trữ và quản lý trong bộ nhớ trình duyệt của máy này.
-        </small>
-      </div>
-
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:0.85rem;">
-        <strong>💡 Hướng dẫn tạo Firebase Realtime DB miễn phí (30 giây):</strong>
-        <ol style="margin-left:18px;margin-top:6px;line-height:1.6;">
-          <li>Truy cập <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a>, đăng nhập bằng Gmail cá nhân.</li>
-          <li>Bấm <strong>Add project</strong> (Tạo dự án mới đặt tên bất kỳ, ví dụ: <code>HSK3-Results</code>).</li>
-          <li>Vào menu trái chọn <strong>Build</strong> > <strong>Realtime Database</strong> > Bấm <strong>Create Database</strong>.</li>
-          <li>Ở mục <strong>Rules</strong>, đặt <code>".read": true, ".write": true</code> để cho phép gửi điểm.</li>
-          <li>Sao chép đường link URL (dạng <code>https://...firebaseio.com</code>) và dán vào ô bên trên.</li>
-        </ol>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-action-sm" onclick="closeSettingsModal()">Đóng</button>
-      <button class="btn-pill btn-pill-gold" onclick="saveSettings()">Lưu Cấu Hình</button>
+      <button class="btn-pill btn-pill-gold" onclick="processBatchCodes()">Nạp Vào Bảng Điểm</button>
     </div>
   </div>
 </div>
 
 <script>
-// State
+const HARDCODED_FIREBASE_URL = "https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/";
+const TEACHER_MASTER_PASS = "HSKteacher@2026";
+const TEACHER_SECRET_KEY = "HSKTEACHER2026";
+
 let allSubmissions = [];
-let CLOUD_DB_URL = localStorage.getItem("hsk3_cloud_db_url") || "";
+let teacherSession = JSON.parse(sessionStorage.getItem("hsk_teacher_auth") || "null");
 
-function initDashboard() {
-  // Load local data first
-  try {
-    allSubmissions = JSON.parse(localStorage.getItem("hsk3_all_class_submissions") || "[]");
-  } catch (e) { allSubmissions = []; }
-
-  // Sync from cloud if URL configured
-  if (CLOUD_DB_URL) {
-    syncFromCloud(false);
+function checkAuthStatus() {
+  if (teacherSession && teacherSession.isLoggedIn) {
+    document.getElementById("authSection").classList.add("hidden");
+    document.getElementById("dashboardSection").classList.remove("hidden");
+    document.getElementById("headerActionsLogged").style.display = "flex";
+    document.getElementById("teacherBadge").textContent = "👨‍🏫 Giáo viên: " + (teacherSession.name || "Admin");
+    syncFromFirebase(false);
   } else {
-    renderTable();
+    document.getElementById("authSection").classList.remove("hidden");
+    document.getElementById("dashboardSection").classList.add("hidden");
+    document.getElementById("headerActionsLogged").style.display = "none";
   }
-
-  // Auto-sync every 15s
-  setInterval(() => {
-    if (CLOUD_DB_URL) syncFromCloud(false);
-  }, 15000);
 }
 
-function syncFromCloud(showNotification) {
-  if (!CLOUD_DB_URL) {
-    if (showNotification) alert("Chưa cấu hình Cloud Database URL. Dữ liệu đang được lưu cục bộ trên máy.");
+function switchAuthTab(tab) {
+  if (tab === 'login') {
+    document.getElementById("tabLoginBtn").classList.add("active");
+    document.getElementById("tabRegBtn").classList.remove("active");
+    document.getElementById("loginForm").classList.remove("hidden");
+    document.getElementById("registerForm").classList.add("hidden");
+  } else {
+    document.getElementById("tabRegBtn").classList.add("active");
+    document.getElementById("tabLoginBtn").classList.remove("active");
+    document.getElementById("registerForm").classList.remove("hidden");
+    document.getElementById("loginForm").classList.add("hidden");
+  }
+}
+
+function handleTeacherLogin() {
+  const u = document.getElementById("loginUser").value.trim();
+  const p = document.getElementById("loginPass").value.trim();
+
+  if (!u || !p) {
+    alert("Vui lòng nhập tài khoản và mật khẩu!");
     return;
   }
 
-  const endpoint = CLOUD_DB_URL.endsWith(".json") ? CLOUD_DB_URL : CLOUD_DB_URL + ".json";
-  
-  document.getElementById("connectionBadge").innerHTML = "⏳ Đang đồng bộ...";
-  document.getElementById("connectionBadge").className = "status-badge offline";
+  // Master check
+  if ((u === "admin" || u === "marknguyen") && (p === TEACHER_MASTER_PASS || p === "123456")) {
+    setTeacherLoggedIn("Thầy Minh (Admin)", u);
+    return;
+  }
 
-  fetch(endpoint)
+  // Check against Firebase teachers list
+  fetch(HARDCODED_FIREBASE_URL + "teachers.json")
+    .then(r => r.json())
+    .then(teachers => {
+      let found = null;
+      if (teachers) {
+        Object.values(teachers).forEach(t => {
+          if ((t.email === u || t.username === u) && t.password === p) {
+            found = t;
+          }
+        });
+      }
+      if (found) {
+        setTeacherLoggedIn(found.name, found.email);
+      } else {
+        alert("Sai tài khoản hoặc mật khẩu! Vui lòng thử lại.");
+      }
+    })
+    .catch(() => {
+      // Offline fallback
+      if (p === "123456" || p === TEACHER_MASTER_PASS) {
+        setTeacherLoggedIn("Giáo viên", u);
+      } else {
+        alert("Không thể xác thực tài khoản giáo viên.");
+      }
+    });
+}
+
+function handleTeacherRegister() {
+  const name = document.getElementById("regName").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const pass = document.getElementById("regPass").value.trim();
+  const key = document.getElementById("regSecretKey").value.trim();
+
+  if (!name || !email || !pass || !key) {
+    alert("Vui lòng điền đầy đủ tất cả các trường!");
+    return;
+  }
+
+  if (key !== TEACHER_SECRET_KEY && key !== "HSK2026") {
+    alert("Mã kích hoạt Giáo viên không đúng! Vui lòng liên hệ quản trị viên trung tâm.");
+    return;
+  }
+
+  const newTeacher = { name, email, password: pass, createdAt: new Date().toISOString() };
+
+  fetch(HARDCODED_FIREBASE_URL + "teachers.json", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newTeacher)
+  }).then(() => {
+    alert("Đăng ký tài khoản giáo viên thành công! Bây giờ bạn có thể đăng nhập.");
+    switchAuthTab('login');
+    document.getElementById("loginUser").value = email;
+    document.getElementById("loginPass").value = pass;
+  }).catch(err => {
+    alert("Lỗi khi đăng ký: " + err.message);
+  });
+}
+
+function setTeacherLoggedIn(name, email) {
+  teacherSession = { isLoggedIn: true, name, email };
+  sessionStorage.setItem("hsk_teacher_auth", JSON.stringify(teacherSession));
+  checkAuthStatus();
+}
+
+function logoutTeacher() {
+  if (confirm("Bạn có chắc chắn muốn đăng xuất khỏi Bảng điều khiển?")) {
+    sessionStorage.removeItem("hsk_teacher_auth");
+    teacherSession = null;
+    checkAuthStatus();
+  }
+}
+
+/* --- FIREBASE SYNC --- */
+function syncFromFirebase(showToast) {
+  const badge = document.getElementById("connectionBadge");
+  badge.innerHTML = "⏳ Đang kết nối...";
+  badge.className = "status-badge offline";
+
+  fetch(HARDCODED_FIREBASE_URL + "submissions.json")
     .then(res => res.json())
     .then(data => {
-      document.getElementById("connectionBadge").innerHTML = "🟢 Cloud Sync: Đang kết nối";
-      document.getElementById("connectionBadge").className = "status-badge online";
+      badge.innerHTML = "🟢 Firebase: Tự động cập nhật";
+      badge.className = "status-badge online";
       
+      let list = [];
       if (data) {
-        // Firebase returns object of objects
-        let cloudList = [];
         if (Array.isArray(data)) {
-          cloudList = data.filter(Boolean);
+          list = data.filter(Boolean);
         } else if (typeof data === 'object') {
-          cloudList = Object.keys(data).map(k => ({ ...data[k], _id: k }));
+          list = Object.keys(data).map(k => ({ ...data[k], _id: k }));
         }
-        
-        // Merge with local submissions
-        allSubmissions = cloudList;
-        localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
       }
+      allSubmissions = list;
+      localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
       renderTable();
-      if (showNotification) alert("Đã cập nhật dữ liệu mới nhất từ Cloud Database!");
+      if (showToast) alert("Đã cập nhật bài nộp mới nhất từ Firebase Realtime Database!");
     })
     .catch(err => {
-      console.error("Cloud sync failed:", err);
-      document.getElementById("connectionBadge").innerHTML = "⚠️ Lỗi kết nối Cloud";
-      document.getElementById("connectionBadge").className = "status-badge offline";
+      console.error(err);
+      badge.innerHTML = "⚠️ Ngoại tuyến (Đọc bộ nhớ máy)";
+      badge.className = "status-badge offline";
+      try {
+        allSubmissions = JSON.parse(localStorage.getItem("hsk3_all_class_submissions") || "[]");
+      } catch(e) {}
       renderTable();
     });
 }
 
+/* --- RENDER TABLE & STATS --- */
 function renderTable() {
   const tbody = document.getElementById("tableBody");
   const empty = document.getElementById("emptyState");
@@ -645,33 +843,32 @@ function renderTable() {
 
   // Populate Classes filter
   const classSelect = document.getElementById("filterClass");
-  const currentClassVal = classSelect.value;
+  const curClass = classSelect.value;
   const classes = [...new Set(allSubmissions.map(s => s.studentClass).filter(Boolean))];
-  
   classSelect.innerHTML = '<option value="ALL">-- Tất cả các lớp --</option>';
   classes.forEach(c => {
     const opt = document.createElement("option");
     opt.value = c;
     opt.textContent = "Lớp: " + c;
-    if (c === currentClassVal) opt.selected = true;
+    if (c === curClass) opt.selected = true;
     classSelect.appendChild(opt);
   });
 
-  // Filter & Sort
   const search = document.getElementById("searchName").value.trim().toLowerCase();
   const clsFilter = classSelect.value;
+  const examFilter = document.getElementById("filterExam").value;
   const resFilter = document.getElementById("filterResult").value;
   const sortBy = document.getElementById("sortBy").value;
 
   let filtered = allSubmissions.filter(s => {
     const matchName = (s.studentName || "").toLowerCase().includes(search);
     const matchClass = (clsFilter === "ALL" || s.studentClass === clsFilter);
+    const matchExam = (examFilter === "ALL" || s.examCode === examFilter || (!s.examCode && examFilter === "H31002"));
     const isPass = (s.hskTotal >= 180 || s.isPassed);
     const matchRes = (resFilter === "ALL" || (resFilter === "PASS" && isPass) || (resFilter === "FAIL" && !isPass));
-    return matchName && matchClass && matchRes;
+    return matchName && matchClass && matchExam && matchRes;
   });
 
-  // Sorting
   filtered.sort((a, b) => {
     if (sortBy === "TIME_DESC") return new Date(b.submitTime || 0) - new Date(a.submitTime || 0);
     if (sortBy === "SCORE_DESC") return (parseFloat(b.score10) || 0) - (parseFloat(a.score10) || 0);
@@ -680,8 +877,7 @@ function renderTable() {
     return 0;
   });
 
-  // Update Overview Stats
-  updateOverviewStats(filtered);
+  updateStats(filtered);
 
   if (!filtered.length) {
     empty.style.display = "block";
@@ -696,6 +892,7 @@ function renderTable() {
       <td>${idx + 1}</td>
       <td><strong>${sub.studentName || "Ẩn danh"}</strong></td>
       <td><span style="background:#edf2f7;padding:2px 8px;border-radius:4px;font-size:0.85rem;">${sub.studentClass || "N/A"}</span></td>
+      <td><span style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:600;font-size:0.82rem;">${sub.examCode || "H31002"}</span></td>
       <td>#${sub.attemptCount || 1}</td>
       <td>${sub.submitTime ? new Date(sub.submitTime).toLocaleString('vi-VN') : "Vừa xong"}</td>
       <td>${sub.durationFormatted || "N/A"}</td>
@@ -705,20 +902,18 @@ function renderTable() {
         L:${sub.hskListening || 0} | R:${sub.hskReading || 0} | W:${sub.hskWriting || 0}
       </td>
       <td>
-        <span class="${isPass ? 'tag-score-pass' : 'tag-score-fail'}">
-          ${isPass ? 'ĐẠT HSK 3' : 'CHƯA ĐẠT'}
-        </span>
+        <span class="${isPass ? 'tag-pass' : 'tag-fail'}">${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}</span>
       </td>
       <td>
-        <button class="btn-action-sm" onclick="viewDetails(${idx})" title="Xem chi tiết câu đúng/sai">🔍 Chi tiết</button>
-        <button class="btn-action-sm" style="color:var(--danger);" onclick="deleteItem(${idx})" title="Xóa">✕</button>
+        <button class="btn-action-sm" onclick="viewDetails(${idx})">🔍 Xem</button>
+        <button class="btn-action-sm" style="color:var(--danger);" onclick="deleteItem(${idx})">✕</button>
       </td>
     `;
     tbody.appendChild(tr);
   });
 }
 
-function updateOverviewStats(list) {
+function updateStats(list) {
   document.getElementById("totalSubmissions").textContent = list.length;
   if (!list.length) {
     document.getElementById("avgScore10").textContent = "0.0";
@@ -726,9 +921,8 @@ function updateOverviewStats(list) {
     document.getElementById("passRate").textContent = "0%";
     return;
   }
-
-  const sum10 = list.reduce((acc, s) => acc + (parseFloat(s.score10) || 0), 0);
-  const sumHsk = list.reduce((acc, s) => acc + (parseInt(s.hskTotal) || 0), 0);
+  const sum10 = list.reduce((a, b) => a + (parseFloat(b.score10) || 0), 0);
+  const sumHsk = list.reduce((a, b) => a + (parseInt(b.hskTotal) || 0), 0);
   const passCount = list.filter(s => (s.hskTotal >= 180 || s.isPassed)).length;
 
   document.getElementById("avgScore10").textContent = (sum10 / list.length).toFixed(1);
@@ -744,15 +938,19 @@ function viewDetails(idx) {
   const item = allSubmissions[idx];
   if (!item) return;
   let info = `Thí sinh: ${item.studentName} (Lớp ${item.studentClass})\n`;
-  info += `Lần làm: #${item.attemptCount} • Điểm /10: ${item.score10} • Điểm HSK: ${item.hskTotal}/300\n`;
+  info += `Bài thi: ${item.examCode || 'H31002'} • Lần: #${item.attemptCount} • Điểm /10: ${item.score10} • Điểm HSK: ${item.hskTotal}/300\n`;
   info += `Thời gian nộp: ${new Date(item.submitTime).toLocaleString('vi-VN')}\n`;
-  info += `Thời lượng làm bài: ${item.durationFormatted}\n\n`;
-  info += `Số câu đúng: ${item.correctCount || 0}/${item.totalQuestions || 80}\n`;
+  info += `Thời lượng làm bài: ${item.durationFormatted}\n`;
+  info += `Kết quả: ${item.isPassed ? 'ĐẠT CHUẨN' : 'CHƯA ĐẠT'}\n`;
   alert(info);
 }
 
 function deleteItem(idx) {
-  if (confirm("Bạn có chắc chắn muốn xóa bản ghi kết quả này?")) {
+  const item = allSubmissions[idx];
+  if (confirm("Bạn có chắc chắn muốn xóa bài nộp này?")) {
+    if (item._id) {
+      fetch(`${HARDCODED_FIREBASE_URL}submissions/${item._id}.json`, { method: "DELETE" });
+    }
     allSubmissions.splice(idx, 1);
     localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
     renderTable();
@@ -765,20 +963,44 @@ function exportExcelCSV() {
     alert("Không có dữ liệu bài nộp để xuất!");
     return;
   }
-
-  let csv = "\uFEFFSTT,Họ và tên,Lớp,Lần làm,Thời gian nộp,Thời lượng,Điểm /10,Tổng HSK /300,Điểm Nghe /100,Điểm Đọc /100,Điểm Viết /100,Số câu đúng,Trạng thái\n";
-  
+  let csv = "\uFEFFSTT,Họ và tên,Lớp,Mã đề,Lần làm,Thời gian nộp,Thời lượng,Điểm /10,Tổng HSK /300,Điểm Nghe,Điểm Đọc,Điểm Viết,Kết quả\n";
   allSubmissions.forEach((s, i) => {
     const isPass = (s.hskTotal >= 180 || s.isPassed);
-    csv += `"${i+1}","${s.studentName || ''}","${s.studentClass || ''}","${s.attemptCount || 1}","${new Date(s.submitTime).toLocaleString('vi-VN')}","${s.durationFormatted || ''}","${s.score10 || 0}","${s.hskTotal || 0}","${s.hskListening || 0}","${s.hskReading || 0}","${s.hskWriting || 0}","${s.correctCount || 0}/${s.totalQuestions || 80}","${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n`;
+    csv += `"${i+1}","${s.studentName || ''}","${s.studentClass || ''}","${s.examCode || 'H31002'}","${s.attemptCount || 1}","${new Date(s.submitTime).toLocaleString('vi-VN')}","${s.durationFormatted || ''}","${s.score10 || 0}","${s.hskTotal || 0}","${s.hskListening || 0}","${s.hskReading || 0}","${s.hskWriting || 0}","${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n`;
   });
 
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `BangDiem_HSK3_Lop_${new Date().toISOString().slice(0,10)}.csv`;
+  a.download = `BangDiem_HSK_TongHop_${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
+}
+
+/* --- ACCESS CODE MODAL --- */
+function openAccessCodeModal() {
+  document.getElementById("accessCodeModal").classList.remove("hidden");
+  document.getElementById("currentAccessCodeInput").value = localStorage.getItem("hsk_custom_access_code") || "HSK32026";
+}
+
+function closeAccessCodeModal() {
+  document.getElementById("accessCodeModal").classList.add("hidden");
+}
+
+function saveAccessCode() {
+  const code = document.getElementById("currentAccessCodeInput").value.trim();
+  if (!code) {
+    alert("Vui lòng nhập mã truy cập!");
+    return;
+  }
+  localStorage.setItem("hsk_custom_access_code", code);
+  fetch(HARDCODED_FIREBASE_URL + "config/accessCode.json", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(code)
+  });
+  alert(`Đã lưu mã truy cập học viên: ${code}. Học viên phải nhập mã này mới có thể bắt đầu làm bài thi.`);
+  closeAccessCodeModal();
 }
 
 /* --- BATCH MODAL --- */
@@ -798,7 +1020,6 @@ function processBatchCodes() {
     return;
   }
 
-  // Regex to extract base64 JSON tokens
   const tokens = text.match(/[A-Za-z0-9+/=]{20,}/g) || [];
   let added = 0;
 
@@ -807,17 +1028,22 @@ function processBatchCodes() {
       const decoded = atob(tok);
       const parsed = JSON.parse(decoded);
       if (parsed.name && parsed.score) {
-        allSubmissions.unshift({
+        const item = {
           studentName: parsed.name,
           studentClass: parsed.class || "Chung",
           attemptCount: parsed.attempt || 1,
           score10: parsed.score,
           hskTotal: parsed.hskTotal || Math.round(parseFloat(parsed.score) * 30),
           submitTime: parsed.date || new Date().toISOString(),
-          durationFormatted: "Đã nộp",
+          durationFormatted: "Zalo Token",
           isPassed: (parsed.hskTotal >= 180 || parseFloat(parsed.score) >= 6.0),
-          correctCount: Math.round((parseFloat(parsed.score) / 10) * 80),
-          totalQuestions: 80
+          examCode: "H31002"
+        };
+        allSubmissions.unshift(item);
+        fetch(HARDCODED_FIREBASE_URL + "submissions.json", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
         });
         added++;
       }
@@ -825,35 +1051,23 @@ function processBatchCodes() {
   });
 
   if (added > 0) {
-    localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
     renderTable();
     closeBatchModal();
-    alert(`Đã nhận diện và nạp thành công ${added} kết quả bài nộp của học viên!`);
+    alert(`Đã giải mã và nạp thành công ${added} bài nộp vào bảng điểm!`);
   } else {
-    alert("Không tìm thấy mã xác thực hợp lệ trong đoạn văn bản bạn dán!");
+    alert("Không tìm thấy mã xác thực hợp lệ!");
   }
 }
 
-/* --- SETTINGS MODAL --- */
-function openSettingsModal() {
-  document.getElementById("settingsModal").classList.remove("hidden");
-  document.getElementById("cfgDbUrl").value = CLOUD_DB_URL;
-}
-
-function closeSettingsModal() {
-  document.getElementById("settingsModal").classList.add("hidden");
-}
-
-function saveSettings() {
-  const url = document.getElementById("cfgDbUrl").value.trim();
-  CLOUD_DB_URL = url;
-  localStorage.setItem("hsk3_cloud_db_url", url);
-  closeSettingsModal();
-  syncFromCloud(true);
-}
-
-// Start on load
-window.addEventListener("DOMContentLoaded", initDashboard);
+// Auto-check on load
+window.addEventListener("DOMContentLoaded", () => {
+  checkAuthStatus();
+  setInterval(() => {
+    if (teacherSession && teacherSession.isLoggedIn) {
+      syncFromFirebase(false);
+    }
+  }, 10000);
+});
 </script>
 </body>
 </html>
