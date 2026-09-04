@@ -632,6 +632,7 @@ body.review-mode .explanation-box {
 
 <!-- Main Container -->
 <main class="main-exam-layout">
+  <div id="firebaseSyncStatus" class="sync-status-box" style="display:none;"></div>
   <div class="audio-sticky-bar">
     <span>🎧 File nghe:</span>
     <audio id="mainAudioPlayer" controls src="audio/07.mp3" preload="metadata"></audio>
@@ -655,6 +656,8 @@ body.review-mode .explanation-box {
     <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Hệ thống bài tập giáo trình chuẩn gồm 45 câu (Nghe 20, Đọc 15, Viết 10). Vui lòng nhập thông tin để bắt đầu.</p>
     <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;">Họ và tên:</label>
     <input type="text" id="inputStudentName" class="modal-input" placeholder="Ví dụ: Nguyễn Văn A">
+    <label style="display:block;font-size:13px;font-weight:600;margin-top:10px;margin-bottom:4px;">Lớp / Khóa học (*):</label>
+    <input type="text" id="inputStudentClass" class="modal-input" placeholder="Ví dụ: HSK3-K25">
     <button class="btn-modal-start" onclick="startExamSession()">Bắt Đầu Làm Bài ➔</button>
   </div>
 </div>
@@ -1405,7 +1408,8 @@ const EXAM_CONFIG = {
 
 let activeData = null;
 const userAnswers = {};
-let studentName = "Thí sinh";
+let studentName = (typeof localStorage !== "undefined" && localStorage.getItem("hsk3_student_name")) || "Thí sinh";
+let studentClass = (typeof localStorage !== "undefined" && localStorage.getItem("hsk3_student_class")) || "Tự do";
 let totalSeconds = 45 * 60;
 let listeningSeconds = 15 * 60;
 let timerInterval = null;
@@ -1558,7 +1562,7 @@ function renderExam() {
         </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, '<br>')}</span></div>
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
@@ -1630,7 +1634,7 @@ function renderExam() {
         </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, '<br>')}</span></div>
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
@@ -1665,7 +1669,7 @@ function renderExam() {
         </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, '<br>')}</span></div>
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
@@ -2217,24 +2221,103 @@ function submitExam() {
     results[q.id] = { num: q.num, user, correct: q.correct, isCor };
   });
 
-  const finalScore10 = ((correctCount / 45) * 10).toFixed(1);
+  let correctL = 0, correctR = 0, correctW = 0;
+  for (let i = 1; i <= 45; i++) {
+    let qId = (i <= 20) ? `L${i}` : (i <= 35) ? `R${i}` : `W${i}`;
+    const res = results[qId];
+    if (res && res.isCor) {
+      if (i <= 20) correctL++;
+      else if (i <= 35) correctR++;
+      else correctW++;
+    }
+  }
 
-  // Send to Firebase
-  const payload = {
+  const finalScore10 = ((correctCount / 45) * 10).toFixed(1);
+  const isPassed = (correctCount >= 27);
+  const hskTotal = Math.round((correctCount / 45) * 300);
+
+  const durationSec = (45 * 60) - totalSeconds;
+  const dm = Math.floor(durationSec / 60);
+  const ds = durationSec % 60;
+  const durationFormatted = `${dm} phút ${ds < 10 ? '0' + ds : ds} giây`;
+
+  const detailedSummary = [];
+  for (let i = 1; i <= 45; i++) {
+    let qId = (i <= 20) ? `L${i}` : (i <= 35) ? `R${i}` : `W${i}`;
+    const res = results[qId];
+    detailedSummary.push({
+      num: i,
+      qId: qId,
+      userAns: res ? (res.user ?? "Chưa làm") : "Chưa làm",
+      correctAns: res ? res.correct : "",
+      isCorrect: res ? res.isCor : false
+    });
+  }
+
+  let attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
+  localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
+
+  // Payload for teacher dashboard (teacher.html) and Firebase Realtime Database
+  const submissionPayload = {
+    studentName: studentName || "Thí sinh",
+    studentClass: studentClass || "Tự do",
     examCode: EXAM_CONFIG.examCode,
     examTitle: EXAM_CONFIG.examTitle,
-    studentName: studentName,
+    attemptCount: attemptCount,
+    durationFormatted: durationFormatted,
+    score10: parseFloat(finalScore10),
+    hskTotal: hskTotal,
+    hskListening: `${correctL}/20`,
+    hskReading: `${correctR}/15`,
+    hskWriting: `${correctW}/10`,
     correctCount: correctCount,
     totalQuestions: 45,
-    score10: parseFloat(finalScore10),
-    timestamp: new Date().toISOString()
+    percent: Math.round((correctCount / 45) * 100),
+    isPassed: isPassed,
+    submitTime: new Date().toISOString(),
+    detailedSummary: detailedSummary
   };
 
+  // 1. Post to submissions.json (Read by Teacher Dashboard teacher.html)
+  fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/submissions.json", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(submissionPayload)
+  }).then(r => r.json()).then(d => {
+    console.log("Firebase sync to teacher dashboard success:", d);
+    const syncEl = document.getElementById("firebaseSyncStatus");
+    if (syncEl) {
+      syncEl.innerHTML = `<span>🟢 Đã gửi bài nộp về hệ thống giáo viên (Firebase Realtime Database) thành công (${new Date().toLocaleTimeString('vi-VN')})</span>`;
+      syncEl.className = "sync-status-box success";
+      syncEl.style.display = "block";
+    }
+  }).catch(err => {
+    console.warn("Firebase sync error:", err);
+    const syncEl = document.getElementById("firebaseSyncStatus");
+    if (syncEl) {
+      syncEl.innerHTML = `<span>⚠️ Không thể kết nối mạng, kết quả đã lưu tạm trong bộ nhớ máy học sinh.</span>`;
+      syncEl.className = "sync-status-box offline";
+      syncEl.style.display = "block";
+    }
+  });
+
+  // 2. Backup post to scores.json
   fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/scores.json", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  }).catch(err => console.log("Firebase sync note:", err));
+    body: JSON.stringify(submissionPayload)
+  }).catch(e => {});
+
+  // 3. Local history
+  try {
+    const hist = JSON.parse(localStorage.getItem("hsk3_exam_history") || "[]");
+    hist.unshift(submissionPayload);
+    localStorage.setItem("hsk3_exam_history", JSON.stringify(hist.slice(0, 50)));
+
+    const allSub = JSON.parse(localStorage.getItem("hsk3_all_class_submissions") || "[]");
+    allSub.unshift(submissionPayload);
+    localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSub.slice(0, 100)));
+  } catch(e) {}
 
   // Enter review mode
   document.body.classList.add("review-mode");
