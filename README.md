@@ -1,27 +1,32 @@
-# CỔNG LUYỆN THI HSK TRỰC TUYẾN - TIẾNG TRUNG HSK NHA TRANG
+# CỔNG KHẢO THÍ HSK ĐA ĐỀ THI - TIẾNG TRUNG HSK NHA TRANG
 
-Dự án web sẵn sàng triển khai 1-click lên Vercel để phục vụ nhiều đề thi trên cùng một tên miền web.
+Cổng luyện thi trực tuyến được thiết kế theo cơ chế **Tự động nhận diện đề thi mới (Auto-Discovery)**:
+Bạn **KHÔNG CẦN** sửa `index.html`, **KHÔNG CẦN** cấu hình lại `teacher.html`. Chỉ cần thả 1 file HTML vào GitHub là hệ thống tự động nhận diện và hiển thị đề thi mới ngay lập tức!
 
-## CẤU TRÚC THƯ MỤC:
-- `index.html`: Cổng trang chủ hiển thị danh sách các đề thi, thông tin học sinh, bộ lọc cấp độ HSK.
-- `de-2.html`: Giao diện làm bài thi HSK 3 Đề số 2 (Mã H31002) tương tác 80 câu hoàn chỉnh.
-- `teacher.html`: Bảng điều khiển Giáo viên giám sát điểm số toàn bộ học sinh theo thời gian thực.
-- `vercel.json`: Tệp cấu hình đường dẫn tối ưu cho nền tảng Vercel.
+---
 
-## HƯỚNG DẪN ĐẨY LÊN VERCEL (CỰC KỲ ĐƠN GIẢN):
+## 1. QUY TẮC ĐẶT TÊN FILE ĐỂ TỰ ĐỘNG NHẬN DIỆN:
+Khi bạn thêm bài thi mới, hãy đặt tên file theo đúng quy tắc sau:
 
-### Cách 1: Đẩy qua GitHub (Khuyên dùng - Cập nhật tự động)
-1. Tạo 1 repository mới trên GitHub (đặt tên ví dụ: `hsk-nhatrang-portal`).
-2. Tải toàn bộ các file trong thư mục này lên repository đó.
-3. Truy cập https://vercel.com, đăng nhập bằng GitHub.
-4. Bấm **Add New...** > **Project** > Chọn repository `hsk-nhatrang-portal`.
-5. Bấm **Deploy**. Sau 30 giây bạn sẽ có ngay địa chỉ web miễn phí dạng: `https://hsk-nhatrang-portal.vercel.app`.
+- **HSK 3**:
+  - Đề 1: `de-1.html` (Đang mở)
+  - Đề 2: `de-2.html` (Đang mở)
+  - Đề 3: `de-3.html`
+  - Đề 4: `de-4.html`
+  - ... đến Đề 10: `de-10.html`
+  - File nghe tương ứng: đặt vào `audio/H31001.mp3`, `audio/H31002.mp3`, `audio/H31003.mp3`,...
 
-### Cách 2: Kéo thả trực tiếp lên Vercel CLI / Dashboard
-1. Nếu bạn cài Vercel CLI trên máy tính: Mở terminal tại thư mục này và gõ lệnh `vercel`.
-2. Hoặc nén thư mục và kéo thả theo hướng dẫn của Vercel.
+- **HSK 4**: `hsk4-de-1.html`, `hsk4-de-2.html`, ..., `hsk4-de-10.html`
+- **HSK 5**: `hsk5-de-1.html`, ..., `hsk5-de-10.html`
+- **HSK 6**: `hsk6-de-1.html`, ..., `hsk6-de-10.html`
+- **HSK 3.0**: `hsk30-l1.html`, `hsk30-l2.html`, ..., `hsk30-l79.html`
+- **Bài tập Chuẩn**: `sc3-bai-1.html`, `sc3-bai-2.html`, ..., `sc3-bai-20.html`
 
-## CÁCH THÊM ĐỀ THI MỚI (ĐỀ 1, ĐỀ 3, ĐỀ 4,...):
-1. Nhân bản file `de-2.html` thành `de-1.html` hoặc `de-3.html`.
-2. Thay thế dữ liệu câu hỏi trong tệp mới.
-3. Mở `index.html`, nhân bản thẻ card đề thi và đổi link sang `de-1.html` / `de-3.html`.
+---
+
+## 2. QUY TRÌNH THÊM 1 ĐỀ THI MỚI (CHỈ 1 BƯỚC DUY NHẤT):
+1. Bạn gửi tài liệu đề thi mới (PDF + Audio) vào đây để tôi tạo file HTML (ví dụ: `de-3.html`).
+2. Mở GitHub > Bấm **Add file** > **Upload files** > Kéo thả file `de-3.html` vào (và file `audio/H31003.mp3` nếu có).
+3. Bấm **Commit changes**.
+4. **Xong!** Trang chủ `index.html` sẽ tự động phát hiện file `de-3.html` đã tồn tại trên Vercel, tự động bật nút xanh **"● Đang mở thi"** và cho học viên vào thi ngay lập tức mà bạn không cần chỉnh sửa bất kỳ dòng code nào!
+5. Khi học viên nộp bài, Bảng điều khiển `teacher.html` cũng tự động bổ sung mã đề `H31003` vào danh sách lọc kết quả!

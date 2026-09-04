@@ -837,6 +837,20 @@ function renderTable() {
   const empty = document.getElementById("emptyState");
   tbody.innerHTML = "";
 
+  // Dynamically populate Exams filter
+  const examSelect = document.getElementById("filterExam");
+  const curExam = examSelect.value;
+  const exams = [...new Set(allSubmissions.map(s => s.examCode || "H31002").filter(Boolean))];
+  
+  examSelect.innerHTML = '<option value="ALL">-- Tất cả bài thi --</option>';
+  exams.forEach(exCode => {
+    const opt = document.createElement("option");
+    opt.value = exCode;
+    opt.textContent = "Mã đề: " + exCode;
+    if (exCode === curExam) opt.selected = true;
+    examSelect.appendChild(opt);
+  });
+
   // Populate Classes filter
   const classSelect = document.getElementById("filterClass");
   const curClass = classSelect.value;
