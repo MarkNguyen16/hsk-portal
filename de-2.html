@@ -22,7 +22,7 @@
   --success-bg: #E8F5E9;
   --danger: #C62828;
   --danger-bg: #FFEBEE;
-  --font-chinese: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-chinese: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Noto Sans SC", sans-serif;
 }
 
 * {
@@ -35,84 +35,110 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--bg-cream);
   color: var(--text-main);
-  line-height: 1.6;
-  padding-bottom: 90px;
+  line-height: 1.65;
+  padding-bottom: 40px;
 }
 
 .chinese {
   font-family: var(--font-chinese);
-}
-
-/* Header & Sticky Bar */
-header.app-header {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  color: #FFFFFF;
-  padding: 18px 24px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-icon {
-  background: var(--gold);
-  color: var(--primary-dark);
-  font-weight: 900;
-  font-size: 1.2rem;
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.brand-text h1 {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.12rem;
   letter-spacing: 0.5px;
 }
 
-.brand-text p {
-  font-size: 0.82rem;
-  color: var(--gold-light);
-}
-
-.header-status {
+/* Single Ultra-Slim Sticky Exam Header (~46px, < 6% screen height) */
+header.app-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #FFFFFF;
+  padding: 0 16px;
+  height: 48px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
-  gap: 14px;
 }
 
-.timer-badge {
-  background: rgba(0,0,0,0.25);
-  border: 1px solid rgba(217, 184, 108, 0.4);
-  padding: 6px 14px;
-  border-radius: 20px;
+.header-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-left {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 700;
-  font-size: 1.05rem;
+}
+
+.btn-home-compact {
   color: #fff;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  background: rgba(255,255,255,0.18);
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.2s;
+}
+
+.btn-home-compact:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+.center-logo {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 6px;
+  object-fit: contain;
+  background: #fff;
+  padding: 1px;
+}
+
+.exam-title-compact {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Dual Timers in Header Center */
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timer-badge {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(217, 184, 108, 0.4);
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.timer-badge .timer-lbl {
+  font-size: 0.78rem;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.timer-badge.timer-listening {
+  background: rgba(23, 107, 99, 0.4);
+  border-color: rgba(186, 230, 253, 0.5);
 }
 
 .timer-badge.warning {
@@ -130,105 +156,91 @@ header.app-header {
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.04); }
 }
 
-.student-info-badge {
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.25);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
+.header-right {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+}
+
+.btn-nav-navigator {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.btn-nav-navigator:hover {
+  background: var(--gold);
+  color: var(--primary-dark);
+  border-color: var(--gold);
 }
 
 .btn-header-submit {
   background: var(--gold);
   color: var(--primary-dark);
   border: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 8px 18px;
-  border-radius: 20px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  padding: 5px 16px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.2s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .btn-header-submit:hover {
-  background: #e8ca82;
+  background: #ecd395;
   transform: translateY(-1px);
 }
 
-/* Nav tabs */
-.nav-bar {
+@media (max-width: 680px) {
+  .hide-mobile { display: none !important; }
+  .timer-badge .timer-lbl { display: none; }
+}
+
+/* Navigator Drawer on Right Margin */
+.navigator-drawer {
+  position: fixed;
+  top: 50px;
+  right: -360px;
+  width: 340px;
+  max-width: 85vw;
+  height: calc(100vh - 54px);
   background: #FFFFFF;
-  border-bottom: 2px solid var(--border-color);
-  position: sticky;
-  top: 76px;
-  z-index: 90;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  border-left: 2px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 12px 0 0 12px;
+  box-shadow: -4px 4px 20px rgba(0,0,0,0.1);
+  z-index: 95;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  overflow-x: auto;
+  flex-direction: column;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-tabs {
-  display: flex;
-  gap: 8px;
+.navigator-drawer.open {
+  right: 0;
 }
 
-.nav-tab {
-  padding: 12px 18px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  border-bottom: 3px solid transparent;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-}
-
-.nav-tab:hover {
-  color: var(--primary);
-}
-
-.nav-tab.active {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-}
-
-.progress-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  min-width: 180px;
-}
-
-.progress-bar-bg {
-  flex: 1;
-  height: 8px;
-  background: #e2e8f0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--gold), var(--primary));
-  width: 0%;
-  transition: width 0.3s ease;
+@media (min-width: 1024px) {
+  main.app-main.with-sidebar {
+    margin-right: 360px !important;
+    max-width: calc(100% - 390px) !important;
+    transition: margin-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 /* Audio Player Bar */
@@ -783,17 +795,13 @@ main.app-main {
   text-decoration: line-through;
 }
 
-/* Footer Controls */
+/* Footer Controls - Static to maximize reading view */
 footer.app-footer {
   background: #fff;
   border-top: 1px solid var(--border-color);
-  padding: 16px 20px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
-  z-index: 95;
+  padding: 24px 20px;
+  margin-top: 50px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
 }
 
 .footer-inner {
@@ -1205,11 +1213,11 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 /* Non-obscuring Persistent Right Sidebar */
 .navigator-drawer {
   position: fixed;
-  top: 130px;
+  top: 50px;
   right: -360px;
   width: 340px;
   max-width: 85vw;
-  height: calc(100vh - 205px);
+  height: calc(100vh - 54px);
   background: #FFFFFF;
   border-left: 2px solid var(--border-color);
   border-top: 2px solid var(--border-color);
@@ -1329,59 +1337,55 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 </head>
 <body>
 
-<!-- Global Header -->
+<!-- Single Ultra-Slim Sticky Exam Header (Height: 48px, < 6% of screen) -->
 <header class="app-header">
   <div class="header-inner">
-    <div class="brand">
-      <a href="index.html" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;font-size:0.85rem;background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;margin-right:8px;font-weight:600;transition:all 0.2s;" title="Quay về danh mục đề thi">
-        <span>⬅</span> Cổng Đề Thi
+    <div class="header-left">
+      <a href="index.html" class="btn-home-compact" title="Quay về danh mục đề thi">
+        <span>⬅</span> <span class="hide-mobile">Cổng Đề</span>
       </a>
-      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" style="width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);">
-      <div class="brand-text">
-        <h1>HSK 3 - BÀI THI MÔ PHỎNG ĐỀ 2 (H31002)</h1>
-        <p>Trung tâm Tiếng Trung HSK Nha Trang • Hệ thống Khảo thí & Chấm điểm Tự động</p>
+      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" class="center-logo">
+      <span class="exam-title-compact hide-mobile">HSK 3 - Đề 02</span>
+      <span id="studentInfoBadge" class="hide-mobile" style="font-size:0.8rem;color:var(--gold-light);background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:10px;">👤 Học viên</span>
+    </div>
+    
+    <div class="header-center">
+      <div class="timer-badge" id="totalTimerBadge" title="Đồng hồ đếm ngược toàn bài thi (90 phút)">
+        <span class="timer-lbl">Toàn bài:</span> <span id="totalTimerText">90:00</span>
+      </div>
+      <div class="timer-badge timer-listening" id="listeningTimerBadge" title="Đồng hồ đếm ngược phần Nghe (35 phút)">
+        <span class="timer-lbl">🎧 Nghe:</span> <span id="listeningTimerText">35:00</span>
       </div>
     </div>
-    <div class="header-status">
-      <div class="student-info-badge" id="studentInfoBadge">
-        <span>👤 Chưa đăng nhập</span>
-      </div>
-      <div class="timer-badge" id="timerBadge">
-        <span>⏱️ 90:00</span>
-      </div>
+    
+    <div class="header-right">
+      <button class="btn-nav-navigator" id="btnToggleNav" onclick="toggleExamNavigator()" title="Mở bảng trạng thái làm bài bên lề phải">
+        📋 Trạng thái làm bài (<span id="navAnsweredCount">0</span>/80)
+      </button>
       <button class="btn-header-submit" onclick="confirmSubmitExam()">Nộp Bài</button>
     </div>
   </div>
 </header>
 
-<!-- Navigation bar with Section shortcuts & Progress -->
-<div class="nav-bar">
-  <div class="nav-inner">
-    <div class="nav-tabs">
-      <div class="nav-tab active" onclick="scrollToSection('sec-listening')">🎧 1. Nghe (1-40)</div>
-      <div class="nav-tab" onclick="scrollToSection('sec-reading')">📖 2. Đọc hiểu (41-70)</div>
-      <div class="nav-tab" onclick="scrollToSection('sec-writing')">✍️ 3. Viết (71-80)</div>
-      <button class="btn-nav-navigator" id="btnToggleNav" onclick="toggleExamNavigator()" title="Mở bảng trạng thái làm bài bên lề phải" style="background:var(--primary);color:#fff;border-color:var(--primary);">
-        📋 Trạng thái làm bài (<span id="navAnsweredCount">0</span>/80)
-      </button>
+<!-- In-page Section Shortcuts & Audio Player (Normal document flow, scrolls naturally) -->
+<div style="max-width:1000px;margin:12px auto 0;padding:0 16px;">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--border-color);border-radius:10px;padding:8px 16px;">
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span style="font-weight:700;font-size:0.85rem;color:var(--text-muted);">Phần thi:</span>
+      <button class="btn-audio-subtle" onclick="scrollToSection('sec-listening')">🎧 1. Nghe (1-40)</button>
+      <button class="btn-audio-subtle" onclick="scrollToSection('sec-reading')">📖 2. Đọc (41-70)</button>
+      <button class="btn-audio-subtle" onclick="scrollToSection('sec-writing')">✍️ 3. Viết (71-80)</button>
     </div>
-    
-      </div>
-      <span id="progressText">0/80</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;padding-left:12px;border-left:1px solid #cbd5e0;margin-left:8px;">
-      <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);">Font chữ:</span>
-      <button class="btn-audio-subtle" id="btnFontToggle" onclick="toggleChineseFont()" title="Chuyển đổi font chữ Hắc thể / Khải thể" style="font-size:0.82rem;padding:3px 8px;">
-        楷体
-      </button>
-      <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);margin-left:4px;">Cỡ:</span>
-      <button class="btn-audio-subtle" onclick="setChineseFontSize('md')" id="btnSizeMd" title="Cỡ chuẩn" style="padding:2px 8px;font-size:0.82rem;font-weight:bold;">Chuẩn</button>
-      <button class="btn-audio-subtle" onclick="setChineseFontSize('lg')" id="btnSizeLg" title="Cỡ lớn" style="padding:2px 8px;font-size:0.88rem;font-weight:bold;">Lớn</button>
-      <button class="btn-audio-subtle" onclick="setChineseFontSize('xl')" id="btnSizeXl" title="Cỡ rất lớn" style="padding:2px 8px;font-size:0.95rem;font-weight:bold;">Rất lớn</button>
+    <div class="audio-file-input-wrapper">
+      <span id="audioStatusIndicator" class="status-badge online" style="background:#e0f2fe;color:#0369a1;padding:3px 10px;border-radius:12px;font-size:0.8rem;font-weight:600;">
+        🎧 Audio: audio/H31002.mp3
+      </span>
+      <label for="localAudioFile" style="cursor:pointer;text-decoration:underline;font-size:0.8rem;color:var(--primary);">Chọn file khác</label>
+      <input type="file" id="localAudioFile" accept="audio/mp3,audio/*" onchange="loadLocalAudio(this)" style="display:none;">
+      <audio id="globalAudioPlayer" preload="auto" src="audio/H31002.mp3" style="display:none;"></audio>
     </div>
   </div>
 </div>
-
 <!-- Audio Master Bar -->
 <div class="audio-player-bar">
   <div class="audio-player-inner">
@@ -1434,15 +1438,11 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
     <div class="modal-body">
       <div class="form-group">
         <label class="form-label">Họ và tên thí sinh (*)</label>
-        <input type="text" class="form-input" id="inputStudentName" placeholder="Ví dụ: Nguyễn Đình Minh" autofocus>
+        <input type="text" class="form-input" id="inputStudentName" placeholder="Nhập họ và tên..." value="Học viên" autofocus>
       </div>
       <div class="form-group">
         <label class="form-label">Lớp / Khóa học (*)</label>
-        <input type="text" class="form-input" id="inputStudentClass" placeholder="Ví dụ: HSK3-K24">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Mã truy cập đề thi (*) <small style="color:var(--text-muted);font-weight:normal;">(Do giáo viên cấp, mặc định: HSK32026)</small></label>
-        <input type="password" class="form-input" id="inputAccessCode" placeholder="Nhập mã truy cập..." value="HSK32026">
+        <input type="text" class="form-input" id="inputStudentClass" placeholder="Nhập lớp học..." value="HSK3-K24">
       </div>
       <div class="form-group">
         <label class="form-label">Chế độ làm bài</label>
@@ -1467,11 +1467,10 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn-primary" onclick="startExamSession()">Bắt đầu làm bài ➔</button>
+      <button class="btn-primary" id="btnStartExam" onclick="startExamSession()" style="width:100%;padding:12px;font-size:1.05rem;">Bắt đầu làm bài ➔</button>
     </div>
   </div>
 </div>
-
 <!-- Results & Grading Modal -->
 <div class="modal-backdrop hidden" id="resultModal">
   <div class="modal-card">
@@ -3955,14 +3954,13 @@ function onCharInputChange(qId, val) {
 
 function updateProgress() {
   const answeredCount = Object.keys(examState.answers).length;
-  const fill = document.getElementById("progressBarFill");
-  const text = document.getElementById("progressText");
-  const pct = Math.round((answeredCount / examState.totalQuestions) * 100);
-  fill.style.width = pct + "%";
-  text.textContent = `${answeredCount}/${examState.totalQuestions} (${pct}%)`;
+  const navCount = document.getElementById("navAnsweredCount");
+  if (navCount) navCount.textContent = answeredCount;
+  const drawerCount = document.getElementById("drawerCountText");
+  if (drawerCount) drawerCount.textContent = `${answeredCount}/80`;
 }
 
-/* --- TIMER & SESSIONS --- */
+/* --- DUAL TIMERS & SESSIONS --- */
 function selectExamMode(mins, element) {
   studentInfo.examModeMinutes = mins;
   document.querySelectorAll(".mode-card").forEach(c => c.classList.remove("selected"));
@@ -3970,76 +3968,110 @@ function selectExamMode(mins, element) {
 }
 
 function startExamSession() {
-  const nameInput = document.getElementById("inputStudentName").value.trim();
-  const classInput = document.getElementById("inputStudentClass").value.trim();
-  const accessCode = document.getElementById("inputAccessCode").value.trim();
-  
-  if (!nameInput || !classInput) {
-    alert("Vui lòng nhập Họ tên và Lớp trước khi bắt đầu bài thi!");
-    return;
-  }
-  
-  const savedAccessCode = localStorage.getItem("hsk_custom_access_code") || DEFAULT_ACCESS_CODE;
-  if (accessCode !== savedAccessCode && accessCode !== "HSK32026") {
-    alert("Mã truy cập đề thi không hợp lệ! Vui lòng liên hệ giáo viên để nhận mã vào thi.");
-    return;
-  }
-  
-  studentInfo.name = nameInput;
-  studentInfo.className = classInput;
-  localStorage.setItem("hsk3_student_name", nameInput);
-  localStorage.setItem("hsk3_student_class", classInput);
-  
-  document.getElementById("studentInfoBadge").innerHTML = `
-    <span>👤 ${studentInfo.name} (${studentInfo.className})</span> &nbsp;|&nbsp; <span>Lần làm: ${studentInfo.attemptCount}</span>
-  `;
-  
-  document.getElementById("welcomeModal").classList.add("hidden");
-  
-  examState.startTime = new Date();
-  examState.remainingSeconds = studentInfo.examModeMinutes > 0 ? studentInfo.examModeMinutes * 60 : 90 * 60;
-  
-  randomizeExamData();
-  renderExam();
-  
-  if (studentInfo.examModeMinutes > 0) {
-    startTimer();
-  } else {
-    document.getElementById("timerBadge").innerHTML = "<span>⏱️ Không giới hạn</span>";
+  try {
+    const nameEl = document.getElementById("inputStudentName");
+    const classEl = document.getElementById("inputStudentClass");
+    
+    studentInfo.name = (nameEl && nameEl.value.trim()) ? nameEl.value.trim() : "Học viên";
+    studentInfo.className = (classEl && classEl.value.trim()) ? classEl.value.trim() : "HSK3";
+    localStorage.setItem("hsk3_student_name", studentInfo.name);
+    localStorage.setItem("hsk3_student_class", studentInfo.className);
+    
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) {
+      badge.innerHTML = `👤 ${studentInfo.name} (${studentInfo.className}) • Lần làm: ${studentInfo.attemptCount}`;
+    }
+    
+    // Hide modal completely
+    const modal = document.getElementById("welcomeModal");
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.style.display = "none";
+      modal.style.visibility = "hidden";
+      modal.style.opacity = "0";
+      modal.style.pointerEvents = "none";
+    }
+    
+    examState.startTime = new Date();
+    examState.totalRemainingSeconds = (studentInfo.examModeMinutes > 0 ? studentInfo.examModeMinutes : 90) * 60;
+    examState.listeningRemainingSeconds = 35 * 60;
+    
+    randomizeExamData();
+    renderExam();
+    startDualTimers();
+  } catch (err) {
+    console.error("Error in startExamSession:", err);
+    const modal = document.getElementById("welcomeModal");
+    if (modal) modal.style.display = "none";
+    startDualTimers();
   }
 }
 
-function startTimer() {
+function startDualTimers() {
   if (examState.timerInterval) clearInterval(examState.timerInterval);
-  updateTimerDisplay();
+  updateDualTimersDisplay();
   
   examState.timerInterval = setInterval(() => {
-    examState.remainingSeconds--;
-    examState.durationSeconds++;
-    updateTimerDisplay();
-    
-    if (examState.remainingSeconds <= 0) {
-      clearInterval(examState.timerInterval);
-      alert("Đã hết thời gian quy định! Hệ thống đang tự động thu bài và chấm điểm...");
-      submitExam(true);
+    // 1. Total Exam Timer
+    if (studentInfo.examModeMinutes > 0) {
+      examState.totalRemainingSeconds--;
+      examState.durationSeconds++;
+      if (examState.totalRemainingSeconds <= 0) {
+        clearInterval(examState.timerInterval);
+        alert("Đã hết thời gian toàn bài thi 90 phút! Hệ thống đang tự động nộp bài...");
+        submitExam(true);
+        return;
+      }
+    } else {
+      examState.durationSeconds++;
     }
+    
+    // 2. Listening Timer (35 min)
+    if (examState.listeningRemainingSeconds > 0) {
+      examState.listeningRemainingSeconds--;
+      if (examState.listeningRemainingSeconds === 0) {
+        const listText = document.getElementById("listeningTimerText");
+        if (listText) listText.textContent = "Hết giờ (00:00)";
+        const listBadge = document.getElementById("listeningTimerBadge");
+        if (listBadge) listBadge.className = "timer-badge timer-listening danger";
+      }
+    }
+    
+    updateDualTimersDisplay();
   }, 1000);
 }
 
-function updateTimerDisplay() {
-  const badge = document.getElementById("timerBadge");
-  const m = Math.floor(examState.remainingSeconds / 60);
-  const s = examState.remainingSeconds % 60;
-  const mStr = m < 10 ? "0" + m : m;
-  const sStr = s < 10 ? "0" + s : s;
-  badge.innerHTML = `<span>⏱️ ${mStr}:${sStr}</span>`;
+function updateDualTimersDisplay() {
+  // Total Exam Timer
+  const totalText = document.getElementById("totalTimerText");
+  const totalBadge = document.getElementById("totalTimerBadge");
+  if (totalText) {
+    if (studentInfo.examModeMinutes > 0) {
+      const tm = Math.floor(examState.totalRemainingSeconds / 60);
+      const ts = examState.totalRemainingSeconds % 60;
+      totalText.textContent = `${tm < 10 ? '0' + tm : tm}:${ts < 10 ? '0' + ts : ts}`;
+      if (totalBadge) {
+        if (examState.totalRemainingSeconds <= 300) totalBadge.className = "timer-badge danger";
+        else if (examState.totalRemainingSeconds <= 600) totalBadge.className = "timer-badge warning";
+        else totalBadge.className = "timer-badge";
+      }
+    } else {
+      totalText.textContent = "Không giới hạn";
+    }
+  }
   
-  if (examState.remainingSeconds <= 300) {
-    badge.className = "timer-badge danger";
-  } else if (examState.remainingSeconds <= 600) {
-    badge.className = "timer-badge warning";
-  } else {
-    badge.className = "timer-badge";
+  // Listening Section Timer
+  const listText = document.getElementById("listeningTimerText");
+  const listBadge = document.getElementById("listeningTimerBadge");
+  if (listText && examState.listeningRemainingSeconds > 0) {
+    const lm = Math.floor(examState.listeningRemainingSeconds / 60);
+    const ls = examState.listeningRemainingSeconds % 60;
+    listText.textContent = `${lm < 10 ? '0' + lm : lm}:${ls < 10 ? '0' + ls : ls}`;
+    if (listBadge) {
+      if (examState.listeningRemainingSeconds <= 180) listBadge.className = "timer-badge timer-listening danger";
+      else if (examState.listeningRemainingSeconds <= 300) listBadge.className = "timer-badge timer-listening warning";
+      else listBadge.className = "timer-badge timer-listening";
+    }
   }
 }
 
@@ -4289,11 +4321,13 @@ function retryExamWithShuffle() {
   examState.wordOrderSelections = {};
   examState.durationSeconds = 0;
   examState.startTime = new Date();
-  examState.remainingSeconds = studentInfo.examModeMinutes > 0 ? studentInfo.examModeMinutes * 60 : 90 * 60;
+  examState.totalRemainingSeconds = (studentInfo.examModeMinutes > 0 ? studentInfo.examModeMinutes : 90) * 60;
+  examState.listeningRemainingSeconds = 35 * 60;
   
-  document.getElementById("studentInfoBadge").innerHTML = `
-    <span>👤 ${studentInfo.name} (${studentInfo.className})</span> &nbsp;|&nbsp; <span>Lần làm: ${studentInfo.attemptCount}</span>
-  `;
+  const retryBadge = document.getElementById("studentInfoBadge");
+  if (retryBadge) {
+    retryBadge.innerHTML = `👤 ${studentInfo.name} (${studentInfo.className}) • Lần làm: ${studentInfo.attemptCount}`;
+  }
   
   document.getElementById("resultModal").classList.add("hidden");
   document.getElementById("examContainer").classList.remove("review-mode");
@@ -4302,7 +4336,7 @@ function retryExamWithShuffle() {
   renderExam();
   
   if (studentInfo.examModeMinutes > 0) {
-    startTimer();
+    startDualTimers();
   }
   
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -4660,34 +4694,6 @@ window.addEventListener("DOMContentLoaded", () => {
   randomizeExamData();
   renderExam();
 });
-
-/* --- FONT & TYPOGRAPHY LOGIC --- */
-let isKaiTi = localStorage.getItem("hsk_pref_font") === "kaiti";
-let currentFontSize = localStorage.getItem("hsk_pref_size") || "md";
-
-function applyFontPreferences() {
-  document.body.classList.remove("font-kaiti", "font-heiti");
-  document.body.classList.add(isKaiTi ? "font-kaiti" : "font-heiti");
-  const btn = document.getElementById("btnFontToggle");
-  if (btn) {
-    btn.innerHTML = isKaiTi ? "黑体" : "楷体";
-  }
-  
-  document.body.classList.remove("font-size-sm", "font-size-md", "font-size-lg", "font-size-xl");
-  document.body.classList.add("font-size-" + currentFontSize);
-}
-
-function toggleChineseFont() {
-  isKaiTi = !isKaiTi;
-  localStorage.setItem("hsk_pref_font", isKaiTi ? "kaiti" : "heiti");
-  applyFontPreferences();
-}
-
-function setChineseFontSize(size) {
-  currentFontSize = size;
-  localStorage.setItem("hsk_pref_size", size);
-  applyFontPreferences();
-}
 
 // Audio auto-detect
 window.addEventListener("DOMContentLoaded", () => {
