@@ -2,32 +2,42 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HSK 3 - Bài 4: 她总是笑着跟客人说话 - Bài Tập Chuẩn</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>HSK 3 - Bài 4: 她总是笑着跟客人说话</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #166b63;
-  --primary-dark: #0f4943;
-  --primary-light: #e8f3f1;
-  --accent: #d97706;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --bg-page: #f8fafc;
-  --bg-card: #ffffff;
+  --primary: #176B63;
+  --primary-dark: #0D423D;
+  --primary-light: #e0f2fe;
+  --gold: #D9B86C;
+  --gold-light: #fef08a;
+  --bg-page: #F7F3E8;
+  --bg-card: #FFFFFF;
   --border-light: #e2e8f0;
   --border-medium: #cbd5e1;
-  --success: #16a34a;
-  --danger: #dc2626;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --correct: #10b981;
+  --wrong: #ef4444;
   --header-height: 48px;
 }
-* {
-  box-sizing: border-box;
+
+html, body {
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-page);
@@ -35,628 +45,68 @@ body {
   padding-top: var(--header-height);
   transition: padding-right 0.3s ease;
 }
-body.drawer-open {
-  padding-right: 320px;
+
+@media (min-width: 1025px) {
+  body.drawer-open {
+    padding-right: 320px;
+  }
 }
+
 .chinese {
   font-family: 'Noto Sans SC', sans-serif;
 }
 
-/* Header 48px */
-.top-app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--header-height);
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  z-index: 1000;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-.header-left, .header-center, .header-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.btn-portal-back {
-  text-decoration: none;
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  font-weight: 600;
-  font-size: 13px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid rgba(22, 107, 99, 0.2);
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.btn-portal-back:hover {
-  background: var(--primary);
-  color: #fff;
-}
-.school-header-logo {
-  height: 32px;
-  width: auto;
-  border-radius: 4px;
-}
-.exam-title-badge {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--primary-dark);
-}
-.student-info-tag {
-  font-size: 12px;
-  background: #f1f5f9;
-  padding: 4px 8px;
-  border-radius: 4px;
-  color: var(--text-muted);
-}
-.timer-badge-item {
-  background: #f1f5f9;
-  border: 1px solid var(--border-medium);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-main);
-}
-.btn-nav-toggle {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  border: 1px solid rgba(22, 107, 99, 0.2);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-}
-.btn-submit-exam {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  padding: 6px 16px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-.btn-submit-exam:hover {
-  background: var(--primary-dark);
-}
-
-/* Main Layout */
-.main-exam-layout {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 16px 80px;
-}
-.audio-sticky-bar {
-  position: sticky;
-  top: var(--header-height);
-  background: #ffffff;
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
-  padding: 10px 16px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-  z-index: 100;
-}
-.audio-sticky-bar audio {
-  flex: 1;
-  height: 36px;
-}
-.section-card {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-}
-.section-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid var(--primary-light);
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-}
-.section-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--primary-dark);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.section-badge {
-  font-size: 12px;
-  background: var(--primary-light);
-  color: var(--primary);
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-.part-header {
-  background: #f8fafc;
-  padding: 10px 14px;
-  border-radius: 6px;
-  font-size: 14px;
-  color: #334155;
-  margin-bottom: 16px;
-}
-
-/* Question items */
-.question-item {
-  border-bottom: 1px solid var(--border-light);
-  padding: 16px 0;
-}
-.question-item:last-child {
-  border-bottom: none;
-}
-.q-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.q-number {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--primary);
-}
-.btn-tts-replay {
-  background: none;
-  border: 1px solid var(--border-medium);
-  color: var(--text-muted);
-  border-radius: 4px;
-  padding: 3px 8px;
-  font-size: 12px;
-  cursor: pointer;
-}
-.btn-tts-replay:hover {
-  color: var(--primary);
-  border-color: var(--primary);
-}
-
-/* Images Bank */
-.image-bank-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
-}
-.image-bank-item {
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fff;
-  text-align: center;
-}
-.image-desc {
-  font-size: 11px;
-  color: var(--text-muted);
-  padding: 4px;
-  background: #f8fafc;
-}
-.bank-options-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.btn-bank-opt {
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border-medium);
-  background: #fff;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.btn-bank-opt:hover {
-  border-color: var(--primary);
-}
-.btn-bank-opt.selected {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-}
-
-/* Choices */
-.choice-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.choice-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  cursor: pointer;
-  background: #fff;
-  transition: all 0.15s;
-}
-.choice-item:hover {
-  border-color: var(--primary);
-  background: #fdfdfd;
-}
-.choice-item.selected {
-  background: var(--primary-light);
-  border-color: var(--primary);
-}
-.choice-badge {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #f1f5f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-main);
-}
-.choice-item.selected .choice-badge {
-  background: var(--primary);
-  color: #fff;
-}
-
-/* Judge */
-.judge-btn-group {
-  display: flex;
-  gap: 12px;
-}
-.btn-judge {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid var(--border-medium);
-  background: #fff;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.btn-judge.selected-true {
-  background: #dcfce7;
-  border-color: var(--success);
-  color: #15803d;
-}
-.btn-judge.selected-false {
-  background: #fee2e2;
-  border-color: var(--danger);
-  color: #b91c1c;
-}
-
-/* Drawer */
-.persistent-drawer {
-  position: fixed;
-  top: var(--header-height);
-  right: -320px;
-  width: 320px;
-  height: calc(100vh - var(--header-height));
-  background: #ffffff;
-  border-left: 1px solid var(--border-light);
-  box-shadow: -2px 0 8px rgba(0,0,0,0.05);
-  transition: right 0.3s ease;
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-}
-.persistent-drawer.open {
-  right: 0;
-}
-.drawer-header {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.drawer-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-}
-.drawer-section-title {
-  font-size: 13px;
-  font-weight: bold;
-  color: var(--primary-dark);
-  margin: 14px 0 8px 0;
-  border-bottom: 1px solid var(--border-light);
-  padding-bottom: 4px;
-}
-.drawer-subgrid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 6px;
-  margin-bottom: 10px;
-}
-.drawer-q-btn {
-  height: 36px;
-  border: 1px solid var(--border-medium);
-  background: #fff;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-}
-.drawer-q-btn.answered {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-}
-.drawer-q-btn.correct-rev {
-  background: var(--success) !important;
-  color: #fff !important;
-}
-.drawer-q-btn.wrong-rev {
-  background: var(--danger) !important;
-  color: #fff !important;
-}
-
-/* Writing elements */
-.word-chips-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-.word-chip {
-  background: #f1f5f9;
-  border: 1px solid var(--border-medium);
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 15px;
-}
-.word-chip.used {
-  opacity: 0.35;
-  pointer-events: none;
-}
-.writing-input-sentence {
-  flex: 1;
-  padding: 8px 12px;
-  border: 1px solid var(--border-medium);
-  border-radius: 6px;
-  font-size: 16px;
-}
-.btn-clear-chips {
-  background: #f1f5f9;
-  border: 1px solid var(--border-medium);
-  padding: 0 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-}
-.char-fill-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 18px;
-  margin: 12px 0;
-}
-.char-input-box {
-  width: 44px;
-  height: 44px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  border: 2px solid var(--border-medium);
-  border-radius: 8px;
-  outline: none;
-  color: var(--primary-dark);
-  background: #fff;
-}
-.char-input-box:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(22, 107, 99, 0.15);
-}
-.pinyin-highlight {
-  font-weight: bold;
-  color: var(--primary);
-  background: rgba(22, 107, 99, 0.08);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-.options-box {
-  background: #f8fafc;
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin: 12px 0 16px 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 8px;
-}
-.options-box-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-}
-.opt-letter {
-  background: var(--primary);
-  color: #fff;
-  font-weight: bold;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-}
-.reading-passage {
-  background: #fdfbf7;
-  border-left: 4px solid var(--primary);
-  padding: 14px 18px;
-  font-size: 17px;
-  line-height: 1.7;
-  border-radius: 0 8px 8px 0;
-  margin-bottom: 12px;
-}
-.reading-question {
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: #1e293b;
-}
-.dialogue-transcript {
-  background: #f8fafc;
-  padding: 10px 14px;
-  border-radius: 6px;
-  margin-bottom: 12px;
-  font-size: 16px;
-  line-height: 1.6;
-}
-.example-box {
-  background: #f1f5f9;
-  border: 1px dashed #94a3b8;
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin: 12px 0 18px 0;
-  font-size: 15px;
-}
-.example-title {
-  font-weight: bold;
-  color: #475569;
-  display: block;
-  margin-bottom: 6px;
-}
-.example-answer {
-  font-weight: bold;
-  color: var(--primary);
-}
-.explanation-box {
-  display: none;
-  margin-top: 12px;
-  padding: 12px 14px;
-  background: #fefce8;
-  border: 1px solid #fef08a;
-  border-radius: 8px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #854d0e;
-}
-body.review-mode .explanation-box {
-  display: block !important;
-}
-
-/* Welcome Modal */
-.welcome-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(15, 23, 42, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-.welcome-modal-card {
-  background: #fff;
-  border-radius: 12px;
-  max-width: 480px;
-  width: 90%;
-  padding: 24px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-.modal-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--primary-dark);
-  margin-bottom: 12px;
-}
-.modal-input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid var(--border-medium);
-  border-radius: 6px;
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-.btn-modal-start {
-  width: 100%;
-  padding: 12px;
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-
-/* --- OPTIMIZED HEADER (< 6% HEIGHT, MATCHING HSK3 EXAM DE-2) --- */
-:root {
-  --primary: #176B63;
-  --primary-dark: #0D423D;
-  --primary-light: #208b81;
-  --primary-subtle: #e6f3f1;
-  --gold: #D9B86C;
-  --gold-dark: #b59447;
-  --gold-light: #faecd0;
-  --bg-cream: #F7F3E8;
-  --card-bg: #FFFFFF;
-  --text-main: #2D3748;
-  --text-muted: #718096;
-  --border-color: #E2DAC7;
-  --success: #2E7D32;
-  --success-bg: #E8F5E9;
-  --danger: #C62828;
-  --danger-bg: #FFEBEE;
-  --font-chinese: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Noto Sans SC", sans-serif;
-}
-
+/* === HEADER 48px (SLIM, NON-OVERFLOWING) === */
 .app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100% !important;
+  max-width: 100vw !important;
+  height: var(--header-height);
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: #FFFFFF;
-  padding: 0 16px;
-  height: 48px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  position: sticky;
-  top: 0;
+  padding: 0 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   z-index: 1000;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
+
 .header-inner {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
 }
-.header-left, .header-center, .header-right {
+
+.header-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  flex-shrink: 0;
 }
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
 .btn-home-compact {
   color: #fff;
   text-decoration: none;
@@ -674,61 +124,63 @@ body.review-mode .explanation-box {
 .btn-home-compact:hover {
   background: rgba(255,255,255,0.28);
 }
+
 .center-logo {
-  width: 32px !important;
-  height: 32px !important;
+  width: 28px !important;
+  height: 28px !important;
   border-radius: 6px;
   object-fit: contain;
   background: #fff;
   padding: 1px;
 }
+
 .exam-title-compact {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #fff;
   white-space: nowrap;
 }
+
 .timer-badge {
   background: rgba(0,0,0,0.3);
   border: 1px solid rgba(217, 184, 108, 0.4);
   padding: 3px 10px;
   border-radius: 14px;
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: #fff;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   white-space: nowrap;
 }
+
 .timer-badge .timer-lbl {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--gold-light);
   font-weight: 600;
 }
+
 .timer-badge.timer-listening {
   background: rgba(23, 107, 99, 0.4);
   border-color: rgba(186, 230, 253, 0.5);
 }
-.timer-badge.warning {
-  background: #f59e0b;
-  color: #fff;
-  border-color: #fef08a;
-}
+
 .timer-badge.danger {
   background: #ef4444;
   color: #fff;
   border-color: #fee2e2;
   animation: pulse 1s infinite;
 }
+
 .btn-nav-navigator {
   background: rgba(255,255,255,0.18);
   color: #fff;
   border: 1px solid rgba(255,255,255,0.3);
-  padding: 5px 12px;
-  border-radius: 16px;
+  padding: 4px 10px;
+  border-radius: 14px;
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   cursor: pointer;
   white-space: nowrap;
   display: inline-flex;
@@ -741,36 +193,473 @@ body.review-mode .explanation-box {
   color: var(--primary-dark);
   border-color: var(--gold);
 }
+
 .btn-header-submit {
   background: var(--gold);
   color: var(--primary-dark);
   border: none;
   font-weight: 800;
-  font-size: 0.88rem;
-  padding: 5px 16px;
-  border-radius: 16px;
+  font-size: 0.84rem;
+  padding: 5px 14px;
+  border-radius: 14px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   white-space: nowrap;
+  transition: all 0.2s;
 }
 .btn-header-submit:hover {
-  background: #ecd395;
+  filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
-/* --- RESULT MODAL (MATCHING HSK3 EXAM DE-2) --- */
+/* Mobile responsive header & controls */
+@media (max-width: 680px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  .app-header {
+    padding: 0 6px !important;
+    height: 46px !important;
+  }
+  .header-inner {
+    gap: 4px !important;
+  }
+  .header-left, .header-center, .header-right {
+    gap: 4px !important;
+  }
+  .btn-home-compact {
+    padding: 3px 6px !important;
+    font-size: 0.75rem !important;
+  }
+  .center-logo {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .exam-code-badge {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    background: rgba(255,255,255,0.2) !important;
+    padding: 2px 5px !important;
+    border-radius: 8px !important;
+  }
+  .timer-badge {
+    padding: 2px 5px !important;
+    font-size: 0.78rem !important;
+  }
+  .timer-badge .timer-lbl {
+    display: none !important;
+  }
+  .timer-badge.timer-listening {
+    display: none !important;
+  }
+  .btn-nav-navigator {
+    padding: 3px 6px !important;
+    font-size: 0.75rem !important;
+  }
+  .btn-header-submit {
+    padding: 4px 10px !important;
+    font-size: 0.78rem !important;
+  }
+}
+
+/* === MAIN LAYOUT === */
+.main-exam-layout {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+@media (max-width: 768px) {
+  .main-exam-layout {
+    padding: 10px 8px !important;
+  }
+}
+
+/* Sticky Audio Player */
+.audio-sticky-bar {
+  position: sticky;
+  top: var(--header-height);
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  z-index: 100;
+}
+.audio-sticky-bar audio {
+  flex: 1;
+  height: 34px;
+}
+
+.sync-status-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.sync-status-box.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-color: #a5d6a7;
+}
+
+/* Section Cards */
+.section-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+@media (max-width: 680px) {
+  .section-card {
+    padding: 12px 10px !important;
+  }
+}
+.section-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--primary-light);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.section-badge {
+  font-size: 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 16px;
+}
+.part-header {
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  color: #334155;
+  margin-bottom: 14px;
+}
+
+/* Question Items */
+.question-item {
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+  transition: all 0.2s;
+  background: #fff;
+}
+.question-item.answered {
+  border-color: #cbd5e1;
+  background: #fafafa;
+}
+.question-item.active-scroll {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(217, 184, 108, 0.35);
+  animation: pulseHighlight 1.5s ease-out;
+}
+@keyframes pulseHighlight {
+  0% { transform: scale(1.01); border-color: var(--gold); }
+  50% { transform: scale(1.02); border-color: var(--primary); }
+  100% { transform: scale(1); border-color: var(--gold); }
+}
+
+.q-number {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--primary);
+  margin-right: 6px;
+}
+.q-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.btn-listen-again {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11.5px;
+  color: #475569;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-listen-again:hover {
+  background: #e2e8f0;
+}
+
+/* Listening Part 1 SVGs Grid */
+.p1-images-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+@media (max-width: 680px) {
+  .p1-images-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+}
+.p1-img-item {
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.p1-img-label {
+  background: var(--primary-dark);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 3px 0;
+}
+.p1-img-item svg {
+  width: 100%;
+  height: auto;
+  max-height: 130px;
+  display: block;
+}
+
+/* Options */
+.options-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.opt-pill {
+  border: 1px solid var(--border-medium);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13.5px;
+  cursor: pointer;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  user-select: none;
+}
+.opt-pill:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.opt-pill.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  font-weight: 600;
+}
+
+/* Radio Choices Part 3 & 4 */
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.radio-opt-item {
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.15s;
+}
+.radio-opt-item:hover {
+  background: #f8fafc;
+  border-color: var(--primary);
+}
+.radio-opt-item.selected {
+  border-color: var(--primary);
+  background: #f0fdf4;
+  font-weight: 600;
+}
+.radio-opt-item input {
+  cursor: pointer;
+}
+
+/* Word order chips for Writing Part 1 */
+.words-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+.word-chip {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s;
+}
+.word-chip:hover {
+  border-color: var(--primary);
+  background: #e2e8f0;
+}
+.word-chip.used {
+  opacity: 0.35;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.writing-input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.writing-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  font-size: 15px;
+}
+.btn-clear-chips {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #64748b;
+  white-space: nowrap;
+}
+.btn-clear-chips:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* Explanations in Review Mode */
+.explanation-box {
+  display: none;
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-left: 4px solid var(--gold);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: #78350f;
+  line-height: 1.5;
+}
+body.review-mode .explanation-box {
+  display: block !important;
+}
+
+/* Highlight review answers */
+body.review-mode .question-item.user-correct {
+  border-color: var(--correct);
+  background: #f0fdf4;
+}
+body.review-mode .question-item.user-wrong {
+  border-color: var(--wrong);
+  background: #fef2f2;
+}
+
+/* === PERSISTENT DRAWER === */
+.persistent-drawer {
+  position: fixed;
+  top: var(--header-height);
+  right: -320px;
+  width: 300px;
+  max-width: 85vw;
+  height: calc(100vh - var(--header-height));
+  background: #ffffff;
+  border-left: 2px solid var(--border-medium);
+  box-shadow: -4px 0 16px rgba(0,0,0,0.15);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.persistent-drawer.open {
+  right: 0;
+}
+.drawer-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+}
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+.drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.drawer-btn {
+  height: 36px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.drawer-btn.answered {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.drawer-btn.correct-rev {
+  background: var(--correct) !important;
+  color: #fff !important;
+  border-color: var(--correct) !important;
+}
+.drawer-btn.wrong-rev {
+  background: var(--wrong) !important;
+  color: #fff !important;
+  border-color: var(--wrong) !important;
+}
+
+/* === MODALS (WELCOME & RESULT CARD) === */
 .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
   z-index: 2000;
 }
 .modal-backdrop.hidden {
@@ -779,53 +668,75 @@ body.review-mode .explanation-box {
 .modal-card {
   background: #fff;
   border-radius: 16px;
-  width: 100%;
-  max-width: 600px;
+  width: 92%;
+  max-width: 580px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  animation: modalFade 0.25s ease-out;
-}
-@keyframes modalFade {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25);
+  box-sizing: border-box;
 }
 .modal-header {
-  padding: 20px 24px;
+  padding: 16px 20px;
   background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: #fff;
   border-radius: 16px 16px 0 0;
 }
 .modal-header h2 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin: 0;
+  margin: 0 0 4px;
+  font-size: 1.18rem;
 }
 .modal-header p {
-  font-size: 0.85rem;
+  margin: 0;
+  font-size: 0.82rem;
   color: var(--gold-light);
-  margin-top: 4px;
-  margin-bottom: 0;
 }
 .modal-body {
-  padding: 24px;
+  padding: 20px;
 }
 .modal-footer {
-  padding: 16px 24px;
+  padding: 12px 20px;
   background: #f8fafc;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-light);
   border-radius: 0 0 16px 16px;
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
 }
+.btn-gold {
+  background: var(--gold);
+  color: var(--primary-dark);
+  border: none;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-gold:hover {
+  filter: brightness(1.08);
+}
+.btn-secondary {
+  background: #e2e8f0;
+  color: #334155;
+  border: none;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background: #cbd5e1;
+}
+
+/* Result Card Score Hero */
 .score-hero {
   text-align: center;
-  padding: 10px 0 20px;
+  padding: 5px 0 15px;
 }
 .score-circle {
-  width: 120px;
-  height: 120px;
+  width: 115px;
+  height: 115px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: var(--gold);
@@ -833,109 +744,74 @@ body.review-mode .explanation-box {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 12px;
+  margin: 0 auto 10px;
   box-shadow: 0 4px 15px rgba(23,107,99,0.3);
 }
 .score-num {
-  font-size: 2.4rem;
+  font-size: 2.3rem;
   font-weight: 900;
   line-height: 1;
 }
 .score-label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-top: 4px;
 }
 .result-badge {
   display: inline-block;
   font-weight: 700;
-  padding: 6px 16px;
+  padding: 5px 14px;
   border-radius: 20px;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 .result-badge.pass {
   background: #e8f5e9;
   color: #2e7d32;
-  border: 1px solid #a5d6a7;
 }
 .result-badge.fail {
   background: #ffebee;
   color: #c62828;
-  border: 1px solid #ef9a9a;
 }
 .score-breakdown-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 18px 0;
+  gap: 10px;
+  margin: 14px 0;
   text-align: center;
 }
 .score-stat-card {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px;
 }
 .score-stat-val {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--primary-dark);
 }
 .score-stat-lbl {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
-.btn-primary {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 9px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.btn-primary:hover {
-  background: var(--primary-dark);
-}
-.btn-secondary {
-  background: #f1f5f9;
-  color: var(--text-main);
-  border: 1px solid #cbd5e1;
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-secondary:hover {
-  background: #e2e8f0;
-}
-.btn-gold {
-  background: var(--gold);
-  color: var(--primary-dark);
-  border: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 9px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-gold:hover {
-  background: var(--gold-dark);
-  color: #fff;
-}
-@media (max-width: 768px) {
-  .hide-mobile { display: none !important; }
-  .timer-badge .timer-lbl { display: none !important; }
-  .score-breakdown-grid { grid-template-columns: 1fr; }
-}
 
+/* Floating Review Bar */
+.review-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 2px solid var(--primary);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  z-index: 998;
+}
 </style>
 </head>
 <body>
@@ -948,12 +824,13 @@ body.review-mode .explanation-box {
         <span>⬅</span> <span class="hide-mobile">Cổng Đề</span>
       </a>
       <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" class="center-logo">
-      <span class="exam-title-compact hide-mobile">Bài Tập HSK 3</span>
-      <span id="studentInfoBadge" class="hide-mobile" style="font-size:0.8rem;color:var(--gold-light);background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:10px;">👤 Thí sinh</span>
+      <span class="exam-code-badge">B04</span>
+      <span class="exam-title-compact hide-mobile">Bài 4: 她总是笑着跟客人说话</span>
+      <span id="studentInfoBadge" class="hide-mobile" style="font-size:0.78rem;color:var(--gold-light);background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:10px;">👤 Thí sinh</span>
     </div>
     
     <div class="header-center">
-      <div class="timer-badge" id="totalTimerBadge" title="Đồng hồ đếm ngược toàn bài">
+      <div class="timer-badge" id="totalTimerBadge" title="Đồng hồ đếm ngược toàn bài thi">
         <span class="timer-lbl">Toàn bài:</span> <span id="totalTimerText">45:00</span>
       </div>
       <div class="timer-badge timer-listening" id="listeningTimerBadge" title="Đồng hồ đếm ngược phần Nghe">
@@ -962,47 +839,140 @@ body.review-mode .explanation-box {
     </div>
     
     <div class="header-right">
-      <button class="btn-nav-navigator" id="btnToggleNav" onclick="toggleExamDrawer()" title="Mở bảng trạng thái làm bài bên lề phải">
-        📋 Bảng câu (<span id="navAnsweredCount">0</span>/45)
+      <button class="btn-nav-navigator" id="btnToggleNav" onclick="toggleExamDrawer()" title="Mở bảng trạng thái làm bài">
+        📋 <span class="hide-mobile">Trạng thái</span> (<span id="answeredCount">0</span>/45)
       </button>
-      <button class="btn-header-submit" onclick="confirmSubmitExam()">Nộp Bài</button>
+      <button class="btn-header-submit" id="btnSubmitExam" onclick="confirmSubmitExam()">Nộp Bài</button>
     </div>
   </div>
 </header>
 
-<!-- Main Container -->
+<!-- Main Exam Body -->
 <main class="main-exam-layout">
   <div id="firebaseSyncStatus" class="sync-status-box" style="display:none;"></div>
+  
   <div class="audio-sticky-bar">
-    <span>🎧 File nghe:</span>
-    <audio id="mainAudioPlayer" controls src="audio/04.mp3" preload="metadata"></audio>
+    <span style="font-size: 12.5px; font-weight: 700; color: var(--primary-dark); display: flex; align-items: center; gap: 4px; white-space:nowrap;">
+      🎧 Audio:
+    </span>
+    <audio id="mainAudioPlayer" controls preload="metadata">
+      <source src="audio/04.mp3" type="audio/mpeg">
+      <source src="audio/4.mp3" type="audio/mpeg">
+      <source src="04.mp3" type="audio/mpeg">
+      <source src="4.mp3" type="audio/mpeg">
+    </audio>
   </div>
+
   <div id="examContainer"></div>
+  
+  <div id="reviewBottomBar" class="review-bottom-bar" style="display:none;">
+    <div style="font-weight:700;font-size:0.9rem;color:var(--primary-dark);" id="reviewBottomBarText">
+      Kết quả: Đang cập nhật...
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn-secondary" style="padding:6px 12px;font-size:0.8rem;" onclick="openResultModal()">📊 Bảng Điểm</button>
+      <button class="btn-gold" style="padding:6px 14px;font-size:0.8rem;" onclick="retryExamWithShuffle()">🔄 Làm lại bài</button>
+    </div>
+  </div>
 </main>
 
-<!-- Drawer -->
+<!-- Persistent Right Drawer -->
 <aside class="persistent-drawer" id="examDrawer">
   <div class="drawer-header">
     <strong>Bảng Trạng Thái (45 Câu)</strong>
     <button onclick="toggleExamDrawer()" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button>
   </div>
-  <div class="drawer-body" id="drawerGrid"></div>
+  <div class="drawer-body">
+    <div class="drawer-grid" id="drawerGrid"></div>
+    <div style="margin-top:16px;">
+      <button class="btn-gold" style="width:100%;padding:8px;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Đảo đề mới)</button>
+    </div>
+  </div>
 </aside>
 
 <!-- Welcome Modal -->
-<div class="welcome-modal-overlay" id="welcomeModal">
-  <div class="welcome-modal-card">
-    <h2 class="modal-title">HSK 3 - Bài 4: 她总是笑着跟客人说话</h2>
-    <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Hệ thống bài tập giáo trình chuẩn gồm 45 câu (Nghe 20, Đọc 15, Viết 10). Vui lòng nhập thông tin để bắt đầu.</p>
-    <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;">Họ và tên:</label>
-    <input type="text" id="inputStudentName" class="modal-input" placeholder="Ví dụ: Nguyễn Văn A">
-    <label style="display:block;font-size:13px;font-weight:600;margin-top:10px;margin-bottom:4px;">Lớp / Khóa học (*):</label>
-    <input type="text" id="inputStudentClass" class="modal-input" placeholder="Ví dụ: HSK3-K25">
-    <button class="btn-modal-start" onclick="startExamSession()">Bắt Đầu Làm Bài ➔</button>
+<div class="modal-backdrop" id="welcomeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2>HSK 3 - Bài 4: 她总是笑着跟客人说话</h2>
+      <p>Giáo trình chuẩn HSK 3 • 45 câu hỏi tương tác</p>
+    </div>
+    <div class="modal-body">
+      <label style="display:block;font-size:13px;font-weight:600;margin-bottom:4px;">Họ và tên thí sinh (*):</label>
+      <input type="text" id="inputStudentName" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;margin-bottom:12px;" placeholder="Ví dụ: Nguyễn Văn A">
+      <label style="display:block;font-size:13px;font-weight:600;margin-bottom:4px;">Lớp / Khóa học (*):</label>
+      <input type="text" id="inputStudentClass" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;margin-bottom:16px;" placeholder="Ví dụ: HSK3-K25">
+      <div style="font-size:13px;color:#64748b;line-height:1.5;">
+        • Cấu trúc đề thi: Nghe (20 câu), Đọc (15 câu), Viết (10 câu).<br>
+        • Thời gian: 45 phút toàn bài (15 phút phần nghe).<br>
+        • Hệ thống tự động chấm điểm và gửi kết quả về cơ sở dữ liệu giáo viên.
+      </div>
+    </div>
+    <div class="modal-footer" style="justify-content:flex-end;">
+      <button class="btn-gold" onclick="startExamSession()">Bắt đầu làm bài ➔</button>
+    </div>
+  </div>
+</div>
+
+<!-- Results & Grading Modal -->
+<div class="modal-backdrop hidden" id="resultModal" style="display:none;">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2 id="resultModalTitle">Kết Quả Bài Làm: HSK 3 - Bài 4: 她总是笑着跟客人说话</h2>
+      <p id="resultModalSubtitle">Thí sinh: Thí sinh • Lớp: Tự do • Lần làm thứ 1</p>
+    </div>
+    <div class="modal-body">
+      <div class="score-hero">
+        <div class="score-circle">
+          <div class="score-num" id="score10Display">0.0</div>
+          <div class="score-label">Thang điểm 10</div>
+        </div>
+        <div class="result-badge" id="resultStatusBadge">ĐẠT CHUẨN HSK 3</div>
+        <p style="margin-top: 8px; font-size: 0.95rem; font-weight:600;" id="hskScoreBreakdownText">
+          Điểm quy đổi HSK: 0 / 300 (Yêu cầu đỗ: ≥ 180 điểm)
+        </p>
+        <p style="font-size: 0.82rem; color: #64748b; margin-top: 4px;" id="timeSpentText">
+          ⏱ Thời gian làm bài: 0 phút 00 giây
+        </p>
+      </div>
+
+      <div class="score-breakdown-grid">
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statListening">0/20</div>
+          <div class="score-stat-lbl">Phần Nghe (听力)</div>
+        </div>
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statReading">0/15</div>
+          <div class="score-stat-lbl">Phần Đọc (阅读)</div>
+        </div>
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statWriting">0/10</div>
+          <div class="score-stat-lbl">Phần Viết (书写)</div>
+        </div>
+      </div>
+
+      <div class="sync-status-box success" id="syncStatusBox">
+        <span>🟢 Kết quả đã được tự động lưu cục bộ và gửi về hệ thống quản lý của giáo viên (Firebase Realtime Database).</span>
+      </div>
+
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+        <button class="btn-secondary" onclick="exportResultCSV()">📥 Xuất phiếu điểm CSV</button>
+        <button class="btn-secondary" onclick="copyAuthCode()">📋 Sao chép Mã xác thực</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeResultModalToReview()">🔍 Xem Chi Tiết Đáp Án & Giải Thích</button>
+      <button class="btn-gold" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Xoay đáp án mới)</button>
+    </div>
   </div>
 </div>
 
 <script>
+const EXAM_CONFIG = {
+  examCode: "SC3-B04",
+  examTitle: "HSK 3 - Bài 4: 她总是笑着跟客人说话"
+};
+
 const MASTER_DATA = {
   "listening": {
     "part1": {
@@ -1015,20 +985,20 @@ const MASTER_DATA = {
         {
           "id": "img_a",
           "label": "A",
-          "desc": "去超市买西瓜 (又甜又新鲜)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍉</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">去超市买西瓜 (又甜又新鲜)</text></svg>"
+          "desc": "超市买西瓜 (又甜又新鲜)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍉</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">超市买西瓜 (又甜又新鲜)</text></svg>"
         },
         {
           "id": "img_b",
           "label": "B",
-          "desc": "太饿吃块蛋糕 (想吃块蛋糕)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍰</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">太饿吃块蛋糕 (想吃块蛋糕)</text></svg>"
+          "desc": "吃蛋糕 (太饿了吃蛋糕)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍰</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">吃蛋糕 (太饿了吃蛋糕)</text></svg>"
         },
         {
           "id": "img_c",
           "label": "C",
-          "desc": "去看足球比赛 (去看球赛)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">⚽</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">去看足球比赛 (去看球赛)</text></svg>"
+          "desc": "看足球赛 (球赛真好看)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">⚽</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">看足球赛 (球赛真好看)</text></svg>"
         },
         {
           "id": "img_d",
@@ -1039,55 +1009,55 @@ const MASTER_DATA = {
         {
           "id": "img_e",
           "label": "E",
-          "desc": "站着不想坐着 (吃了两块蛋糕)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🧍</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">站着不想坐着 (吃了两块蛋糕)</text></svg>"
+          "desc": "站着不坐 (吃了两块蛋糕)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🧍</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">站着不坐 (吃了两块蛋糕)</text></svg>"
         },
         {
           "id": "img_f",
           "label": "F",
-          "desc": "笑着看照片的女孩 (妹妹和朋友)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👭</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">笑着看照片的女孩 (妹妹和朋友)</text></svg>"
+          "desc": "笑着看照片 (妹妹和好朋友)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👭</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">笑着看照片 (妹妹和好朋友)</text></svg>"
         }
       ],
       "questions": [
         {
           "id": "L1",
           "num": 1,
-          "dialogue": "女: 你去做什么?\n男: 我去看足球比赛。",
+          "dialogue": "女：你去做什么？\n男：我去看足球比赛。",
           "correctId": "img_c",
-          "timestamp": 40,
+          "timestamp": 38,
           "explanation": "去看足球比赛 -> C"
         },
         {
           "id": "L2",
           "num": 2,
-          "dialogue": "男: 那两个笑着看照片的女孩是谁?\n女: 那是我妹妹和她的好朋友。",
+          "dialogue": "男：那两个笑着看照片的女孩是谁？\n女：那是我妹妹和她的好朋友。",
           "correctId": "img_f",
-          "timestamp": 66,
+          "timestamp": 62,
           "explanation": "笑着看照片的女孩 -> F"
         },
         {
           "id": "L3",
           "num": 3,
-          "dialogue": "女: 我太饿了，我想吃块儿蛋糕。\n男: 别吃了，我们去吃饭吧。",
+          "dialogue": "女：我太饿了，我想吃块儿蛋糕。\n男：别吃了，我们去吃饭吧。",
           "correctId": "img_b",
-          "timestamp": 91,
-          "explanation": "想吃块蛋糕 -> B"
+          "timestamp": 88,
+          "explanation": "想吃块儿蛋糕 -> B"
         },
         {
           "id": "L4",
           "num": 4,
-          "dialogue": "男: 你怎么总是站着?快坐吧。\n女: 我吃了两块蛋糕，现在不想坐着。",
+          "dialogue": "男：你怎么总是站着？快坐吧。\n女：我吃了两块蛋糕，现在不想坐着。",
           "correctId": "img_e",
-          "timestamp": 115,
-          "explanation": "总是站着不想坐着 -> E"
+          "timestamp": 112,
+          "explanation": "吃了蛋糕站着不想坐 -> E"
         },
         {
           "id": "L5",
           "num": 5,
-          "dialogue": "女: 我记得那家超市的西瓜又甜又新鲜，我们去看看吧。\n男: 好，走吧。",
+          "dialogue": "女：我记得那家超市的西瓜又甜又新鲜，我们去看看吧。\n男：好，走吧。",
           "correctId": "img_a",
-          "timestamp": 137,
+          "timestamp": 138,
           "explanation": "超市西瓜又甜又新鲜 -> A"
         }
       ]
@@ -1097,11 +1067,11 @@ const MASTER_DATA = {
         {
           "id": "L6",
           "num": 6,
-          "passage": "这几天你总是不爱吃东西，是不是不舒服啊?",
+          "passage": "这几天你总是不爱吃东西，是不是不舒服啊？",
           "statement": "这几天他吃得很少。",
           "correct": true,
-          "timestamp": 212,
-          "explanation": "总是不爱吃东西 -> 吃得很少 (Đúng)"
+          "timestamp": 214,
+          "explanation": "不爱吃东西说明吃得少 (Đúng)"
         },
         {
           "id": "L7",
@@ -1109,17 +1079,17 @@ const MASTER_DATA = {
           "passage": "他又聪明又努力，老师的问题他都会回答。",
           "statement": "他学习很好。",
           "correct": true,
-          "timestamp": 255,
-          "explanation": "又聪明又努力都会回答 -> 学习好 (Đúng)"
+          "timestamp": 258,
+          "explanation": "又聪明又努力回答问题 (Đúng)"
         },
         {
           "id": "L8",
           "num": 8,
-          "passage": "你知道我手机里还有多少钱吗?还有一元一角一分，三个一。",
+          "passage": "你知道我手机里还有多少钱吗？还有一元一角一分，三个一。",
           "statement": "他手机里钱不多了。",
           "correct": true,
-          "timestamp": 298,
-          "explanation": "一元一角一分 -> 钱不多 (Đúng)"
+          "timestamp": 302,
+          "explanation": "只有一元一角一分 (Đúng)"
         },
         {
           "id": "L9",
@@ -1127,8 +1097,8 @@ const MASTER_DATA = {
           "passage": "妈妈很热情，总是帮助人，所以大家有问题，都会来找她。",
           "statement": "妈妈现在有问题。",
           "correct": false,
-          "timestamp": 342,
-          "explanation": "是别人找妈妈帮忙，不是妈妈有问题 (Sai)"
+          "timestamp": 348,
+          "explanation": "是别人有问题找妈妈 (Sai)"
         },
         {
           "id": "L10",
@@ -1136,8 +1106,8 @@ const MASTER_DATA = {
           "passage": "同学们，谁能告诉我这个句子是什么意思。",
           "statement": "他在请人回答问题。",
           "correct": true,
-          "timestamp": 386,
-          "explanation": "谁能告诉我 -> 请人回答问题 (Đúng)"
+          "timestamp": 394,
+          "explanation": "请同学们回答句子意思 (Đúng)"
         }
       ]
     },
@@ -1146,11 +1116,11 @@ const MASTER_DATA = {
         {
           "id": "L11",
           "num": 11,
-          "dialogue": "女: 你怎么总是听着音乐写作业?别听了，认真写吧。\n男: 没关系，你看我写的都对。\n问: 女的让男的做什么?",
+          "dialogue": "女：你怎么总是听着音乐写作业？别听了，认真写吧。\n男：没关系，你看我写的都对。\n问：女的让男的做什么？",
           "options": [
             {
               "id": "a",
-              "text": "认真写作业别听歌"
+              "text": "别听音乐认真写作业"
             },
             {
               "id": "b",
@@ -1162,39 +1132,39 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "a",
-          "timestamp": 460,
-          "explanation": "别听了认真写 -> A"
+          "timestamp": 465,
+          "explanation": "别听了认真写吧 -> A"
         },
         {
           "id": "L12",
           "num": 12,
-          "dialogue": "男: 你打电话有什么事吗?\n女: 家里有人来做客，你下了班就回来吧。\n问: 女的让男的做什么?",
+          "dialogue": "男：你打电话有什么事吗？\n女：家里有人来做客，你下了班就回来吧。\n问：女的让男的做什么？",
           "options": [
             {
               "id": "a",
-              "text": "买菜"
+              "text": "去买菜"
             },
             {
               "id": "b",
-              "text": "去别人家做客"
+              "text": "去接客人"
             },
             {
               "id": "c",
-              "text": "下了班就回家"
+              "text": "下班早点儿回家"
             }
           ],
           "correctId": "c",
-          "timestamp": 512,
-          "explanation": "下了班就回来 -> C"
+          "timestamp": 518,
+          "explanation": "下班就回来 -> C"
         },
         {
           "id": "L13",
           "num": 13,
-          "dialogue": "女: 下课了，同学们都去哪儿啊?\n男: 今天下午有篮球比赛，我们要去看球赛。\n问: 同学们要做什么?",
+          "dialogue": "女：下课了，同学们都去哪儿啊？\n男：今天下午有篮球比赛，我们要去看球赛。\n问：同学们要做什么？",
           "options": [
             {
               "id": "a",
-              "text": "去上课"
+              "text": "回家"
             },
             {
               "id": "b",
@@ -1202,17 +1172,17 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "去打篮球"
+              "text": "去上课"
             }
           ],
           "correctId": "b",
-          "timestamp": 565,
-          "explanation": "去看球赛 -> B"
+          "timestamp": 588,
+          "explanation": "去看篮球比赛 -> B"
         },
         {
           "id": "L14",
           "num": 14,
-          "dialogue": "男: 你真的要去国外上学?\n女: 是，我爸妈也想让我去，说年轻的时候多出去走走很好。\n问: 关于女的，可以知道什么?",
+          "dialogue": "男：你真的要去国外上学？\n女：是，我爸妈也想让我去，说年轻的时候多出去走走很好。\n问：关于女的，可以知道什么？",
           "options": [
             {
               "id": "a",
@@ -1224,25 +1194,25 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "去国外旅游"
+              "text": "已经毕业了"
             }
           ],
           "correctId": "b",
-          "timestamp": 620,
-          "explanation": "去国外上学 -> B"
+          "timestamp": 655,
+          "explanation": "打算出国上学 -> B"
         },
         {
           "id": "L15",
           "num": 15,
-          "dialogue": "男: 请你来回答这个问题，好吗?\n女: 对不起，你说得太快了，我没听懂你的问题。\n问: 关于女的，可以知道什么?",
+          "dialogue": "男：请你来回答这个问题，好吗？\n女：对不起，你说得太快了，我没听懂你的问题。\n问：关于女的，可以知道什么？",
           "options": [
             {
               "id": "a",
-              "text": "回答得很对"
+              "text": "不想回答"
             },
             {
               "id": "b",
-              "text": "不想回答"
+              "text": "回答对了"
             },
             {
               "id": "c",
@@ -1250,8 +1220,8 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "c",
-          "timestamp": 675,
-          "explanation": "没听懂你的问题 -> C"
+          "timestamp": 720,
+          "explanation": "没听懂问题 -> C"
         }
       ]
     },
@@ -1260,37 +1230,37 @@ const MASTER_DATA = {
         {
           "id": "L16",
           "num": 16,
-          "dialogue": "男: 你儿子上学了吗?现在几年级?\n女: 他现在二年级。\n男: 学习怎么样?\n女: 还可以，很努力，每天都复习、写作业。\n问: 关于儿子，可以知道什么?",
+          "dialogue": "男：你儿子上学了吗？现在几年级？\n女：他现在二年级。\n男：学习怎么样？\n女：还可以，很努力，每天都复习、写作业。\n问：关于儿子，可以知道什么？",
           "options": [
             {
               "id": "a",
-              "text": "现在二年级很努力"
+              "text": "学习很努力上二年级"
             },
             {
               "id": "b",
-              "text": "五年级了"
+              "text": "不喜欢学习"
             },
             {
               "id": "c",
-              "text": "不爱做作业"
+              "text": "还没上学"
             }
           ],
           "correctId": "a",
-          "timestamp": 755,
-          "explanation": "现在二年级很努力 -> A"
+          "timestamp": 805,
+          "explanation": "二年级很努力 -> A"
         },
         {
           "id": "L17",
           "num": 17,
-          "dialogue": "男: 这是你小时候的照片吗?\n女: 是啊，漂亮吧。\n男: 很漂亮，是什么时候照的?\n女: 小学五年级，你看，我那时多瘦啊。\n问: 关于女的，可以知道什么?",
+          "dialogue": "男：这是你小时候的照片吗？\n女：是啊，漂亮吧。\n男：很漂亮，是什么时候照的？\n女：小学五年级，你看，我那时多瘦啊。\n问：关于女的，可以知道什么？",
           "options": [
             {
               "id": "a",
-              "text": "小学五年级时很瘦"
+              "text": "小时候很瘦"
             },
             {
               "id": "b",
-              "text": "现在比以前瘦"
+              "text": "现在上五年级"
             },
             {
               "id": "c",
@@ -1298,61 +1268,61 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "a",
-          "timestamp": 830,
+          "timestamp": 885,
           "explanation": "那时多瘦啊 -> A"
         },
         {
           "id": "L18",
           "num": 18,
-          "dialogue": "男: 站着吃蛋糕的那个人是谁?\n女: 我们公司新来的年轻人，小周。\n男: 什么?她姓什么?\n女: 姓周。小周又漂亮又热情，以后有时间我介绍你们认识一下。\n问: 关于小周，可以知道什么?",
+          "dialogue": "男：站着吃蛋糕的那个人是谁？\n女：我们公司新来的年轻人，小周。\n男：什么？她姓什么？\n女：姓周。小周又漂亮又热情，以后有时间我介绍你们认识一下。\n问：关于小周，可以知道什么？",
           "options": [
             {
               "id": "a",
-              "text": "不喜欢吃蛋糕"
+              "text": "不爱说话"
             },
             {
               "id": "b",
-              "text": "是男的的妹妹"
+              "text": "喜欢跑步"
             },
             {
               "id": "c",
-              "text": "又漂亮又热情"
+              "text": "新来的又漂亮又热情"
             }
           ],
           "correctId": "c",
-          "timestamp": 905,
-          "explanation": "又漂亮又热情 -> C"
+          "timestamp": 965,
+          "explanation": "新来的又漂亮又热情 -> C"
         },
         {
           "id": "L19",
           "num": 19,
-          "dialogue": "女: 你站那么高，小心点儿。\n男: 好的，你看，照片放在这儿怎么样?\n女: 往右边一点儿吧。\n男: 现在好了吧。\n问: 他们在做什么?",
+          "dialogue": "女：你站那么高，小心点儿。\n男：好的，你看，照片放在这儿怎么样？\n女：往右边一点儿吧。\n男：现在好了吧。\n问：他们在做什么？",
           "options": [
             {
               "id": "a",
-              "text": "拍照"
+              "text": "打扫卫生"
             },
             {
               "id": "b",
-              "text": "修桌子"
+              "text": "看电视"
             },
             {
               "id": "c",
-              "text": "挂放照片"
+              "text": "放/挂照片"
             }
           ],
           "correctId": "c",
-          "timestamp": 980,
-          "explanation": "照片放在这儿怎么样 -> 放挂照片 (C)"
+          "timestamp": 1045,
+          "explanation": "照片放在这儿怎么样 -> C"
         },
         {
           "id": "L20",
           "num": 20,
-          "dialogue": "女: 周末你别总是坐着看电视，出去运动一下吧。\n男: 好啊，我们去爬山怎么样?\n女: 今天我腿疼，就去楼下走一走吧。\n男: 好吧，我们走着去超市买点儿菜。\n问: 他们打算做什么?",
+          "dialogue": "女：周末你别总是坐着看电视，出去运动一下吧。\n男：好啊，我们去爬山怎么样？\n女：今天我腿疼，就去楼下走一走吧。\n男：好吧，我们走着去超市买点儿菜。\n问：他们打算做什么？",
           "options": [
             {
               "id": "a",
-              "text": "走着去超市买菜"
+              "text": "去楼下走走买菜"
             },
             {
               "id": "b",
@@ -1360,12 +1330,12 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "看电视"
+              "text": "在家看电视"
             }
           ],
           "correctId": "a",
-          "timestamp": 1055,
-          "explanation": "走着去超市买点儿菜 -> A"
+          "timestamp": 1125,
+          "explanation": "楼下走走去超市买菜 -> A"
         }
       ]
     }
@@ -1380,19 +1350,19 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "我们一起去看足球比赛吧。"
+          "text": "今天的足球比赛太精彩了。"
         },
         {
           "id": "b",
-          "text": "客人来了，快去开门。"
+          "text": "她总是笑着跟客人说话。"
         },
         {
           "id": "c",
-          "text": "她总是笑着跟别人说话。"
+          "text": "他学习又聪明又努力。"
         },
         {
           "id": "d",
-          "text": "我饿极了，想吃块蛋糕。"
+          "text": "站着吃东西对胃不太好。"
         },
         {
           "id": "e",
@@ -1400,44 +1370,44 @@ const MASTER_DATA = {
         },
         {
           "id": "f",
-          "text": "这家超市的水果真新鲜。"
+          "text": "我们班新来了一个热情的同学。"
         }
       ],
       "questions": [
         {
           "id": "R21",
           "num": 21,
-          "prompt": "你觉得小李这个人怎么样？",
-          "correctId": "c",
-          "explanation": "总是笑着跟人说话 (C)"
+          "prompt": "听说你们班最近来了新同学？",
+          "correctId": "f",
+          "explanation": "新来热情的同学 (F)"
         },
         {
           "id": "R22",
           "num": 22,
-          "prompt": "下午有什么好玩的活动？",
-          "correctId": "a",
-          "explanation": "去看足球比赛 (A)"
+          "prompt": "谁每次考试都拿全班第一名？",
+          "correctId": "c",
+          "explanation": "学习又聪明又努力 (C)"
         },
         {
           "id": "R23",
           "num": 23,
-          "prompt": "门铃响了，",
-          "correctId": "b",
-          "explanation": "客人来了快开门 (B)"
+          "prompt": "下午体育馆里那么多人欢呼，怎么了？",
+          "correctId": "a",
+          "explanation": "足球比赛太精彩 (A)"
         },
         {
           "id": "R24",
           "num": 24,
-          "prompt": "跑完步肚子咕咕叫，",
-          "correctId": "d",
-          "explanation": "饿极了想吃蛋糕 (D)"
+          "prompt": "这家饭馆的服务员态度真好，",
+          "correctId": "b",
+          "explanation": "总是笑着跟客人说话 (B)"
         },
         {
           "id": "R25",
           "num": 25,
-          "prompt": "我们去买点儿西瓜吧，",
-          "correctId": "f",
-          "explanation": "超市水果新鲜 (F)"
+          "prompt": "快坐下吃吧，",
+          "correctId": "d",
+          "explanation": "站着吃东西不好 (D)"
         }
       ]
     },
@@ -1450,64 +1420,64 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "总是 (zǒngshì)"
-        },
-        {
-          "id": "b",
           "text": "回答 (huídá)"
         },
         {
+          "id": "b",
+          "text": "蛋糕 (dàngāo)"
+        },
+        {
           "id": "c",
-          "text": "热情 (rèqíng)"
+          "text": "总是 (zǒngshì)"
         },
         {
           "id": "d",
-          "text": "客人 (kèrén)"
+          "text": "热情 (rèqíng)"
         },
         {
           "id": "e",
-          "text": "聪明 (cōngming)"
+          "text": "声音 (shēngyīn)"
         },
         {
           "id": "f",
-          "text": "年轻 (niánqīng)"
+          "text": "聪明 (cōngmíng)"
         }
       ],
       "questions": [
         {
           "id": "R26",
           "num": 26,
-          "prompt": "家里来（ ）了，快请进屋坐。",
+          "prompt": "这里的服务员对每一位客人都非常（ ）。",
           "correctId": "d",
-          "explanation": "客人 (D)"
+          "explanation": "热情 (D)"
         },
         {
           "id": "R27",
           "num": 27,
-          "prompt": "李老师总是（ ）地接待每一位家长。",
-          "correctId": "c",
-          "explanation": "热情 (C)"
+          "prompt": "请大家积极举手（ ）老师提出的问题。",
+          "correctId": "a",
+          "explanation": "回答 (A)"
         },
         {
           "id": "R28",
           "num": 28,
-          "prompt": "他非常（ ），很多难题看一眼就会。",
-          "correctId": "e",
-          "explanation": "聪明 (E)"
+          "prompt": "那个（ ）的小男孩很快就解出了这道数学难题。",
+          "correctId": "f",
+          "explanation": "聪明 (F)"
         },
         {
           "id": "R29",
           "num": 29,
-          "prompt": "弟弟（ ）喜欢一边听音乐一边写作业。",
-          "correctId": "a",
-          "explanation": "总是 (A)"
+          "prompt": "他每天早起晨练，（ ）第一个来到运动场。",
+          "correctId": "c",
+          "explanation": "总是 (C)"
         },
         {
           "id": "R30",
           "num": 30,
-          "prompt": "请大家积极举手（ ）老师的问题。",
+          "prompt": "妹妹今天过八岁生日，妈妈给她订了一个漂亮的大（ ）。",
           "correctId": "b",
-          "explanation": "回答 (B)"
+          "explanation": "蛋糕 (B)"
         }
       ]
     },
@@ -1516,112 +1486,112 @@ const MASTER_DATA = {
         {
           "id": "R31",
           "num": 31,
-          "passage": "笑脸是世界上最美丽的语言。服务员如果总是微笑着跟客人打招呼，不仅能让客人感到温暖舒服，也能让自己的心情变得更加开朗愉快。",
-          "question": "服务员微笑服务可以让客人：",
+          "passage": "微笑是人与人交往中最好的名片。一个真诚的微笑，不仅能让别人感到温暖，还能化解许多生活中的矛盾与误会。",
+          "question": "微笑的作用是：",
           "options": [
             {
               "id": "a",
-              "text": "感到温暖舒服"
+              "text": "让人感到温暖化解矛盾"
             },
             {
               "id": "b",
-              "text": "买更贵的东西"
+              "text": "让人觉得奇怪"
             },
             {
               "id": "c",
-              "text": "吃得更快"
+              "text": "浪费时间没有意义"
             }
           ],
           "correctId": "a",
-          "explanation": "感到温暖舒服 (A)"
+          "explanation": "感到温暖化解矛盾 (A)"
         },
         {
           "id": "R32",
           "num": 32,
-          "passage": "现在的年轻人工作节奏快、压力大，周末应该多走出家门去接触大自然。爬爬山、跑跑步，或者约上三五好友聚聚，都是极好的减压方式。",
-          "question": "这段话建议年轻人周末：",
+          "passage": "服务行业最重要的是服务态度。热情礼貌、耐心细致地对待每一位顾客，顾客才会愿意再次光临，生意才会越来越好。",
+          "question": "怎样才能吸引更多顾客？",
           "options": [
             {
               "id": "a",
-              "text": "整天躺着"
+              "text": "提高商品价格"
             },
             {
               "id": "b",
-              "text": "多运动接触大自然"
+              "text": "态度热情礼貌耐心"
             },
             {
               "id": "c",
-              "text": "在家加班工作"
+              "text": "不跟顾客打招呼"
             }
           ],
           "correctId": "b",
-          "explanation": "多运动接触大自然 (B)"
+          "explanation": "热情礼貌耐心 (B)"
         },
         {
           "id": "R33",
           "num": 33,
-          "passage": "小敏从小就是个聪明的孩子，学习新东西特别快。每次上课她都认真听讲，积极回答问题，考试成绩在班里一直名列前茅。",
-          "question": "关于小敏，可以知道：",
+          "passage": "许多人在工作或者写作业的时候习惯戴着耳机听音乐。研究发现，听舒缓的轻音乐有助于放松心情，但听声音太大的流行歌曲容易分散注意力。",
+          "question": "工作时听太吵的音乐容易：",
           "options": [
             {
               "id": "a",
-              "text": "上课不听讲"
+              "text": "提高工作效率"
             },
             {
               "id": "b",
-              "text": "聪明且学习认真成绩好"
+              "text": "分散注意力"
             },
             {
               "id": "c",
-              "text": "不喜欢回答问题"
+              "text": "让人马上睡着"
             }
           ],
           "correctId": "b",
-          "explanation": "聪明认真成绩好 (B)"
+          "explanation": "分散注意力 (B)"
         },
         {
           "id": "R34",
           "num": 34,
-          "passage": "吃甜食虽然能让人心情变好，但摄入过多糖分对身体健康和牙齿都不利。特别是晚上睡觉前，尽量不要吃蛋糕和甜饮料。",
-          "question": "医生对吃甜食的建议是：",
+          "passage": "孩子的学习成绩并不是衡量他们能力的唯一标准。培养他们独立思考的习惯、良好的品德以及勇敢面对困难的精神，远比单纯的分数更重要。",
+          "question": "比分数更重要的是：",
           "options": [
             {
               "id": "a",
-              "text": "晚上睡前多吃"
+              "text": "独立思考与良好品格"
             },
             {
               "id": "b",
-              "text": "随便吃多少"
+              "text": "每天写很多张试卷"
             },
             {
               "id": "c",
-              "text": "适量控制，睡前少吃"
+              "text": "不用去学校上课"
             }
           ],
-          "correctId": "c",
-          "explanation": "适量控制睡前少吃 (C)"
+          "correctId": "a",
+          "explanation": "独立思考良好品格 (A)"
         },
         {
           "id": "R35",
           "num": 35,
-          "passage": "老照片里记录着我们成长的每一个珍贵瞬间。多年后拿出来翻看，看着当年瘦小的自己和年轻的父母，心中总会涌起无限的温暖和回忆。",
-          "question": "翻看老照片往往让人感到：",
+          "passage": "坚持规律的体育运动不仅能强健体魄，还能改善一个人的精神面貌。经常运动的人，往往看起来更加阳光、自信、充满朝气。",
+          "question": "经常运动的人往往：",
           "options": [
             {
               "id": "a",
-              "text": "难过"
+              "text": "容易疲惫生病"
             },
             {
               "id": "b",
-              "text": "无聊"
+              "text": "变得非常严肃"
             },
             {
               "id": "c",
-              "text": "温暖和充满回忆"
+              "text": "阳光自信充满朝气"
             }
           ],
           "correctId": "c",
-          "explanation": "温暖与回忆 (C)"
+          "explanation": "阳光自信充满朝气 (C)"
         }
       ]
     }
@@ -1633,7 +1603,8 @@ const MASTER_DATA = {
           "id": "W36",
           "num": 36,
           "words": [
-            "他的女儿",
+            "他的",
+            "女儿",
             "非常",
             "聪明"
           ],
@@ -1646,7 +1617,8 @@ const MASTER_DATA = {
           "words": [
             "这家饭馆的",
             "服务员",
-            "都很热情"
+            "都很",
+            "热情"
           ],
           "correct": "这家饭馆的服务员都很热情。",
           "explanation": "这家饭馆的服务员都很热情。"
@@ -1655,9 +1627,10 @@ const MASTER_DATA = {
           "id": "W38",
           "num": 38,
           "words": [
-            "你去",
-            "哪家超市",
-            "买鸡蛋"
+            "你去哪家",
+            "超市",
+            "买",
+            "鸡蛋"
           ],
           "correct": "你去哪家超市买鸡蛋？",
           "explanation": "你去哪家超市买鸡蛋？"
@@ -1666,7 +1639,8 @@ const MASTER_DATA = {
           "id": "W39",
           "num": 39,
           "words": [
-            "他总是",
+            "他",
+            "总是",
             "站着",
             "吃饭"
           ],
@@ -1679,7 +1653,8 @@ const MASTER_DATA = {
           "words": [
             "你去",
             "回答一下",
-            "客人的问题"
+            "客人的",
+            "问题"
           ],
           "correct": "你去回答一下客人的问题。",
           "explanation": "你去回答一下客人的问题。"
@@ -1691,16 +1666,16 @@ const MASTER_DATA = {
         {
           "id": "W41",
           "num": 41,
-          "before": "家里来了很多（ ",
+          "before": "欢迎各位（ ",
           "pinyin": "kè",
-          "after": " ）人。",
+          "after": " ）人来到我们美丽的海滨城市。",
           "correct": "客",
           "explanation": "客人 -> 客"
         },
         {
           "id": "W42",
           "num": 42,
-          "before": "我弟弟现在上二（ ",
+          "before": "弟弟今年刚上小学二（ ",
           "pinyin": "jí",
           "after": " ）。",
           "correct": "级",
@@ -1709,16 +1684,16 @@ const MASTER_DATA = {
         {
           "id": "W43",
           "num": 43,
-          "before": "老师（ ",
+          "before": "你（ ",
           "pinyin": "rèn",
-          "after": " ）为他很聪明。",
+          "after": " ）识那位穿西装的先生吗？",
           "correct": "认",
-          "explanation": "认为 -> 认"
+          "explanation": "认识 -> 认"
         },
         {
           "id": "W44",
           "num": 44,
-          "before": "墙上挂着一张大照（ ",
+          "before": "这是一张珍贵的家庭老相（ ",
           "pinyin": "piàn",
           "after": " ）。",
           "correct": "片",
@@ -1727,210 +1702,214 @@ const MASTER_DATA = {
         {
           "id": "W45",
           "num": 45,
-          "before": "你怎么总是（ ",
+          "before": "请大家（ ",
           "pinyin": "zhàn",
-          "after": " ）着？",
+          "after": " ）起来跟着音乐做运动。",
           "correct": "站",
-          "explanation": "站着 -> 站"
+          "explanation": "站起来 -> 站"
         }
       ]
     }
   }
 };
-const EXAM_CONFIG = {
-  examCode: "SC3-B04",
-  examTitle: "HSK 3 - Bài 4: 她总是笑着跟客人说话"
-};
 
 let activeData = null;
-const userAnswers = {};
+let userAnswers = {};
+let wordOrderSelections = {};
+let attemptCount = 1;
 let studentName = (typeof localStorage !== "undefined" && localStorage.getItem("hsk3_student_name")) || "Thí sinh";
 let studentClass = (typeof localStorage !== "undefined" && localStorage.getItem("hsk3_student_class")) || "Tự do";
+let isExamSubmitted = false;
 let totalSeconds = 45 * 60;
 let listeningSeconds = 15 * 60;
 let timerInterval = null;
-let isExamSubmitted = false;
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 function randomizeExamData() {
   activeData = JSON.parse(JSON.stringify(MASTER_DATA));
 
-  // Listening Part 1
+  // 1. Shuffle Listening Part 1 images
   if (activeData.listening && activeData.listening.part1) {
     const p1 = activeData.listening.part1;
-    const letters = ['A','B','C','D','E','F'];
-    p1.images.forEach((img, idx) => {
-      img.currentLetter = letters[idx];
-    });
-    p1.questions.forEach(q => {
-      const matched = p1.images.find(im => im.id === q.correctId);
-      q.correctLetter = matched ? matched.currentLetter : '';
-    });
-    if (p1.example) {
-      const exImg = p1.images.find(im => im.id === p1.example.correctId);
-      p1.example.currentLetter = exImg ? exImg.currentLetter : 'D';
+    const exId = p1.example ? p1.example.correctId : 'img_d';
+    const exImg = p1.images.find(img => img.id === exId);
+    const nonExImgs = p1.images.filter(img => img.id !== exId);
+    const shuffledImgs = shuffleArray(nonExImgs);
+    const newImgs = [];
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+    let letterIdx = 0;
+    for (let l of letters) {
+      if (l === 'D' && exImg) {
+        newImgs.push({ ...exImg, label: 'D' });
+      } else {
+        if (shuffledImgs[letterIdx]) {
+          newImgs.push({ ...shuffledImgs[letterIdx], label: l });
+          letterIdx++;
+        }
+      }
     }
+    p1.images = newImgs;
   }
 
-  // Listening Part 3 & 4
+  // 2. Shuffle Listening Part 3 & 4 multiple-choice options
   ['part3', 'part4'].forEach(partKey => {
     if (activeData.listening && activeData.listening[partKey]) {
       activeData.listening[partKey].questions.forEach(q => {
-        const letters = ['A','B','C'];
-        q.options.forEach((opt, idx) => {
-          opt.currentLetter = letters[idx];
-        });
-        const matched = q.options.find(o => o.id === q.correctId);
-        q.correctLetter = matched ? matched.currentLetter : '';
+        if (q.options) {
+          const shuffledOpts = shuffleArray(q.options);
+          const letters = ['a', 'b', 'c'];
+          q.options = shuffledOpts.map((opt, idx) => ({
+            ...opt,
+            renderLetter: letters[idx].toUpperCase()
+          }));
+        }
       });
     }
   });
 
-  // Reading Part 1 & 2
+  // 3. Shuffle Reading Part 1 & 2 options
   ['part1', 'part2'].forEach(partKey => {
     if (activeData.reading && activeData.reading[partKey]) {
       const p = activeData.reading[partKey];
-      const letters = ['A','B','C','D','E','F'];
-      p.options.forEach((opt, idx) => {
-        opt.currentLetter = letters[idx];
-      });
-      p.questions.forEach(q => {
-        const matched = p.options.find(o => o.id === q.correctId);
-        q.correctLetter = matched ? matched.currentLetter : '';
+      const exId = p.example ? p.example.correctId : 'e';
+      const exOpt = p.options.find(o => o.id === exId);
+      const nonExOpts = p.options.filter(o => o.id !== exId);
+      const shuffledOpts = shuffleArray(nonExOpts);
+      const letters = ['a', 'b', 'c', 'd', 'e', 'f'];
+      let oIdx = 0;
+      p.options = letters.map(l => {
+        if (l === 'e' && exOpt) {
+          return { ...exOpt, renderLetter: 'E' };
+        } else {
+          const opt = shuffledOpts[oIdx++];
+          return { ...opt, renderLetter: l.toUpperCase() };
+        }
       });
     }
   });
 
-  // Reading Part 3
+  // 4. Shuffle Reading Part 3 options
   if (activeData.reading && activeData.reading.part3) {
     activeData.reading.part3.questions.forEach(q => {
-      const letters = ['A','B','C'];
-      q.options.forEach((opt, idx) => {
-        opt.currentLetter = letters[idx];
-      });
-      const matched = q.options.find(o => o.id === q.correctId);
-      q.correctLetter = matched ? matched.currentLetter : '';
+      if (q.options) {
+        const shuffledOpts = shuffleArray(q.options);
+        const letters = ['a', 'b', 'c'];
+        q.options = shuffledOpts.map((opt, idx) => ({
+          ...opt,
+          renderLetter: letters[idx].toUpperCase()
+        }));
+      }
     });
   }
 
-  // Writing Part 1
+  // 5. Shuffle Writing Part 1 word chips
   if (activeData.writing && activeData.writing.part1) {
     activeData.writing.part1.questions.forEach(q => {
-      q.shuffledWords = [...q.words];
+      if (q.words) {
+        q.shuffledWords = shuffleArray(q.words);
+      }
     });
   }
-}
-
-function escapeJsStr(str) {
-  if (!str) return '';
-  return str.split('\\\\').join('\\\\\\\\').split("'").join("\\\\'").split('\\n').join(' ');
 }
 
 function renderExam() {
   const container = document.getElementById("examContainer");
   if (!container) return;
-  container.innerHTML = "";
 
-  // SECTION 1: LISTENING (1 - 20)
-  const secListening = document.createElement("section");
-  secListening.id = "sec-listening";
-  secListening.className = "section-card";
-  secListening.innerHTML = `
+  let html = '';
+
+  // ================= PHẦN 1: NGHE HIỂU =================
+  html += `
+  <div class="section-card" id="section-listening">
     <div class="section-card-header">
-      <div class="section-title">
-        <span>🎧</span> Phần 1: Nghe hiểu (一、听力)
-      </div>
-      <div class="section-badge">20 Câu (约 15 分钟)</div>
+      <div class="section-title"><span>🎧</span> PHẦN 1: KỸ NĂNG NGHE (听力)</div>
+      <div class="section-badge">20 Câu hỏi (1 - 20)</div>
     </div>
-  `;
 
-  // --- Listening Part 1 (1 - 5) ---
-  const lp1 = document.createElement("div");
-  lp1.innerHTML = `
+    <!-- Part 1: Matching (1 - 5) -->
     <div class="part-header">
-      <strong>第一部分 (Phần 1):</strong> Câu 1-5. Nghe đoạn đối thoại và chọn hình ảnh phù hợp. Mỗi câu nghe 2 lần.
+      <strong>第 1 - 5 题：</strong>听对话，选择与对话内容一致的图片 (Nghe hội thoại, chọn tranh tương ứng)
     </div>
-  `;
 
-  const imgGrid1 = document.createElement("div");
-  imgGrid1.className = "image-bank-grid";
+    <div class="p1-images-grid">`;
   activeData.listening.part1.images.forEach(img => {
-    const card = document.createElement("div");
-    card.className = "image-bank-item";
-    card.innerHTML = `
-      <div style="position:relative;border-radius:8px;overflow:hidden;">
-        <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
-        ${img.svg || ''}
-      </div>
-      <div class="image-desc">${img.desc}</div>
-    `;
-    imgGrid1.appendChild(card);
+    html += `
+      <div class="p1-img-item" id="p1-img-${img.id}">
+        <div class="p1-img-label">${img.label}</div>
+        ${img.svg}
+      </div>`;
   });
-  lp1.appendChild(imgGrid1);
+  html += `</div>`;
 
+  // Example
   const ex1 = activeData.listening.part1.example;
   if (ex1) {
-    const ex1Box = document.createElement("div");
-    ex1Box.className = "example-box";
-    ex1Box.innerHTML = `
-      <span class="example-title">Ví dụ mẫu (例如) - Không tính điểm</span>
-      <div class="example-dialogue chinese">${ex1.dialogue.replace(/\\n/g, '<br>')}</div>
-      <div>Đáp án mẫu: <span class="example-answer">${ex1.currentLetter || 'D'}</span> (${ex1.explanation})</div>
-    `;
-    lp1.appendChild(ex1Box);
+    html += `
+    <div class="question-item" style="background:#f8fafc;border-left:4px solid #64748b;">
+      <div class="q-title-row">
+        <span><strong>例如 (Ví dụ mẫu):</strong></span>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(24, 'Ví dụ')">▶ 00:24</button>
+      </div>
+      <div style="font-size:14px;margin-bottom:8px;">Đáp án mẫu: <strong>D</strong></div>
+      <div class="explanation-box" style="display:block;border-left-color:#64748b;background:#f1f5f9;color:#334155;">
+        ${ex1.explanation}
+      </div>
+    </div>`;
   }
 
+  // Questions 1 - 5
   activeData.listening.part1.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header">
-        <span class="q-number">Câu ${q.num}</span>
-        <button class="btn-tts-replay" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">🔊 Nghe câu này</button>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div class="q-title-row">
+        <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
       </div>
-      <div class="q-body">
-        <div class="bank-options-row">
-          ${activeData.listening.part1.images.filter(img => img.id !== (ex1 ? ex1.correctId : 'img_d')).map(img => `
-            <button class="btn-bank-opt" id="btn-opt-${q.id}-${img.id}" onclick="selectBankOption('${q.id}', '${img.id}', this)">
-              ${img.currentLetter}
-            </button>
-          `).join('')}
-        </div>
+      <div class="options-pills" id="opts-${q.id}">`;
+    activeData.listening.part1.images.filter(img => img.id !== (ex1 ? ex1.correctId : 'img_d')).forEach(img => {
+      html += `
+        <div class="opt-pill" onclick="selectListeningP1('${q.id}', '${img.id}', this)">
+          <strong>${img.label}</strong>
+        </div>`;
+    });
+    html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    lp1.appendChild(qDiv);
+    </div>`;
   });
-  secListening.appendChild(lp1);
 
-  // --- Listening Part 2 (6 - 10) ---
-  const lp2 = document.createElement("div");
-  lp2.innerHTML = `
+  // Part 2: True/False (6 - 10)
+  html += `
     <div class="part-header" style="margin-top:24px;">
-      <strong>第二部分 (Phần 2):</strong> Câu 6-10. Nghe một đoạn văn/câu ngắn và phán đoán câu nhận định là Đúng (√) hay Sai (×).
-    </div>
-  `;
+      <strong>第 6 - 10 题：</strong>听句子，判断对错 (Nghe câu ngắn, phán đoán Đúng/Sai)
+    </div>`;
   activeData.listening.part2.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header">
-        <span class="q-number">Câu ${q.num}</span>
-        <button class="btn-tts-replay" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.passage + ' ' + q.statement)}')">🔊 Nghe câu này</button>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div class="q-title-row">
+        <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
       </div>
-      <div class="q-body">
-        <div class="judge-statement-box chinese" style="font-size:17px;font-weight:600;margin-bottom:12px;">★ ${q.statement}</div>
-        <div class="judge-btn-group">
-          <button class="btn-judge" id="btn-judge-${q.id}-true" onclick="selectJudgeOption('${q.id}', true, this)">
-            <span style="color:var(--success);font-weight:bold;font-size:18px;">✓</span> Đúng (正确)
-          </button>
-          <button class="btn-judge" id="btn-judge-${q.id}-false" onclick="selectJudgeOption('${q.id}', false, this)">
-            <span style="color:var(--danger);font-weight:bold;font-size:18px;">✕</span> Sai (错误)
-          </button>
+      <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
+        ★ <span class="chinese" style="font-weight:600;">${q.statement}</span>
+      </div>
+      <div class="options-pills">
+        <div class="opt-pill" onclick="selectJudge('${q.id}', true, this)">
+          <strong>✓ Đúng</strong>
+        </div>
+        <div class="opt-pill" onclick="selectJudge('${q.id}', false, this)">
+          <strong>✗ Sai</strong>
         </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
@@ -1938,456 +1917,258 @@ function renderExam() {
         <div style="margin-bottom:6px;"><strong>★ Nhận định:</strong> <span class="chinese">${q.statement}</span></div>
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    lp2.appendChild(qDiv);
+    </div>`;
   });
-  secListening.appendChild(lp2);
 
-  // --- Listening Part 3 (11 - 15) ---
-  const lp3 = document.createElement("div");
-  lp3.innerHTML = `
+  // Part 3: Short Dialogue (11 - 15)
+  html += `
     <div class="part-header" style="margin-top:24px;">
-      <strong>第三部分 (Phần 3):</strong> Câu 11-15. Nghe đối thoại ngắn 2 câu và câu hỏi, chọn 1 trong 3 đáp án A, B, C.
-    </div>
-  `;
+      <strong>第 11 - 15 题：</strong>听短对话，选择正确答案 (Nghe hội thoại ngắn, chọn đáp án đúng)
+    </div>`;
   activeData.listening.part3.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header">
-        <span class="q-number">Câu ${q.num}</span>
-        <button class="btn-tts-replay" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">🔊 Nghe câu này</button>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div class="q-title-row">
+        <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
       </div>
-      <div class="q-body">
-        <div class="choice-list">
-          ${q.options.map(opt => `
-            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
-              <span class="choice-badge">${opt.currentLetter}</span>
-              <span class="choice-text chinese">${opt.text}</span>
-            </div>
-          `).join('')}
-        </div>
+      <div class="radio-options">`;
+    q.options.forEach(opt => {
+      html += `
+        <div class="radio-opt-item" onclick="selectRadio('${q.id}', '${opt.id}', this)">
+          <input type="radio" name="${q.id}" value="${opt.id}">
+          <span><strong>${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span></span>
+        </div>`;
+    });
+    html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    lp3.appendChild(qDiv);
+    </div>`;
   });
-  secListening.appendChild(lp3);
 
-  // --- Listening Part 4 (16 - 20) ---
-  const lp4 = document.createElement("div");
-  lp4.innerHTML = `
+  // Part 4: Long Dialogue (16 - 20)
+  html += `
     <div class="part-header" style="margin-top:24px;">
-      <strong>第四部分 (Phần 4):</strong> Câu 16-20. Nghe đối thoại dài 4-5 câu và câu hỏi, chọn 1 trong 3 đáp án A, B, C.
-    </div>
-  `;
+      <strong>第 16 - 20 题：</strong>听长对话，选择正确答案 (Nghe hội thoại dài, chọn đáp án đúng)
+    </div>`;
   activeData.listening.part4.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header">
-        <span class="q-number">Câu ${q.num}</span>
-        <button class="btn-tts-replay" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">🔊 Nghe câu này</button>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div class="q-title-row">
+        <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
       </div>
-      <div class="q-body">
-        <div class="choice-list">
-          ${q.options.map(opt => `
-            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
-              <span class="choice-badge">${opt.currentLetter}</span>
-              <span class="choice-text chinese">${opt.text}</span>
-            </div>
-          `).join('')}
-        </div>
+      <div class="radio-options">`;
+    q.options.forEach(opt => {
+      html += `
+        <div class="radio-opt-item" onclick="selectRadio('${q.id}', '${opt.id}', this)">
+          <input type="radio" name="${q.id}" value="${opt.id}">
+          <span><strong>${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span></span>
+        </div>`;
+    });
+    html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    lp4.appendChild(qDiv);
+    </div>`;
   });
-  secListening.appendChild(lp4);
-  container.appendChild(secListening);
 
-  // SECTION 2: READING (21 - 35)
-  const secReading = document.createElement("section");
-  secReading.id = "sec-reading";
-  secReading.className = "section-card";
-  secReading.innerHTML = `
+  html += `</div>`; // Close listening section
+
+  // ================= PHẦN 2: ĐỌC HIỂU =================
+  html += `
+  <div class="section-card" id="section-reading">
     <div class="section-card-header">
-      <div class="section-title">
-        <span>📖</span> Phần 2: Đọc hiểu (二、阅读)
-      </div>
-      <div class="section-badge">15 Câu (约 20 分钟)</div>
+      <div class="section-title"><span>📖</span> PHẦN 2: KỸ NĂNG ĐỌC HIỂU (阅读)</div>
+      <div class="section-badge">15 Câu hỏi (21 - 35)</div>
     </div>
-  `;
 
-  // --- Reading Part 1 (21 - 25) ---
-  const rp1 = document.createElement("div");
-  rp1.innerHTML = `
+    <!-- Part 1: Matching (21 - 25) -->
     <div class="part-header">
-      <strong>第一部分 (Phần 1):</strong> Câu 21-25. Chọn câu đối ứng phù hợp trong khung chữ cái (A-F) để tạo thành đoạn hội thoại logic.
+      <strong>第 21 - 25 题：</strong>选择合适的内容配对 (Chọn câu ghép đối ứng phù hợp)
     </div>
-  `;
-  const optBox1 = document.createElement("div");
-  optBox1.className = "options-box";
-  activeData.reading.part1.options.forEach(opt => {
-    const item = document.createElement("div");
-    item.className = "options-box-item";
-    item.innerHTML = `<span class="opt-letter">${opt.currentLetter}</span> <span class="chinese">${opt.text}</span>`;
-    optBox1.appendChild(item);
-  });
-  rp1.appendChild(optBox1);
 
-  const rex1 = activeData.reading.part1.example;
-  if (rex1) {
-    const rex1Div = document.createElement("div");
-    rex1Div.className = "example-box";
-    rex1Div.innerHTML = `
-      <span class="example-title">Ví dụ mẫu (例如) - Không tính điểm</span>
-      <div class="chinese">${rex1.prompt}</div>
-      <div>Đáp án mẫu: <span class="example-answer">${rex1.letter || 'E'}</span></div>
-    `;
-    rp1.appendChild(rex1Div);
-  }
+    <div style="background:#f8fafc;padding:12px;border-radius:8px;margin-bottom:14px;border:1px solid #e2e8f0;">`;
+  activeData.reading.part1.options.forEach(opt => {
+    html += `<div style="margin-bottom:6px;font-size:14px;"><strong style="color:var(--primary);">${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span></div>`;
+  });
+  html += `</div>`;
 
   activeData.reading.part1.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
-      <div class="q-body">
-        <div class="chinese" style="font-size:17px;margin-bottom:12px;">${q.prompt.replace(/\\n/g, '<br>')}</div>
-        <div class="bank-options-row">
-          ${activeData.reading.part1.options.filter(o => o.id !== (rex1 ? rex1.correctId : 'e')).map(opt => `
-            <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
-              ${opt.currentLetter}
-            </button>
-          `).join('')}
-        </div>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
+        <span class="q-number">${q.num}.</span> <span class="chinese">${q.prompt}</span>
+      </div>
+      <div class="options-pills">`;
+    activeData.reading.part1.options.filter(o => o.id !== 'e').forEach(opt => {
+      html += `
+        <div class="opt-pill" onclick="selectReadingOpt('${q.id}', '${opt.id}', this)">
+          <strong>${opt.renderLetter}</strong>
+        </div>`;
+    });
+    html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    rp1.appendChild(qDiv);
+    </div>`;
   });
-  secReading.appendChild(rp1);
 
-  // --- Reading Part 2 (26 - 30) ---
-  const rp2 = document.createElement("div");
-  rp2.innerHTML = `
+  // Part 2: Fill in the blank (26 - 30)
+  html += `
     <div class="part-header" style="margin-top:24px;">
-      <strong>第二部分 (Phần 2):</strong> Câu 26-30. Chọn từ thích hợp trong khung điền vào chỗ trống.
+      <strong>第 26 - 30 题：</strong>选词填空 (Chọn từ thích hợp điền vào chỗ trống)
     </div>
-  `;
-  const optBox2 = document.createElement("div");
-  optBox2.className = "options-box";
-  activeData.reading.part2.options.forEach(opt => {
-    const item = document.createElement("div");
-    item.className = "options-box-item";
-    item.innerHTML = `<span class="opt-letter">${opt.currentLetter}</span> <span class="chinese">${opt.text}</span>`;
-    optBox2.appendChild(item);
-  });
-  rp2.appendChild(optBox2);
 
-  const rex2 = activeData.reading.part2.example;
-  if (rex2) {
-    const rex2Div = document.createElement("div");
-    rex2Div.className = "example-box";
-    rex2Div.innerHTML = `
-      <span class="example-title">Ví dụ mẫu (例如) - Không tính điểm</span>
-      <div class="chinese">${rex2.prompt}</div>
-      <div>Đáp án mẫu: <span class="example-answer">${rex2.letter || 'E'}</span> (${rex2.word})</div>
-    `;
-    rp2.appendChild(rex2Div);
-  }
+    <div style="display:flex;flex-wrap:wrap;gap:8px;background:#f8fafc;padding:12px;border-radius:8px;margin-bottom:14px;border:1px solid #e2e8f0;">`;
+  activeData.reading.part2.options.forEach(opt => {
+    html += `<div style="background:#fff;padding:4px 10px;border-radius:6px;border:1px solid #cbd5e1;font-size:13.5px;"><strong style="color:var(--primary);">${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span></div>`;
+  });
+  html += `</div>`;
 
   activeData.reading.part2.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
-      <div class="q-body">
-        <div class="chinese" style="font-size:17px;margin-bottom:12px;">${q.prompt.replace(/\\n/g, '<br>')}</div>
-        <div class="bank-options-row">
-          ${activeData.reading.part2.options.filter(o => o.id !== (rex2 ? rex2.correctId : 'e')).map(opt => `
-            <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
-              ${opt.currentLetter}
-            </button>
-          `).join('')}
-        </div>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
+        <span class="q-number">${q.num}.</span> <span class="chinese">${q.prompt}</span>
+      </div>
+      <div class="options-pills">`;
+    activeData.reading.part2.options.filter(o => o.id !== 'e').forEach(opt => {
+      html += `
+        <div class="opt-pill" onclick="selectReadingOpt('${q.id}', '${opt.id}', this)">
+          <strong>${opt.renderLetter}</strong>
+        </div>`;
+    });
+    html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    rp2.appendChild(qDiv);
+    </div>`;
   });
-  secReading.appendChild(rp2);
 
-  // --- Reading Part 3 (31 - 35) ---
-  const rp3 = document.createElement("div");
-  rp3.innerHTML = `
+  // Part 3: Reading Comprehension (31 - 35)
+  html += `
     <div class="part-header" style="margin-top:24px;">
-      <strong>第三部分 (Phần 3):</strong> Câu 31-35. Đọc đoạn văn ngắn và chọn 1 trong 3 đáp án chính xác nhất.
-    </div>
-  `;
+      <strong>第 31 - 35 题：</strong>阅读短文，选择正确答案 (Đọc đoạn văn ngắn, chọn đáp án đúng)
+    </div>`;
   activeData.reading.part3.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
-      <div class="q-body">
-        <div class="reading-passage chinese">${q.passage}</div>
-        <div class="reading-question chinese">★ ${q.question}</div>
-        <div class="choice-list">
-          ${q.options.map(opt => `
-            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
-              <span class="choice-badge">${opt.currentLetter}</span>
-              <span class="choice-text chinese">${opt.text}</span>
-            </div>
-          `).join('')}
-        </div>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div style="font-size:15px;line-height:1.65;background:#f8fafc;padding:10px 14px;border-radius:6px;margin-bottom:8px;" class="chinese">
+        ${q.passage}
+      </div>
+      <div style="font-weight:700;font-size:14.5px;margin-bottom:8px;" class="chinese">
+        <span class="q-number">${q.num}.</span> ${q.question}
+      </div>
+      <div class="radio-options">`;
+    q.options.forEach(opt => {
+      html += `
+        <div class="radio-opt-item" onclick="selectRadio('${q.id}', '${opt.id}', this)">
+          <input type="radio" name="${q.id}" value="${opt.id}">
+          <span><strong>${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span></span>
+        </div>`;
+    });
+    html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    rp3.appendChild(qDiv);
+    </div>`;
   });
-  secReading.appendChild(rp3);
-  container.appendChild(secReading);
 
-  // SECTION 3: WRITING (36 - 45)
-  const secWriting = document.createElement("section");
-  secWriting.id = "sec-writing";
-  secWriting.className = "section-card";
-  secWriting.innerHTML = `
+  html += `</div>`; // Close reading section
+
+  // ================= PHẦN 3: VIẾT =================
+  html += `
+  <div class="section-card" id="section-writing">
     <div class="section-card-header">
-      <div class="section-title">
-        <span>✍️</span> Phần 3: Viết (三、书写)
-      </div>
-      <div class="section-badge">10 Câu (约 15 分钟)</div>
+      <div class="section-title"><span>✍️</span> PHẦN 3: KỸ NĂNG VIẾT (书写)</div>
+      <div class="section-badge">10 Câu hỏi (36 - 45)</div>
     </div>
-  `;
 
-  // --- Writing Part 1 (36 - 40) ---
-  const wp1 = document.createElement("div");
-  wp1.innerHTML = `
+    <!-- Part 1: Reorder words (36 - 40) -->
     <div class="part-header">
-      <strong>第一部分 (Phần 1):</strong> Câu 36-40. Sắp xếp các từ/cụm từ xáo trộn thành câu hoàn chỉnh. Nhấp vào các thẻ từ hoặc gõ trực tiếp câu trả lời vào ô trống.
-    </div>
-  `;
+      <strong>第 36 - 40 题：</strong>连词成句 (Sắp xếp cụm từ thành câu hoàn chỉnh)
+    </div>`;
   activeData.writing.part1.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
-      <div class="q-body">
-        <div class="word-chips-container" id="chips-${q.id}">
-          ${q.shuffledWords.map((w, idx) => `
-            <button class="word-chip chinese" id="chip-${q.id}-${idx}" onclick="clickWordChip('${q.id}', ${idx}, '${escapeJsStr(w)}')">
-              ${w}
-            </button>
-          `).join('')}
-        </div>
-        <div style="display:flex;gap:8px;margin-top:8px;">
-          <input type="text" class="writing-input-sentence chinese" id="input-${q.id}" placeholder="Bấm các thẻ từ ở trên hoặc nhập câu vào đây..." oninput="onSentenceInputChange('${q.id}', this.value)">
-          <button class="btn-clear-chips" onclick="clearWordOrder('${q.id}')">Xóa làm lại</button>
-        </div>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div style="font-size:14px;margin-bottom:6px;"><span class="q-number">${q.num}.</span> Nhấp vào các từ để ghép câu:</div>
+      <div class="words-pool" id="pool-${q.id}">`;
+    (q.shuffledWords || q.words).forEach((w, wIdx) => {
+      html += `<div class="word-chip chinese" id="chip-${q.id}-${wIdx}" onclick="clickWordChip('${q.id}', ${wIdx}, '${w}')">${w}</div>`;
+    });
+    html += `
+      </div>
+      <div class="writing-input-row">
+        <input type="text" class="writing-input chinese" id="input-${q.id}" placeholder="Câu sau khi sắp xếp..." oninput="onWritingInput('${q.id}', this.value)">
+        <button class="btn-clear-chips" onclick="clearWordOrder('${q.id}')">Xóa làm lại</button>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <strong>💡 Đáp án đúng:</strong> <span class="chinese" style="font-weight:bold;color:var(--primary);">${q.correct}</span><br>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    wp1.appendChild(qDiv);
+    </div>`;
   });
-  secWriting.appendChild(wp1);
 
-  // --- Writing Part 2 (41 - 45) ---
-  const wp2 = document.createElement("div");
-  wp2.innerHTML = `
+  // Part 2: Character writing (41 - 45)
+  html += `
     <div class="part-header" style="margin-top:24px;">
-      <strong>第二部分 (Phần 2):</strong> Câu 41-45. Viết chữ Hán chính xác tương ứng với phiên âm Pinyin trong ngoặc đơn.
-    </div>
-  `;
+      <strong>第 41 - 45 题：</strong>看拼音写汉字 (Nhìn phiên âm điền chữ Hán vào chỗ trống)
+    </div>`;
   activeData.writing.part2.questions.forEach(q => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `qbox-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
-      <div class="q-body">
-        <div class="char-fill-row chinese">
-          <span>${q.before}</span>
-          <span class="pinyin-highlight">${q.pinyin}</span>
-          <span>${q.after}</span>
-          <input type="text" maxlength="1" class="char-input-box chinese" id="input-${q.id}" oninput="onCharInputChange('${q.id}', this.value)">
-        </div>
+    html += `
+    <div class="question-item" id="q-box-${q.id}">
+      <div style="font-size:16px;margin-bottom:8px;line-height:1.7;" class="chinese">
+        <span class="q-number">${q.num}.</span> ${q.before}<strong>${q.pinyin}</strong>${q.after}
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <input type="text" class="writing-input chinese" style="max-width:120px;text-align:center;font-size:18px;font-weight:700;" maxlength="2" placeholder="Chữ Hán" oninput="onCharInput('${q.id}', this.value)">
+        <span style="font-size:12.5px;color:#64748b;">(Điền 1 chữ Hán)</span>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Chữ Hán đúng:</strong> <span class="chinese" style="font-size:20px;font-weight:bold;color:var(--primary);">${q.correct}</span> (${q.pinyin})<br>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Chữ Hán đúng:</strong> <span class="chinese" style="font-weight:bold;font-size:18px;color:var(--primary);">${q.correct}</span> (${q.pinyin})<br>
+        <strong>Giải thích:</strong> ${q.explanation}
       </div>
-    `;
-    wp2.appendChild(qDiv);
+    </div>`;
   });
-  secWriting.appendChild(wp2);
-  container.appendChild(secWriting);
 
-  renderDrawerGrid();
+  html += `</div>`; // Close writing section
+
+  container.innerHTML = html;
 }
 
-function renderDrawerGrid() {
+function buildExamDrawer() {
   const grid = document.getElementById("drawerGrid");
   if (!grid) return;
-  grid.innerHTML = "";
-  
-  const sections = [
-    { name: "Phần 1: Nghe hiểu (1 - 20)", start: 1, end: 20 },
-    { name: "Phần 2: Đọc hiểu (21 - 35)", start: 21, end: 35 },
-    { name: "Phần 3: Viết (36 - 45)", start: 36, end: 45 }
-  ];
-
-  sections.forEach(sec => {
-    const header = document.createElement("div");
-    header.className = "drawer-section-title";
-    header.textContent = sec.name;
-    grid.appendChild(header);
-
-    const subGrid = document.createElement("div");
-    subGrid.className = "drawer-subgrid";
-    for (let i = sec.start; i <= sec.end; i++) {
-      const btn = document.createElement("button");
-      btn.className = "drawer-q-btn";
-      btn.id = `drawer-btn-${i}`;
-      btn.textContent = i;
-      btn.onclick = () => scrollToQuestion(i);
-      subGrid.appendChild(btn);
-    }
-    grid.appendChild(subGrid);
-  });
+  let html = '';
+  for (let i = 1; i <= 45; i++) {
+    let qId = (i <= 20) ? `L${i}` : (i <= 35) ? `R${i}` : `W${i}`;
+    let isAns = !!userAnswers[qId];
+    html += `<button class="drawer-btn ${isAns ? 'answered' : ''}" id="drawer-btn-${i}" onclick="scrollToQuestion('${qId}')">${i}</button>`;
+  }
+  grid.innerHTML = html;
 }
 
-function scrollToQuestion(num) {
-  let qId = '';
-  if (num <= 20) qId = `L${num}`;
-  else if (num <= 35) qId = `R${num}`;
-  else qId = `W${num}`;
-
-  const el = document.getElementById(`qbox-${qId}`);
+function scrollToQuestion(qId) {
+  const el = document.getElementById(`q-box-${qId}`);
   if (el) {
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-}
-
-function selectBankOption(qId, optId, btnEl) {
-  if (isExamSubmitted) return;
-  const parent = btnEl.parentElement;
-  parent.querySelectorAll('.btn-bank-opt').forEach(b => b.classList.remove('selected'));
-  btnEl.classList.add('selected');
-  userAnswers[qId] = optId;
-  updateProgress();
-}
-
-function selectJudgeOption(qId, boolVal, btnEl) {
-  if (isExamSubmitted) return;
-  const parent = btnEl.parentElement;
-  parent.querySelectorAll('.btn-judge').forEach(b => {
-    b.classList.remove('selected-true', 'selected-false');
-  });
-  btnEl.classList.add(boolVal ? 'selected-true' : 'selected-false');
-  userAnswers[qId] = boolVal;
-  updateProgress();
-}
-
-function selectChoiceOption(qId, optId, itemEl) {
-  if (isExamSubmitted) return;
-  const parent = itemEl.parentElement;
-  parent.querySelectorAll('.choice-item').forEach(c => c.classList.remove('selected'));
-  itemEl.classList.add('selected');
-  userAnswers[qId] = optId;
-  updateProgress();
-}
-
-function clickWordChip(qId, idx, word) {
-  if (isExamSubmitted) return;
-  const chip = document.getElementById(`chip-${qId}-${idx}`);
-  if (!chip || chip.classList.contains('used')) return;
-  chip.classList.add('used');
-
-  const input = document.getElementById(`input-${qId}`);
-  let currentVal = input.value.trim();
-  if (currentVal.endsWith('。') || currentVal.endsWith('？') || currentVal.endsWith('！')) {
-    currentVal = currentVal.slice(0, -1);
-  }
-  input.value = currentVal + word;
-  userAnswers[qId] = input.value;
-  updateProgress();
-}
-
-function clearWordOrder(qId) {
-  if (isExamSubmitted) return;
-  const container = document.getElementById(`chips-${qId}`);
-  if (container) {
-    container.querySelectorAll('.word-chip').forEach(c => c.classList.remove('used'));
-  }
-  const input = document.getElementById(`input-${qId}`);
-  if (input) {
-    input.value = '';
-  }
-  delete userAnswers[qId];
-  updateProgress();
-}
-
-function onSentenceInputChange(qId, val) {
-  if (isExamSubmitted) return;
-  if (val.trim()) {
-    userAnswers[qId] = val.trim();
-  } else {
-    delete userAnswers[qId];
-  }
-  updateProgress();
-}
-
-function onCharInputChange(qId, val) {
-  if (isExamSubmitted) return;
-  if (val.trim()) {
-    userAnswers[qId] = val.trim();
-  } else {
-    delete userAnswers[qId];
-  }
-  updateProgress();
-}
-
-function updateProgress() {
-  const answeredCount = Object.keys(userAnswers).length;
-  const navCountEl = document.getElementById("navAnsweredCount");
-  if (navCountEl) navCountEl.textContent = answeredCount;
-
-  for (let i = 1; i <= 45; i++) {
-    let qId = '';
-    if (i <= 20) qId = `L${i}`;
-    else if (i <= 35) qId = `R${i}`;
-    else qId = `W${i}`;
-
-    const btn = document.getElementById(`drawer-btn-${i}`);
-    if (btn) {
-      if (userAnswers[qId] !== undefined && userAnswers[qId] !== '') {
-        btn.classList.add('answered');
-      } else {
-        btn.classList.remove('answered');
+    el.classList.add('active-scroll');
+    setTimeout(() => el.classList.remove('active-scroll'), 1500);
+    // On mobile, auto close drawer after jumping
+    if (window.innerWidth <= 680) {
+      const drawer = document.getElementById("examDrawer");
+      if (drawer && drawer.classList.contains("open")) {
+        drawer.classList.remove("open");
+        document.body.classList.remove("drawer-open");
       }
     }
   }
@@ -2397,27 +2178,147 @@ function toggleExamDrawer() {
   const drawer = document.getElementById("examDrawer");
   if (!drawer) return;
   drawer.classList.toggle("open");
-  document.body.classList.toggle("drawer-open");
+  if (window.innerWidth > 1024) {
+    document.body.classList.toggle("drawer-open");
+  }
 }
 
-function startExamSession() {
-  const nameInput = document.getElementById("inputStudentName");
-  const classInput = document.getElementById("inputStudentClass");
-  if (nameInput && nameInput.value.trim()) {
-    studentName = nameInput.value.trim();
-    localStorage.setItem("hsk3_student_name", studentName);
+function updateProgress() {
+  const answered = Object.keys(userAnswers).length;
+  const el = document.getElementById("answeredCount");
+  if (el) el.textContent = answered;
+  
+  for (let i = 1; i <= 45; i++) {
+    let qId = (i <= 20) ? `L${i}` : (i <= 35) ? `R${i}` : `W${i}`;
+    const btn = document.getElementById(`drawer-btn-${i}`);
+    if (btn) {
+      if (userAnswers[qId] !== undefined && userAnswers[qId] !== "") {
+        btn.classList.add("answered");
+      } else {
+        btn.classList.remove("answered");
+      }
+    }
   }
-  if (classInput && classInput.value.trim()) {
-    studentClass = classInput.value.trim();
-    localStorage.setItem("hsk3_student_class", studentClass);
+}
+
+/* User interaction handlers */
+function selectListeningP1(qId, imgId, btn) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = imgId;
+  const parent = document.getElementById(`opts-${qId}`);
+  if (parent) {
+    parent.querySelectorAll(".opt-pill").forEach(p => p.classList.remove("selected"));
   }
-  const badge = document.getElementById("studentInfoBadge");
-  if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+  btn.classList.add("selected");
+  const qBox = document.getElementById(`q-box-${qId}`);
+  if (qBox) qBox.classList.add("answered");
+  updateProgress();
+}
 
-  const modal = document.getElementById("welcomeModal");
-  if (modal) modal.style.display = "none";
+function selectJudge(qId, val, btn) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = val;
+  const parent = btn.parentElement;
+  if (parent) {
+    parent.querySelectorAll(".opt-pill").forEach(p => p.classList.remove("selected"));
+  }
+  btn.classList.add("selected");
+  const qBox = document.getElementById(`q-box-${qId}`);
+  if (qBox) qBox.classList.add("answered");
+  updateProgress();
+}
 
-  startTimers();
+function selectRadio(qId, optId, item) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = optId;
+  const parent = item.parentElement;
+  if (parent) {
+    parent.querySelectorAll(".radio-opt-item").forEach(o => o.classList.remove("selected"));
+  }
+  item.classList.add("selected");
+  const radio = item.querySelector("input[type=radio]");
+  if (radio) radio.checked = true;
+  const qBox = document.getElementById(`q-box-${qId}`);
+  if (qBox) qBox.classList.add("answered");
+  updateProgress();
+}
+
+function selectReadingOpt(qId, optId, btn) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = optId;
+  const parent = btn.parentElement;
+  if (parent) {
+    parent.querySelectorAll(".opt-pill").forEach(p => p.classList.remove("selected"));
+  }
+  btn.classList.add("selected");
+  const qBox = document.getElementById(`q-box-${qId}`);
+  if (qBox) qBox.classList.add("answered");
+  updateProgress();
+}
+
+function clickWordChip(qId, wIdx, word) {
+  if (isExamSubmitted) return;
+  if (!wordOrderSelections[qId]) wordOrderSelections[qId] = [];
+  if (wordOrderSelections[qId].includes(wIdx)) return;
+  
+  wordOrderSelections[qId].push(wIdx);
+  const chip = document.getElementById(`chip-${qId}-${wIdx}`);
+  if (chip) chip.classList.add("used");
+  
+  const input = document.getElementById(`input-${qId}`);
+  if (input) {
+    const curVal = input.value.trim();
+    input.value = curVal ? `${curVal} ${word}` : word;
+    userAnswers[qId] = input.value;
+    const qBox = document.getElementById(`q-box-${qId}`);
+    if (qBox) qBox.classList.add("answered");
+    updateProgress();
+  }
+}
+
+function clearWordOrder(qId) {
+  if (isExamSubmitted) return;
+  wordOrderSelections[qId] = [];
+  delete userAnswers[qId];
+  const input = document.getElementById(`input-${qId}`);
+  if (input) input.value = '';
+  const pool = document.getElementById(`pool-${qId}`);
+  if (pool) {
+    pool.querySelectorAll(".word-chip").forEach(c => c.classList.remove("used"));
+  }
+  const qBox = document.getElementById(`q-box-${qId}`);
+  if (qBox) qBox.classList.remove("answered");
+  updateProgress();
+}
+
+function onWritingInput(qId, val) {
+  if (isExamSubmitted) return;
+  val = val.trim();
+  if (val) {
+    userAnswers[qId] = val;
+    const qBox = document.getElementById(`q-box-${qId}`);
+    if (qBox) qBox.classList.add("answered");
+  } else {
+    delete userAnswers[qId];
+    const qBox = document.getElementById(`q-box-${qId}`);
+    if (qBox) qBox.classList.remove("answered");
+  }
+  updateProgress();
+}
+
+function onCharInput(qId, val) {
+  if (isExamSubmitted) return;
+  val = val.trim();
+  if (val) {
+    userAnswers[qId] = val;
+    const qBox = document.getElementById(`q-box-${qId}`);
+    if (qBox) qBox.classList.add("answered");
+  } else {
+    delete userAnswers[qId];
+    const qBox = document.getElementById(`q-box-${qId}`);
+    if (qBox) qBox.classList.remove("answered");
+  }
+  updateProgress();
 }
 
 function startTimers() {
@@ -2441,7 +2342,6 @@ function startTimers() {
 
     if (totalSeconds <= 0) {
       clearInterval(timerInterval);
-      alert("Đã hết thời gian làm bài! Hệ thống sẽ tự động nộp bài.");
       submitExam();
     }
   }, 1000);
@@ -2451,22 +2351,41 @@ function playQuestionSnippet(timestamp, text) {
   const audio = document.getElementById("mainAudioPlayer");
   if (audio && audio.src && !audio.error) {
     audio.currentTime = timestamp;
-    audio.play();
-  } else {
-    speakChineseText(text);
+    audio.play().catch(() => {});
   }
 }
 
-function speakChineseText(text) {
-  if (!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.lang = 'zh-CN';
-  utt.rate = 0.9;
-  window.speechSynthesis.speak(utt);
+function startExamSession() {
+  const nameInput = document.getElementById("inputStudentName");
+  const classInput = document.getElementById("inputStudentClass");
+  if (nameInput && nameInput.value.trim()) {
+    studentName = nameInput.value.trim();
+    localStorage.setItem("hsk3_student_name", studentName);
+  }
+  if (classInput && classInput.value.trim()) {
+    studentClass = classInput.value.trim();
+    localStorage.setItem("hsk3_student_class", studentClass);
+  }
+  const badge = document.getElementById("studentInfoBadge");
+  if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+
+  const modal = document.getElementById("welcomeModal");
+  if (modal) {
+    modal.style.display = "none";
+    modal.classList.add("hidden");
+  }
+
+  randomizeExamData();
+  renderExam();
+  buildExamDrawer();
+  startTimers();
 }
 
 function confirmSubmitExam() {
+  if (isExamSubmitted) {
+    openResultModal();
+    return;
+  }
   const answered = Object.keys(userAnswers).length;
   const unanswered = 45 - answered;
   let msg = `Bạn đã hoàn thành ${answered}/45 câu.`;
@@ -2546,8 +2465,8 @@ function submitExam() {
 
   // 8. Writing Part 1 (36-40)
   activeData.writing.part1.questions.forEach(q => {
-    const user = (userAnswers[q.id] || '').replace(/[。？！?!\\s]/g, '');
-    const cor = q.correct.replace(/[。？！?!\\s]/g, '');
+    const user = (userAnswers[q.id] || '').replace(/[。？！?!\s]/g, '');
+    const cor = q.correct.replace(/[。？！?!\s]/g, '');
     const isCor = user === cor;
     if (isCor) correctCount++;
     results[q.id] = { num: q.num, user: userAnswers[q.id], correct: q.correct, isCor };
@@ -2594,7 +2513,7 @@ function submitExam() {
     });
   }
 
-  let attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
+  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
   localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
 
   // Submission payload matching teacher.html dashboard schema
@@ -2617,47 +2536,6 @@ function submitExam() {
     submitTime: new Date().toISOString(),
     detailedSummary: detailedSummary
   };
-
-  // Update Result Modal UI
-  const score10El = document.getElementById("score10Display");
-  if (score10El) score10El.textContent = finalScore10;
-
-  const subtitleEl = document.getElementById("resultModalSubtitle");
-  if (subtitleEl) subtitleEl.textContent = `Thí sinh: ${studentName} (${studentClass}) • Lần làm thứ ${attemptCount} • Thời gian: ${durationFormatted}`;
-
-  const badgeEl = document.getElementById("resultStatusBadge");
-  if (badgeEl) {
-    if (isPassed) {
-      badgeEl.className = "result-badge pass";
-      badgeEl.textContent = `ĐẠT CHUẨN HSK 3 (${hskTotal}/300 Điểm)`;
-    } else {
-      badgeEl.className = "result-badge fail";
-      badgeEl.textContent = `CHƯA ĐẠT HSK 3 (${hskTotal}/300 Điểm - Cần ≥ 180)`;
-    }
-  }
-
-  const breakdownEl = document.getElementById("hskScoreBreakdownText");
-  if (breakdownEl) {
-    const hskL = Math.round((correctL / 20) * 100);
-    const hskR = Math.round((correctR / 15) * 100);
-    const hskW = Math.round((correctW / 10) * 100);
-    breakdownEl.innerHTML = `Nghe: <strong>${hskL}</strong>/100 | Đọc: <strong>${hskR}</strong>/100 | Viết: <strong>${hskW}</strong>/100 • Tổng: <strong>${hskTotal}</strong>/300`;
-  }
-
-  const statLEl = document.getElementById("statListening");
-  if (statLEl) statLEl.textContent = `${correctL}/20`;
-  const statREl = document.getElementById("statReading");
-  if (statREl) statREl.textContent = `${correctR}/15`;
-  const statWEl = document.getElementById("statWriting");
-  if (statWEl) statWEl.textContent = `${correctW}/10`;
-
-  const resModal = document.getElementById("resultModal");
-  if (resModal) {
-    resModal.style.display = "flex";
-    resModal.classList.remove("hidden");
-  }
-
-
 
   // 1. Post to submissions.json (Directly read by Teacher Dashboard teacher.html)
   fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/submissions.json", {
@@ -2702,69 +2580,164 @@ function submitExam() {
 
   // Enter review mode
   document.body.classList.add("review-mode");
-  
-  // Highlight drawer buttons
-  for (let i = 1; i <= 45; i++) {
-    let qId = '';
-    if (i <= 20) qId = `L${i}`;
-    else if (i <= 35) qId = `R${i}`;
-    else qId = `W${i}`;
+  const container = document.getElementById("examContainer");
+  if (container) container.classList.add("review-mode");
 
+  // Highlight user correct/wrong on each question box
+  for (let i = 1; i <= 45; i++) {
+    let qId = (i <= 20) ? `L${i}` : (i <= 35) ? `R${i}` : `W${i}`;
     const res = results[qId];
+    const qBox = document.getElementById(`q-box-${qId}`);
+    if (qBox && res) {
+      if (res.isCor) qBox.classList.add("user-correct");
+      else qBox.classList.add("user-wrong");
+    }
     const btn = document.getElementById(`drawer-btn-${i}`);
     if (btn && res) {
-      if (res.isCor) {
-        btn.classList.add('correct-rev');
-      } else {
-        btn.classList.add('wrong-rev');
-      }
+      if (res.isCor) btn.classList.add('correct-rev');
+      else btn.classList.add('wrong-rev');
     }
   }
 
-  // Open drawer to see review
-  const drawer = document.getElementById("examDrawer");
-  if (drawer && !drawer.classList.contains("open")) {
-    toggleExamDrawer();
+  // Update header button to show View Score or Retry
+  const btnHeaderSub = document.getElementById("btnSubmitExam");
+  if (btnHeaderSub) {
+    btnHeaderSub.innerHTML = "📊 Xem Điểm";
+    btnHeaderSub.title = "Xem lại bảng điểm kết quả";
+    btnHeaderSub.onclick = () => openResultModal();
   }
 
-  alert(`KẾT QUẢ BÀI LÀM:\\n\\nThí sinh: ${studentName}\\nĐúng: ${correctCount}/45 câu\\nĐiểm số: ${finalScore10}/10\\n\\nBài làm đã được chuyển sang chế độ Xem Lại với đầy đủ đáp án và giải thích chi tiết.`);
+  // Populate Result Modal UI
+  const score10El = document.getElementById("score10Display");
+  if (score10El) score10El.textContent = finalScore10;
+
+  const subtitleEl = document.getElementById("resultModalSubtitle");
+  if (subtitleEl) subtitleEl.textContent = `Thí sinh: ${studentName} (${studentClass}) • Lần làm thứ ${attemptCount}`;
+
+  const badgeEl = document.getElementById("resultStatusBadge");
+  if (badgeEl) {
+    if (isPassed) {
+      badgeEl.className = "result-badge pass";
+      badgeEl.textContent = `🎉 ĐẠT CHUẨN HSK 3 (${hskTotal}/300 Điểm)`;
+    } else {
+      badgeEl.className = "result-badge fail";
+      badgeEl.textContent = `⚠️ CHƯA ĐẠT (CẦN ÔN THÊM: ${hskTotal}/300)`;
+    }
+  }
+
+  const breakdownEl = document.getElementById("hskScoreBreakdownText");
+  if (breakdownEl) {
+    const hskL = Math.round((correctL / 20) * 100);
+    const hskR = Math.round((correctR / 15) * 100);
+    const hskW = Math.round((correctW / 10) * 100);
+    breakdownEl.innerHTML = `Nghe: <strong>${hskL}</strong>/100 | Đọc: <strong>${hskR}</strong>/100 | Viết: <strong>${hskW}</strong>/100 • Tổng: <strong>${hskTotal}</strong>/300`;
+  }
+
+  const timeSpentEl = document.getElementById("timeSpentText");
+  if (timeSpentEl) {
+    timeSpentEl.textContent = `⏱ Thời gian làm bài: ${durationFormatted} • Đúng: ${correctCount}/45 câu (${Math.round((correctCount / 45) * 100)}%)`;
+  }
+
+  const statLEl = document.getElementById("statListening");
+  if (statLEl) statLEl.textContent = `${correctL}/20`;
+  const statREl = document.getElementById("statReading");
+  if (statREl) statREl.textContent = `${correctR}/15`;
+  const statWEl = document.getElementById("statWriting");
+  if (statWEl) statWEl.textContent = `${correctW}/10`;
+
+  // Show bottom review bar
+  const bottomBar = document.getElementById("reviewBottomBar");
+  if (bottomBar) {
+    bottomBar.style.display = "flex";
+    const bottomText = document.getElementById("reviewBottomBarText");
+    if (bottomText) {
+      bottomText.innerHTML = `Điểm: <strong style="color:var(--primary);font-size:1.1rem;">${finalScore10}/10</strong> (HSK: <strong>${hskTotal}/300</strong>) - ${isPassed ? '<span style="color:#16a34a">ĐẠT</span>' : '<span style="color:#dc2626">CHƯA ĐẠT</span>'}`;
+    }
+  }
+
+  // Open Visual Result Modal (NO simple alert!)
+  openResultModal();
 }
 
-// Initialize: Render exam immediately on DOM ready
-window.addEventListener("DOMContentLoaded", () => {
-  randomizeExamData();
-  renderExam();
-});
-
+function openResultModal() {
+  const modal = document.getElementById("resultModal");
+  if (modal) {
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+  }
+}
 
 function closeResultModalToReview() {
   const modal = document.getElementById("resultModal");
   if (modal) {
-    modal.style.display = "none";
     modal.classList.add("hidden");
+    modal.style.display = "none";
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function retryExamWithShuffle() {
-  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
+  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "1") + 1;
   localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
+
   isExamSubmitted = false;
   userAnswers = {};
   wordOrderSelections = {};
   totalSeconds = 45 * 60;
   listeningSeconds = 15 * 60;
+
   document.body.classList.remove("review-mode");
-  
-  const modal = document.getElementById("resultModal");
-  if (modal) {
-    modal.style.display = "none";
-    modal.classList.add("hidden");
+  const container = document.getElementById("examContainer");
+  if (container) container.classList.remove("review-mode");
+
+  const resModal = document.getElementById("resultModal");
+  if (resModal) {
+    resModal.classList.add("hidden");
+    resModal.style.display = "none";
   }
+
+  const bottomBar = document.getElementById("reviewBottomBar");
+  if (bottomBar) bottomBar.style.display = "none";
+
+  const btnSubmit = document.getElementById("btnSubmitExam");
+  if (btnSubmit) {
+    btnSubmit.innerHTML = "Nộp Bài";
+    btnSubmit.title = "Nộp bài thi";
+    btnSubmit.onclick = () => confirmSubmitExam();
+  }
+
+  const badge = document.getElementById("studentInfoBadge");
+  if (badge) {
+    badge.textContent = `👤 ${studentName} (${studentClass}) • Lần: ${attemptCount}`;
+  }
+
+  // Re-randomize and re-render
   randomizeExamData();
   renderExam();
   updateProgress();
+  buildExamDrawer();
+
+  // Reset timers
   startTimers();
+  const tEl = document.getElementById("totalTimerText");
+  if (tEl) tEl.textContent = "45:00";
+  const lEl = document.getElementById("listeningTimerText");
+  if (lEl) lEl.textContent = "15:00";
+
+  // Reset audio
+  const audio = document.getElementById("mainAudioPlayer");
+  if (audio && typeof audio.pause === 'function') {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+
+  // Close drawer if open
+  const drawer = document.getElementById("examDrawer");
+  if (drawer && drawer.classList.contains("open")) {
+    drawer.classList.remove("open");
+    document.body.classList.remove("drawer-open");
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -2782,26 +2755,28 @@ function exportResultCSV() {
   csv += "Mục,Giá trị\n";
   csv += `Bài tập,"${cur.examTitle} (${cur.examCode})"\n`;
   csv += `Họ và tên,"${cur.studentName}"\n`;
-  csv += `Lớp,"${cur.studentClass}"\n`;
+  csv += `Lớp học,"${cur.studentClass}"\n`;
   csv += `Lần làm bài,"#${cur.attemptCount}"\n`;
   csv += `Thời gian nộp,"${new Date(cur.submitTime).toLocaleString('vi-VN')}"\n`;
   csv += `Thời lượng làm bài,"${cur.durationFormatted}"\n`;
-  csv += `Điểm số /10,"${cur.score10}"\n`;
-  csv += `Tổng điểm HSK3 /300,"${cur.hskTotal}"\n`;
-  csv += `Kết quả,"${cur.isPassed ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n`;
-  csv += `Điểm Nghe /20,"${cur.hskListening}"\n`;
-  csv += `Điểm Đọc /15,"${cur.hskReading}"\n`;
-  csv += `Điểm Viết /10,"${cur.hskWriting}"\n`;
-  csv += `Số câu đúng,"${cur.correctCount}/${cur.totalQuestions}"\n`;
-
+  csv += `Điểm hệ 10,"${cur.score10} / 10"\n`;
+  csv += `Điểm quy đổi HSK 3,"${cur.hskTotal} / 300"\n`;
+  csv += `Phần Nghe (听力),"${cur.hskListening}"\n`;
+  csv += `Phần Đọc (阅读),"${cur.hskReading}"\n`;
+  csv += `Phần Viết (书写),"${cur.hskWriting}"\n`;
+  csv += `Kết quả,"${cur.isPassed ? 'ĐẠT CHUẨN' : 'CHƯA ĐẠT'}"\n\n`;
+  csv += "Câu số,Mã câu,Đáp án thí sinh,Đáp án đúng,Đúng/Sai\n";
+  if (cur.detailedSummary) {
+    cur.detailedSummary.forEach(row => {
+      csv += `${row.num},${row.qId},"${row.userAns}","${row.correctAns}",${row.isCorrect ? 'ĐÚNG' : 'SAI'}\n`;
+    });
+  }
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `Ket_Qua_${cur.examCode}_${cur.studentName.replace(/\s+/g, "_")}.csv`;
-  document.body.appendChild(a);
+  a.download = `PhieuDiem_${cur.examCode}_${cur.studentName.replace(/\s+/g, '_')}.csv`;
   a.click();
-  document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
 
@@ -2812,17 +2787,16 @@ function copyAuthCode() {
   } catch(e) {}
   if (!history.length) return;
   const cur = history[0];
-  const payload = {
+  const authPayload = {
     name: cur.studentName,
     class: cur.studentClass,
     exam: cur.examCode,
     attempt: cur.attemptCount,
     score: cur.score10,
     hskTotal: cur.hskTotal,
-    date: cur.submitTime,
-    hash: btoa(cur.studentName + cur.score10 + cur.submitTime).slice(0, 8)
+    time: cur.submitTime
   };
-  const code = btoa(JSON.stringify(payload));
+  const code = btoa(unescape(encodeURIComponent(JSON.stringify(authPayload))));
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(code).then(() => {
       alert("Đã sao chép Mã xác thực kết quả vào clipboard! Học sinh có thể gửi mã này cho giáo viên:\n\n" + code);
@@ -2834,56 +2808,22 @@ function copyAuthCode() {
   }
 }
 
+// Auto start on load if previously entered, or show welcome modal
+window.addEventListener("DOMContentLoaded", () => {
+  const savedName = localStorage.getItem("hsk3_student_name");
+  const savedClass = localStorage.getItem("hsk3_student_class");
+  if (savedName) {
+    const inputN = document.getElementById("inputStudentName");
+    if (inputN) inputN.value = savedName;
+  }
+  if (savedClass) {
+    const inputC = document.getElementById("inputStudentClass");
+    if (inputC) inputC.value = savedClass;
+  }
+  randomizeExamData();
+  renderExam();
+  buildExamDrawer();
+});
 </script>
-
-<!-- Result Modal (Chuẩn HSK 3) -->
-<div class="modal-backdrop hidden" id="resultModal" style="display:none;">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h2 id="resultModalTitle">Kết Quả Làm Bài Bài Tập HSK 3</h2>
-      <p id="resultModalSubtitle">Thí sinh: Thí sinh • Lớp: Tự do • Lần làm thứ 1</p>
-    </div>
-    <div class="modal-body">
-      <div class="score-hero">
-        <div class="score-circle">
-          <div class="score-num" id="score10Display">0.0</div>
-          <div class="score-label">Thang điểm 10</div>
-        </div>
-        <div class="result-badge" id="resultStatusBadge">ĐẠT CHUẨN HSK 3</div>
-        <p style="margin-top: 8px; font-size: 0.95rem;" id="hskScoreBreakdownText">
-          Điểm quy đổi HSK: 0 / 300 (Yêu cầu đỗ: ≥ 180 điểm)
-        </p>
-      </div>
-
-      <div class="score-breakdown-grid">
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statListening">0/20</div>
-          <div class="score-stat-lbl">Phần Nghe (听力)</div>
-        </div>
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statReading">0/15</div>
-          <div class="score-stat-lbl">Phần Đọc (阅读)</div>
-        </div>
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statWriting">0/10</div>
-          <div class="score-stat-lbl">Phần Viết (书写)</div>
-        </div>
-      </div>
-
-      <div class="sync-status-box success" id="syncStatusBox">
-        <span>🟢 Kết quả đã được tự động lưu cục bộ và gửi về hệ thống quản lý của giáo viên (Firebase Realtime Database).</span>
-      </div>
-
-      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
-        <button class="btn-secondary" onclick="exportResultCSV()">📥 Xuất phiếu điểm CSV</button>
-        <button class="btn-secondary" onclick="copyAuthCode()">📋 Sao chép Mã xác thực</button>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-secondary" onclick="closeResultModalToReview()">Xem Chi Tiết Đáp Án</button>
-      <button class="btn-gold" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Xoay đáp án mới)</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
