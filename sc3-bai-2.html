@@ -608,365 +608,25 @@ body.review-mode .explanation-box {
   font-size: 15px;
   cursor: pointer;
 }
-
-
-/* --- OPTIMIZED HEADER (< 6% HEIGHT, MATCHING HSK3 EXAM DE-2) --- */
-:root {
-  --primary: #176B63;
-  --primary-dark: #0D423D;
-  --primary-light: #208b81;
-  --primary-subtle: #e6f3f1;
-  --gold: #D9B86C;
-  --gold-dark: #b59447;
-  --gold-light: #faecd0;
-  --bg-cream: #F7F3E8;
-  --card-bg: #FFFFFF;
-  --text-main: #2D3748;
-  --text-muted: #718096;
-  --border-color: #E2DAC7;
-  --success: #2E7D32;
-  --success-bg: #E8F5E9;
-  --danger: #C62828;
-  --danger-bg: #FFEBEE;
-  --font-chinese: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Noto Sans SC", sans-serif;
-}
-
-.app-header {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  color: #FFFFFF;
-  padding: 0 16px;
-  height: 48px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
-.header-inner {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-.header-left, .header-center, .header-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.btn-home-compact {
-  color: #fff;
-  text-decoration: none;
-  background: rgba(255,255,255,0.18);
-  padding: 4px 10px;
-  border-radius: 14px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.btn-home-compact:hover {
-  background: rgba(255,255,255,0.28);
-}
-.center-logo {
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 6px;
-  object-fit: contain;
-  background: #fff;
-  padding: 1px;
-}
-.exam-title-compact {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #fff;
-  white-space: nowrap;
-}
-.timer-badge {
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(217, 184, 108, 0.4);
-  padding: 3px 10px;
-  border-radius: 14px;
-  font-weight: 700;
-  font-size: 0.92rem;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-}
-.timer-badge .timer-lbl {
-  font-size: 0.78rem;
-  color: var(--gold-light);
-  font-weight: 600;
-}
-.timer-badge.timer-listening {
-  background: rgba(23, 107, 99, 0.4);
-  border-color: rgba(186, 230, 253, 0.5);
-}
-.timer-badge.warning {
-  background: #f59e0b;
-  color: #fff;
-  border-color: #fef08a;
-}
-.timer-badge.danger {
-  background: #ef4444;
-  color: #fff;
-  border-color: #fee2e2;
-  animation: pulse 1s infinite;
-}
-.btn-nav-navigator {
-  background: rgba(255,255,255,0.18);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 5px 12px;
-  border-radius: 16px;
-  font-weight: 700;
-  font-size: 0.82rem;
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: all 0.2s;
-}
-.btn-nav-navigator:hover {
-  background: var(--gold);
-  color: var(--primary-dark);
-  border-color: var(--gold);
-}
-.btn-header-submit {
-  background: var(--gold);
-  color: var(--primary-dark);
-  border: none;
-  font-weight: 800;
-  font-size: 0.88rem;
-  padding: 5px 16px;
-  border-radius: 16px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.btn-header-submit:hover {
-  background: #ecd395;
-  transform: translateY(-1px);
-}
-
-/* --- RESULT MODAL (MATCHING HSK3 EXAM DE-2) --- */
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  z-index: 2000;
-}
-.modal-backdrop.hidden {
-  display: none !important;
-}
-.modal-card {
-  background: #fff;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  animation: modalFade 0.25s ease-out;
-}
-@keyframes modalFade {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.modal-header {
-  padding: 20px 24px;
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  color: #fff;
-  border-radius: 16px 16px 0 0;
-}
-.modal-header h2 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin: 0;
-}
-.modal-header p {
-  font-size: 0.85rem;
-  color: var(--gold-light);
-  margin-top: 4px;
-  margin-bottom: 0;
-}
-.modal-body {
-  padding: 24px;
-}
-.modal-footer {
-  padding: 16px 24px;
-  background: #f8fafc;
-  border-top: 1px solid #e2e8f0;
-  border-radius: 0 0 16px 16px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-}
-.score-hero {
-  text-align: center;
-  padding: 10px 0 20px;
-}
-.score-circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: var(--gold);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px;
-  box-shadow: 0 4px 15px rgba(23,107,99,0.3);
-}
-.score-num {
-  font-size: 2.4rem;
-  font-weight: 900;
-  line-height: 1;
-}
-.score-label {
-  font-size: 0.8rem;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 4px;
-}
-.result-badge {
-  display: inline-block;
-  font-weight: 700;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 1rem;
-}
-.result-badge.pass {
-  background: #e8f5e9;
-  color: #2e7d32;
-  border: 1px solid #a5d6a7;
-}
-.result-badge.fail {
-  background: #ffebee;
-  color: #c62828;
-  border: 1px solid #ef9a9a;
-}
-.score-breakdown-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 18px 0;
-  text-align: center;
-}
-.score-stat-card {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 10px;
-}
-.score-stat-val {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-}
-.score-stat-lbl {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-.btn-primary {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 9px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.btn-primary:hover {
-  background: var(--primary-dark);
-}
-.btn-secondary {
-  background: #f1f5f9;
-  color: var(--text-main);
-  border: 1px solid #cbd5e1;
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-secondary:hover {
-  background: #e2e8f0;
-}
-.btn-gold {
-  background: var(--gold);
-  color: var(--primary-dark);
-  border: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 9px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-gold:hover {
-  background: var(--gold-dark);
-  color: #fff;
-}
-@media (max-width: 768px) {
-  .hide-mobile { display: none !important; }
-  .timer-badge .timer-lbl { display: none !important; }
-  .score-breakdown-grid { grid-template-columns: 1fr; }
-}
-
 </style>
 </head>
 <body>
 
 <!-- Header -->
-<header class="app-header">
-  <div class="header-inner">
-    <div class="header-left">
-      <a href="index.html#WORKBOOK" class="btn-home-compact" title="Quay về danh mục bài tập">
-        <span>⬅</span> <span class="hide-mobile">Cổng Đề</span>
-      </a>
-      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" class="center-logo">
-      <span class="exam-title-compact hide-mobile">Bài Tập HSK 3</span>
-      <span id="studentInfoBadge" class="hide-mobile" style="font-size:0.8rem;color:var(--gold-light);background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:10px;">👤 Thí sinh</span>
-    </div>
-    
-    <div class="header-center">
-      <div class="timer-badge" id="totalTimerBadge" title="Đồng hồ đếm ngược toàn bài">
-        <span class="timer-lbl">Toàn bài:</span> <span id="totalTimerText">45:00</span>
-      </div>
-      <div class="timer-badge timer-listening" id="listeningTimerBadge" title="Đồng hồ đếm ngược phần Nghe">
-        <span class="timer-lbl">🎧 Nghe:</span> <span id="listeningTimerText">15:00</span>
-      </div>
-    </div>
-    
-    <div class="header-right">
-      <button class="btn-nav-navigator" id="btnToggleNav" onclick="toggleExamDrawer()" title="Mở bảng trạng thái làm bài bên lề phải">
-        📋 Bảng câu (<span id="navAnsweredCount">0</span>/45)
-      </button>
-      <button class="btn-header-submit" onclick="confirmSubmitExam()">Nộp Bài</button>
-    </div>
+<header class="top-app-header">
+  <div class="header-left">
+    <a href="index.html#WORKBOOK" class="btn-portal-back">⬅ Bài Tập HSK Chuẩn</a>
+    <img src="images/logoHSKNHATRANG.jpg" alt="Logo" class="school-header-logo" onerror="this.src='logoHSKNHATRANG.jpg';">
+    <span class="exam-title-badge">Bài 2: 他什么时候回来</span>
+    <span class="student-info-tag" id="studentInfoBadge">👤 Thí sinh</span>
+  </div>
+  <div class="header-center">
+    <div class="timer-badge-item" id="totalTimerBadge">⏳ Tổng: <span id="totalTimerText">45:00</span></div>
+    <div class="timer-badge-item" id="listeningTimerBadge">🎧 Nghe: <span id="listeningTimerText">15:00</span></div>
+  </div>
+  <div class="header-right">
+    <button class="btn-nav-toggle" onclick="toggleExamDrawer()">📋 Bảng câu (<span id="navAnsweredCount">0</span>/45)</button>
+    <button class="btn-submit-exam" onclick="confirmSubmitExam()">Nộp Bài</button>
   </div>
 </header>
 
@@ -1015,20 +675,20 @@ const MASTER_DATA = {
         {
           "id": "img_a",
           "label": "A",
-          "desc": "脚疼不跑了 (今天脚一直疼)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🦶</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">脚疼不跑了 (今天脚一直疼)</text></svg>"
+          "desc": "脚疼不跑了 (脚一直疼)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🦶</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">脚疼不跑了 (脚一直疼)</text></svg>"
         },
         {
           "id": "img_b",
           "label": "B",
-          "desc": "上楼去办公室 (小方快上来)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🏢</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">上楼去办公室 (小方快上来)</text></svg>"
+          "desc": "上楼去办公室 (周经理办公室)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🏢</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">上楼去办公室 (周经理办公室)</text></svg>"
         },
         {
           "id": "img_c",
           "label": "C",
           "desc": "下雨没带伞 (怎么下雨了)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🌧️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">下雨没带伞 (怎么下雨了)</text></svg>"
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🌧️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">下雨没带伞 (怎么下雨了)</text></svg>"
         },
         {
           "id": "img_d",
@@ -1039,14 +699,14 @@ const MASTER_DATA = {
         {
           "id": "img_e",
           "label": "E",
-          "desc": "打出租车上车 (叫到出租车)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🚕</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">打出租车上车 (叫到出租车)</text></svg>"
+          "desc": "叫出租车 (正准备上车)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🚕</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">叫出租车 (正准备上车)</text></svg>"
         },
         {
           "id": "img_f",
           "label": "F",
-          "desc": "运动跑步变瘦 (每天跑步)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🏃</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">运动跑步变瘦 (每天跑步)</text></svg>"
+          "desc": "跑步变瘦 (这几年天天跑步)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🏃</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">跑步变瘦 (这几年天天跑步)</text></svg>"
         }
       ],
       "questions": [
@@ -1055,31 +715,31 @@ const MASTER_DATA = {
           "num": 1,
           "dialogue": "女：真没想到，你现在这么瘦！\n男：这几年我一直在运动，每天都跑步，能不瘦吗？",
           "correctId": "img_f",
-          "timestamp": 40,
-          "explanation": "每天跑步变瘦 -> F"
+          "timestamp": 38,
+          "explanation": "跑步变瘦 -> F"
         },
         {
           "id": "L2",
           "num": 2,
           "dialogue": "女：周经理，您找我？\n男：对，小方，你快上来，来我办公室。",
           "correctId": "img_b",
-          "timestamp": 66,
-          "explanation": "小方快上来办公室 -> B"
+          "timestamp": 64,
+          "explanation": "上楼来办公室 -> B"
         },
         {
           "id": "L3",
           "num": 3,
           "dialogue": "男：天气太冷了，回来时别坐公共汽车了。\n女：我叫到一辆出租车，正准备上车呢。",
           "correctId": "img_e",
-          "timestamp": 91,
-          "explanation": "叫到出租车准备上车 -> E"
+          "timestamp": 96,
+          "explanation": "叫出租车 -> E"
         },
         {
           "id": "L4",
           "num": 4,
           "dialogue": "男：怎么下雨了？我没带伞。\n女：我也没带。",
           "correctId": "img_c",
-          "timestamp": 115,
+          "timestamp": 126,
           "explanation": "下雨没带伞 -> C"
         },
         {
@@ -1087,8 +747,8 @@ const MASTER_DATA = {
           "num": 5,
           "dialogue": "男：你怎么了？怎么不跑了？\n女：今天不知道怎么了，脚一直疼。",
           "correctId": "img_a",
-          "timestamp": 137,
-          "explanation": "脚一直疼不跑了 -> A"
+          "timestamp": 152,
+          "explanation": "脚一直疼 -> A"
         }
       ]
     },
@@ -1100,8 +760,8 @@ const MASTER_DATA = {
           "passage": "乐乐，你出来的时候带把伞，外边下雨呢。",
           "statement": "乐乐现在不在外边。",
           "correct": true,
-          "timestamp": 212,
-          "explanation": "出来的时候带伞说明在里面 (Đúng)"
+          "timestamp": 228,
+          "explanation": "出来时带把伞说明还在屋里 (Đúng)"
         },
         {
           "id": "L7",
@@ -1109,35 +769,35 @@ const MASTER_DATA = {
           "passage": "王经理，您别着急，我现在就上楼去。",
           "statement": "王经理在楼下。",
           "correct": false,
-          "timestamp": 255,
-          "explanation": "我现在上楼去说明王经理在楼上 (Sai)"
+          "timestamp": 260,
+          "explanation": "我上楼去找王经理说明王经理在楼上 (Sai)"
         },
         {
           "id": "L8",
           "num": 8,
-          "passage": "你在这儿等我一下，我上去拿了钱就下来。",
+          "passage": "你在这儿等我一下, 我上去拿了钱就下来。",
           "statement": "他已经到楼上了。",
           "correct": false,
-          "timestamp": 298,
-          "explanation": "我上去拿钱说明还没上去 (Sai)"
+          "timestamp": 305,
+          "explanation": "准备上去拿还没上去 (Sai)"
         },
         {
           "id": "L9",
           "num": 9,
-          "passage": "我们快点儿进去喝杯热咖啡吧，这儿太冷了。",
+          "passage": "我们快点进去喝杯热咖啡吧, 这儿太冷了。",
           "statement": "他们现在在外边。",
           "correct": true,
-          "timestamp": 342,
-          "explanation": "快点儿进去说明现在在外面 (Đúng)"
+          "timestamp": 348,
+          "explanation": "快点进去说明还在外边 (Đúng)"
         },
         {
           "id": "L10",
           "num": 10,
-          "passage": "同学们，你们快过来，到树下坐坐。",
+          "passage": "同学们, 你们快过来, 到树下坐坐。",
           "statement": "同学们现在在树下。",
           "correct": false,
-          "timestamp": 386,
-          "explanation": "快过来到树下说明现在不在树下 (Sai)"
+          "timestamp": 395,
+          "explanation": "叫同学们过来，说明还没在树下 (Sai)"
         }
       ]
     },
@@ -1158,12 +818,12 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "做饭"
+              "text": "去做饭"
             }
           ],
           "correctId": "b",
-          "timestamp": 460,
-          "explanation": "快过来吃饭 -> B"
+          "timestamp": 472,
+          "explanation": "快过来吃 -> B"
         },
         {
           "id": "L12",
@@ -1172,20 +832,20 @@ const MASTER_DATA = {
           "options": [
             {
               "id": "a",
-              "text": "公司办公楼"
+              "text": "公司楼里"
             },
             {
               "id": "b",
-              "text": "饭馆"
+              "text": "火车站"
             },
             {
               "id": "c",
-              "text": "学校"
+              "text": "饭馆"
             }
           ],
           "correctId": "a",
-          "timestamp": 512,
-          "explanation": "询问方经理办公室 -> A"
+          "timestamp": 535,
+          "explanation": "问办公室在哪儿 -> A"
         },
         {
           "id": "L13",
@@ -1206,8 +866,8 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "b",
-          "timestamp": 565,
-          "explanation": "买车每天送你上班 -> 夫妻 (B)"
+          "timestamp": 605,
+          "explanation": "买了车每天送你上班 -> 夫妻 (B)"
         },
         {
           "id": "L14",
@@ -1220,16 +880,16 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "考得最好"
+              "text": "不爱玩游戏"
             },
             {
               "id": "c",
-              "text": "回家喜欢玩游戏不看书"
+              "text": "到家就玩游戏不看书"
             }
           ],
           "correctId": "c",
-          "timestamp": 620,
-          "explanation": "玩游戏不看书 -> C"
+          "timestamp": 670,
+          "explanation": "到家就玩游戏不看书 -> C"
         },
         {
           "id": "L15",
@@ -1242,16 +902,16 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "多吃点儿"
+              "text": "多吃点儿饭"
             },
             {
               "id": "c",
-              "text": "洗衣服"
+              "text": "穿好衣服睡觉"
             }
           ],
           "correctId": "a",
-          "timestamp": 675,
-          "explanation": "出去走走 -> A"
+          "timestamp": 735,
+          "explanation": "出去走走吧 -> A"
         }
       ]
     },
@@ -1268,7 +928,7 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "办公室"
+              "text": "办公室里"
             },
             {
               "id": "c",
@@ -1276,7 +936,7 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "a",
-          "timestamp": 755,
+          "timestamp": 820,
           "explanation": "下楼去送人了 -> A"
         },
         {
@@ -1290,15 +950,15 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "路上堵车"
+              "text": "在家里睡觉"
             },
             {
               "id": "c",
-              "text": "生病了"
+              "text": "路上堵车"
             }
           ],
           "correctId": "a",
-          "timestamp": 830,
+          "timestamp": 895,
           "explanation": "去办公楼拿东西 -> A"
         },
         {
@@ -1312,16 +972,16 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "走北边那条路"
+              "text": "走北边的路还没到"
             },
             {
               "id": "c",
-              "text": "坐地铁来的"
+              "text": "迷路了"
             }
           ],
           "correctId": "b",
-          "timestamp": 905,
-          "explanation": "走北边那条路 -> B"
+          "timestamp": 970,
+          "explanation": "走北边难走还没到 -> B"
         },
         {
           "id": "L19",
@@ -1330,11 +990,11 @@ const MASTER_DATA = {
           "options": [
             {
               "id": "a",
-              "text": "办公室/室内"
+              "text": "楼上办公室"
             },
             {
               "id": "b",
-              "text": "超市"
+              "text": "楼下超市"
             },
             {
               "id": "c",
@@ -1342,8 +1002,8 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "a",
-          "timestamp": 980,
-          "explanation": "你进来的时候，让他下去买午饭 -> A"
+          "timestamp": 1045,
+          "explanation": "在楼上等买饭回来 -> A"
         },
         {
           "id": "L20",
@@ -1352,20 +1012,20 @@ const MASTER_DATA = {
           "options": [
             {
               "id": "a",
-              "text": "不饿"
+              "text": "不想吃晚饭"
             },
             {
               "id": "b",
-              "text": "不想吃饭"
+              "text": "东东已经回来了"
             },
             {
               "id": "c",
-              "text": "很担心东东着急"
+              "text": "很担心着急东东"
             }
           ],
           "correctId": "c",
-          "timestamp": 1055,
-          "explanation": "这么晚了能不着急吗 -> C"
+          "timestamp": 1120,
+          "explanation": "着急等东东回来 -> C"
         }
       ]
     }
@@ -1380,19 +1040,19 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "下了飞机就给我打电话。"
+          "text": "外面下雨了，带把伞吧。"
         },
         {
           "id": "b",
-          "text": "他送了人就上来。"
+          "text": "你什么时候回来？"
         },
         {
           "id": "c",
-          "text": "我上楼去拿钱。"
+          "text": "我下楼去买点儿水果。"
         },
         {
           "id": "d",
-          "text": "快下楼去看看吧。"
+          "text": "快上来吧，他在办公室等你。"
         },
         {
           "id": "e",
@@ -1400,44 +1060,44 @@ const MASTER_DATA = {
         },
         {
           "id": "f",
-          "text": "我们快点儿进去吧，外边太冷了。"
+          "text": "我们走着去车站吧。"
         }
       ],
       "questions": [
         {
           "id": "R21",
           "num": 21,
-          "prompt": "王经理在办公室吗？",
-          "correctId": "b",
-          "explanation": "送了人就上来 (B)"
+          "prompt": "王经理已经到了，",
+          "correctId": "d",
+          "explanation": "快上来办公室 (D)"
         },
         {
           "id": "R22",
           "num": 22,
-          "prompt": "你怎么穿这么少就出来了？",
-          "correctId": "f",
-          "explanation": "外边太冷快进去 (F)"
+          "prompt": "出门前看了看窗外阴天，",
+          "correctId": "a",
+          "explanation": "带把伞 (A)"
         },
         {
           "id": "R23",
           "num": 23,
-          "prompt": "楼下怎么这么热闹？",
-          "correctId": "d",
-          "explanation": "快下楼看看 (D)"
+          "prompt": "家里没有苹果了，",
+          "correctId": "c",
+          "explanation": "下楼买水果 (C)"
         },
         {
           "id": "R24",
           "num": 24,
-          "prompt": "你到了北京记得联系我，",
-          "correctId": "a",
-          "explanation": "下飞机就打电话 (A)"
+          "prompt": "你在外边办事，",
+          "correctId": "b",
+          "explanation": "什么时候回来 (B)"
         },
         {
           "id": "R25",
           "num": 25,
-          "prompt": "买水果的钱不够，",
-          "correctId": "c",
-          "explanation": "上楼去拿钱 (C)"
+          "prompt": "时间还早，天气也不错，",
+          "correctId": "f",
+          "explanation": "走着去车站 (F)"
         }
       ]
     },
@@ -1450,23 +1110,23 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "办 (bàn)"
-        },
-        {
-          "id": "b",
-          "text": "腿 (tuǐ)"
-        },
-        {
-          "id": "c",
           "text": "容易 (róngyì)"
         },
         {
+          "id": "b",
+          "text": "胖 (pàng)"
+        },
+        {
+          "id": "c",
+          "text": "办 (bàn)"
+        },
+        {
           "id": "d",
-          "text": "疼 (téng)"
+          "text": "辆 (liàng)"
         },
         {
           "id": "e",
-          "text": "胖 (pàng)"
+          "text": "楼 (lóu)"
         },
         {
           "id": "f",
@@ -1477,37 +1137,37 @@ const MASTER_DATA = {
         {
           "id": "R26",
           "num": 26,
-          "prompt": "天天坚持跑步，想不瘦都（ ）。",
-          "correctId": "c",
-          "explanation": "不容易 (C)"
+          "prompt": "这几年不爱运动，他渐渐长（ ）了。",
+          "correctId": "b",
+          "explanation": "长胖 (B)"
         },
         {
           "id": "R27",
           "num": 27,
-          "prompt": "今天走了几万步，两条（ ）都酸了。",
-          "correctId": "b",
-          "explanation": "两条腿 (B)"
+          "prompt": "经理今天外出（ ）事，下午才回公司。",
+          "correctId": "c",
+          "explanation": "办事 (C)"
         },
         {
           "id": "R28",
           "num": 28,
-          "prompt": "医生，我的（ ）指头有点儿疼。",
-          "correctId": "f",
-          "explanation": "脚指头 (F)"
+          "prompt": "这道题其实一点儿也不（ ）。",
+          "correctId": "a",
+          "explanation": "不容易 (A)"
         },
         {
           "id": "R29",
           "num": 29,
-          "prompt": "你最近是不是（ ）了一点儿？",
-          "correctId": "e",
-          "explanation": "变胖了 (E)"
+          "prompt": "今天路上跑步不小心扭伤了（ ）。",
+          "correctId": "f",
+          "explanation": "扭伤脚 (F)"
         },
         {
           "id": "R30",
           "num": 30,
-          "prompt": "经理外出（ ）事了，下午才回来。",
-          "correctId": "a",
-          "explanation": "办事 (A)"
+          "prompt": "爸爸刚买了一（ ）漂亮的新车。",
+          "correctId": "d",
+          "explanation": "一辆新车 (D)"
         }
       ]
     },
@@ -1516,112 +1176,112 @@ const MASTER_DATA = {
         {
           "id": "R31",
           "num": 31,
-          "passage": "运动是保持健康的最好方式。每天坚持跑步三十分钟，不仅能让身体更结实，还能帮助缓解工作中的压力。但是运动前一定要做好热身，避免脚踝拉伤。",
-          "question": "运动前热身主要是为了：",
+          "passage": "汉语中的趋向补语非常丰富，比如“上来、上去、下来、下去、过来、过去”。用“来”还是用“去”，主要看动作的方向是朝着说话人的位置移动，还是离开说话人的位置。",
+          "question": "“来”和“去”的使用主要取决于：",
           "options": [
             {
               "id": "a",
-              "text": "跑得更快"
+              "text": "动作发生的时间"
             },
             {
               "id": "b",
-              "text": "避免受伤"
+              "text": "动作朝向还是离开说话人"
             },
             {
               "id": "c",
-              "text": "减肥瘦身"
+              "text": "说话人的心情"
             }
           ],
           "correctId": "b",
-          "explanation": "避免拉伤受伤 (B)"
+          "explanation": "动作方向与说话人位置 (B)"
         },
         {
           "id": "R32",
           "num": 32,
-          "passage": "很多人觉得学汉语很难，其实只要找到了好的学习方法，多听多说，学起来就会越来越容易。遇到不懂的地方多问老师和中国朋友，进步会很快。",
-          "question": "学好汉语的关键是：",
+          "passage": "小王每天下班后都去附近的体育场慢跑四十分钟。几个月下来，不仅体重减轻了五公斤，而且睡眠质量和精神状态都有了显著提升。",
+          "question": "慢跑让小王：",
           "options": [
             {
               "id": "a",
-              "text": "死记硬背"
+              "text": "越来越胖"
             },
             {
               "id": "b",
-              "text": "不问别人"
+              "text": "工作很累"
             },
             {
               "id": "c",
-              "text": "好方法并多听多说"
+              "text": "体重减轻精神更好"
             }
           ],
           "correctId": "c",
-          "explanation": "找对方法多听多说 (C)"
+          "explanation": "减轻体重精神变好 (C)"
         },
         {
           "id": "R33",
           "num": 33,
-          "passage": "王经理平时工作非常认真，每天总是最早一个到公司，最晚一个离开。遇到同事有困难，他也会主动帮忙解决，大家都很尊敬他。",
-          "question": "关于王经理，可以知道：",
+          "passage": "很多人觉得学外语很难，其实只要每天坚持听说读写，把语言学习融入日常生活，比如看中文电影、听中文歌，就会发现学汉语其实很有趣也很自然。",
+          "question": "这段话建议怎样学外语？",
           "options": [
             {
               "id": "a",
-              "text": "工作不认真"
+              "text": "只在考试前突击"
             },
             {
               "id": "b",
-              "text": "不受欢迎"
+              "text": "每天坚持融入生活"
             },
             {
               "id": "c",
-              "text": "工作努力且热心助人"
+              "text": "不看电影不听歌"
             }
           ],
-          "correctId": "c",
-          "explanation": "认真且助人 (C)"
+          "correctId": "b",
+          "explanation": "每天坚持融入生活 (B)"
         },
         {
           "id": "R34",
           "num": 34,
-          "passage": "城市里的早晚高峰期常常堵车，坐公共汽车不如骑自行车或者坐地铁方便。很多人为了不迟到，都选择乘坐准时快捷的地铁上下班。",
-          "question": "人们选择坐地铁是因为：",
+          "passage": "大雨倾盆时外出，不仅要带好雨伞或雨衣，还要特别注意脚下安全。路面湿滑容易摔倒，经过积水深的地方时要格外小心，最好避开危险区域。",
+          "question": "雨天出行应该注意：",
           "options": [
             {
               "id": "a",
-              "text": "地铁票最贵"
+              "text": "不用打伞"
             },
             {
               "id": "b",
-              "text": "准时快捷不堵车"
+              "text": "走得越快越好"
             },
             {
               "id": "c",
-              "text": "车上人少"
+              "text": "注意路面湿滑防摔倒"
             }
           ],
-          "correctId": "b",
-          "explanation": "准时快捷 (B)"
+          "correctId": "c",
+          "explanation": "防路滑摔倒 (C)"
         },
         {
           "id": "R35",
           "num": 35,
-          "passage": "小芳的爷爷今年七十五岁了，身体依然非常硬朗。他每天早晨都去公园散步、打太极拳，下午在家写书法，晚饭后还要和奶奶聊聊天。",
-          "question": "爷爷身体好的原因是：",
+          "passage": "现代都市生活节奏快，很多人一下班就急着回家躺着看手机。其实晚饭后跟家人在小区里散步半小时，聊聊天，能有效增进家庭感情，放松身心。",
+          "question": "下班后散步的好处是：",
           "options": [
             {
               "id": "a",
-              "text": "每天吃很多药"
+              "text": "可以走得更累"
             },
             {
               "id": "b",
-              "text": "生活规律坚持锻炼"
+              "text": "增进感情且放松身心"
             },
             {
               "id": "c",
-              "text": "整天躺着休息"
+              "text": "没有用处"
             }
           ],
           "correctId": "b",
-          "explanation": "生活规律坚持锻炼 (B)"
+          "explanation": "增进家庭感情放松 (B)"
         }
       ]
     }
@@ -1678,8 +1338,8 @@ const MASTER_DATA = {
           "id": "W40",
           "num": 40,
           "words": [
-            "请快",
-            "进教室",
+            "请快进",
+            "教室",
             "来"
           ],
           "correct": "请快进教室来。",
@@ -1692,25 +1352,25 @@ const MASTER_DATA = {
         {
           "id": "W41",
           "num": 41,
-          "before": "经理外出（ ",
+          "before": "他去外地（ ",
           "pinyin": "bàn",
-          "after": " ）事去了。",
+          "after": " ）事了。",
           "correct": "办",
           "explanation": "办事 -> 办"
         },
         {
           "id": "W42",
           "num": 42,
-          "before": "学好一门外语并不（ ",
+          "before": "这道数学题真（ ",
           "pinyin": "nán",
           "after": " ）。",
           "correct": "难",
-          "explanation": "困难 -> 难"
+          "explanation": "难做 -> 难"
         },
         {
           "id": "W43",
           "num": 43,
-          "before": "请给我拿一（ ",
+          "before": "出门请带（ ",
           "pinyin": "bǎ",
           "after": " ）雨伞。",
           "correct": "把",
@@ -1719,18 +1379,18 @@ const MASTER_DATA = {
         {
           "id": "W44",
           "num": 44,
-          "before": "这件事做起来很不（ ",
+          "before": "这个字很（ ",
           "pinyin": "róng",
-          "after": " ）易。",
+          "after": " ）易写错。",
           "correct": "容",
           "explanation": "容易 -> 容"
         },
         {
           "id": "W45",
           "num": 45,
-          "before": "爸爸买了一（ ",
+          "before": "楼下停着一（ ",
           "pinyin": "liàng",
-          "after": " ）新汽车。",
+          "after": " ）出租车。",
           "correct": "辆",
           "explanation": "一辆车 -> 辆"
         }
@@ -2619,47 +2279,6 @@ function submitExam() {
     detailedSummary: detailedSummary
   };
 
-  // Update Result Modal UI
-  const score10El = document.getElementById("score10Display");
-  if (score10El) score10El.textContent = finalScore10;
-
-  const subtitleEl = document.getElementById("resultModalSubtitle");
-  if (subtitleEl) subtitleEl.textContent = `Thí sinh: ${studentName} (${studentClass}) • Lần làm thứ ${attemptCount} • Thời gian: ${durationFormatted}`;
-
-  const badgeEl = document.getElementById("resultStatusBadge");
-  if (badgeEl) {
-    if (isPassed) {
-      badgeEl.className = "result-badge pass";
-      badgeEl.textContent = `ĐẠT CHUẨN HSK 3 (${hskTotal}/300 Điểm)`;
-    } else {
-      badgeEl.className = "result-badge fail";
-      badgeEl.textContent = `CHƯA ĐẠT HSK 3 (${hskTotal}/300 Điểm - Cần ≥ 180)`;
-    }
-  }
-
-  const breakdownEl = document.getElementById("hskScoreBreakdownText");
-  if (breakdownEl) {
-    const hskL = Math.round((correctL / 20) * 100);
-    const hskR = Math.round((correctR / 15) * 100);
-    const hskW = Math.round((correctW / 10) * 100);
-    breakdownEl.innerHTML = `Nghe: <strong>${hskL}</strong>/100 | Đọc: <strong>${hskR}</strong>/100 | Viết: <strong>${hskW}</strong>/100 • Tổng: <strong>${hskTotal}</strong>/300`;
-  }
-
-  const statLEl = document.getElementById("statListening");
-  if (statLEl) statLEl.textContent = `${correctL}/20`;
-  const statREl = document.getElementById("statReading");
-  if (statREl) statREl.textContent = `${correctR}/15`;
-  const statWEl = document.getElementById("statWriting");
-  if (statWEl) statWEl.textContent = `${correctW}/10`;
-
-  const resModal = document.getElementById("resultModal");
-  if (resModal) {
-    resModal.style.display = "flex";
-    resModal.classList.remove("hidden");
-  }
-
-
-
   // 1. Post to submissions.json (Directly read by Teacher Dashboard teacher.html)
   fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/submissions.json", {
     method: "POST",
@@ -2736,155 +2355,6 @@ window.addEventListener("DOMContentLoaded", () => {
   randomizeExamData();
   renderExam();
 });
-
-
-function closeResultModalToReview() {
-  const modal = document.getElementById("resultModal");
-  if (modal) {
-    modal.style.display = "none";
-    modal.classList.add("hidden");
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function retryExamWithShuffle() {
-  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
-  localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
-  isExamSubmitted = false;
-  userAnswers = {};
-  wordOrderSelections = {};
-  totalSeconds = 45 * 60;
-  listeningSeconds = 15 * 60;
-  document.body.classList.remove("review-mode");
-  
-  const modal = document.getElementById("resultModal");
-  if (modal) {
-    modal.style.display = "none";
-    modal.classList.add("hidden");
-  }
-  randomizeExamData();
-  renderExam();
-  updateProgress();
-  startTimers();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function exportResultCSV() {
-  let history = [];
-  try {
-    history = JSON.parse(localStorage.getItem("hsk3_exam_history") || "[]");
-  } catch(e) {}
-  if (!history.length) {
-    alert("Chưa có kết quả để xuất!");
-    return;
-  }
-  const cur = history[0];
-  let csv = "\uFEFF";
-  csv += "Mục,Giá trị\n";
-  csv += `Bài tập,"${cur.examTitle} (${cur.examCode})"\n`;
-  csv += `Họ và tên,"${cur.studentName}"\n`;
-  csv += `Lớp,"${cur.studentClass}"\n`;
-  csv += `Lần làm bài,"#${cur.attemptCount}"\n`;
-  csv += `Thời gian nộp,"${new Date(cur.submitTime).toLocaleString('vi-VN')}"\n`;
-  csv += `Thời lượng làm bài,"${cur.durationFormatted}"\n`;
-  csv += `Điểm số /10,"${cur.score10}"\n`;
-  csv += `Tổng điểm HSK3 /300,"${cur.hskTotal}"\n`;
-  csv += `Kết quả,"${cur.isPassed ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n`;
-  csv += `Điểm Nghe /20,"${cur.hskListening}"\n`;
-  csv += `Điểm Đọc /15,"${cur.hskReading}"\n`;
-  csv += `Điểm Viết /10,"${cur.hskWriting}"\n`;
-  csv += `Số câu đúng,"${cur.correctCount}/${cur.totalQuestions}"\n`;
-
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `Ket_Qua_${cur.examCode}_${cur.studentName.replace(/\s+/g, "_")}.csv`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function copyAuthCode() {
-  let history = [];
-  try {
-    history = JSON.parse(localStorage.getItem("hsk3_exam_history") || "[]");
-  } catch(e) {}
-  if (!history.length) return;
-  const cur = history[0];
-  const payload = {
-    name: cur.studentName,
-    class: cur.studentClass,
-    exam: cur.examCode,
-    attempt: cur.attemptCount,
-    score: cur.score10,
-    hskTotal: cur.hskTotal,
-    date: cur.submitTime,
-    hash: btoa(cur.studentName + cur.score10 + cur.submitTime).slice(0, 8)
-  };
-  const code = btoa(JSON.stringify(payload));
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(code).then(() => {
-      alert("Đã sao chép Mã xác thực kết quả vào clipboard! Học sinh có thể gửi mã này cho giáo viên:\n\n" + code);
-    }).catch(() => {
-      prompt("Mã xác thực của bạn:", code);
-    });
-  } else {
-    prompt("Mã xác thực của bạn:", code);
-  }
-}
-
 </script>
-
-<!-- Result Modal (Chuẩn HSK 3) -->
-<div class="modal-backdrop hidden" id="resultModal" style="display:none;">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h2 id="resultModalTitle">Kết Quả Làm Bài Bài Tập HSK 3</h2>
-      <p id="resultModalSubtitle">Thí sinh: Thí sinh • Lớp: Tự do • Lần làm thứ 1</p>
-    </div>
-    <div class="modal-body">
-      <div class="score-hero">
-        <div class="score-circle">
-          <div class="score-num" id="score10Display">0.0</div>
-          <div class="score-label">Thang điểm 10</div>
-        </div>
-        <div class="result-badge" id="resultStatusBadge">ĐẠT CHUẨN HSK 3</div>
-        <p style="margin-top: 8px; font-size: 0.95rem;" id="hskScoreBreakdownText">
-          Điểm quy đổi HSK: 0 / 300 (Yêu cầu đỗ: ≥ 180 điểm)
-        </p>
-      </div>
-
-      <div class="score-breakdown-grid">
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statListening">0/20</div>
-          <div class="score-stat-lbl">Phần Nghe (听力)</div>
-        </div>
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statReading">0/15</div>
-          <div class="score-stat-lbl">Phần Đọc (阅读)</div>
-        </div>
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statWriting">0/10</div>
-          <div class="score-stat-lbl">Phần Viết (书写)</div>
-        </div>
-      </div>
-
-      <div class="sync-status-box success" id="syncStatusBox">
-        <span>🟢 Kết quả đã được tự động lưu cục bộ và gửi về hệ thống quản lý của giáo viên (Firebase Realtime Database).</span>
-      </div>
-
-      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
-        <button class="btn-secondary" onclick="exportResultCSV()">📥 Xuất phiếu điểm CSV</button>
-        <button class="btn-secondary" onclick="copyAuthCode()">📋 Sao chép Mã xác thực</button>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-secondary" onclick="closeResultModalToReview()">Xem Chi Tiết Đáp Án</button>
-      <button class="btn-gold" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Xoay đáp án mới)</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>

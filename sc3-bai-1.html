@@ -608,365 +608,25 @@ body.review-mode .explanation-box {
   font-size: 15px;
   cursor: pointer;
 }
-
-
-/* --- OPTIMIZED HEADER (< 6% HEIGHT, MATCHING HSK3 EXAM DE-2) --- */
-:root {
-  --primary: #176B63;
-  --primary-dark: #0D423D;
-  --primary-light: #208b81;
-  --primary-subtle: #e6f3f1;
-  --gold: #D9B86C;
-  --gold-dark: #b59447;
-  --gold-light: #faecd0;
-  --bg-cream: #F7F3E8;
-  --card-bg: #FFFFFF;
-  --text-main: #2D3748;
-  --text-muted: #718096;
-  --border-color: #E2DAC7;
-  --success: #2E7D32;
-  --success-bg: #E8F5E9;
-  --danger: #C62828;
-  --danger-bg: #FFEBEE;
-  --font-chinese: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Noto Sans SC", sans-serif;
-}
-
-.app-header {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  color: #FFFFFF;
-  padding: 0 16px;
-  height: 48px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
-.header-inner {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-.header-left, .header-center, .header-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.btn-home-compact {
-  color: #fff;
-  text-decoration: none;
-  background: rgba(255,255,255,0.18);
-  padding: 4px 10px;
-  border-radius: 14px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.btn-home-compact:hover {
-  background: rgba(255,255,255,0.28);
-}
-.center-logo {
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 6px;
-  object-fit: contain;
-  background: #fff;
-  padding: 1px;
-}
-.exam-title-compact {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #fff;
-  white-space: nowrap;
-}
-.timer-badge {
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(217, 184, 108, 0.4);
-  padding: 3px 10px;
-  border-radius: 14px;
-  font-weight: 700;
-  font-size: 0.92rem;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-}
-.timer-badge .timer-lbl {
-  font-size: 0.78rem;
-  color: var(--gold-light);
-  font-weight: 600;
-}
-.timer-badge.timer-listening {
-  background: rgba(23, 107, 99, 0.4);
-  border-color: rgba(186, 230, 253, 0.5);
-}
-.timer-badge.warning {
-  background: #f59e0b;
-  color: #fff;
-  border-color: #fef08a;
-}
-.timer-badge.danger {
-  background: #ef4444;
-  color: #fff;
-  border-color: #fee2e2;
-  animation: pulse 1s infinite;
-}
-.btn-nav-navigator {
-  background: rgba(255,255,255,0.18);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 5px 12px;
-  border-radius: 16px;
-  font-weight: 700;
-  font-size: 0.82rem;
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: all 0.2s;
-}
-.btn-nav-navigator:hover {
-  background: var(--gold);
-  color: var(--primary-dark);
-  border-color: var(--gold);
-}
-.btn-header-submit {
-  background: var(--gold);
-  color: var(--primary-dark);
-  border: none;
-  font-weight: 800;
-  font-size: 0.88rem;
-  padding: 5px 16px;
-  border-radius: 16px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.btn-header-submit:hover {
-  background: #ecd395;
-  transform: translateY(-1px);
-}
-
-/* --- RESULT MODAL (MATCHING HSK3 EXAM DE-2) --- */
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  z-index: 2000;
-}
-.modal-backdrop.hidden {
-  display: none !important;
-}
-.modal-card {
-  background: #fff;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  animation: modalFade 0.25s ease-out;
-}
-@keyframes modalFade {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.modal-header {
-  padding: 20px 24px;
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  color: #fff;
-  border-radius: 16px 16px 0 0;
-}
-.modal-header h2 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin: 0;
-}
-.modal-header p {
-  font-size: 0.85rem;
-  color: var(--gold-light);
-  margin-top: 4px;
-  margin-bottom: 0;
-}
-.modal-body {
-  padding: 24px;
-}
-.modal-footer {
-  padding: 16px 24px;
-  background: #f8fafc;
-  border-top: 1px solid #e2e8f0;
-  border-radius: 0 0 16px 16px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-}
-.score-hero {
-  text-align: center;
-  padding: 10px 0 20px;
-}
-.score-circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: var(--gold);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px;
-  box-shadow: 0 4px 15px rgba(23,107,99,0.3);
-}
-.score-num {
-  font-size: 2.4rem;
-  font-weight: 900;
-  line-height: 1;
-}
-.score-label {
-  font-size: 0.8rem;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 4px;
-}
-.result-badge {
-  display: inline-block;
-  font-weight: 700;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 1rem;
-}
-.result-badge.pass {
-  background: #e8f5e9;
-  color: #2e7d32;
-  border: 1px solid #a5d6a7;
-}
-.result-badge.fail {
-  background: #ffebee;
-  color: #c62828;
-  border: 1px solid #ef9a9a;
-}
-.score-breakdown-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 18px 0;
-  text-align: center;
-}
-.score-stat-card {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 10px;
-}
-.score-stat-val {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-}
-.score-stat-lbl {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-.btn-primary {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 9px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.btn-primary:hover {
-  background: var(--primary-dark);
-}
-.btn-secondary {
-  background: #f1f5f9;
-  color: var(--text-main);
-  border: 1px solid #cbd5e1;
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-secondary:hover {
-  background: #e2e8f0;
-}
-.btn-gold {
-  background: var(--gold);
-  color: var(--primary-dark);
-  border: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 9px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-gold:hover {
-  background: var(--gold-dark);
-  color: #fff;
-}
-@media (max-width: 768px) {
-  .hide-mobile { display: none !important; }
-  .timer-badge .timer-lbl { display: none !important; }
-  .score-breakdown-grid { grid-template-columns: 1fr; }
-}
-
 </style>
 </head>
 <body>
 
 <!-- Header -->
-<header class="app-header">
-  <div class="header-inner">
-    <div class="header-left">
-      <a href="index.html#WORKBOOK" class="btn-home-compact" title="Quay về danh mục bài tập">
-        <span>⬅</span> <span class="hide-mobile">Cổng Đề</span>
-      </a>
-      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" class="center-logo">
-      <span class="exam-title-compact hide-mobile">Bài Tập HSK 3</span>
-      <span id="studentInfoBadge" class="hide-mobile" style="font-size:0.8rem;color:var(--gold-light);background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:10px;">👤 Thí sinh</span>
-    </div>
-    
-    <div class="header-center">
-      <div class="timer-badge" id="totalTimerBadge" title="Đồng hồ đếm ngược toàn bài">
-        <span class="timer-lbl">Toàn bài:</span> <span id="totalTimerText">45:00</span>
-      </div>
-      <div class="timer-badge timer-listening" id="listeningTimerBadge" title="Đồng hồ đếm ngược phần Nghe">
-        <span class="timer-lbl">🎧 Nghe:</span> <span id="listeningTimerText">15:00</span>
-      </div>
-    </div>
-    
-    <div class="header-right">
-      <button class="btn-nav-navigator" id="btnToggleNav" onclick="toggleExamDrawer()" title="Mở bảng trạng thái làm bài bên lề phải">
-        📋 Bảng câu (<span id="navAnsweredCount">0</span>/45)
-      </button>
-      <button class="btn-header-submit" onclick="confirmSubmitExam()">Nộp Bài</button>
-    </div>
+<header class="top-app-header">
+  <div class="header-left">
+    <a href="index.html#WORKBOOK" class="btn-portal-back">⬅ Bài Tập HSK Chuẩn</a>
+    <img src="images/logoHSKNHATRANG.jpg" alt="Logo" class="school-header-logo" onerror="this.src='logoHSKNHATRANG.jpg';">
+    <span class="exam-title-badge">Bài 1: 周末你有什么打算</span>
+    <span class="student-info-tag" id="studentInfoBadge">👤 Thí sinh</span>
+  </div>
+  <div class="header-center">
+    <div class="timer-badge-item" id="totalTimerBadge">⏳ Tổng: <span id="totalTimerText">45:00</span></div>
+    <div class="timer-badge-item" id="listeningTimerBadge">🎧 Nghe: <span id="listeningTimerText">15:00</span></div>
+  </div>
+  <div class="header-right">
+    <button class="btn-nav-toggle" onclick="toggleExamDrawer()">📋 Bảng câu (<span id="navAnsweredCount">0</span>/45)</button>
+    <button class="btn-submit-exam" onclick="confirmSubmitExam()">Nộp Bài</button>
   </div>
 </header>
 
@@ -1015,20 +675,20 @@ const MASTER_DATA = {
         {
           "id": "img_a",
           "label": "A",
-          "desc": "搬家公司 (货车搬家)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🚚</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">搬家公司 (货车搬家)</text></svg>"
+          "desc": "搬家公司 (打算什么时候搬)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🚚</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">搬家公司 (打算什么时候搬)</text></svg>"
         },
         {
           "id": "img_b",
           "label": "B",
-          "desc": "买新鲜面包 (多买几个)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍞</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">买新鲜面包 (多买几个)</text></svg>"
+          "desc": "买面包 (面包真便宜多买几个)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍞</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">买面包 (面包真便宜多买几个)</text></svg>"
         },
         {
           "id": "img_c",
           "label": "C",
-          "desc": "车上看电子地图 (不会迷路)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🗺️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">车上看电子地图 (不会迷路)</text></svg>"
+          "desc": "开车看地图 (车上有电子地图)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🗺️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">开车看地图 (车上有电子地图)</text></svg>"
         },
         {
           "id": "img_d",
@@ -1039,14 +699,14 @@ const MASTER_DATA = {
         {
           "id": "img_e",
           "label": "E",
-          "desc": "吃牛肉晚饭 (做晚饭吃牛肉)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🥩</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">吃牛肉晚饭 (做晚饭吃牛肉)</text></svg>"
+          "desc": "晚饭吃牛肉 (做晚饭吃点儿牛肉)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🥩</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">晚饭吃牛肉 (做晚饭吃点儿牛肉)</text></svg>"
         },
         {
           "id": "img_f",
           "label": "F",
-          "desc": "看电影 (一次电影都没看过)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🎬</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">看电影 (一次电影都没看过)</text></svg>"
+          "desc": "看电影不高兴 (没跟我一起看过)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🎬</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">看电影不高兴 (没跟我一起看过)</text></svg>"
         }
       ],
       "questions": [
@@ -1055,15 +715,15 @@ const MASTER_DATA = {
           "num": 1,
           "dialogue": "男：你怎么又不高兴了？\n女：你工作一直忙，一次电影都没跟我一起看过。",
           "correctId": "img_f",
-          "timestamp": 40,
-          "explanation": "一次电影都没看 -> F"
+          "timestamp": 38,
+          "explanation": "看电影不高兴 -> F"
         },
         {
           "id": "L2",
           "num": 2,
           "dialogue": "男：喂，您好，请问是搬家公司吗？我们要搬家。\n女：请问您打算什么时候搬？",
           "correctId": "img_a",
-          "timestamp": 66,
+          "timestamp": 64,
           "explanation": "搬家公司 -> A"
         },
         {
@@ -1071,23 +731,23 @@ const MASTER_DATA = {
           "num": 3,
           "dialogue": "男：爸妈，今天我给你们做晚饭，你们打算吃什么？\n女：真的啊？那我们吃点儿牛肉吧。",
           "correctId": "img_e",
-          "timestamp": 91,
-          "explanation": "晚饭吃点儿牛肉 -> E"
+          "timestamp": 96,
+          "explanation": "做晚饭吃牛肉 -> E"
         },
         {
           "id": "L4",
           "num": 4,
           "dialogue": "男：今天的面包真便宜。\n女：是啊，那我们多买几个吧！",
           "correctId": "img_b",
-          "timestamp": 115,
-          "explanation": "买便宜面包 -> B"
+          "timestamp": 128,
+          "explanation": "买面包 -> B"
         },
         {
           "id": "L5",
           "num": 5,
           "dialogue": "女：这是哪儿啊？你开错了吧？我们怎么回家啊？\n男：别着急，车上有电子地图。",
           "correctId": "img_c",
-          "timestamp": 137,
+          "timestamp": 150,
           "explanation": "车上有电子地图 -> C"
         }
       ]
@@ -1100,8 +760,8 @@ const MASTER_DATA = {
           "passage": "这个电影一点儿意思也没有，我们看书吧。",
           "statement": "他不喜欢这个电影。",
           "correct": true,
-          "timestamp": 212,
-          "explanation": "电影一点儿意思也没有 -> 不喜欢 (Đúng)"
+          "timestamp": 228,
+          "explanation": "觉得没意思想看书 -> 不喜欢 (Đúng)"
         },
         {
           "id": "L7",
@@ -1109,8 +769,8 @@ const MASTER_DATA = {
           "passage": "你怎么还没准备好？快点儿吧，没时间了。",
           "statement": "他一点儿也不着急。",
           "correct": false,
-          "timestamp": 255,
-          "explanation": "快点儿吧没时间了 -> 很着急 (Sai)"
+          "timestamp": 260,
+          "explanation": "催促快点没时间了，说明很着急 (Sai)"
         },
         {
           "id": "L8",
@@ -1118,8 +778,8 @@ const MASTER_DATA = {
           "passage": "明天的考试我都复习好了，没问题。",
           "statement": "他考试考得很好。",
           "correct": false,
-          "timestamp": 298,
-          "explanation": "明天考试复习好了，还没考试呢 (Sai)"
+          "timestamp": 305,
+          "explanation": "明天才考，现在只是复习好，还没考 (Sai)"
         },
         {
           "id": "L9",
@@ -1127,8 +787,8 @@ const MASTER_DATA = {
           "passage": "去南方旅游？去北方旅游？去哪儿旅游好呢？",
           "statement": "他还没想好去哪儿旅游。",
           "correct": true,
-          "timestamp": 342,
-          "explanation": "去哪儿好呢 -> 还没想好 (Đúng)"
+          "timestamp": 348,
+          "explanation": "犹豫不决说明还没想好 (Đúng)"
         },
         {
           "id": "L10",
@@ -1136,8 +796,8 @@ const MASTER_DATA = {
           "passage": "家里一个鸡蛋也没有，明天早上吃什么啊？",
           "statement": "家里还有很多鸡蛋。",
           "correct": false,
-          "timestamp": 386,
-          "explanation": "一个鸡蛋也没有 -> Sai"
+          "timestamp": 395,
+          "explanation": "一个鸡蛋也没有 (Sai)"
         }
       ]
     },
@@ -1150,20 +810,20 @@ const MASTER_DATA = {
           "options": [
             {
               "id": "a",
-              "text": "送朋友"
+              "text": "送客人"
             },
             {
               "id": "b",
-              "text": "买衣服"
+              "text": "去买衣服"
             },
             {
               "id": "c",
-              "text": "去外面散步"
+              "text": "看病"
             }
           ],
           "correctId": "a",
-          "timestamp": 460,
-          "explanation": "送送你们 -> 送朋友 (A)"
+          "timestamp": 472,
+          "explanation": "穿好衣服送送你们 -> 送客人 (A)"
         },
         {
           "id": "L12",
@@ -1176,7 +836,7 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "去过很多次南方"
+              "text": "去过南方很多次"
             },
             {
               "id": "c",
@@ -1184,7 +844,7 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "c",
-          "timestamp": 508,
+          "timestamp": 535,
           "explanation": "一次都没去过 -> C"
         },
         {
@@ -1202,12 +862,12 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "修电脑"
+              "text": "去超市"
             }
           ],
           "correctId": "b",
-          "timestamp": 562,
-          "explanation": "这么多东西一个人搬 -> 帮她搬东西 (B)"
+          "timestamp": 605,
+          "explanation": "快来帮我搬东西 -> B"
         },
         {
           "id": "L14",
@@ -1224,11 +884,11 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "没有钱"
+              "text": "没带钱"
             }
           ],
           "correctId": "b",
-          "timestamp": 615,
+          "timestamp": 665,
           "explanation": "一个好看的电影都没有 -> B"
         },
         {
@@ -1238,20 +898,20 @@ const MASTER_DATA = {
           "options": [
             {
               "id": "a",
-              "text": "他带了地图"
+              "text": "他有地图"
             },
             {
               "id": "b",
-              "text": "他迷路了"
+              "text": "他不知道路"
             },
             {
               "id": "c",
-              "text": "他对这里很熟悉"
+              "text": "他对这儿很熟悉认识路"
             }
           ],
           "correctId": "c",
-          "timestamp": 670,
-          "explanation": "我就是地图 -> 对这里很熟悉 (C)"
+          "timestamp": 725,
+          "explanation": "我就是地图说明熟悉路 -> C"
         }
       ]
     },
@@ -1276,7 +936,7 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "b",
-          "timestamp": 752,
+          "timestamp": 815,
           "explanation": "搬到了医院北边 -> B"
         },
         {
@@ -1286,20 +946,20 @@ const MASTER_DATA = {
           "options": [
             {
               "id": "a",
-              "text": "小白"
-            },
-            {
-              "id": "b",
               "text": "白雪"
             },
             {
+              "id": "b",
+              "text": "小周"
+            },
+            {
               "id": "c",
-              "text": "还没起名字"
+              "text": "还没起好名字"
             }
           ],
           "correctId": "c",
-          "timestamp": 828,
-          "explanation": "还没想好叫它什么 -> 还没起名字 (C)"
+          "timestamp": 885,
+          "explanation": "还没想好叫它什么 -> C"
         },
         {
           "id": "L18",
@@ -1308,7 +968,7 @@ const MASTER_DATA = {
           "options": [
             {
               "id": "a",
-              "text": "一次都没去过那家饭馆"
+              "text": "没去过那家饭馆"
             },
             {
               "id": "b",
@@ -1316,11 +976,11 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "经常去那家饭馆"
+              "text": "天天在那儿吃"
             }
           ],
           "correctId": "a",
-          "timestamp": 902,
+          "timestamp": 955,
           "explanation": "一次都没去过 -> A"
         },
         {
@@ -1334,16 +994,16 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "不想考试"
+              "text": "不想复习"
             },
             {
               "id": "c",
-              "text": "还没复习考试"
+              "text": "明天要参加考试"
             }
           ],
           "correctId": "c",
-          "timestamp": 975,
-          "explanation": "一点儿都没复习 -> C"
+          "timestamp": 1025,
+          "explanation": "明天就要考试了 -> C"
         },
         {
           "id": "L20",
@@ -1352,7 +1012,7 @@ const MASTER_DATA = {
           "options": [
             {
               "id": "a",
-              "text": "一本都没读过那些书"
+              "text": "买的书一本都没读过"
             },
             {
               "id": "b",
@@ -1360,11 +1020,11 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "不想买书"
+              "text": "从不买书"
             }
           ],
           "correctId": "a",
-          "timestamp": 1050,
+          "timestamp": 1098,
           "explanation": "一本都没读过 -> A"
         }
       ]
@@ -1380,19 +1040,19 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "我和朋友打算去爬山。"
+          "text": "下个月我们去南方旅游吧。"
         },
         {
           "id": "b",
-          "text": "一个好电影都没有。"
+          "text": "带上地图吧，以防迷路。"
         },
         {
           "id": "c",
-          "text": "我还没想好去哪儿呢。"
+          "text": "周末你有什么打算？"
         },
         {
           "id": "d",
-          "text": "今天下大雪，外边冷极了。"
+          "text": "我已经复习好明天的功课了。"
         },
         {
           "id": "e",
@@ -1400,44 +1060,44 @@ const MASTER_DATA = {
         },
         {
           "id": "f",
-          "text": "我们一起去吃饭吧。"
+          "text": "我们一起去看电影吧。"
         }
       ],
       "questions": [
         {
           "id": "R21",
           "num": 21,
-          "prompt": "周末你有什么打算？",
+          "prompt": "最近有一部新上映的电影非常精彩，",
           "correctId": "f",
-          "explanation": "一起去吃饭 (F)"
+          "explanation": "看电影 (F)"
         },
         {
           "id": "R22",
           "num": 22,
-          "prompt": "去南方旅游还是去北方？",
+          "prompt": "周六周日你准备做什么？",
           "correctId": "c",
-          "explanation": "还没想好去哪儿 (C)"
+          "explanation": "周末打算 (C)"
         },
         {
           "id": "R23",
           "num": 23,
-          "prompt": "我们去看电影怎么样？",
-          "correctId": "b",
-          "explanation": "一个好电影都没有 (B)"
+          "prompt": "明天的考试准备得怎么样了？",
+          "correctId": "d",
+          "explanation": "复习好了功课 (D)"
         },
         {
           "id": "R24",
           "num": 24,
-          "prompt": "明天怎么去公园？",
-          "correctId": "e",
-          "explanation": "先坐公交再换地铁 (E)"
+          "prompt": "天气越来越冷了，",
+          "correctId": "a",
+          "explanation": "去南方旅游 (A)"
         },
         {
           "id": "R25",
           "num": 25,
-          "prompt": "周六天气很好，",
-          "correctId": "a",
-          "explanation": "打算去爬山 (A)"
+          "prompt": "去陌生的地方旅行，",
+          "correctId": "b",
+          "explanation": "带上地图防迷路 (B)"
         }
       ]
     },
@@ -1450,23 +1110,23 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "打算 (dǎsuàn)"
+          "text": "打算 (dǎsuan)"
         },
         {
           "id": "b",
-          "text": "周末 (zhōumò)"
-        },
-        {
-          "id": "c",
           "text": "一直 (yìzhí)"
         },
         {
+          "id": "c",
+          "text": "着急 (zháojí)"
+        },
+        {
           "id": "d",
-          "text": "游戏 (yóuxì)"
+          "text": "带 (dài)"
         },
         {
           "id": "e",
-          "text": "带 (dài)"
+          "text": "复习 (fùxí)"
         },
         {
           "id": "f",
@@ -1477,37 +1137,37 @@ const MASTER_DATA = {
         {
           "id": "R26",
           "num": 26,
-          "prompt": "这个星期工作太忙，（ ）我要好好休息。",
-          "correctId": "b",
-          "explanation": "周末 (B)"
+          "prompt": "这个周末你有什么（ ）？",
+          "correctId": "a",
+          "explanation": "有什么打算 (A)"
         },
         {
           "id": "R27",
           "num": 27,
-          "prompt": "下个星期我们打算（ ）家。",
-          "correctId": "f",
-          "explanation": "搬家 (F)"
+          "prompt": "出门旅行前别忘了（ ）上身份证和钱包。",
+          "correctId": "d",
+          "explanation": "带上 (D)"
         },
         {
           "id": "R28",
           "num": 28,
-          "prompt": "你明天有什么（ ）吗？",
-          "correctId": "a",
-          "explanation": "打算 (A)"
+          "prompt": "下个星期我们就要（ ）到新家去了。",
+          "correctId": "f",
+          "explanation": "搬家 (F)"
         },
         {
           "id": "R29",
           "num": 29,
-          "prompt": "弟弟放了学就（ ）玩电脑游戏。",
+          "prompt": "遇到事情不要（ ），我们一起想办法。",
           "correctId": "c",
-          "explanation": "一直在玩 (C)"
+          "explanation": "不要着急 (C)"
         },
         {
           "id": "R30",
           "num": 30,
-          "prompt": "出门的时候别忘了（ ）雨伞。",
-          "correctId": "e",
-          "explanation": "带雨伞 (E)"
+          "prompt": "他（ ）在努力学习汉语，进步很大。",
+          "correctId": "b",
+          "explanation": "一直在努力 (B)"
         }
       ]
     },
@@ -1516,112 +1176,112 @@ const MASTER_DATA = {
         {
           "id": "R31",
           "num": 31,
-          "passage": "很多人一到周末就喜欢睡懒觉，甚至睡到中午才起床。医生说，周末也应该保持平时规律的生活作息，适当运动、多出门走走，这样新的一周才会更有精力。",
-          "question": "关于周末，医生的建议是：",
+          "passage": "很多人在周五晚上就开始计划周末的活动。有的人喜欢约上三五好友聚餐、看电影，有的人则更愿意待在家里看书休息。不管怎样，能让自己放松身心就是最好的周末。",
+          "question": "这段话主要讲：",
           "options": [
             {
               "id": "a",
-              "text": "多睡懒觉"
+              "text": "每个人都有不同的周末放松方式"
             },
             {
               "id": "b",
-              "text": "保持规律作息适当运动"
+              "text": "周末必须出门看电影"
             },
             {
               "id": "c",
-              "text": "整天待在家里"
+              "text": "待在家里很无聊"
             }
           ],
-          "correctId": "b",
-          "explanation": "保持规律作息适当运动 (B)"
+          "correctId": "a",
+          "explanation": "每个人不同的放松方式 (A)"
         },
         {
           "id": "R32",
           "num": 32,
-          "passage": "小王喜欢买书，只要看到感兴趣的书就买回家，书架上摆得满满的。但是他工作太忙，买回来的很多书连一页都没翻过。",
-          "question": "关于小王，可以知道：",
+          "passage": "小张工作非常认真，平时总是加班到很晚，几乎没有时间陪家人。这个周末他推掉了所有工作，专门带妻子和孩子去郊外公园野餐，享受难得的家庭时光。",
+          "question": "小张这个周末：",
           "options": [
             {
               "id": "a",
-              "text": "读书速度很快"
+              "text": "在公司加班"
             },
             {
               "id": "b",
-              "text": "买了书但常常没时间读"
+              "text": "陪家人去公园野餐"
             },
             {
               "id": "c",
-              "text": "不喜欢买书"
+              "text": "去南方出差"
             }
           ],
           "correctId": "b",
-          "explanation": "买了书没时间读 (B)"
+          "explanation": "陪家人去野餐 (B)"
         },
         {
           "id": "R33",
           "num": 33,
-          "passage": "搬家是一件既麻烦又让人期待的事情。搬到一个新的环境，周围有新的超市、新的邻居，生活也会带来很多全新的感受。",
-          "question": "这段话主要谈的是：",
+          "passage": "很多学生在考试前会感到紧张焦虑，其实只要平时认真听讲、按时完成作业，考前做好系统复习，考试时就能从容应对，取得理想的成绩。",
+          "question": "怎样才能从容应对考试？",
           "options": [
             {
               "id": "a",
-              "text": "搬家带来的体验"
+              "text": "平时认真学且考前做好复习"
             },
             {
               "id": "b",
-              "text": "买新房子有多贵"
+              "text": "考前不睡觉"
             },
             {
               "id": "c",
-              "text": "搬家公司的服务"
+              "text": "考试时靠运气"
             }
           ],
           "correctId": "a",
-          "explanation": "搬家的体验与感受 (A)"
+          "explanation": "平时认真且考前复习 (A)"
         },
         {
           "id": "R34",
           "num": 34,
-          "passage": "学习一门外语，最重要的不是记住多少语法规则，而是敢于开口表达。只要坚持每天练习，多听多说，汉语水平就会慢慢提高。",
-          "question": "学好外语的关键是：",
+          "passage": "随着智能手机的普及，出门带纸质地图的人越来越少了。电子地图不仅能准确定位，还能实时规划最佳路线，提醒道路堵车情况，极大地方便了人们的出行。",
+          "question": "关于电子地图，可以知道：",
           "options": [
             {
               "id": "a",
-              "text": "背所有语法"
+              "text": "使用起来很不方便"
             },
             {
               "id": "b",
-              "text": "只看不说"
+              "text": "没有纸质地图好"
             },
             {
               "id": "c",
-              "text": "敢于开口坚持练习"
+              "text": "能实时规划路线方便出行"
             }
           ],
           "correctId": "c",
-          "explanation": "敢于开口坚持练习 (C)"
+          "explanation": "实时规划方便出行 (C)"
         },
         {
           "id": "R35",
           "num": 35,
-          "passage": "现在电子地图非常普及，出门旅游前只要在手机里查好路线，去陌生城市也完全不用担心迷路，大大方便了人们的生活。",
-          "question": "电子地图的主要作用是：",
+          "passage": "面包和牛奶是很多上班族最常选择的早餐，不仅制作快捷方便，而且营养丰富。专家建议早餐再搭配一个鸡蛋或者一份新鲜水果，营养会更加全面。",
+          "question": "健康的早餐最好搭配：",
           "options": [
             {
               "id": "a",
-              "text": "让手机更便宜"
+              "text": "浓咖啡和啤酒"
             },
             {
               "id": "b",
-              "text": "方便出行防止迷路"
+              "text": "鸡蛋或新鲜水果"
             },
             {
               "id": "c",
-              "text": "可以听音乐"
+              "text": "只吃面包"
             }
           ],
           "correctId": "b",
-          "explanation": "方便出行防止迷路 (B)"
+          "explanation": "搭配鸡蛋水果 (B)"
         }
       ]
     }
@@ -1647,7 +1307,8 @@ const MASTER_DATA = {
           "words": [
             "我",
             "还没想好",
-            "吃什么"
+            "吃",
+            "什么"
           ],
           "correct": "我还没想好吃什么。",
           "explanation": "我还没想好吃什么。"
@@ -1704,34 +1365,34 @@ const MASTER_DATA = {
         {
           "id": "W42",
           "num": 42,
-          "before": "中国（ ",
+          "before": "北京在中国的（ ",
           "pinyin": "běi",
-          "after": " ）方的冬天非常冷。",
+          "after": " ）方。",
           "correct": "北",
           "explanation": "北方 -> 北"
         },
         {
           "id": "W43",
           "num": 43,
-          "before": "这个周（ ",
+          "before": "周（ ",
           "pinyin": "mò",
-          "after": " ）你有什么打算？",
+          "after": " ）你打算去哪儿玩儿？",
           "correct": "末",
           "explanation": "周末 -> 末"
         },
         {
           "id": "W44",
           "num": 44,
-          "before": "我想（ ",
+          "before": "我打算（ ",
           "pinyin": "gēn",
-          "after": " ）你一起去图书馆。",
+          "after": " ）朋友一起去旅游。",
           "correct": "跟",
-          "explanation": "跟我 -> 跟"
+          "explanation": "跟朋友 -> 跟"
         },
         {
           "id": "W45",
           "num": 45,
-          "before": "我们打算下个月（ ",
+          "before": "他们明天要（ ",
           "pinyin": "bān",
           "after": " ）家。",
           "correct": "搬",
@@ -2622,47 +2283,6 @@ function submitExam() {
     detailedSummary: detailedSummary
   };
 
-  // Update Result Modal UI
-  const score10El = document.getElementById("score10Display");
-  if (score10El) score10El.textContent = finalScore10;
-
-  const subtitleEl = document.getElementById("resultModalSubtitle");
-  if (subtitleEl) subtitleEl.textContent = `Thí sinh: ${studentName} (${studentClass}) • Lần làm thứ ${attemptCount} • Thời gian: ${durationFormatted}`;
-
-  const badgeEl = document.getElementById("resultStatusBadge");
-  if (badgeEl) {
-    if (isPassed) {
-      badgeEl.className = "result-badge pass";
-      badgeEl.textContent = `ĐẠT CHUẨN HSK 3 (${hskTotal}/300 Điểm)`;
-    } else {
-      badgeEl.className = "result-badge fail";
-      badgeEl.textContent = `CHƯA ĐẠT HSK 3 (${hskTotal}/300 Điểm - Cần ≥ 180)`;
-    }
-  }
-
-  const breakdownEl = document.getElementById("hskScoreBreakdownText");
-  if (breakdownEl) {
-    const hskL = Math.round((correctL / 20) * 100);
-    const hskR = Math.round((correctR / 15) * 100);
-    const hskW = Math.round((correctW / 10) * 100);
-    breakdownEl.innerHTML = `Nghe: <strong>${hskL}</strong>/100 | Đọc: <strong>${hskR}</strong>/100 | Viết: <strong>${hskW}</strong>/100 • Tổng: <strong>${hskTotal}</strong>/300`;
-  }
-
-  const statLEl = document.getElementById("statListening");
-  if (statLEl) statLEl.textContent = `${correctL}/20`;
-  const statREl = document.getElementById("statReading");
-  if (statREl) statREl.textContent = `${correctR}/15`;
-  const statWEl = document.getElementById("statWriting");
-  if (statWEl) statWEl.textContent = `${correctW}/10`;
-
-  const resModal = document.getElementById("resultModal");
-  if (resModal) {
-    resModal.style.display = "flex";
-    resModal.classList.remove("hidden");
-  }
-
-
-
   // 1. Post to submissions.json (Directly read by Teacher Dashboard teacher.html)
   fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/submissions.json", {
     method: "POST",
@@ -2739,155 +2359,6 @@ window.addEventListener("DOMContentLoaded", () => {
   randomizeExamData();
   renderExam();
 });
-
-
-function closeResultModalToReview() {
-  const modal = document.getElementById("resultModal");
-  if (modal) {
-    modal.style.display = "none";
-    modal.classList.add("hidden");
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function retryExamWithShuffle() {
-  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
-  localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
-  isExamSubmitted = false;
-  userAnswers = {};
-  wordOrderSelections = {};
-  totalSeconds = 45 * 60;
-  listeningSeconds = 15 * 60;
-  document.body.classList.remove("review-mode");
-  
-  const modal = document.getElementById("resultModal");
-  if (modal) {
-    modal.style.display = "none";
-    modal.classList.add("hidden");
-  }
-  randomizeExamData();
-  renderExam();
-  updateProgress();
-  startTimers();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function exportResultCSV() {
-  let history = [];
-  try {
-    history = JSON.parse(localStorage.getItem("hsk3_exam_history") || "[]");
-  } catch(e) {}
-  if (!history.length) {
-    alert("Chưa có kết quả để xuất!");
-    return;
-  }
-  const cur = history[0];
-  let csv = "\uFEFF";
-  csv += "Mục,Giá trị\n";
-  csv += `Bài tập,"${cur.examTitle} (${cur.examCode})"\n`;
-  csv += `Họ và tên,"${cur.studentName}"\n`;
-  csv += `Lớp,"${cur.studentClass}"\n`;
-  csv += `Lần làm bài,"#${cur.attemptCount}"\n`;
-  csv += `Thời gian nộp,"${new Date(cur.submitTime).toLocaleString('vi-VN')}"\n`;
-  csv += `Thời lượng làm bài,"${cur.durationFormatted}"\n`;
-  csv += `Điểm số /10,"${cur.score10}"\n`;
-  csv += `Tổng điểm HSK3 /300,"${cur.hskTotal}"\n`;
-  csv += `Kết quả,"${cur.isPassed ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n`;
-  csv += `Điểm Nghe /20,"${cur.hskListening}"\n`;
-  csv += `Điểm Đọc /15,"${cur.hskReading}"\n`;
-  csv += `Điểm Viết /10,"${cur.hskWriting}"\n`;
-  csv += `Số câu đúng,"${cur.correctCount}/${cur.totalQuestions}"\n`;
-
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `Ket_Qua_${cur.examCode}_${cur.studentName.replace(/\s+/g, "_")}.csv`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function copyAuthCode() {
-  let history = [];
-  try {
-    history = JSON.parse(localStorage.getItem("hsk3_exam_history") || "[]");
-  } catch(e) {}
-  if (!history.length) return;
-  const cur = history[0];
-  const payload = {
-    name: cur.studentName,
-    class: cur.studentClass,
-    exam: cur.examCode,
-    attempt: cur.attemptCount,
-    score: cur.score10,
-    hskTotal: cur.hskTotal,
-    date: cur.submitTime,
-    hash: btoa(cur.studentName + cur.score10 + cur.submitTime).slice(0, 8)
-  };
-  const code = btoa(JSON.stringify(payload));
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(code).then(() => {
-      alert("Đã sao chép Mã xác thực kết quả vào clipboard! Học sinh có thể gửi mã này cho giáo viên:\n\n" + code);
-    }).catch(() => {
-      prompt("Mã xác thực của bạn:", code);
-    });
-  } else {
-    prompt("Mã xác thực của bạn:", code);
-  }
-}
-
 </script>
-
-<!-- Result Modal (Chuẩn HSK 3) -->
-<div class="modal-backdrop hidden" id="resultModal" style="display:none;">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h2 id="resultModalTitle">Kết Quả Làm Bài Bài Tập HSK 3</h2>
-      <p id="resultModalSubtitle">Thí sinh: Thí sinh • Lớp: Tự do • Lần làm thứ 1</p>
-    </div>
-    <div class="modal-body">
-      <div class="score-hero">
-        <div class="score-circle">
-          <div class="score-num" id="score10Display">0.0</div>
-          <div class="score-label">Thang điểm 10</div>
-        </div>
-        <div class="result-badge" id="resultStatusBadge">ĐẠT CHUẨN HSK 3</div>
-        <p style="margin-top: 8px; font-size: 0.95rem;" id="hskScoreBreakdownText">
-          Điểm quy đổi HSK: 0 / 300 (Yêu cầu đỗ: ≥ 180 điểm)
-        </p>
-      </div>
-
-      <div class="score-breakdown-grid">
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statListening">0/20</div>
-          <div class="score-stat-lbl">Phần Nghe (听力)</div>
-        </div>
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statReading">0/15</div>
-          <div class="score-stat-lbl">Phần Đọc (阅读)</div>
-        </div>
-        <div class="score-stat-card">
-          <div class="score-stat-val" id="statWriting">0/10</div>
-          <div class="score-stat-lbl">Phần Viết (书写)</div>
-        </div>
-      </div>
-
-      <div class="sync-status-box success" id="syncStatusBox">
-        <span>🟢 Kết quả đã được tự động lưu cục bộ và gửi về hệ thống quản lý của giáo viên (Firebase Realtime Database).</span>
-      </div>
-
-      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
-        <button class="btn-secondary" onclick="exportResultCSV()">📥 Xuất phiếu điểm CSV</button>
-        <button class="btn-secondary" onclick="copyAuthCode()">📋 Sao chép Mã xác thực</button>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-secondary" onclick="closeResultModalToReview()">Xem Chi Tiết Đáp Án</button>
-      <button class="btn-gold" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Xoay đáp án mới)</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
