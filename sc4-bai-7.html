@@ -926,6 +926,31 @@ aside.persistent-drawer.open {
     max-width: 240px;
   }
 }
+
+.example-box {
+  background: #f8fafc;
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 10px 0 20px 0;
+  font-size: 0.92rem;
+  color: #334155;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.example-title {
+  display: block;
+  font-weight: 700;
+  color: #1d4ed8;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.example-answer {
+  color: #15803d;
+  font-weight: 700;
+}
+
 </style>
 </head>
 <body>
@@ -2677,6 +2702,13 @@ function renderExam() {
   wp2.innerHTML = `
     <div class="part-header" style="margin-top:20px;">
       <strong>第二部分 (Phần 2):</strong> Câu 49-50. Quan sát tranh và dùng từ cho sẵn để viết thành một câu hoàn chỉnh (chỉ cần đúng cấu trúc và chứa từ gợi ý).
+    </div>
+    <div class="example-box">
+      <span class="example-title">Ví dụ mẫu (例如) - Không tính điểm</span>
+      <div class="chinese">
+        例如：词语：<strong>乒乓球</strong> (pīngpāngqiú)<br>
+        Câu mẫu: <span class="example-answer">她很喜欢打乒乓球。</span>
+      </div>
     </div>
   `;
   activeData.writing.part2.questions.forEach(q => {

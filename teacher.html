@@ -711,7 +711,7 @@ table.data-table th, table.data-table td {
         🗑️ Xóa hàng loạt (<span id="selectedCount">0</span>)
       </button>
       <button class="btn-pill btn-pill-gold" onclick="exportExcelCSV()">📥 Xuất Excel (CSV)</button>
-      <button class="btn-pill btn-pill-outline" onclick="logoutTeacher()" style="border-color:#fca5a5;color:#fee2e2;">Đăng Xuất</button>
+      <button class="btn-pill btn-pill-outline" onclick="teacherLogout()" style="border-color:#fca5a5;color:#fee2e2;">Đăng Xuất</button>
     </div>
   </div>
 </header>
@@ -1030,6 +1030,16 @@ function handleTeacherLogin() {
     return;
   }
 
+  // Check locally registered teachers first
+  try {
+    const localTeachers = JSON.parse(localStorage.getItem("hsk_registered_teachers") || "[]");
+    const foundLocal = localTeachers.find(t => (t.email === u || t.username === u) && t.password === p);
+    if (foundLocal) {
+      setTeacherLoggedIn(foundLocal.name || "Giáo viên", foundLocal.email);
+      return;
+    }
+  } catch(e) {}
+
   // Check against Firebase teachers list
   fetch(HARDCODED_FIREBASE_URL + "teachers.json")
     .then(r => r.json())
@@ -1059,40 +1069,36 @@ function handleTeacherLogin() {
 }
 
 function handleTeacherRegister() {
-  const name = document.getElementById("regName").value.trim();
-  const email = document.getElementById("regEmail").value.trim();
-  const pass = document.getElementById("regPass").value.trim();
-  const key = document.getElementById("regSecretKey").value.trim();
+  const name = (document.getElementById("regName").value || "").trim() || "Giáo viên";
+  const email = (document.getElementById("regEmail").value || "").trim();
+  const pass = (document.getElementById("regPass").value || "").trim();
+  const key = (document.getElementById("regSecretKey").value || "").trim();
 
-  if (!name || !email || !pass || !key) {
-    alert("Vui lòng điền đầy đủ các thông tin đăng ký!");
+  if (!email || !pass) {
+    alert("Vui lòng nhập tài khoản/email và mật khẩu!");
     return;
   }
-  if (key !== TEACHER_SECRET_KEY && key !== "HSK32026") {
-    alert("Mã kích hoạt giáo viên không đúng! Vui lòng liên hệ trung tâm.");
-    return;
-  }
-  if (pass.length < 6) {
-    alert("Mật khẩu phải có tối thiểu 6 ký tự!");
+  if (key !== "HSKTEACHER2026") {
+    alert("Mã bảo mật đăng ký tài khoản mới không đúng! Mặc định là HSKTEACHER2026.");
     return;
   }
 
-  const newTeacher = { name, email, password: pass, createdAt: new Date().toISOString() };
+  // Save to localStorage for instant reliable login
+  try {
+    const localTeachers = JSON.parse(localStorage.getItem("hsk_registered_teachers") || "[]");
+    localTeachers.push({ name: name, email: email, username: email, password: pass });
+    localStorage.setItem("hsk_registered_teachers", JSON.stringify(localTeachers));
+  } catch(e) {}
+
+  const newTeacher = { name, email, username: email, password: pass, createdAt: new Date().toISOString() };
   fetch(HARDCODED_FIREBASE_URL + "teachers.json", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newTeacher)
-  })
-  .then(() => {
-    alert("Đăng ký tài khoản giáo viên thành công! Bạn có thể đăng nhập ngay bây giờ.");
-    switchAuthTab('login');
-    document.getElementById("loginUser").value = email;
-    document.getElementById("loginPass").value = pass;
-  })
-  .catch(() => {
-    alert("Đăng ký tài khoản cục bộ thành công!");
-    setTeacherLoggedIn(name, email);
-  });
+  }).catch(e => console.warn(e));
+
+  alert("Đăng ký tài khoản giáo viên thành công! Đang tự động đăng nhập...");
+  setTeacherLoggedIn(name, email);
 }
 
 function setTeacherLoggedIn(name, email) {
@@ -1108,6 +1114,8 @@ function teacherLogout() {
     checkAuthStatus();
   }
 }
+window.teacherLogout = teacherLogout;
+window.logoutTeacher = teacherLogout;
 
 /* --- DASHBOARD INIT & SYNC --- */
 function initDashboard() {
