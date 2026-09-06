@@ -1333,6 +1333,8 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
   100% { background-color: transparent; }
 }
 
+
+.image-desc { display: none !important; }
 </style>
 </head>
 <body>
@@ -1432,7 +1434,7 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 <div class="modal-backdrop" id="welcomeModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h2>Chào mừng đến với Kỳ thi HSK 3 - Đề 2</h2>
+      <h2>Chào mừng đến với Kỳ thi HSK 3 - Đề 01</h2>
       <p>Vui lòng điền thông tin để bắt đầu tính giờ làm bài và ghi nhận kết quả</p>
     </div>
     <div class="modal-body">
@@ -3022,6 +3024,27 @@ function randomizeExamData() {
 }
 
 /* --- RENDER ENGINE --- */
+function cleanAndFormatExplanation(origExp, newLetter, correctText) {
+  if (!origExp && !newLetter) return '';
+  let exp = origExp || '';
+  let rationale = exp
+    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
+    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
+    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
+    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
+    .trim();
+  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
+
+  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
+  if (correctText) {
+    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
+  }
+  if (rationale) {
+    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
+  }
+  return res;
+}
+
 function renderExam() {
   const container = document.getElementById("examContainer");
   container.innerHTML = "";
@@ -3066,7 +3089,7 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
-      <div class="image-desc">${img.desc}</div>
+      
     `;
     imgGrid1.appendChild(card);
   });
@@ -3132,7 +3155,7 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
-      <div class="image-desc">${img.desc}</div>
+      
     `;
     imgGrid2.appendChild(card);
   });
@@ -4022,6 +4045,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + " (" + (found ? found.desc : "") + ")";
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
+    }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
@@ -4044,7 +4072,12 @@ function submitExam(autoSubmitted) {
     
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan && correctOpt) ansSpan.textContent = correctOpt.text;
+    if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv && correctOpt) {
+      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
+    }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
@@ -4065,6 +4098,10 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
@@ -4085,6 +4122,10 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
@@ -4098,7 +4139,12 @@ function submitExam(autoSubmitted) {
     
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan && correctOpt) ansSpan.textContent = correctOpt.text;
+    if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv && correctOpt) {
+      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
+    }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
@@ -4598,6 +4644,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Audio auto-detect
+function applyFontPreferences() {}
 window.addEventListener("DOMContentLoaded", () => {
   applyFontPreferences();
   
@@ -4727,7 +4774,9 @@ function jumpToNextUnanswered() {
 
 function viewEnlargedImage(src, title) {
   const w = window.open("", "_blank");
-  w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}</style></head><body><img src="${src}"></body></html>`);
+  w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+.image-desc { display: none !important; }
+</style></head><body><img src="${src}"></body></html>`);
 }
 
 // Hook into updateProgress to also update drawer counts

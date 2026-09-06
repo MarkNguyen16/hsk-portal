@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>HSK 3 - Bài 4: 她总是笑着跟客人说话</title>
+<title>HSK 3 - Bài 4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -821,6 +821,8 @@ body.review-mode .question-item.user-wrong {
   gap: 8px;
   z-index: 998;
 }
+
+.p1-img-desc, .image-desc { display: none !important; }
 </style>
 </head>
 <body>
@@ -834,7 +836,7 @@ body.review-mode .question-item.user-wrong {
       </a>
       <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" class="center-logo">
       <span class="exam-code-badge">B04</span>
-      <span class="exam-title-compact hide-mobile">Bài 4: 她总是笑着跟客人说话</span>
+      <span class="exam-title-compact hide-mobile">Bài 4</span>
       <span id="studentInfoBadge" class="hide-mobile" style="font-size:0.78rem;color:var(--gold-light);background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:10px;">👤 Thí sinh</span>
     </div>
     
@@ -903,7 +905,7 @@ body.review-mode .question-item.user-wrong {
 <div class="modal-backdrop" id="welcomeModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h2>HSK 3 - Bài 4: 她总是笑着跟客人说话</h2>
+      <h2>HSK 3 - Bài 4</h2>
       <p>Giáo trình chuẩn HSK 3 • 45 câu hỏi tương tác</p>
     </div>
     <div class="modal-body">
@@ -927,7 +929,7 @@ body.review-mode .question-item.user-wrong {
 <div class="modal-backdrop hidden" id="resultModal" style="display:none;">
   <div class="modal-card">
     <div class="modal-header">
-      <h2 id="resultModalTitle">Kết Quả Bài Làm: HSK 3 - Bài 4: 她总是笑着跟客人说话</h2>
+      <h2 id="resultModalTitle">Kết Quả Bài Làm: HSK 3 - Bài 4</h2>
       <p id="resultModalSubtitle">Thí sinh: Thí sinh • Lớp: Tự do • Lần làm thứ 1</p>
     </div>
     <div class="modal-body">
@@ -979,7 +981,7 @@ body.review-mode .question-item.user-wrong {
 <script>
 const EXAM_CONFIG = {
   "examCode": "SC3-B04",
-  "examTitle": "HSK 3 - Bài 4: 她总是笑着跟客人说话"
+  "examTitle": "HSK 3 - Bài 4"
 };
 const MASTER_DATA = {
   "listening": {
@@ -1828,15 +1830,23 @@ function randomizeExamData() {
 }
 
 // Helper to adjust explanation dynamically based on randomized letter
-function formatDynamicExplanation(origExp, newLetter, secType) {
-  if (!origExp) return "";
-  let res = origExp;
-  if (secType === "lp1" || secType === "rp1" || secType === "rp2") {
-    res = res.replace(/(->\s*)(?:Khớp hình\s*)?[A-Fa-f]\.?/g, `$1${newLetter}`);
-    res = res.replace(/\([A-Fa-f]\)/g, `(${newLetter})`);
-  } else if (secType === "lp3" || secType === "lp4" || secType === "rp3") {
-    res = res.replace(/(->\s*)[A-Ca-c]\.?/g, `$1${newLetter}.`);
-    res = res.replace(/\([A-Ca-c]\)/g, `(${newLetter})`);
+function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
+  if (!origExp && !newLetter) return '';
+  let exp = origExp || '';
+  let rationale = exp
+    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
+    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
+    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
+    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
+    .trim();
+  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
+
+  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
+  if (correctText) {
+    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
+  }
+  if (rationale) {
+    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
   }
   return res;
 }
@@ -1899,7 +1909,7 @@ function renderExam() {
   activeData.listening.part1.questions.forEach(q => {
     const curImg = activeData.listening.part1.images.find(img => img.id === q.correctId);
     const correctLetter = curImg ? curImg.label : 'D';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1', curImg ? (curImg.label ? 'Hình ' + curImg.label : (curImg.desc || '')) : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -1907,7 +1917,7 @@ function renderExam() {
         <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="options-pills" id="opts-${q.id}">`;
-    activeData.listening.part1.images.filter(img => img.id !== (ex1 ? ex1.correctId : 'img_d')).forEach(img => {
+    activeData.listening.part1.images.forEach(img => {
       html += `
         <div class="opt-pill" onclick="selectListeningP1('${q.id}', '${img.id}', this)">
           <strong>${img.label}</strong>
@@ -1961,7 +1971,7 @@ function renderExam() {
   activeData.listening.part3.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3', opt ? opt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -1993,7 +2003,7 @@ function renderExam() {
   activeData.listening.part4.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4', opt ? opt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -2041,14 +2051,14 @@ function renderExam() {
   activeData.reading.part1.questions.forEach(q => {
     const curOpt = activeData.reading.part1.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1', curOpt ? curOpt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
         <span class="q-number">${q.num}.</span> <span class="chinese">${q.prompt}</span>
       </div>
       <div class="options-pills">`;
-    activeData.reading.part1.options.filter(o => o.id !== 'e').forEach(opt => {
+    activeData.reading.part1.options.forEach(opt => {
       html += `
         <div class="opt-pill" onclick="selectReadingOpt('${q.id}', '${opt.id}', this)">
           <strong>${opt.renderLetter}</strong>
@@ -2077,14 +2087,14 @@ function renderExam() {
   activeData.reading.part2.questions.forEach(q => {
     const curOpt = activeData.reading.part2.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2', curOpt ? curOpt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
         <span class="q-number">${q.num}.</span> <span class="chinese">${q.prompt}</span>
       </div>
       <div class="options-pills">`;
-    activeData.reading.part2.options.filter(o => o.id !== 'e').forEach(opt => {
+    activeData.reading.part2.options.forEach(opt => {
       html += `
         <div class="opt-pill" onclick="selectReadingOpt('${q.id}', '${opt.id}', this)">
           <strong>${opt.renderLetter}</strong>
@@ -2106,7 +2116,7 @@ function renderExam() {
   activeData.reading.part3.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3', opt ? opt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;line-height:1.65;background:#f8fafc;padding:10px 14px;border-radius:6px;margin-bottom:8px;" class="chinese">
