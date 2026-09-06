@@ -573,6 +573,23 @@ body.review-mode .question-item.user-wrong {
   font-weight: 700;
   cursor: pointer;
 }
+
+/* Writing interactive styles */
+.word-reorder-container { margin-top: 8px; }
+.word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.word-chip { padding: 6px 14px; background: #edf2f7; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 1.05rem; cursor: pointer; user-select: none; transition: all 0.15s; color: #1e293b; font-family: inherit; }
+.word-chip:hover { background: #e2e8f0; border-color: var(--primary); }
+.word-chip.used { opacity: 0.35; cursor: default; pointer-events: none; background: #cbd5e0; border-color: #cbd5e0; }
+.sentence-workspace { display: flex; align-items: center; gap: 8px; }
+.sentence-input { flex: 1; padding: 10px 14px; font-size: 1.05rem; border: 1.5px solid var(--border-medium); border-radius: 8px; outline: none; background: #fff; font-family: inherit; }
+.sentence-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(23, 107, 99, 0.15); }
+.btn-clear-words { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; color: var(--text-muted); white-space: nowrap; }
+.btn-clear-words:hover { background: #e2e8f0; color: var(--text-main); }
+.char-input { width: 54px; height: 42px; text-align: center; font-size: 1.35rem; font-weight: bold; border: 2px solid var(--primary); border-radius: 8px; outline: none; color: var(--primary-dark); background: #fff; font-family: inherit; }
+.char-input:focus { border-color: var(--primary-dark); box-shadow: 0 0 0 3px rgba(23, 107, 99, 0.15); }
+.pinyin-badge { background: var(--primary-light); color: var(--primary-dark); font-weight: 700; padding: 3px 10px; border-radius: 6px; font-size: 0.95rem; }
+.p1-img-hint, .p1-img-desc, .image-desc { font-size: 11px !important; color: #64748b !important; padding: 4px 6px !important; background: #f8fafc !important; border-top: 1px solid var(--border-light) !important; text-align: center !important; line-height: 1.3 !important; display: block !important; }
+
 </style>
 </head>
 <body class="drawer-open">
@@ -1450,7 +1467,7 @@ const MASTER_DATA = {
   }
 };
 
-let activeData = null;
+let activeData = JSON.parse(JSON.stringify(MASTER_DATA));
 let userAnswers = {};
 let studentName = "";
 let studentClass = "";
@@ -1478,14 +1495,88 @@ function escapeJsStr(str) {
     .replace(/\r?\n/g, ' ');
 }
 
+
+let wordOrderSelections = {};
+
+function clickWordChip(qId, wIdx, word) {
+  if (isExamSubmitted) return;
+  if (!wordOrderSelections[qId]) {
+    wordOrderSelections[qId] = [];
+  }
+  wordOrderSelections[qId].push(wIdx);
+
+  const chip = document.getElementById(`chip-${qId}-${wIdx}`);
+  if (chip) chip.classList.add("used");
+
+  const input = document.getElementById(`input-${qId}`);
+  if (input) {
+    input.value += word;
+    userAnswers[qId] = input.value;
+  }
+
+  const qBox = document.getElementById("q-box-" + qId);
+  if (qBox) qBox.classList.add("answered");
+
+  updateProgress();
+}
+
+function clearWordOrder(qId) {
+  if (isExamSubmitted) return;
+  wordOrderSelections[qId] = [];
+  delete userAnswers[qId];
+
+  const input = document.getElementById(`input-${qId}`);
+  if (input) input.value = "";
+
+  const bank = document.getElementById(`wbank-${qId}`);
+  if (bank) {
+    bank.querySelectorAll(".word-chip").forEach(c => c.classList.remove("used"));
+  }
+
+  const qBox = document.getElementById("q-box-" + qId);
+  if (qBox) qBox.classList.remove("answered");
+
+  updateProgress();
+}
+
+function onSentenceInputChange(qId, val) {
+  if (isExamSubmitted) return;
+  val = val.trim();
+  if (val) {
+    userAnswers[qId] = val;
+    const qBox = document.getElementById("q-box-" + qId);
+    if (qBox) qBox.classList.add("answered");
+  } else {
+    delete userAnswers[qId];
+    const qBox = document.getElementById("q-box-" + qId);
+    if (qBox) qBox.classList.remove("answered");
+  }
+  updateProgress();
+}
+
+function onCharInputChange(qId, val) {
+  if (isExamSubmitted) return;
+  val = val.trim();
+  if (val) {
+    userAnswers[qId] = val;
+    const qBox = document.getElementById("q-box-" + qId);
+    if (qBox) qBox.classList.add("answered");
+  } else {
+    delete userAnswers[qId];
+    const qBox = document.getElementById("q-box-" + qId);
+    if (qBox) qBox.classList.remove("answered");
+  }
+  updateProgress();
+}
+
 function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
   if (!origExp && !newLetter) return '';
   let exp = origExp || '';
   let rationale = exp
-    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f]\b[^.]*/gi, '')
+    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
     .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
     .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
-    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]\b/gi, '')
+    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
     .trim();
   rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
 
@@ -1909,14 +2000,24 @@ function renderExam() {
     qDiv.innerHTML = `
       <div style="font-size:15px;margin-bottom:6px;">
         <span class="q-number">${q.num}.</span>
-        <span class="chinese" style="background:#f1f5f9;padding:4px 8px;border-radius:4px;display:inline-block;margin-bottom:6px;">
-          ${shuffledWords.join(" / ")}
-        </span>
+        <span style="color:var(--text-muted);font-size:13px;margin-left:4px;">(Nhấp chọn các thẻ từ để ghép câu hoặc gõ trực tiếp):</span>
       </div>
-      <input type="text" class="writing-input chinese" id="input-${q.id}" placeholder="Nhập câu hoàn chỉnh vào đây..." oninput="handleWritingInput('${q.id}', this.value)">
+      <div class="word-reorder-container">
+        <div class="word-bank" id="wbank-${q.id}">
+          ${shuffledWords.map((w, wIdx) => `
+            <button type="button" class="word-chip chinese" id="chip-${q.id}-${wIdx}" onclick="clickWordChip('${q.id}', ${wIdx}, '${escapeJsStr(w)}')">
+              ${w}
+            </button>
+          `).join("")}
+        </div>
+        <div class="sentence-workspace">
+          <input type="text" class="sentence-input chinese" id="input-${q.id}" placeholder="Nhấp thẻ từ hoặc gõ câu hoàn chỉnh..." oninput="onSentenceInputChange('${q.id}', this.value)">
+          <button type="button" class="btn-clear-words" onclick="clearWordOrder('${q.id}')">Xóa làm lại</button>
+        </div>
+      </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Đáp án đúng:</strong> <span class="chinese" style="font-weight:bold;color:var(--primary);">${q.correct}</span><br>
-        <div style="color:var(--text-muted);font-size:0.86rem;margin-top:4px;">💡 <strong>Giải thích:</strong> ${q.explanation || ''}</div>
+        <div><strong>✅ Đáp án đúng:</strong> <span class="chinese" style="font-weight:bold;color:var(--primary);font-size:1.05rem;">${q.correct}</span></div>
+        ${q.explanation ? `<div style="color:var(--text-muted);font-size:0.86rem;margin-top:4px;">💡 <strong>Giải thích:</strong> ${q.explanation}</div>` : ''}
       </div>
     `;
     secW.appendChild(qDiv);
@@ -1926,23 +2027,31 @@ function renderExam() {
   const w2Header = document.createElement("div");
   w2Header.className = "part-header";
   w2Header.style.marginTop = "24px";
-  w2Header.innerHTML = `<strong>第 41 - 45 题：</strong>读拼音，写汉字 (Xem phiên âm pinyin, gõ chữ Hán vào chỗ trống)`;
+  w2Header.innerHTML = `<strong>第 41 - 45 题：</strong>读拼音，写汉字 (Dựa vào phiên âm pinyin trong ngoặc, gõ đúng chữ Hán thích hợp vào ô trống)`;
   secW.appendChild(w2Header);
 
   activeData.writing.part2.questions.forEach(q => {
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
     qDiv.id = `q-box-${q.id}`;
+    
+    const beforeText = q.before !== undefined ? q.before : (q.prompt || '');
+    const afterText = q.after !== undefined ? q.after : '';
+    
     qDiv.innerHTML = `
       <div style="font-size:15px;margin-bottom:6px;line-height:1.6;">
         <span class="q-number">${q.num}.</span>
-        <span class="chinese">${q.prompt}</span>
-        <span style="color:var(--primary);font-weight:bold;margin-left:6px;">[ ${q.pinyin} ]</span>
       </div>
-      <input type="text" class="writing-input chinese" id="input-${q.id}" placeholder="Gõ chữ Hán vào đây..." style="max-width:200px;" oninput="handleWritingInput('${q.id}', this.value)">
+      <div class="question-prompt chinese" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:1.15rem;margin-bottom:8px;">
+        <span>${beforeText}</span>
+        <span class="pinyin-badge">（ ${q.pinyin} ）</span>
+        <input type="text" maxlength="1" class="char-input chinese" id="input-${q.id}" placeholder="字" oninput="onCharInputChange('${q.id}', this.value)">
+        <span>${afterText}</span>
+      </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Chữ Hán đúng:</strong> <span class="chinese" style="font-weight:bold;font-size:18px;color:var(--primary);">${q.correct}</span> (${q.pinyin})<br>
-        <div style="color:var(--text-muted);font-size:0.86rem;margin-top:4px;">💡 <strong>Giải thích:</strong> ${q.explanation || ''}</div>
+        <div><strong>✅ Chữ Hán đúng:</strong> <span class="chinese" style="font-size:1.25rem;font-weight:bold;color:var(--primary);">${q.correct}</span> <span class="pinyin-badge">（ ${q.pinyin} ）</span></div>
+        <div style="margin-top:4px;color:var(--text-muted);font-size:0.86rem;">Câu hoàn chỉnh: <span class="chinese" style="font-size:1.05rem;">${beforeText}<b style="color:var(--primary);">${q.correct}</b>${afterText}</span></div>
+        ${q.explanation ? `<div style="color:var(--text-muted);font-size:0.86rem;margin-top:4px;">💡 <strong>Giải thích:</strong> ${q.explanation}</div>` : ''}
       </div>
     `;
     secW.appendChild(qDiv);
