@@ -1,0 +1,4313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK 4 - Đề thi số 07 (H41007) - Tiếng Trung HSK Nha Trang</title>
+<style>
+:root {
+  --primary: #176B63;
+  --primary-dark: #0D423D;
+  --primary-light: #208b81;
+  --primary-subtle: #e6f3f1;
+  --gold: #D9B86C;
+  --gold-dark: #b59447;
+  --gold-light: #faecd0;
+  --bg-cream: #F7F3E8;
+  --card-bg: #FFFFFF;
+  --text-main: #2D3748;
+  --text-muted: #718096;
+  --border-color: #E2DAC7;
+  --correct: #2E7D32;
+  --wrong: #C62828;
+  --success: #2E7D32;
+  --danger: #C62828;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  line-height: 1.65;
+  padding-bottom: 75px;
+  transition: margin-right 0.3s ease;
+}
+
+body.drawer-open {
+  margin-right: 360px;
+}
+
+.chinese {
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+/* Header */
+header.exam-header {
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn-nav-back {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-nav-back:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+.brand-badge {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.student-tag {
+  background: rgba(217, 184, 108, 0.25);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.timer-pill {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timer-pill.danger {
+  background: rgba(198, 40, 40, 0.4);
+  border-color: #f87171;
+  color: #fca5a5;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-drawer-toggle {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-drawer-toggle:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+.btn-submit-exam {
+  background: var(--gold);
+  color: var(--primary-dark);
+  border: none;
+  padding: 6px 16px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.1s, background 0.2s;
+}
+
+.btn-submit-exam:hover {
+  background: #e5ca89;
+  transform: translateY(-1px);
+}
+
+/* Audio Controller Bar */
+.audio-bar {
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 16px;
+  position: sticky;
+  top: 48px;
+  z-index: 990;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.audio-bar-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.audio-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.track-tab-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.track-tab-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.audio-player-wrap {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.audio-player-wrap audio {
+  width: 100%;
+  max-width: 380px;
+  height: 32px;
+}
+
+/* Main Exam Content */
+main.exam-main {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.section-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.section-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--primary-subtle);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-badge {
+  background: var(--primary-subtle);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.part-header {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 14px;
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+}
+
+/* Question Cards */
+.question-item {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #fff;
+  transition: all 0.2s;
+}
+
+.question-item:hover {
+  border-color: #cbd5e1;
+}
+
+.question-item.active-scroll {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(217, 184, 108, 0.4);
+}
+
+.q-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.q-number {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+.btn-tts-replay {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-tts-replay:hover {
+  background: var(--primary-subtle);
+  color: var(--primary);
+}
+
+.judge-statement-box {
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.judge-btn-group {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-judge {
+  flex: 1;
+  padding: 8px 14px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s;
+}
+
+.btn-judge:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.btn-judge.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary-dark);
+}
+
+/* Choice Options */
+.choice-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.choice-item {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  transition: all 0.15s;
+}
+
+.choice-item:hover {
+  border-color: var(--primary);
+  background: var(--primary-subtle);
+}
+
+.choice-item.selected {
+  border-color: var(--primary);
+  background: var(--primary-subtle);
+  font-weight: 700;
+}
+
+.choice-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.choice-item.selected .choice-badge {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary-dark);
+}
+
+.choice-text {
+  font-size: 0.98rem;
+}
+
+/* Word Bank */
+.word-bank-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px dashed var(--primary);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.word-bank-chip {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.92rem;
+}
+
+.bank-options-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-bank-opt {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  font-weight: 800;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.btn-bank-opt.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary-dark);
+}
+
+/* Sentence Order */
+.order-selector-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-order-opt {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-order-opt.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary-dark);
+}
+
+/* Writing Part 1: Chips */
+.word-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.word-chip {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.word-chip.used {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.answer-slot-line {
+  min-height: 44px;
+  background: #f8fafc;
+  border: 1.5px dashed var(--primary);
+  border-radius: 8px;
+  padding: 6px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.answer-chip {
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Writing Part 2: Look at photo write sentence */
+.write-sentence-card {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.write-sentence-img {
+  width: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+.write-sentence-input-wrap {
+  flex: 1;
+  min-width: 240px;
+}
+
+.prompt-keyword-badge {
+  display: inline-block;
+  background: #fef3c7;
+  border: 1px solid var(--gold);
+  color: #92400e;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.sentence-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  outline: none;
+}
+
+.sentence-textarea:focus {
+  border-color: var(--primary);
+}
+
+/* Explanation Box */
+.explanation-box {
+  display: none;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.review-mode .explanation-box {
+  display: block !important;
+}
+
+.review-mode .question-item.user-correct {
+  border-color: var(--correct);
+  background: #f0fdf4;
+}
+
+.review-mode .question-item.user-wrong {
+  border-color: var(--wrong);
+  background: #fef2f2;
+}
+
+/* Persistent Drawer */
+aside.persistent-drawer {
+  position: fixed;
+  top: 48px;
+  right: -360px;
+  width: 360px;
+  bottom: 0;
+  background: #fff;
+  border-left: 2px solid var(--border-color);
+  box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+  z-index: 995;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+aside.persistent-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  padding: 12px 16px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.drawer-section-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin: 10px 0 6px;
+}
+
+.drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.drawer-btn {
+  padding: 6px 0;
+  text-align: center;
+  border: 1.5px dashed #cbd5e1;
+  background: #fff;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.drawer-btn.answered {
+  background: var(--primary);
+  color: #fff;
+  border-style: solid;
+  border-color: var(--primary-dark);
+}
+
+.drawer-btn.correct-rev {
+  background: var(--correct) !important;
+  color: #fff !important;
+  border-style: solid !important;
+  border-color: var(--correct) !important;
+}
+
+.drawer-btn.wrong-rev {
+  background: var(--wrong) !important;
+  color: #fff !important;
+  border-style: solid !important;
+  border-color: var(--wrong) !important;
+}
+
+/* Review Bottom Bar */
+.review-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 2px solid var(--primary);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  z-index: 998;
+}
+
+/* Modals */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-backdrop.hidden {
+  display: none !important;
+}
+
+.modal-card {
+  background: #fff;
+  border-radius: 16px;
+  width: 92%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25);
+  box-sizing: border-box;
+}
+
+.modal-header {
+  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-header h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.modal-header p {
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  margin-top: 2px;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.score-hero {
+  text-align: center;
+  padding: 5px 0 15px;
+}
+
+.score-circle {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  box-shadow: 0 4px 15px rgba(23,107,99,0.3);
+}
+
+.score-num {
+  font-size: 2.3rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 0.78rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.result-badge {
+  display: inline-block;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+}
+
+.result-badge.pass {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.result-badge.fail {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.score-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 14px 0;
+  text-align: center;
+}
+
+.score-stat-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.score-stat-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.score-stat-lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sync-status-box {
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sync-status-box.success {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #15803d;
+}
+
+.sync-status-box.offline {
+  background: #fef9c3;
+  border: 1px solid #fde047;
+  color: #854d0e;
+}
+
+.btn-secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--primary-dark);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  background: #e5ca89;
+}
+
+.modal-footer {
+  padding: 12px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body.drawer-open {
+    margin-right: 0;
+  }
+  aside.persistent-drawer {
+    width: 300px;
+  }
+  .choice-list {
+    grid-template-columns: 1fr;
+  }
+  .score-breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+  .write-sentence-card {
+    flex-direction: column;
+  }
+  .write-sentence-img {
+    width: 100%;
+    max-width: 240px;
+  }
+}
+
+.example-box {
+  background: #f8fafc;
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 10px 0 20px 0;
+  font-size: 0.92rem;
+  color: #334155;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.example-title {
+  display: block;
+  font-weight: 700;
+  color: #1d4ed8;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.example-answer {
+  color: #15803d;
+  font-weight: 700;
+}
+
+.dialogue-row {
+  line-height: 1.65;
+  font-size: 1.1rem;
+}
+.speaker-tag {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--primary);
+  margin-right: 8px;
+  min-width: 24px;
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="exam-header">
+  <div class="header-left">
+    <a href="index.html" class="btn-nav-back">⬅ Cổng Đề</a>
+    <div class="brand-badge">
+      <span>HSK 4</span>
+      <span class="chinese" style="font-weight:600;font-size:0.82rem;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">HSK 4 - Đề thi số 07 (H41007)</span>
+    </div>
+    <span class="student-tag" id="studentInfoBadge">👤 Thí sinh</span>
+  </div>
+  <div class="header-center">
+    <div class="timer-pill" id="totalTimerBadge" title="Thời gian toàn bài">
+      <span>⏱</span> <span id="totalTimerText">105:00</span>
+    </div>
+    <div class="timer-pill" id="listeningTimerBadge" title="Thời gian nghe hiểu">
+      <span>🎧</span> <span id="listeningTimerText">35:00</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <button class="btn-drawer-toggle" onclick="toggleExamDrawer()">
+      <span>📋</span> Trạng thái (<span id="answeredCount">0</span>/100)
+    </button>
+    <button class="btn-submit-exam" id="btnSubmitExam" onclick="confirmSubmitExam()">Nộp Bài</button>
+  </div>
+</header>
+
+<!-- Audio Controller Bar -->
+<div class="audio-bar">
+  <div class="audio-bar-inner">
+    <div class="audio-tabs">
+      <button class="track-tab-btn active" id="btnTrack1" onclick="seekAudioPart(1)">Phần 1 (Nghe 1-10)</button>
+      <button class="track-tab-btn" id="btnTrack2" onclick="seekAudioPart(2)">Phần 2 (Nghe 11-25)</button>
+      <button class="track-tab-btn" id="btnTrack3" onclick="seekAudioPart(3)">Phần 3 (Nghe 26-45)</button>
+    </div>
+    <div class="audio-player-wrap">
+      <audio id="mainAudioPlayer" controls preload="auto" src="audio/H41007.mp3"></audio>
+    </div>
+  </div>
+</div>
+
+<!-- Main Exam Content -->
+<main class="exam-main" id="examContainer">
+  <!-- Rendered via JavaScript -->
+</main>
+
+<!-- Bottom Review Bar -->
+<div id="reviewBottomBar" class="review-bottom-bar" style="display:none;">
+  <div style="font-weight:700;font-size:0.9rem;color:var(--primary-dark);" id="reviewBottomBarText">
+    Kết quả: Đang cập nhật...
+  </div>
+  <div style="display:flex;gap:8px;">
+    <button class="btn-secondary" style="padding:6px 12px;font-size:0.8rem;" onclick="openResultModal()">📊 Bảng Điểm</button>
+    <button class="btn-gold" style="padding:6px 14px;font-size:0.8rem;" onclick="retryExamWithShuffle()">🔄 Làm lại bài</button>
+  </div>
+</div>
+
+<!-- Persistent Right Drawer (100 Questions) -->
+<aside class="persistent-drawer" id="examDrawer">
+  <div class="drawer-header">
+    <strong>Bảng Trạng Thái (100 Câu)</strong>
+    <button onclick="toggleExamDrawer()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerGrid">
+    <!-- Injected via JS -->
+  </div>
+  <div style="padding:12px;border-top:1px solid #e2e8f0;background:#f8fafc;">
+    <button class="btn-gold" style="width:100%;padding:8px;border-radius:8px;font-weight:700;font-size:0.85rem;" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Đảo đề mới)</button>
+  </div>
+</aside>
+
+<!-- Welcome Modal -->
+<div class="modal-backdrop" id="welcomeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2>HSK 4 - Đề thi số 07 (H41007)</h2>
+      <p id="welcomeModalSubtitle">Kỳ thi đánh giá năng lực Hán ngữ HSK 4 • 100 câu hỏi trọn vẹn • 105 phút • Chuẩn quốc tế</p>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:4px;">Họ và tên thí sinh (*):</label>
+        <input type="text" id="inputStudentName" style="width:100%;padding:8px 12px;border:1.5px solid var(--border-color);border-radius:8px;font-size:14px;" placeholder="Ví dụ: Nguyễn Văn A">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:4px;">Lớp / Khóa học (*):</label>
+        <input type="text" id="inputStudentClass" style="width:100%;padding:8px 12px;border:1.5px solid var(--border-color);border-radius:8px;font-size:14px;" placeholder="Ví dụ: HSK4-K01">
+      </div>
+      <div style="font-size:13px;color:#64748b;line-height:1.6;background:#f8fafc;padding:12px;border-radius:8px;">
+        • Cấu trúc đề thi chuẩn quốc tế: Nghe 45 câu, Đọc 40 câu, Viết 15 câu (Tổng 100 câu).<br>
+        • Thời gian: 105 phút toàn bài (35 phút phần nghe).<br>
+        • Thang điểm HSK 4: Tổng 300 điểm (Nghe 100, Đọc 100, Viết 100 • Điểm đạt: ≥ 180 điểm).<br>
+        • Hệ thống tự động lưu kết quả và đồng bộ tức thì về cơ sở dữ liệu giáo viên.
+      </div>
+    </div>
+    <div class="modal-footer" style="justify-content:flex-end;">
+      <button class="btn-gold" onclick="startExamSession()">Bắt đầu làm bài ➔</button>
+    </div>
+  </div>
+</div>
+
+<!-- Results & Grading Modal -->
+<div class="modal-backdrop hidden" id="resultModal" style="display:none;">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2 id="resultModalTitle">Kết Quả Bài Làm: HSK 4 - Đề thi số 07 (H41007)</h2>
+      <p id="resultModalSubtitle">Thí sinh: Thí sinh • Lớp: Tự do • Lần làm thứ 1</p>
+    </div>
+    <div class="modal-body">
+      <div class="score-hero">
+        <div class="score-circle">
+          <div class="score-num" id="score10Display">0.0</div>
+          <div class="score-label">Thang điểm 10</div>
+        </div>
+        <div class="result-badge" id="resultStatusBadge">ĐẠT CHUẨN HSK 4</div>
+        <p style="margin-top: 8px; font-size: 0.95rem; font-weight:600;" id="hskScoreBreakdownText">
+          Điểm quy đổi HSK: 0 / 300 (Yêu cầu đỗ: ≥ 180 điểm)
+        </p>
+        <p style="font-size: 0.82rem; color: #64748b; margin-top: 4px;" id="timeSpentText">
+          ⏱ Thời gian làm bài: 0 phút 00 giây
+        </p>
+      </div>
+
+      <div class="score-breakdown-grid">
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statListening">0/45</div>
+          <div class="score-stat-lbl">Phần Nghe (听力)</div>
+        </div>
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statReading">0/40</div>
+          <div class="score-stat-lbl">Phần Đọc (阅读)</div>
+        </div>
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statWriting">0/15</div>
+          <div class="score-stat-lbl">Phần Viết (书写)</div>
+        </div>
+      </div>
+
+      <div class="sync-status-box success" id="firebaseSyncStatus">
+        <span>🟢 Kết quả đã được tự động lưu cục bộ và gửi về hệ thống quản lý của giáo viên (Firebase Realtime Database).</span>
+      </div>
+
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+        <button class="btn-secondary" onclick="exportResultCSV()">📥 Xuất phiếu điểm CSV</button>
+        <button class="btn-secondary" onclick="copyAuthCode()">📋 Sao chép Mã xác thực</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeResultModalToReview()">🔍 Xem Chi Tiết Đáp Án & Giải Thích</button>
+      <button class="btn-gold" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Đảo đề mới)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const MASTER_DATA = {
+  "examCode": "H41007",
+  "examTitle": "HSK 4 - Đề thi số 07 (H41007)",
+  "totalQuestions": 100,
+  "totalDurationMinutes": 105,
+  "listeningDurationMinutes": 35,
+  "readingDurationMinutes": 40,
+  "writingDurationMinutes": 25,
+  "audioFile": "audio/H41007.mp3",
+  "partTimestamps": {
+    "1": 59,
+    "2": 418,
+    "3": 960
+  },
+  "listening": {
+    "part1": {
+      "questions": [
+        {
+          "id": "L1",
+          "num": 1,
+          "statement": "他暑假想去云南旅游。",
+          "passage": "我打算去云南玩儿，听说那边四季如春，不仅风景美，而且当地少数民族都非常热情，相信这个暑假会十分有趣。",
+          "correct": true,
+          "timestamp": 128,
+          "explanation": "录音说明打算暑假去云南玩儿旅游。正确（√）。"
+        },
+        {
+          "id": "L2",
+          "num": 2,
+          "statement": "女儿晚上要加班。",
+          "passage": "女儿说她今天下班后有约会，要跟同学去看电影，晚上不回来吃饭了。",
+          "correct": false,
+          "timestamp": 160,
+          "explanation": "女儿下班后有约会看电影，不是加班。错误（×）。"
+        },
+        {
+          "id": "L3",
+          "num": 3,
+          "statement": "他习惯了这里的生活。",
+          "passage": "我刚来这儿的时候很不适应，觉得很孤单，后来逐渐习惯了，也交到了很多朋友，我越来越喜欢这儿的生活了。",
+          "correct": true,
+          "timestamp": 188,
+          "explanation": "后来逐渐习惯了，越来越喜欢这儿的生活。正确（√）。"
+        },
+        {
+          "id": "L4",
+          "num": 4,
+          "statement": "他们在谈价格。",
+          "passage": "那个网站上的内容很丰富，不但有科学、艺术方面的知识，还有许多小笑话，我发给你网址，有兴趣的话可以上去看看。",
+          "correct": false,
+          "timestamp": 218,
+          "explanation": "介绍网站的内容知识和笑话，并未谈价格。错误（×）。"
+        },
+        {
+          "id": "L5",
+          "num": 5,
+          "statement": "中国人喜欢数字“6”。",
+          "passage": "中国人认为数字6代表顺利，所以他们喜欢在带有6的日子结婚，希望自己的电话号码里有6。",
+          "correct": true,
+          "timestamp": 248,
+          "explanation": "中国人认为6代表顺利并喜欢带有6的日子。正确（√）。"
+        },
+        {
+          "id": "L6",
+          "num": 6,
+          "statement": "他几乎每天都去打篮球。",
+          "passage": "我平时上班忙，很少有时间运动，但是周末我会约朋友们见面，一块儿去打篮球或者踢足球，偶尔也会去爬山。",
+          "correct": false,
+          "timestamp": 272,
+          "explanation": "平时上班忙很少运动，只有周末才去。错误（×）。"
+        },
+        {
+          "id": "L7",
+          "num": 7,
+          "statement": "今天报名还来得及。",
+          "passage": "你不是准备参加普通话考试吗？明天报名就结束了，你怎么还没交材料？今天报名还来得及。",
+          "correct": true,
+          "timestamp": 305,
+          "explanation": "明天报名才结束，今天报名还来得及。正确（√）。"
+        },
+        {
+          "id": "L8",
+          "num": 8,
+          "statement": "小林是律师。",
+          "passage": "小林，如果你在法律方面有什么问题，我可以给你介绍一位律师，你可以先和他聊一下，他会给你一些专业性的意见。",
+          "correct": false,
+          "timestamp": 332,
+          "explanation": "说话人提出给小林介绍律师，说明小林不是律师。错误（×）。"
+        },
+        {
+          "id": "L9",
+          "num": 9,
+          "statement": "不要总是羡慕别人。",
+          "passage": "我们总是羡慕别人有份好工作，有个好妻子，却常常忘记了自己已有的幸福。其实，我们在别人眼中也是幸福的，只是我们没有发现。",
+          "correct": true,
+          "timestamp": 361,
+          "explanation": "告诫人们不要总羡慕别人，而要珍惜自己已有的幸福。正确（√）。"
+        },
+        {
+          "id": "L10",
+          "num": 10,
+          "statement": "明天中午有大雪。",
+          "passage": "由于冷空气南下，我省明天将迎来大风降温天气，有些地方还会有小到中雨，交通会受到一定影响，听众朋友们出行时一定要注意安全。",
+          "correct": false,
+          "timestamp": 395,
+          "explanation": "预报天气是大风降温和小到中雨，没有大雪。错误（×）。"
+        }
+      ]
+    },
+    "part2": {
+      "questions": [
+        {
+          "id": "L11",
+          "num": 11,
+          "dialogue": "男：这块巧克力味道不错，你在哪儿买的？\\n女：不是我买的，是我叔叔从国外带回来的。\\n问：巧克力是谁送的？",
+          "options": [
+            {
+              "id": "a",
+              "text": "同事"
+            },
+            {
+              "id": "b",
+              "text": "叔叔"
+            },
+            {
+              "id": "c",
+              "text": "奶奶"
+            },
+            {
+              "id": "d",
+              "text": "观众"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 462,
+          "explanation": "女的回答是叔叔从国外带回来的（选B）。"
+        },
+        {
+          "id": "L12",
+          "num": 12,
+          "dialogue": "女：哥，昨天晚上睡得好吗？热不热？\\n男：挺好的，房间里开了空调，很凉快。\\n问：男的为什么觉得很凉快？",
+          "options": [
+            {
+              "id": "a",
+              "text": "下雨了"
+            },
+            {
+              "id": "b",
+              "text": "刚洗完澡"
+            },
+            {
+              "id": "c",
+              "text": "开空调了"
+            },
+            {
+              "id": "d",
+              "text": "开着窗户"
+            }
+          ],
+          "correctId": "c",
+          "timestamp": 500,
+          "explanation": "男的解释“房间里开了空调，很凉快”（选C）。"
+        },
+        {
+          "id": "L13",
+          "num": 13,
+          "dialogue": "男：记者会10点开始，您大概几点下飞机？我去接您吧。\\n女：不用了，我7点一刻到，直接打车去会场，就不麻烦你了。\\n问：女的打算怎么去会场？",
+          "options": [
+            {
+              "id": "a",
+              "text": "步行"
+            },
+            {
+              "id": "b",
+              "text": "骑车"
+            },
+            {
+              "id": "c",
+              "text": "坐地铁"
+            },
+            {
+              "id": "d",
+              "text": "坐出租车"
+            }
+          ],
+          "correctId": "d",
+          "timestamp": 534,
+          "explanation": "女的说明“直接打车（坐出租车）去会场”（选D）。"
+        },
+        {
+          "id": "L14",
+          "num": 14,
+          "dialogue": "女：用毛巾擦擦脸上的汗，你俩网球打得都不错呀。\\n男：这是我第一次跟老李打球，没想到他这么厉害。\\n问：男的刚才在做什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "打网球"
+            },
+            {
+              "id": "b",
+              "text": "擦桌子"
+            },
+            {
+              "id": "c",
+              "text": "洗衣服"
+            },
+            {
+              "id": "d",
+              "text": "找袜子"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 569,
+          "explanation": "对话提及网球打得不错、跟老李打球，刚在打网球（选A）。"
+        },
+        {
+          "id": "L15",
+          "num": 15,
+          "dialogue": "男：这篇报道写得很好，以后要继续努力。\\n女：谢谢您，我一定会好好干的。\\n问：男的觉得那篇报道怎么样？",
+          "options": [
+            {
+              "id": "a",
+              "text": "太随便"
+            },
+            {
+              "id": "b",
+              "text": "写得不错"
+            },
+            {
+              "id": "c",
+              "text": "没原来的好"
+            },
+            {
+              "id": "d",
+              "text": "与实际不符"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 603,
+          "explanation": "男的称赞“这篇报道写得很好（写得不错）”（选B）。"
+        },
+        {
+          "id": "L16",
+          "num": 16,
+          "dialogue": "女：我想换台笔记本电脑，你知道哪种好吗？\\n男：我也不太清楚，你先上网看看吧，多比较比较，然后再做决定。\\n问：男的是什么意思？",
+          "options": [
+            {
+              "id": "a",
+              "text": "暂时别卖"
+            },
+            {
+              "id": "b",
+              "text": "上网看看"
+            },
+            {
+              "id": "c",
+              "text": "先借一个用"
+            },
+            {
+              "id": "d",
+              "text": "找朋友商量"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 639,
+          "explanation": "男的建议“你先上网看看吧，多比较比较”（选B）。"
+        },
+        {
+          "id": "L17",
+          "num": 17,
+          "dialogue": "男：小姐，请您先填一下这张表格，姓名、性别和年龄是必须要填的。\\n女：好的。抱歉，我没带笔，你们这儿有笔吗？\\n问：女的最可能在做什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "填表"
+            },
+            {
+              "id": "b",
+              "text": "寄东西"
+            },
+            {
+              "id": "c",
+              "text": "买铅笔"
+            },
+            {
+              "id": "d",
+              "text": "打印菜单"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 673,
+          "explanation": "男的请她填表格，女的正准备填表（选A）。"
+        },
+        {
+          "id": "L18",
+          "num": 18,
+          "dialogue": "女：听说你要出国留学？\\n男：是的，签证刚刚办好，这个月底走。\\n问：关于男的，下列哪个正确？",
+          "options": [
+            {
+              "id": "a",
+              "text": "想请假"
+            },
+            {
+              "id": "b",
+              "text": "在办护照"
+            },
+            {
+              "id": "c",
+              "text": "下周出差"
+            },
+            {
+              "id": "d",
+              "text": "拿到签证了"
+            }
+          ],
+          "correctId": "d",
+          "timestamp": 709,
+          "explanation": "男的表示“签证刚刚办好（拿到签证了）”（选D）。"
+        },
+        {
+          "id": "L19",
+          "num": 19,
+          "dialogue": "男：祝贺你考上了博士！\\n女：谢谢，如果没有你们的帮助，恐怕不会这么顺利。\\n问：关于女的，可以知道什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "是教授"
+            },
+            {
+              "id": "b",
+              "text": "成绩不好"
+            },
+            {
+              "id": "c",
+              "text": "在开玩笑"
+            },
+            {
+              "id": "d",
+              "text": "考上了博士"
+            }
+          ],
+          "correctId": "d",
+          "timestamp": 743,
+          "explanation": "男的祝贺女的考上了博士（选D）。"
+        },
+        {
+          "id": "L20",
+          "num": 20,
+          "dialogue": "女：对不起，刚才我在会议室开会，没办法接电话。\\n男：没关系，我猜你也在忙，没打扰你吧？\\n问：女的刚才在做什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "开会"
+            },
+            {
+              "id": "b",
+              "text": "买手机"
+            },
+            {
+              "id": "c",
+              "text": "发传真"
+            },
+            {
+              "id": "d",
+              "text": "写邀请信"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 776,
+          "explanation": "女的说明“刚才我在会议室开会”（选A）。"
+        },
+        {
+          "id": "L21",
+          "num": 21,
+          "dialogue": "男：昨天的羽毛球比赛你看了吗？\\n女：看了，真是太精彩了，尤其是第二场。\\n问：女的觉得比赛怎么样？",
+          "options": [
+            {
+              "id": "a",
+              "text": "很无聊"
+            },
+            {
+              "id": "b",
+              "text": "很奇怪"
+            },
+            {
+              "id": "c",
+              "text": "十分精彩"
+            },
+            {
+              "id": "d",
+              "text": "让人失望"
+            }
+          ],
+          "correctId": "c",
+          "timestamp": 811,
+          "explanation": "女的赞叹“真是太精彩了”（选C）。"
+        },
+        {
+          "id": "L22",
+          "num": 22,
+          "dialogue": "女：一会儿有客人要来，先别看电视了，去帮我把垃圾扔了。\\n男：好的，妈妈，是张阿姨要来吗？\\n问：女的让男的做什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "请客"
+            },
+            {
+              "id": "b",
+              "text": "扔垃圾"
+            },
+            {
+              "id": "c",
+              "text": "抬沙发"
+            },
+            {
+              "id": "d",
+              "text": "收拾行李"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 845,
+          "explanation": "母亲让儿子“帮我把垃圾扔了”（选B）。"
+        },
+        {
+          "id": "L23",
+          "num": 23,
+          "dialogue": "男：明天上午的访问还需要一个翻译，你看谁去比较合适？\\n女：小马吧，他就是这个专业毕业的，而且经验丰富。\\n问：关于小马，可以知道什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "很成熟"
+            },
+            {
+              "id": "b",
+              "text": "很勇敢"
+            },
+            {
+              "id": "c",
+              "text": "遇事冷静"
+            },
+            {
+              "id": "d",
+              "text": "可以做翻译"
+            }
+          ],
+          "correctId": "d",
+          "timestamp": 880,
+          "explanation": "推荐小马去担任访问翻译，小马可以做翻译（选D）。"
+        },
+        {
+          "id": "L24",
+          "num": 24,
+          "dialogue": "女：师傅，麻烦您快点儿行吗？我得在9点之前到大使馆。\\n男：不用担心，保证按时把您送到。\\n问：女的要去哪儿？",
+          "options": [
+            {
+              "id": "a",
+              "text": "公园"
+            },
+            {
+              "id": "b",
+              "text": "大使馆"
+            },
+            {
+              "id": "c",
+              "text": "首都体育馆"
+            },
+            {
+              "id": "d",
+              "text": "国家图书馆"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 913,
+          "explanation": "女的向司机说明“我得在9点之前到大使馆”（选B）。"
+        },
+        {
+          "id": "L25",
+          "num": 25,
+          "dialogue": "男：你以前不是很喜欢吃糖吗？怎么不吃了？\\n女：我最近牙疼，连饼干这种稍微有点儿甜的东西都不敢吃，更别说糖了。\\n问：女的怎么了？",
+          "options": [
+            {
+              "id": "a",
+              "text": "牙疼"
+            },
+            {
+              "id": "b",
+              "text": "困了"
+            },
+            {
+              "id": "c",
+              "text": "胖了"
+            },
+            {
+              "id": "d",
+              "text": "肚子不舒服"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 947,
+          "explanation": "女的回答“我最近牙疼”（选A）。"
+        }
+      ]
+    },
+    "part3": {
+      "questions": [
+        {
+          "id": "L26",
+          "num": 26,
+          "dialogue": "女：怎么回事？你怎么不开灯？\\n男：我也是刚进门，刚发现灯不亮，是不是停电了？\\n女：应该不会，邻居家的灯都亮着呢。\\n男：那就是灯坏了。\\n问：根据对话，下列哪个正确？",
+          "options": [
+            {
+              "id": "a",
+              "text": "灯不亮了"
+            },
+            {
+              "id": "b",
+              "text": "冰箱坏了"
+            },
+            {
+              "id": "c",
+              "text": "女的迟到了"
+            },
+            {
+              "id": "d",
+              "text": "房间很暖和"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 1012,
+          "explanation": "对话重点在于房间里的灯不亮了（选A）。"
+        },
+        {
+          "id": "L27",
+          "num": 27,
+          "dialogue": "男：对面新开了家饭馆儿，你去过吗？\\n女：去过，那儿菜不错，服务态度也挺好，就是去晚了要等座位。\\n男：那我这会儿去估计是来不及了。\\n女：是，你想去的话要早点儿出发。\\n问：女的觉得那家饭馆儿怎么样？",
+          "options": [
+            {
+              "id": "a",
+              "text": "很吵"
+            },
+            {
+              "id": "b",
+              "text": "菜好吃"
+            },
+            {
+              "id": "c",
+              "text": "啤酒便宜"
+            },
+            {
+              "id": "d",
+              "text": "服务员很少"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 1056,
+          "explanation": "女的肯定“那儿菜不错（菜好吃）”（选B）。"
+        },
+        {
+          "id": "L28",
+          "num": 28,
+          "dialogue": "女：小高，你父亲以前是京剧演员？\\n男：对，他年轻时在我们那儿很有名。\\n女：这么说，你喜欢听京剧是受了你父亲的影响？\\n男：是，我小时候经常去看他的演出。\\n问：关于小高的父亲，可以知道什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "爱跳舞"
+            },
+            {
+              "id": "b",
+              "text": "爱听广播"
+            },
+            {
+              "id": "c",
+              "text": "会唱京剧"
+            },
+            {
+              "id": "d",
+              "text": "是数学老师"
+            }
+          ],
+          "correctId": "c",
+          "timestamp": 1097,
+          "explanation": "小高的父亲以前是著名京剧演员，会唱京剧（选C）。"
+        },
+        {
+          "id": "L29",
+          "num": 29,
+          "dialogue": "男：你今天怎么穿得这么正式？\\n女：有家银行通知我去面试，所以就打扮了一下。\\n男：银行挺好的，加油啊！\\n女：谢谢，有好消息我就告诉你。\\n问：女的今天为什么穿得很正式？",
+          "options": [
+            {
+              "id": "a",
+              "text": "要去面试"
+            },
+            {
+              "id": "b",
+              "text": "要演节目"
+            },
+            {
+              "id": "c",
+              "text": "要看表演"
+            },
+            {
+              "id": "d",
+              "text": "要参加讨论会"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 1140,
+          "explanation": "女的因为银行通知面试所以穿得很正式（选A）。"
+        },
+        {
+          "id": "L30",
+          "num": 30,
+          "dialogue": "女：这本书的作者你认识？\\n男：对，他在我们学校工作。\\n女：是吗？他的小说写得很感人。\\n男：是，我也喜欢他的小说。\\n问：他们觉得那位作者的小说写得怎么样？",
+          "options": [
+            {
+              "id": "a",
+              "text": "不自然"
+            },
+            {
+              "id": "b",
+              "text": "简单易懂"
+            },
+            {
+              "id": "c",
+              "text": "让人感动"
+            },
+            {
+              "id": "d",
+              "text": "不吸引人"
+            }
+          ],
+          "correctId": "c",
+          "timestamp": 1177,
+          "explanation": "两人均评价作者的小说“写得很感人（让人感动）”（选C）。"
+        },
+        {
+          "id": "L31",
+          "num": 31,
+          "dialogue": "男：您好，是您要理发吗？\\n女：不是，给我小孙子理发。\\n男：好的，想给他理成什么样的呢？\\n女：稍微短点儿就行，别太长了。\\n问：他们最可能在哪儿？",
+          "options": [
+            {
+              "id": "a",
+              "text": "教室"
+            },
+            {
+              "id": "b",
+              "text": "电梯里"
+            },
+            {
+              "id": "c",
+              "text": "理发店"
+            },
+            {
+              "id": "d",
+              "text": "办公室"
+            }
+          ],
+          "correctId": "c",
+          "timestamp": 1222,
+          "explanation": "理发师询问理发样式，最可能在理发店（选C）。"
+        },
+        {
+          "id": "L32",
+          "num": 32,
+          "dialogue": "女：我要去逛商店，你去不去？\\n男：我有点儿累，不去了。你顺便买几个西红柿吧，晚上做个汤。\\n女：我昨天买了一些，放在厨房了。\\n男：我没注意。那你去逛吧，今天我来做饭。\\n问：男的让女的买什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "盐"
+            },
+            {
+              "id": "b",
+              "text": "镜子"
+            },
+            {
+              "id": "c",
+              "text": "牙膏"
+            },
+            {
+              "id": "d",
+              "text": "西红柿"
+            }
+          ],
+          "correctId": "d",
+          "timestamp": 1269,
+          "explanation": "男的让女的顺便买几个西红柿（选D）。"
+        },
+        {
+          "id": "L33",
+          "num": 33,
+          "dialogue": "男：你看什么呢？把房间弄得这么乱。\\n女：你来得正好，看见我的钱包了吗？我到处找都没找到。\\n男：没看见，你上午不是去咖啡馆儿了吗？会不会忘在那儿了？\\n女：有可能，我打电话问问。\\n问：女的怎么了？",
+          "options": [
+            {
+              "id": "a",
+              "text": "饿了"
+            },
+            {
+              "id": "b",
+              "text": "没睡醒"
+            },
+            {
+              "id": "c",
+              "text": "钱包丢了"
+            },
+            {
+              "id": "d",
+              "text": "弄脏裙子了"
+            }
+          ],
+          "correctId": "c",
+          "timestamp": 1308,
+          "explanation": "女的到处找自己的钱包，钱包丢了（选C）。"
+        },
+        {
+          "id": "L34",
+          "num": 34,
+          "dialogue": "女：听说你在做生意，怎么样？\\n男：我本来以为很简单，做起来才发现并不容易，很辛苦。\\n女：慢慢来，万事开头难，关键是要多积累经验。\\n男：是，我也是这样想的。\\n问：女的是什么意思？",
+          "options": [
+            {
+              "id": "a",
+              "text": "放宽标准"
+            },
+            {
+              "id": "b",
+              "text": "多积累经验"
+            },
+            {
+              "id": "c",
+              "text": "输赢不重要"
+            },
+            {
+              "id": "d",
+              "text": "按照规定办"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 1345,
+          "explanation": "女的提出“关键是要多积累经验”（选B）。"
+        },
+        {
+          "id": "L35",
+          "num": 35,
+          "dialogue": "男：星期日我们去海洋馆吧，那天有表演。\\n女：这个主意好，我还从来没去过呢。\\n男：从学校西门走方便一些，我们在那儿见吧。\\n女：好的，9点怎么样？\\n问：他们周日在哪儿见面？",
+          "options": [
+            {
+              "id": "a",
+              "text": "宾馆右边"
+            },
+            {
+              "id": "b",
+              "text": "学校西门"
+            },
+            {
+              "id": "c",
+              "text": "蛋糕店旁边"
+            },
+            {
+              "id": "d",
+              "text": "植物园后面"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 1391,
+          "explanation": "男的说“我们在学校西门见吧”（选B）。"
+        },
+        {
+          "id": "L36",
+          "num": 36,
+          "dialogue": "儿子告诉我，他长大后想做204路公交车的司机。我听了很吃惊，就问他：“当司机也不错，可为什么一定是204路呢？”“因为204路车的最后一站是动物园，这样我就可以天天到动物园看老虎和猴子了。”\\n问：儿子将来想做什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "司机"
+            },
+            {
+              "id": "b",
+              "text": "导游"
+            },
+            {
+              "id": "c",
+              "text": "警察"
+            },
+            {
+              "id": "d",
+              "text": "售货员"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 1459,
+          "explanation": "儿子说长大后想做公交车司机（选A）。"
+        },
+        {
+          "id": "L37",
+          "num": 37,
+          "dialogue": "儿子告诉我，他长大后想做204路公交车的司机。我听了很吃惊，就问他：“当司机也不错，可为什么一定是204路呢？”“因为204路车的最后一站是动物园，这样我就可以天天到动物园看老虎和猴子了。”\\n问：关于204路公交车，可以知道什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "很旧"
+            },
+            {
+              "id": "b",
+              "text": "速度快"
+            },
+            {
+              "id": "c",
+              "text": "能到动物园"
+            },
+            {
+              "id": "d",
+              "text": "从火车站始发"
+            }
+          ],
+          "correctId": "c",
+          "timestamp": 1478,
+          "explanation": "204路车最后一站是动物园，能到动物园（选C）。"
+        },
+        {
+          "id": "L38",
+          "num": 38,
+          "dialogue": "茶在中国有数千年的历史，是中国最常见的饮料。最开始的时候，茶只是被当做一种药，而不是饮料。后来，随着人们对茶的认识的加深，慢慢开始将它当做解渴的饮料，这才逐渐有了中国的茶文化。\\n问：茶最早被当做什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "药"
+            },
+            {
+              "id": "b",
+              "text": "草"
+            },
+            {
+              "id": "c",
+              "text": "食品"
+            },
+            {
+              "id": "d",
+              "text": "饮料"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 1532,
+          "explanation": "原文提到“最开始的时候，茶只是被当做一种药”（选A）。"
+        },
+        {
+          "id": "L39",
+          "num": 39,
+          "dialogue": "茶在中国有数千年的历史，是中国最常见的饮料。最开始的时候，茶只是被当做一种药，而不是饮料。后来，随着人们对茶的认识的加深，慢慢开始将它当做解渴的饮料，这才逐渐有了中国的茶文化。\\n问：关于茶，可以知道什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "是酸的"
+            },
+            {
+              "id": "b",
+              "text": "怕阳光"
+            },
+            {
+              "id": "c",
+              "text": "历史很长"
+            },
+            {
+              "id": "d",
+              "text": "红茶最流行"
+            }
+          ],
+          "correctId": "c",
+          "timestamp": 1553,
+          "explanation": "茶在中国有数千年的历史，历史悠久（选C）。"
+        },
+        {
+          "id": "L40",
+          "num": 40,
+          "dialogue": "王先生，您放心，只要是在我们店购买的洗衣机，一年以内出现任何质量问题，我们都会免费给您修。这是保修卡，使用中遇到什么问题，您可以拨打上面的电话联系我们。\\n问：王先生在买什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "照相机"
+            },
+            {
+              "id": "b",
+              "text": "洗衣机"
+            },
+            {
+              "id": "c",
+              "text": "复印机"
+            },
+            {
+              "id": "d",
+              "text": "洗碗机"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 1609,
+          "explanation": "店员说明只要在我们店购买的洗衣机一年内免费修（选B）。"
+        },
+        {
+          "id": "L41",
+          "num": 41,
+          "dialogue": "王先生，您放心，只要是在我们店购买的洗衣机，一年以内出现任何质量问题，我们都会免费给您修。这是保修卡，使用中遇到什么问题，您可以拨打上面的电话联系我们。\\n问：联系电话写在哪儿？",
+          "options": [
+            {
+              "id": "a",
+              "text": "箱子上"
+            },
+            {
+              "id": "b",
+              "text": "说明书上"
+            },
+            {
+              "id": "c",
+              "text": "合格证上"
+            },
+            {
+              "id": "d",
+              "text": "保修卡上"
+            }
+          ],
+          "correctId": "d",
+          "timestamp": 1629,
+          "explanation": "这是保修卡，遇到问题拨打上面的电话（选D）。"
+        },
+        {
+          "id": "L42",
+          "num": 42,
+          "dialogue": "明天检查身体，体检前12小时内不吃东西就可以，不用现在就限制进食。今天晚饭可以少吃一些，别吃太辣太咸的，不要喝酒；明天早上别吃饭，别喝水。我们明天8点准时在公司门口集合。\\n问：体检前一天晚上要注意什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "不能吃鱼"
+            },
+            {
+              "id": "b",
+              "text": "不能喝果汁"
+            },
+            {
+              "id": "c",
+              "text": "饭后要散步"
+            },
+            {
+              "id": "d",
+              "text": "不能吃辣的"
+            }
+          ],
+          "correctId": "d",
+          "timestamp": 1684,
+          "explanation": "今天晚饭少吃，别吃太辣太咸，不要喝酒（选D）。"
+        },
+        {
+          "id": "L43",
+          "num": 43,
+          "dialogue": "明天检查身体，体检前12小时内不吃东西就可以，不用现在就限制进食。今天晚饭可以少吃一些，别吃太辣太咸的，不要喝酒；明天早上别吃饭，别喝水。我们明天8点准时在公司门口集合。\\n问：关于体检当天，下列哪个正确？",
+          "options": [
+            {
+              "id": "a",
+              "text": "别吃早饭"
+            },
+            {
+              "id": "b",
+              "text": "多吃水果"
+            },
+            {
+              "id": "c",
+              "text": "要有好心情"
+            },
+            {
+              "id": "d",
+              "text": "不能戴手表"
+            }
+          ],
+          "correctId": "a",
+          "timestamp": 1709,
+          "explanation": "明天早上别吃饭，别喝水（别吃早饭）（选A）。"
+        },
+        {
+          "id": "L44",
+          "num": 44,
+          "dialogue": "有些父母觉得孩子做事情慢，总想替他们做，这样做其实很不好。孩子做事情慢，往往是因为他们不会安排自己的时间。因此，父母应该让孩子学会管理时间，自己的事情自己做，而不要让他们养成总说“来不及了”、“我没办法”这些坏习惯。\\n问：有些父母看到孩子做事慢会怎么做？",
+          "options": [
+            {
+              "id": "a",
+              "text": "发脾气"
+            },
+            {
+              "id": "b",
+              "text": "替孩子做"
+            },
+            {
+              "id": "c",
+              "text": "说孩子懒"
+            },
+            {
+              "id": "d",
+              "text": "故意咳嗽"
+            }
+          ],
+          "correctId": "b",
+          "timestamp": 1765,
+          "explanation": "很多父母觉得孩子慢，总想替他们做（选B）。"
+        },
+        {
+          "id": "L45",
+          "num": 45,
+          "dialogue": "有些父母觉得孩子做事情慢，总想替他们做，这样做其实很不好。孩子做事情慢，往往是因为他们不会安排自己的时间。因此，父母应该让孩子学会管理时间，自己的事情自己做，而不要让他们养成总说“来不及了”、“我没办法”这些坏习惯。\\n问：根据这段话，应让孩子养成什么好习惯？",
+          "options": [
+            {
+              "id": "a",
+              "text": "仔细"
+            },
+            {
+              "id": "b",
+              "text": "多阅读"
+            },
+            {
+              "id": "c",
+              "text": "主动预习"
+            },
+            {
+              "id": "d",
+              "text": "会安排时间"
+            }
+          ],
+          "correctId": "d",
+          "timestamp": 1787,
+          "explanation": "父母应让孩子学会管理时间（会安排时间）（选D）。"
+        }
+      ]
+    }
+  },
+  "reading": {
+    "part1": {
+      "group1": {
+        "options": [
+          {
+            "id": "a",
+            "text": "拉"
+          },
+          {
+            "id": "b",
+            "text": "圆"
+          },
+          {
+            "id": "c",
+            "text": "完全"
+          },
+          {
+            "id": "d",
+            "text": "坚持"
+          },
+          {
+            "id": "e",
+            "text": "重点"
+          },
+          {
+            "id": "f",
+            "text": "饺子"
+          }
+        ],
+        "questions": [
+          {
+            "id": "R46",
+            "num": 46,
+            "prompt": "今天晚上的月亮又大又( )，真漂亮，咱们出去走走吧。",
+            "correctId": "b",
+            "explanation": "形容月亮形状用“圆”（选B）。"
+          },
+          {
+            "id": "R47",
+            "num": 47,
+            "prompt": "我最喜欢过年，全家人在一起包( )，热闹极了。",
+            "correctId": "f",
+            "explanation": "过年传统面食“包饺子”（选F）。"
+          },
+          {
+            "id": "R48",
+            "num": 48,
+            "prompt": "他( )有能力做好这件事，但他没有认真去做。",
+            "correctId": "c",
+            "explanation": "表示全然十分用副词“完全”（选C）。"
+          },
+          {
+            "id": "R49",
+            "num": 49,
+            "prompt": "那棵树特别粗，要四五个大人手( )手才能抱住。",
+            "correctId": "a",
+            "explanation": "大人相互牵手用“手拉手”（选A）。"
+          },
+          {
+            "id": "R50",
+            "num": 50,
+            "prompt": "讲话应先讲( )，这样才能使别人更快地了解你想表达的意思。",
+            "correctId": "e",
+            "explanation": "讲话表达主要内容用“重点”（选E）。"
+          }
+        ]
+      },
+      "group2": {
+        "options": [
+          {
+            "id": "a",
+            "text": "样子"
+          },
+          {
+            "id": "b",
+            "text": "超过"
+          },
+          {
+            "id": "c",
+            "text": "温度"
+          },
+          {
+            "id": "d",
+            "text": "入口"
+          },
+          {
+            "id": "e",
+            "text": "严重"
+          },
+          {
+            "id": "f",
+            "text": "整理"
+          }
+        ],
+        "questions": [
+          {
+            "id": "R51",
+            "num": 51,
+            "prompt": "A：飞机还有40分钟就要起飞了，你怎么还没到？\\nB：路上堵车。我现在在( )处，马上就到。",
+            "correctId": "d",
+            "explanation": "机场进门处为“入口处”（选D）。"
+          },
+          {
+            "id": "R52",
+            "num": 52,
+            "prompt": "A：能把照片发到我邮箱里吗？\\nB：没问题，把你的邮箱地址告诉我，我( )好了就发给你。",
+            "correctId": "f",
+            "explanation": "归纳收拾照片用动词“整理”（选F）。"
+          },
+          {
+            "id": "R53",
+            "num": 53,
+            "prompt": "A：你好，请问我女儿可以买儿童票吗？\\nB：可以，身高没( )一米二就可以买。",
+            "correctId": "b",
+            "explanation": "数值高于某标准用“超过”（选B）。"
+          },
+          {
+            "id": "R54",
+            "num": 54,
+            "prompt": "A：看( )你对这里很熟悉。\\nB：当然了，我在这儿生活了大约10年，去年才搬走的。",
+            "correctId": "a",
+            "explanation": "固定句式“看样子”（看来）（选A）。"
+          },
+          {
+            "id": "R55",
+            "num": 55,
+            "prompt": "A：只是腿擦破了点儿皮，大夫说不( )。\\nB：没事就好，你先躺下休息一会儿吧。",
+            "correctId": "e",
+            "explanation": "形容伤情不重用“不严重”（选E）。"
+          }
+        ]
+      }
+    },
+    "part2": {
+      "questions": [
+        {
+          "id": "R56",
+          "num": 56,
+          "items": [
+            {
+              "id": "a",
+              "text": "至少我们努力过"
+            },
+            {
+              "id": "b",
+              "text": "即使失败了也没关系"
+            },
+            {
+              "id": "c",
+              "text": "机会来了，就该主动去试一试"
+            }
+          ],
+          "correctOrder": "CBA",
+          "explanation": "C提出把握机会尝试，B让步即使失败，A说明至少努力过：CBA。"
+        },
+        {
+          "id": "R57",
+          "num": 57,
+          "items": [
+            {
+              "id": "a",
+              "text": "但世界上还有很多是钱买不到、也换不来的"
+            },
+            {
+              "id": "b",
+              "text": "钱虽然能买到很多东西"
+            },
+            {
+              "id": "c",
+              "text": "例如生命、爱情、友谊和时间"
+            }
+          ],
+          "correctOrder": "BAC",
+          "explanation": "B金钱作用让步，A转折很多买不到，C举例买不到的事物：BAC。"
+        },
+        {
+          "id": "R58",
+          "num": 58,
+          "items": [
+            {
+              "id": "a",
+              "text": "北方秋天很干燥，你刚来"
+            },
+            {
+              "id": "b",
+              "text": "觉得不适应很正常"
+            },
+            {
+              "id": "c",
+              "text": "每天多喝水，习惯了就不会那么难受了"
+            }
+          ],
+          "correctOrder": "ABC",
+          "explanation": "A说明北方秋燥背景，B承接不适应很正常，C提出多喝水建议：ABC。"
+        },
+        {
+          "id": "R59",
+          "num": 59,
+          "items": [
+            {
+              "id": "a",
+              "text": "实际上，很多问题的答案都可以从生活中找到"
+            },
+            {
+              "id": "b",
+              "text": "课本上的知识并不能解决我们遇到的所有问题"
+            },
+            {
+              "id": "c",
+              "text": "但这需要我们用眼睛去发现，用心去总结"
+            }
+          ],
+          "correctOrder": "BAC",
+          "explanation": "B课本知识有限，A转折答案在生活中，C说明需要发现和总结：BAC。"
+        },
+        {
+          "id": "R60",
+          "num": 60,
+          "items": [
+            {
+              "id": "a",
+              "text": "还能扩大知识面"
+            },
+            {
+              "id": "b",
+              "text": "我提高汉语水平的方法就是坚持看中文报纸"
+            },
+            {
+              "id": "c",
+              "text": "这样不但能学到很多新的词语"
+            }
+          ],
+          "correctOrder": "BCA",
+          "explanation": "B介绍看报方法，C不但能学新词，A还能扩大知识面：BCA。"
+        },
+        {
+          "id": "R61",
+          "num": 61,
+          "items": [
+            {
+              "id": "a",
+              "text": "这些家具很多都是他帮忙抬上来的"
+            },
+            {
+              "id": "b",
+              "text": "力气却大得很"
+            },
+            {
+              "id": "c",
+              "text": "别看小黄个子不高，人也瘦"
+            }
+          ],
+          "correctOrder": "CBA",
+          "explanation": "C看似瘦小，B转折力气大，A举例帮忙抬家具：CBA。"
+        },
+        {
+          "id": "R62",
+          "num": 62,
+          "items": [
+            {
+              "id": "a",
+              "text": "飞往该市的好几趟航班"
+            },
+            {
+              "id": "b",
+              "text": "昨晚19时南京市突然下起了大雨"
+            },
+            {
+              "id": "c",
+              "text": "都不得不推迟起飞"
+            }
+          ],
+          "correctOrder": "BAC",
+          "explanation": "B南京突降大雨，A飞往该市航班，C不得不推迟起飞：BAC。"
+        },
+        {
+          "id": "R63",
+          "num": 63,
+          "items": [
+            {
+              "id": "a",
+              "text": "我家离北京很近"
+            },
+            {
+              "id": "b",
+              "text": "所以周末和节假日我一般都会回家"
+            },
+            {
+              "id": "c",
+              "text": "只有100多公里，开车的话大约一个小时就到了"
+            }
+          ],
+          "correctOrder": "ACB",
+          "explanation": "A我家离北京近，C补充只有100公里一小时车程，B因果经常回家：ACB。"
+        },
+        {
+          "id": "R64",
+          "num": 64,
+          "items": [
+            {
+              "id": "a",
+              "text": "懂得互相信任和尊重才是最重要的"
+            },
+            {
+              "id": "b",
+              "text": "两个人既然决定共同生活"
+            },
+            {
+              "id": "c",
+              "text": "那么，只有浪漫和新鲜感是不够的"
+            }
+          ],
+          "correctOrder": "BCA",
+          "explanation": "B既然决定共同生活，C浪漫不够，A信任尊重最重要：BCA。"
+        },
+        {
+          "id": "R65",
+          "num": 65,
+          "items": [
+            {
+              "id": "a",
+              "text": "一看见医生就哭，他怎么都没想到"
+            },
+            {
+              "id": "b",
+              "text": "我长大后竟然会成为一名护士"
+            },
+            {
+              "id": "c",
+              "text": "爸爸说我小时候特别害怕打针"
+            }
+          ],
+          "correctOrder": "CAB",
+          "explanation": "C小时候怕打针，A见医生就哭，B没想到长大成了护士：CAB。"
+        }
+      ]
+    },
+    "part3": {
+      "questions": [
+        {
+          "id": "R66",
+          "num": 66,
+          "passage": "每个人都有缺点，再优秀的人也一样。我们总是很容易看到一个人的缺点，但是别忘了，他身上的优点更值得我们去发现、去学习。",
+          "question": "★ 这段话提醒我们要：",
+          "options": [
+            {
+              "id": "a",
+              "text": "有耐心"
+            },
+            {
+              "id": "b",
+              "text": "接受批评"
+            },
+            {
+              "id": "c",
+              "text": "学会原谅"
+            },
+            {
+              "id": "d",
+              "text": "看到别人的优点"
+            }
+          ],
+          "correctId": "d",
+          "explanation": "文章提醒人们别忘了发现学习别人身上的优点（选D）。"
+        },
+        {
+          "id": "R67",
+          "num": 67,
+          "passage": "森林有改变小范围气候的作用。在高温的夏季，森林内的温度会比周围低3到5℃；而在寒冷多风的冬季，森林能起到降低风速、提高气温的作用。",
+          "question": "★ 夏季，森林可以：",
+          "options": [
+            {
+              "id": "a",
+              "text": "降低气温"
+            },
+            {
+              "id": "b",
+              "text": "改变风向"
+            },
+            {
+              "id": "c",
+              "text": "增加雨量"
+            },
+            {
+              "id": "d",
+              "text": "使皮肤湿润"
+            }
+          ],
+          "correctId": "a",
+          "explanation": "夏季森林内温度比周围低3到5℃（降低气温）（选A）。"
+        },
+        {
+          "id": "R68",
+          "num": 68,
+          "passage": "选择职业时，我们首先应该对自己有清楚的认识，不仅要知道自己想做什么，还要根据自己的性格、爱好去判断什么样的工作适合自己，这样才能找到满意的工作。",
+          "question": "★ 选择职业时，应该：",
+          "options": [
+            {
+              "id": "a",
+              "text": "多调查"
+            },
+            {
+              "id": "b",
+              "text": "打好基础"
+            },
+            {
+              "id": "c",
+              "text": "及时总结"
+            },
+            {
+              "id": "d",
+              "text": "先认清自己"
+            }
+          ],
+          "correctId": "d",
+          "explanation": "第一句强调首先应该对自己有清楚的认识（先认清自己）（选D）。"
+        },
+        {
+          "id": "R69",
+          "num": 69,
+          "passage": "有些人通过节食的方法来减肥，虽然有效，但是时间长了身体会受不了。真正健康的减肥方法应该是多锻炼，这样做既对身体好，还能让自己看起来更有精神。",
+          "question": "★ 想要健康减肥，应该：",
+          "options": [
+            {
+              "id": "a",
+              "text": "多运动"
+            },
+            {
+              "id": "b",
+              "text": "少吃米饭"
+            },
+            {
+              "id": "c",
+              "text": "经常站着"
+            },
+            {
+              "id": "d",
+              "text": "多玩儿电子游戏"
+            }
+          ],
+          "correctId": "a",
+          "explanation": "文中指出健康的减肥方法应该是多锻炼（多运动）（选A）。"
+        },
+        {
+          "id": "R70",
+          "num": 70,
+          "passage": "张先生，这儿离你们公司也就两三站的距离，周围环境不错，对面有超市和银行，房租也不贵，您要不要再考虑一下？",
+          "question": "★ 张先生：",
+          "options": [
+            {
+              "id": "a",
+              "text": "被骗了"
+            },
+            {
+              "id": "b",
+              "text": "住在附近"
+            },
+            {
+              "id": "c",
+              "text": "在找房子"
+            },
+            {
+              "id": "d",
+              "text": "在看广告"
+            }
+          ],
+          "correctId": "c",
+          "explanation": "介绍房屋位置房租环境，张先生在租房找房子（选C）。"
+        },
+        {
+          "id": "R71",
+          "num": 71,
+          "passage": "大城市和小城市各有各的好处。大城市的工作机会确实多一些，但竞争的压力大；相反，在小城市生活就会轻松许多。",
+          "question": "★ 他觉得小城市：",
+          "options": [
+            {
+              "id": "a",
+              "text": "更安静"
+            },
+            {
+              "id": "b",
+              "text": "收入高"
+            },
+            {
+              "id": "c",
+              "text": "招聘会多"
+            },
+            {
+              "id": "d",
+              "text": "生活压力小"
+            }
+          ],
+          "correctId": "d",
+          "explanation": "对比大城市竞争压力大，小城市生活轻松许多（压力小）（选D）。"
+        },
+        {
+          "id": "R72",
+          "num": 72,
+          "passage": "如果一个人必须要完成一件自己不喜欢的事情，最好的办法就是早点儿把它做完，这样才能提前结束烦恼。",
+          "question": "★ 对不喜欢却又必须做的事，最好：",
+          "options": [
+            {
+              "id": "a",
+              "text": "找人帮忙"
+            },
+            {
+              "id": "b",
+              "text": "交给别人"
+            },
+            {
+              "id": "c",
+              "text": "早点儿完成"
+            },
+            {
+              "id": "d",
+              "text": "留到最后做"
+            }
+          ],
+          "correctId": "c",
+          "explanation": "最好的办法就是早点儿把它做完（选C）。"
+        },
+        {
+          "id": "R73",
+          "num": 73,
+          "passage": "老教授对新生说：“从今天起，如果你每天用100字把自己的生活写下来，毕业时你将会得到一本10多万字的书，内容就是你4年大学生活的美好回忆。”",
+          "question": "★ 老教授希望学生：",
+          "options": [
+            {
+              "id": "a",
+              "text": "诚实"
+            },
+            {
+              "id": "b",
+              "text": "别太得意"
+            },
+            {
+              "id": "c",
+              "text": "经常复习"
+            },
+            {
+              "id": "d",
+              "text": "记下自己的生活"
+            }
+          ],
+          "correctId": "d",
+          "explanation": "老教授建议每天用100字把自己的生活写下来（选D）。"
+        },
+        {
+          "id": "R74",
+          "num": 74,
+          "passage": "语言是人们交流的工具，音乐也是一种语言，人们可以用它来表达自己的感情，而且和其他语言比起来，音乐表达的感情有时更容易让人听懂。",
+          "question": "★ 根据这段话，音乐表达的感情：",
+          "options": [
+            {
+              "id": "a",
+              "text": "复杂多变"
+            },
+            {
+              "id": "b",
+              "text": "让人难过"
+            },
+            {
+              "id": "c",
+              "text": "更容易理解"
+            },
+            {
+              "id": "d",
+              "text": "让人印象更深"
+            }
+          ],
+          "correctId": "c",
+          "explanation": "末句说明音乐表达的感情“有时更容易让人听懂（更容易理解）”（选C）。"
+        },
+        {
+          "id": "R75",
+          "num": 75,
+          "passage": "很多时候，人们习惯根据过去的经验做事，但有时候也不能完全相信经验，而应该根据不同的情况选择不同的方法，这样才不容易出错。",
+          "question": "★ 根据这段话，过去的经验：",
+          "options": [
+            {
+              "id": "a",
+              "text": "更准确"
+            },
+            {
+              "id": "b",
+              "text": "值得重视"
+            },
+            {
+              "id": "c",
+              "text": "无法被证明"
+            },
+            {
+              "id": "d",
+              "text": "不一定适合现在"
+            }
+          ],
+          "correctId": "d",
+          "explanation": "不能完全相信经验，要结合不同情况，说明经验不一定适合现在（选D）。"
+        },
+        {
+          "id": "R76",
+          "num": 76,
+          "passage": "马校长介绍说，学校举办这次文化节活动，一方面是想让各国学生更好地了解中国，另一方面是想为学生们提供互相交流和学习的机会。",
+          "question": "★ 学校举办这次活动，是想帮助学生们：",
+          "options": [
+            {
+              "id": "a",
+              "text": "认识汉字"
+            },
+            {
+              "id": "b",
+              "text": "熟悉校园"
+            },
+            {
+              "id": "c",
+              "text": "提高信心"
+            },
+            {
+              "id": "d",
+              "text": "相互增加了解"
+            }
+          ],
+          "correctId": "d",
+          "explanation": "目的是互相交流学习、增加相互了解（选D）。"
+        },
+        {
+          "id": "R77",
+          "num": 77,
+          "passage": "他平时就对自己要求很严格，尤其是赛前那个星期，他每天都会把全部动作练习好几遍，希望在比赛中做到最好。",
+          "question": "★ 比赛前，他：",
+          "options": [
+            {
+              "id": "a",
+              "text": "更努力"
+            },
+            {
+              "id": "b",
+              "text": "十分兴奋"
+            },
+            {
+              "id": "c",
+              "text": "非常着急"
+            },
+            {
+              "id": "d",
+              "text": "停止了练习"
+            }
+          ],
+          "correctId": "a",
+          "explanation": "赛前每天把全部动作练习好几遍，更加努力（选A）。"
+        },
+        {
+          "id": "R78",
+          "num": 78,
+          "passage": "拒绝握手是不礼貌的，不过当手不干净时，可以先拒绝，然后马上解释原因并对此表示抱歉，否则可能引起误会，让人以为你不友好。",
+          "question": "★ 拒绝握手后为什么要马上道歉？",
+          "options": [
+            {
+              "id": "a",
+              "text": "减少误会"
+            },
+            {
+              "id": "b",
+              "text": "怕人怀疑"
+            },
+            {
+              "id": "c",
+              "text": "想引人同情"
+            },
+            {
+              "id": "d",
+              "text": "想获得表扬"
+            }
+          ],
+          "correctId": "a",
+          "explanation": "马上解释并抱歉，否则可能引起误会（减少误会）（选A）。"
+        },
+        {
+          "id": "R79",
+          "num": 79,
+          "passage": "叶诗文是中国著名的游泳运动员，她6岁时就比同龄人高不少，老师看她手脚也大，身体其他条件也很符合游泳运动员的要求，就鼓励她专门去学游泳。尽管她现在只有16岁，但已经获得了好几个国际大奖。",
+          "question": "★ 老师鼓励叶诗文学游泳，是因为觉得她：",
+          "options": [
+            {
+              "id": "a",
+              "text": "聪明"
+            },
+            {
+              "id": "b",
+              "text": "跑得快"
+            },
+            {
+              "id": "c",
+              "text": "获过奖"
+            },
+            {
+              "id": "d",
+              "text": "身体条件好"
+            }
+          ],
+          "correctId": "d",
+          "explanation": "手脚大手长个高，身体条件符合要求（身体条件好）（选D）。"
+        },
+        {
+          "id": "R80",
+          "num": 80,
+          "passage": "目的地也许只有一个，但是通往目的地的道路却有很多条。所以，当一条路走不通时，我们可以换另外一条试试。只要我们不放弃努力，总会找到一条合适的路，通往成功的目的地。",
+          "question": "★ 当一条路走不通时，我们应该：",
+          "options": [
+            {
+              "id": "a",
+              "text": "看地图"
+            },
+            {
+              "id": "b",
+              "text": "试试别的路"
+            },
+            {
+              "id": "c",
+              "text": "向当地人问路"
+            },
+            {
+              "id": "d",
+              "text": "给朋友打电话"
+            }
+          ],
+          "correctId": "b",
+          "explanation": "文段指出“当一条路走不通时，我们可以换另外一条试试”（选B）。"
+        },
+        {
+          "id": "R81",
+          "num": 81,
+          "passage": "目的地也许只有一个，但是通往目的地的道路却有很多条。所以，当一条路走不通时，我们可以换另外一条试试。只要我们不放弃努力，总会找到一条合适的路，通往成功的目的地。",
+          "question": "★ 这段话主要想告诉我们：",
+          "options": [
+            {
+              "id": "a",
+              "text": "要有理想"
+            },
+            {
+              "id": "b",
+              "text": "工作要积极"
+            },
+            {
+              "id": "c",
+              "text": "成功需要坚持"
+            },
+            {
+              "id": "d",
+              "text": "做事要有计划"
+            }
+          ],
+          "correctId": "c",
+          "explanation": "末句总结“只要我们不放弃努力（需要坚持）”（选C）。"
+        },
+        {
+          "id": "R82",
+          "num": 82,
+          "passage": "顾客朋友们，本店现推出“购书送好礼”活动，购书满100元即可获得笔记本一个，满200元可获得字典一部。另外，部分图书还有打折活动，其中，小说7.5折，杂志8折，研究生入学考试用书等6折。欢迎选购！祝您购物愉快！",
+          "question": "★ 购书满100元能获得什么礼物？",
+          "options": [
+            {
+              "id": "a",
+              "text": "词典"
+            },
+            {
+              "id": "b",
+              "text": "日记本"
+            },
+            {
+              "id": "c",
+              "text": "故事书"
+            },
+            {
+              "id": "d",
+              "text": "汉语书"
+            }
+          ],
+          "correctId": "b",
+          "explanation": "满100元获得笔记本（日记本）一个（选B）。"
+        },
+        {
+          "id": "R83",
+          "num": 83,
+          "passage": "顾客朋友们，本店现推出“购书送好礼”活动，购书满100元即可获得笔记本一个，满200元可获得字典一部。另外，部分图书还有打折活动，其中，小说7.5折，杂志8折，研究生入学考试用书等6折。欢迎选购！祝您购物愉快！",
+          "question": "★ 根据这段话，可以知道：",
+          "options": [
+            {
+              "id": "a",
+              "text": "小说半价"
+            },
+            {
+              "id": "b",
+              "text": "放寒假了"
+            },
+            {
+              "id": "c",
+              "text": "有些书打折"
+            },
+            {
+              "id": "d",
+              "text": "书店生意很好"
+            }
+          ],
+          "correctId": "c",
+          "explanation": "部分图书有打折活动（有些书打折）（选C）。"
+        },
+        {
+          "id": "R84",
+          "num": 84,
+          "passage": "保护地球环境，并不是离我们很远、很难做到的事情。实际上，我们只需注意一下身边的小事就可以。例如，出门时记得关空调和电脑，节约用电；少开车，多骑车或者坐公共汽车，降低空气污染；买菜时自备购物袋，少用塑料袋，减少白色污染……这些虽然都是小事，却有实实在在的效果。",
+          "question": "★ 为了减少白色污染，我们应该：",
+          "options": [
+            {
+              "id": "a",
+              "text": "少说多做"
+            },
+            {
+              "id": "b",
+              "text": "节约用水"
+            },
+            {
+              "id": "c",
+              "text": "少用塑料袋"
+            },
+            {
+              "id": "d",
+              "text": "少用一次性筷子"
+            }
+          ],
+          "correctId": "c",
+          "explanation": "买菜自备购物袋，少用塑料袋减少白色污染（选C）。"
+        },
+        {
+          "id": "R85",
+          "num": 85,
+          "passage": "保护地球环境，并不是离我们很远、很难做到的事情。实际上，我们只需注意一下身边的小事就可以。例如，出门时记得关空调和电脑，节约用电；少开车，多骑车或者坐公共汽车，降低空气污染；买菜时自备购物袋，少用塑料袋，减少白色污染……这些虽然都是小事，却有实实在在的效果。",
+          "question": "★ 这段话主要谈什么？",
+          "options": [
+            {
+              "id": "a",
+              "text": "社会责任"
+            },
+            {
+              "id": "b",
+              "text": "环境保护"
+            },
+            {
+              "id": "c",
+              "text": "节约与浪费"
+            },
+            {
+              "id": "d",
+              "text": "经济的发展"
+            }
+          ],
+          "correctId": "b",
+          "explanation": "首句开门见山指出谈论保护地球环境（选B）。"
+        }
+      ]
+    }
+  },
+  "writing": {
+    "part1": {
+      "questions": [
+        {
+          "id": "W86",
+          "num": 86,
+          "words": [
+            "你最好",
+            "一个密码",
+            "重新换"
+          ],
+          "correct": "你最好重新换一个密码。",
+          "explanation": "主语（你）+ 状语（最好重新）+ 动词及数量宾语（换一个密码）。"
+        },
+        {
+          "id": "W87",
+          "num": 87,
+          "words": [
+            "不允许",
+            "医院",
+            "抽烟",
+            "里"
+          ],
+          "correct": "医院里不允许抽烟。",
+          "explanation": "处所主语（医院里）+ 否定能愿动词（不允许）+ 动作宾语（抽烟）。"
+        },
+        {
+          "id": "W88",
+          "num": 88,
+          "words": [
+            "看法",
+            "我",
+            "跟你的",
+            "差不多"
+          ],
+          "correct": "我跟你的看法差不多。",
+          "explanation": "主语（我）+ 介词短语（跟你的看法）+ 形容词谓语（差不多）。"
+        },
+        {
+          "id": "W89",
+          "num": 89,
+          "words": [
+            "发生了",
+            "这儿",
+            "究竟",
+            "什么",
+            "事情"
+          ],
+          "correct": "这儿究竟发生了什么事情？",
+          "explanation": "处所主语（这儿）+ 语气副词（究竟）+ 谓语动词（发生了）+ 疑问代词定中宾语（什么事情）。"
+        },
+        {
+          "id": "W90",
+          "num": 90,
+          "words": [
+            "他",
+            "一个",
+            "美丽的",
+            "小城市",
+            "出生在"
+          ],
+          "correct": "他出生在一个美丽的小城市。",
+          "explanation": "主语（他）+ 动补结构（出生在）+ 定中宾语（一个美丽的小城市）。"
+        },
+        {
+          "id": "W91",
+          "num": 91,
+          "words": [
+            "房间",
+            "把",
+            "收拾得",
+            "姐姐",
+            "很整齐"
+          ],
+          "correct": "姐姐把房间收拾得很整齐。",
+          "explanation": "主语（姐姐）+ 把字介宾（把房间）+ 动补结构（收拾得很整齐）。"
+        },
+        {
+          "id": "W92",
+          "num": 92,
+          "words": [
+            "是",
+            "负责的",
+            "由李经理",
+            "这次调查"
+          ],
+          "correct": "这次调查是由李经理负责的。",
+          "explanation": "受事主语（这次调查）+ 是……的句型（是由李经理负责的）。"
+        },
+        {
+          "id": "W93",
+          "num": 93,
+          "words": [
+            "反对这样做",
+            "大概",
+            "三分之二的人",
+            "有"
+          ],
+          "correct": "大概有三分之二的人反对这样做。",
+          "explanation": "状语（大概）+ 存现动词（有）+ 兼语主语（三分之二的人）+ 动宾（反对这样做）。"
+        },
+        {
+          "id": "W94",
+          "num": 94,
+          "words": [
+            "学校",
+            "去参观",
+            "长城",
+            "将",
+            "组织大家"
+          ],
+          "correct": "学校将组织大家去参观长城。",
+          "explanation": "主语（学校）+ 时间副词（将）+ 兼语动词（组织大家）+ 连动动宾（去参观长城）。"
+        },
+        {
+          "id": "W95",
+          "num": 95,
+          "words": [
+            "对",
+            "非常感谢您",
+            "理解和支持",
+            "我们工作的"
+          ],
+          "correct": "非常感谢您对我们工作的理解和支持。",
+          "explanation": "状谓结构（非常感谢您）+ 介词定中宾语（对我们工作的理解和支持）。"
+        }
+      ]
+    },
+    "part2": {
+      "questions": [
+        {
+          "id": "W96",
+          "num": 96,
+          "keyword": "轻",
+          "pinyin": "qīng",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef2f2\" rx=\"10\"/><circle cx=\"120\" cy=\"75\" r=\"35\" fill=\"#ffffff\" opacity=\"0.9\"/><text x=\"120\" y=\"85\" font-size=\"34\" text-anchor=\"middle\" font-family=\"sans-serif\">🧳</text><text x=\"120\" y=\"135\" font-size=\"15\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">手提箱很轻</text></svg>",
+          "sampleAnswer": "没关系，这个箱子很轻。",
+          "explanation": "“轻”为形容词，分量小。参考例句：“这个行李箱很轻，我拿得动。”"
+        },
+        {
+          "id": "W97",
+          "num": 97,
+          "keyword": "答案",
+          "pinyin": "dá'àn",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f0fdf4\" rx=\"10\"/><circle cx=\"120\" cy=\"75\" r=\"35\" fill=\"#ffffff\" opacity=\"0.9\"/><text x=\"120\" y=\"85\" font-size=\"34\" text-anchor=\"middle\" font-family=\"sans-serif\">📝</text><text x=\"120\" y=\"135\" font-size=\"15\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">查找试题答案</text></svg>",
+          "sampleAnswer": "这道题的答案在这儿。",
+          "explanation": "“答案”为名词，题目的解答。参考例句：“请写出这道题的正确答案。”"
+        },
+        {
+          "id": "W98",
+          "num": 98,
+          "keyword": "钥匙",
+          "pinyin": "yàoshi",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#eff6ff\" rx=\"10\"/><circle cx=\"120\" cy=\"75\" r=\"35\" fill=\"#ffffff\" opacity=\"0.9\"/><text x=\"120\" y=\"85\" font-size=\"34\" text-anchor=\"middle\" font-family=\"sans-serif\">🔑</text><text x=\"120\" y=\"135\" font-size=\"15\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">找到大门钥匙</text></svg>",
+          "sampleAnswer": "钥匙应该就在包里呀。",
+          "explanation": "“钥匙”为名词，开锁工具。参考例句：“出门前别忘了带钥匙。”"
+        },
+        {
+          "id": "W99",
+          "num": 99,
+          "keyword": "激动",
+          "pinyin": "jīdòng",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fefce8\" rx=\"10\"/><circle cx=\"120\" cy=\"75\" r=\"35\" fill=\"#ffffff\" opacity=\"0.9\"/><text x=\"120\" y=\"85\" font-size=\"34\" text-anchor=\"middle\" font-family=\"sans-serif\">🤩</text><text x=\"120\" y=\"135\" font-size=\"15\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">内心非常激动</text></svg>",
+          "sampleAnswer": "那个消息让他很激动。",
+          "explanation": "“激动”为形容词/动词，情绪振奋兴奋。参考例句：“听到获奖的消息，大家都激动地跳了起来。”"
+        },
+        {
+          "id": "W100",
+          "num": 100,
+          "keyword": "聊天儿",
+          "pinyin": "liáotiānr",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fdf4ff\" rx=\"10\"/><circle cx=\"120\" cy=\"75\" r=\"35\" fill=\"#ffffff\" opacity=\"0.9\"/><text x=\"120\" y=\"85\" font-size=\"34\" text-anchor=\"middle\" font-family=\"sans-serif\">☕</text><text x=\"120\" y=\"135\" font-size=\"15\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">边喝茶边聊天儿</text></svg>",
+          "sampleAnswer": "她们一边喝茶一边聊天儿。",
+          "explanation": "“聊天儿”为离合动词，谈天谈话。参考例句：“我们经常坐在一起聊天儿。”"
+        }
+      ]
+    }
+  }
+};
+
+const EXAM_CONFIG = {
+  examCode: "H41007",
+  examTitle: "HSK 4 - Đề thi số 07 (H41007)",
+  audioFile: "audio/H41007.mp3",
+  partTimestamps: {"1": 59, "2": 418, "3": 960}
+};
+
+let activeData = null;
+let userAnswers = {};
+let studentName = (typeof localStorage !== "undefined" && (localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name"))) || "Thí sinh";
+let studentClass = (typeof localStorage !== "undefined" && (localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class"))) || "HSK4-Online";
+let totalSeconds = 105 * 60;
+let listeningSeconds = 35 * 60;
+let timerInterval = null;
+let isExamSubmitted = false;
+let currentAudioPart = 1;
+let attemptCount = 1;
+
+function randomizeExamData() {
+  activeData = JSON.parse(JSON.stringify(MASTER_DATA));
+
+  // Listening Part 2 & Part 3 option shuffle
+  ['part2', 'part3'].forEach(pk => {
+    if (activeData.listening && activeData.listening[pk]) {
+      activeData.listening[pk].questions.forEach(q => {
+        q.options.sort(() => Math.random() - 0.5);
+        const letters = ['A', 'B', 'C', 'D'];
+        q.options.forEach((opt, idx) => {
+          opt.currentLetter = letters[idx];
+        });
+        const matched = q.options.find(o => o.id === q.correctId);
+        q.correctLetter = matched ? matched.currentLetter : '';
+      });
+    }
+  });
+
+  // Reading Part 3 option shuffle
+  if (activeData.reading && activeData.reading.part3) {
+    activeData.reading.part3.questions.forEach(q => {
+      q.options.sort(() => Math.random() - 0.5);
+      const letters = ['A', 'B', 'C', 'D'];
+      q.options.forEach((opt, idx) => {
+        opt.currentLetter = letters[idx];
+      });
+      const matched = q.options.find(o => o.id === q.correctId);
+      q.correctLetter = matched ? matched.currentLetter : '';
+    });
+  }
+}
+
+function escapeJsStr(str) {
+  if (!str) return "";
+  return str.split('\\').join('\\\\').split("'").join("\\'").split('\n').join(' ');
+}
+
+function seekAudioPart(partNum) {
+  currentAudioPart = partNum;
+  document.querySelectorAll('.track-tab-btn').forEach((btn, idx) => {
+    btn.classList.toggle('active', (idx + 1) === partNum);
+  });
+  const audio = document.getElementById("mainAudioPlayer");
+  if (audio) {
+    const ts = EXAM_CONFIG.partTimestamps[String(partNum)] || 0;
+    audio.currentTime = ts;
+    audio.play().catch(() => {});
+  }
+}
+
+function playQuestionAudio(partNum, timestamp, fallbackText) {
+  const audio = document.getElementById("mainAudioPlayer");
+  if (audio && !isNaN(timestamp) && timestamp > 0) {
+    audio.currentTime = timestamp;
+    audio.play().catch(() => {});
+  } else if ('speechSynthesis' in window && fallbackText) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(fallbackText);
+    u.lang = 'zh-CN';
+    window.speechSynthesis.speak(u);
+  }
+}
+
+function toggleExamDrawer() {
+  const drawer = document.getElementById("examDrawer");
+  if (!drawer) return;
+  drawer.classList.toggle("open");
+  if (window.innerWidth > 1024) {
+    document.body.classList.toggle("drawer-open");
+  }
+}
+
+function scrollToQuestion(qId) {
+  const el = document.getElementById(`qbox-${qId}`);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.add('active-scroll');
+    setTimeout(() => el.classList.remove('active-scroll'), 1500);
+    if (window.innerWidth <= 768) {
+      const drawer = document.getElementById("examDrawer");
+      if (drawer && drawer.classList.contains("open")) {
+        drawer.classList.remove("open");
+        document.body.classList.remove("drawer-open");
+      }
+    }
+  }
+}
+
+function updateProgress() {
+  const count = Object.keys(userAnswers).length;
+  const countEl = document.getElementById("answeredCount");
+  if (countEl) countEl.textContent = count;
+
+  for (let i = 1; i <= 100; i++) {
+    let qId = (i <= 45) ? `L${i}` : (i <= 85) ? `R${i}` : `W${i}`;
+    const btn = document.getElementById(`drawer-btn-${i}`);
+    if (btn) {
+      if (userAnswers[qId] !== undefined && userAnswers[qId] !== "") {
+        btn.classList.add("answered");
+      } else {
+        btn.classList.remove("answered");
+      }
+    }
+  }
+}
+
+function selectJudgeOption(qId, val, btn) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = val;
+  const parent = btn.parentElement;
+  parent.querySelectorAll('.btn-judge').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  updateProgress();
+}
+
+function selectChoiceOption(qId, optId, el) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = optId;
+  const parent = el.parentElement;
+  parent.querySelectorAll('.choice-item').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  updateProgress();
+}
+
+function selectBankWord(qId, optId, btn) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = optId;
+  const parent = btn.parentElement;
+  parent.querySelectorAll('.btn-bank-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  updateProgress();
+}
+
+function selectSentenceOrder(qId, orderStr, btn) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = orderStr;
+  const parent = btn.parentElement;
+  parent.querySelectorAll('.btn-order-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  updateProgress();
+}
+
+function handleSentenceInput(qId, inputEl) {
+  if (isExamSubmitted) return;
+  userAnswers[qId] = inputEl.value.trim();
+  updateProgress();
+}
+
+function handleChipClick(qId, word, chipEl) {
+  if (isExamSubmitted) return;
+  if (chipEl.classList.contains('used')) return;
+  chipEl.classList.add('used');
+
+  const slot = document.getElementById(`slot-${qId}`);
+  if (!slot) return;
+
+  const aChip = document.createElement('span');
+  aChip.className = 'answer-chip';
+  aChip.textContent = word;
+  aChip.onclick = () => {
+    if (isExamSubmitted) return;
+    aChip.remove();
+    chipEl.classList.remove('used');
+    syncReorderAnswer(qId);
+  };
+  slot.appendChild(aChip);
+  syncReorderAnswer(qId);
+}
+
+function syncReorderAnswer(qId) {
+  const slot = document.getElementById(`slot-${qId}`);
+  if (!slot) return;
+  const chips = slot.querySelectorAll('.answer-chip');
+  const arr = Array.from(chips).map(c => c.textContent.trim());
+  userAnswers[qId] = arr.join('');
+  updateProgress();
+}
+
+function renderDrawerGrid() {
+  const grid = document.getElementById("drawerGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  const sections = [
+    { title: "🎧 Nghe hiểu (1 - 45)", start: 1, end: 45, prefix: "L" },
+    { title: "📖 Đọc hiểu (46 - 85)", start: 46, end: 85, prefix: "R" },
+    { title: "✍️ Viết (86 - 100)", start: 86, end: 100, prefix: "W" }
+  ];
+
+  sections.forEach(sec => {
+    const titleDiv = document.createElement("div");
+    titleDiv.className = "drawer-section-title";
+    titleDiv.textContent = sec.title;
+    grid.appendChild(titleDiv);
+
+    const rowGrid = document.createElement("div");
+    rowGrid.className = "drawer-grid";
+    for (let i = sec.start; i <= sec.end; i++) {
+      const btn = document.createElement("button");
+      btn.className = "drawer-btn";
+      btn.id = `drawer-btn-${i}`;
+      btn.textContent = i;
+      btn.onclick = () => scrollToQuestion(`${sec.prefix}${i}`);
+      rowGrid.appendChild(btn);
+    }
+    grid.appendChild(rowGrid);
+  });
+}
+
+function renderExam() {
+  const container = document.getElementById("examContainer");
+  container.innerHTML = "";
+
+  // SECTION 1: LISTENING (1-45)
+  const secListening = document.createElement("section");
+  secListening.className = "section-card";
+  secListening.innerHTML = `
+    <div class="section-card-header">
+      <div class="section-title"><span>🎧</span> Phần 1: Nghe hiểu (一、听力)</div>
+      <div class="section-badge">45 Câu (约 35 分钟)</div>
+    </div>
+  `;
+
+  // Listening Part 1 (1 - 10)
+  const lp1 = document.createElement("div");
+  lp1.innerHTML = `
+    <div class="part-header">
+      <strong>第一部分 (Phần 1):</strong> Câu 1-10. Nghe câu ngắn và phán đoán nhận định là Đúng (√) hay Sai (×).
+    </div>
+  `;
+  activeData.listening.part1.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+        <button class="btn-tts-replay" onclick="playQuestionAudio(1, ${q.timestamp || 0}, '${escapeJsStr(q.passage)}')">🔊 Nghe câu này</button>
+      </div>
+      <div class="q-body">
+        <div class="judge-statement-box chinese" style="margin-top:6px;font-size:1.15rem;padding:12px 18px;background:#f8fafc;border-left:4px solid var(--primary);border-radius:6px;">★ ${q.statement}</div>
+        <div class="judge-btn-group">
+          <button class="btn-judge" id="btn-judge-${q.id}-true" onclick="selectJudgeOption('${q.id}', true, this)">
+            <span style="color:var(--success);font-weight:bold;font-size:18px;">✓</span> Đúng (正确)
+          </button>
+          <button class="btn-judge" id="btn-judge-${q.id}-false" onclick="selectJudgeOption('${q.id}', false, this)">
+            <span style="color:var(--danger);font-weight:bold;font-size:18px;">✕</span> Sai (错误)
+          </button>
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại nghe:</strong><br><span class="chinese">${q.passage}</span></div>
+        <div style="margin-bottom:6px;"><strong>★ Nhận định:</strong> <span class="chinese">${q.statement}</span></div>
+        <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correct ? 'Đúng (√)' : 'Sai (×)'}</div>
+        <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
+      </div>
+    `;
+    lp1.appendChild(qDiv);
+  });
+  secListening.appendChild(lp1);
+
+  // Listening Part 2 (11 - 25)
+  const lp2 = document.createElement("div");
+  lp2.innerHTML = `
+    <div class="part-header" style="margin-top:20px;">
+      <strong>第二部分 (Phần 2):</strong> Câu 11-25. Nghe đối thoại ngắn và câu hỏi, chọn đáp án đúng A, B, C, D.
+    </div>
+  `;
+  activeData.listening.part2.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+        <button class="btn-tts-replay" onclick="playQuestionAudio(2, ${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">🔊 Nghe câu này</button>
+      </div>
+      <div class="q-body">
+        <div class="choice-list">
+          ${q.options.map(opt => `
+            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
+              <span class="choice-badge">${opt.currentLetter}</span>
+              <span class="choice-text chinese">${opt.text}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>🎧 Đối thoại & Câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>
+        <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctLetter}. ${q.options.find(o=>o.id===q.correctId)?.text || ''}</div>
+        <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
+      </div>
+    `;
+    lp2.appendChild(qDiv);
+  });
+  secListening.appendChild(lp2);
+
+  // Listening Part 3 (26 - 45)
+  const lp3 = document.createElement("div");
+  lp3.innerHTML = `
+    <div class="part-header" style="margin-top:20px;">
+      <strong>第三部分 (Phần 3):</strong> Câu 26-45. Nghe đối thoại dài hoặc đoạn văn và trả lời câu hỏi, chọn đáp án đúng A, B, C, D.
+    </div>
+  `;
+  activeData.listening.part3.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+        <button class="btn-tts-replay" onclick="playQuestionAudio(3, ${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">🔊 Nghe câu này</button>
+      </div>
+      <div class="q-body">
+        <div class="choice-list">
+          ${q.options.map(opt => `
+            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
+              <span class="choice-badge">${opt.currentLetter}</span>
+              <span class="choice-text chinese">${opt.text}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & Câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>
+        <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctLetter}. ${q.options.find(o=>o.id===q.correctId)?.text || ''}</div>
+        <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
+      </div>
+    `;
+    lp3.appendChild(qDiv);
+  });
+  secListening.appendChild(lp3);
+  container.appendChild(secListening);
+
+  // SECTION 2: READING (46-85)
+  const secReading = document.createElement("section");
+  secReading.className = "section-card";
+  secReading.innerHTML = `
+    <div class="section-card-header">
+      <div class="section-title"><span>📖</span> Phần 2: Đọc hiểu (二、阅读)</div>
+      <div class="section-badge">40 Câu (40 分钟)</div>
+    </div>
+  `;
+
+  // Reading Part 1 (46 - 55)
+  const rp1 = document.createElement("div");
+  rp1.innerHTML = `
+    <div class="part-header">
+      <strong>第一部分 (Phần 1):</strong> Câu 46-55. Chọn từ thích hợp điền vào chỗ trống.
+    </div>
+  `;
+  // Group 1 (46-50)
+  const g1Box = document.createElement("div");
+  g1Box.className = "word-bank-box";
+  g1Box.innerHTML = activeData.reading.part1.group1.options.map(opt => `
+    <span class="word-bank-chip"><strong>${opt.id.toUpperCase()}.</strong> ${opt.text}</span>
+  `).join('');
+  rp1.appendChild(g1Box);
+
+  activeData.reading.part1.group1.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+      </div>
+      <div class="q-body">
+        <div class="chinese" style="font-size:17px;margin-bottom:10px;">${q.prompt.replace(/\n/g, '<br>')}</div>
+        <div class="bank-options-row">
+          ${activeData.reading.part1.group1.options.map(opt => `
+            <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankWord('${q.id}', '${opt.id}', this)">
+              ${opt.id.toUpperCase()}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctId.toUpperCase()} (${activeData.reading.part1.group1.options.find(o=>o.id===q.correctId)?.text})</div>
+        <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
+      </div>
+    `;
+    rp1.appendChild(qDiv);
+  });
+
+  // Group 2 (51-55)
+  const g2Box = document.createElement("div");
+  g2Box.className = "word-bank-box";
+  g2Box.innerHTML = activeData.reading.part1.group2.options.map(opt => `
+    <span class="word-bank-chip"><strong>${opt.id.toUpperCase()}.</strong> ${opt.text}</span>
+  `).join('');
+  rp1.appendChild(g2Box);
+
+  activeData.reading.part1.group2.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+
+    let promptText = q.prompt || "";
+    let lines = promptText.indexOf(String.fromCharCode(10)) !== -1 ? promptText.split(String.fromCharCode(10)) : (promptText.indexOf(String.fromCharCode(92) + "n") !== -1 ? promptText.split(String.fromCharCode(92) + "n") : []);
+    if (lines.length === 0 && (promptText.indexOf("B:") !== -1 || promptText.indexOf("B：") !== -1)) {
+      let idxB = promptText.indexOf("B:");
+      if (idxB === -1) idxB = promptText.indexOf("B：");
+      lines = [promptText.slice(0, idxB), promptText.slice(idxB)];
+    }
+    let formattedDialogue = "";
+    if (lines.length >= 2) {
+      let lineA = lines[0].trim();
+      let lineB = lines[1].trim();
+      if (lineA.indexOf("A:") === 0 || lineA.indexOf("A：") === 0) lineA = lineA.slice(2).trim();
+      if (lineB.indexOf("B:") === 0 || lineB.indexOf("B：") === 0) lineB = lineB.slice(2).trim();
+      formattedDialogue = '<div class="dialogue-row" style="margin-bottom:8px;display:flex;align-items:flex-start;"><span class="speaker-tag">A:</span><span style="flex:1;">' + lineA + '</span></div><div class="dialogue-row" style="display:flex;align-items:flex-start;"><span class="speaker-tag">B:</span><span style="flex:1;">' + lineB + '</span></div>';
+    } else {
+      formattedDialogue = '<div class="dialogue-row">' + promptText + '</div>';
+    }
+
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+      </div>
+      <div class="q-body">
+        <div class="chinese" style="font-size:17px;margin-bottom:12px;">${formattedDialogue}</div>
+        <div class="bank-options-row">
+          ${activeData.reading.part1.group2.options.map(opt => `
+            <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankWord('${q.id}', '${opt.id}', this)">
+              ${opt.id.toUpperCase()}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctId.toUpperCase()} (${activeData.reading.part1.group2.options.find(o => o.id === q.correctId)?.text || ''})</div>
+        <div>${q.explanation || ''}</div>
+      </div>
+    `;
+    rp1.appendChild(qDiv);
+  });
+  secReading.appendChild(rp1);
+
+  // Reading Part 2 (56 - 65)
+  const rp2 = document.createElement("div");
+  rp2.innerHTML = `
+    <div class="part-header" style="margin-top:20px;">
+      <strong>第二部分 (Phần 2):</strong> Câu 56-65. Sắp xếp các câu A, B, C thành đoạn văn đúng trật tự logic.
+    </div>
+  `;
+  activeData.reading.part2.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    const orders = ["ABC", "ACB", "BAC", "BCA", "CAB", "CBA"];
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+      </div>
+      <div class="q-body">
+        <div style="margin-bottom:12px;line-height:1.8;">
+          ${q.items.map(item => `
+            <div class="chinese" style="font-size:16px;"><strong>${item.id.toUpperCase()}.</strong> ${item.text}</div>
+          `).join('')}
+        </div>
+        <div class="order-selector-group">
+          ${orders.map(ord => `
+            <button class="btn-order-opt" id="btn-ord-${q.id}-${ord}" onclick="selectSentenceOrder('${q.id}', '${ord}', this)">
+              ${ord}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>✅ Thứ tự đúng:</strong> ${q.correctOrder}</div>
+        <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
+      </div>
+    `;
+    rp2.appendChild(qDiv);
+  });
+  secReading.appendChild(rp2);
+
+  // Reading Part 3 (66 - 85)
+  const rp3 = document.createElement("div");
+  rp3.innerHTML = `
+    <div class="part-header" style="margin-top:20px;">
+      <strong>第三部分 (Phần 3):</strong> Câu 66-85. Đọc đoạn văn ngắn và chọn đáp án đúng nhất A, B, C, D.
+    </div>
+  `;
+  activeData.reading.part3.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+      </div>
+      <div class="q-body">
+        <div class="chinese" style="font-size:16px;background:#f8fafc;padding:12px 16px;border-radius:8px;border-left:4px solid var(--primary);margin-bottom:12px;line-height:1.8;">
+          ${q.passage}
+        </div>
+        <div class="chinese" style="font-size:17px;font-weight:700;margin-bottom:10px;">${q.question}</div>
+        <div class="choice-list">
+          ${q.options.map(opt => `
+            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
+              <span class="choice-badge">${opt.currentLetter}</span>
+              <span class="choice-text chinese">${opt.text}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctLetter}. ${q.options.find(o=>o.id===q.correctId)?.text || ''}</div>
+        <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
+      </div>
+    `;
+    rp3.appendChild(qDiv);
+  });
+  secReading.appendChild(rp3);
+  container.appendChild(secReading);
+
+  // SECTION 3: WRITING (86-100)
+  const secWriting = document.createElement("section");
+  secWriting.className = "section-card";
+  secWriting.innerHTML = `
+    <div class="section-card-header">
+      <div class="section-title"><span>✍️</span> Phần 3: Viết (三、书写)</div>
+      <div class="section-badge">15 Câu (25 分钟)</div>
+    </div>
+  `;
+
+  // Writing Part 1 (86 - 95: 连词成句)
+  const wp1 = document.createElement("div");
+  wp1.innerHTML = `
+    <div class="part-header">
+      <strong>第一部分 (Phần 1):</strong> Câu 86-95. Nhấp chọn các thẻ từ bên dưới để sắp xếp thành câu hoàn chỉnh.
+    </div>
+  `;
+  activeData.writing.part1.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+
+    let displayWords = [...q.words];
+    const cleanAnswer = q.correct.replace(/[。？！，\s]/g, '');
+    if (displayWords.join('') === cleanAnswer && displayWords.length > 1) {
+      displayWords.reverse();
+      if (displayWords.join('') === cleanAnswer && displayWords.length > 2) {
+        displayWords = [displayWords[1], displayWords[0], ...displayWords.slice(2)];
+      }
+    }
+
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+      </div>
+      <div class="q-body">
+        <div class="word-chips-container">
+          ${displayWords.map(w => `
+            <span class="word-chip chinese" onclick="handleChipClick('${q.id}', '${escapeJsStr(w)}', this)">${w}</span>
+          `).join('')}
+        </div>
+        <div class="answer-slot-line" id="slot-${q.id}"></div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>✅ Đáp án chuẩn:</strong> <span class="chinese" style="font-weight:700;">${q.correct}</span></div>
+        <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
+      </div>
+    `;
+    wp1.appendChild(qDiv);
+  });
+  secWriting.appendChild(wp1);
+
+  // Writing Part 2 (96 - 100: 看图用词造句)
+  const wp2 = document.createElement("div");
+  wp2.innerHTML = `
+    <div class="part-header" style="margin-top:20px;">
+      <strong>第二部分 (Phần 2):</strong> Câu 96-100. Quan sát tranh và dùng từ cho sẵn để viết thành một câu hoàn chỉnh (chứa từ gợi ý và đúng ngữ pháp).
+    </div>
+    <div class="example-box">
+      <span class="example-title">Ví dụ mẫu (例如) - Không tính điểm</span>
+      <div class="chinese">
+        例如：词语：<strong>乒乓球</strong> (pīngpāngqiú)<br>
+        Câu mẫu: <span class="example-answer">她很喜欢打乒乓球。</span>
+      </div>
+    </div>
+  `;
+  activeData.writing.part2.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    qDiv.innerHTML = `
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+      </div>
+      <div class="q-body">
+        <div class="write-sentence-card">
+          <div class="write-sentence-img">
+            ${q.svg || ''}
+          </div>
+          <div class="write-sentence-input-wrap">
+            <span class="prompt-keyword-badge">Từ gợi ý: <strong>${q.keyword}</strong> (${q.pinyin})</span>
+            <textarea class="sentence-textarea chinese" id="input-${q.id}" placeholder="Nhập câu tiếng Trung của bạn tại đây (phải bao gồm từ '${q.keyword}')..." oninput="handleSentenceInput('${q.id}', this)"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <div style="margin-bottom:6px;"><strong>📝 Từ khóa yêu cầu:</strong> ${q.keyword} (${q.pinyin})</div>
+        <div style="margin-bottom:6px;"><strong>💡 Câu mẫu tham khảo:</strong> <span class="chinese" style="font-weight:700;">${q.sampleAnswer}</span></div>
+        <div><strong>💡 Tiêu chí chấm điểm:</strong> ${q.explanation}</div>
+      </div>
+    `;
+    wp2.appendChild(qDiv);
+  });
+  secWriting.appendChild(wp2);
+  container.appendChild(secWriting);
+}
+
+function startTimers() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if (totalSeconds > 0) {
+      totalSeconds--;
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      const textEl = document.getElementById("totalTimerText");
+      if (textEl) textEl.textContent = `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+      const badge = document.getElementById("totalTimerBadge");
+      if (badge && totalSeconds <= 300) badge.classList.add("danger");
+    } else {
+      clearInterval(timerInterval);
+      alert("Hết giờ làm bài! Hệ thống tự động nộp bài.");
+      submitExam();
+      return;
+    }
+
+    if (listeningSeconds > 0) {
+      listeningSeconds--;
+      const lm = Math.floor(listeningSeconds / 60);
+      const ls = listeningSeconds % 60;
+      const ltext = document.getElementById("listeningTimerText");
+      if (ltext) ltext.textContent = `${lm < 10 ? '0' + lm : lm}:${ls < 10 ? '0' + ls : ls}`;
+      const lbadge = document.getElementById("listeningTimerBadge");
+      if (lbadge && listeningSeconds <= 180) lbadge.classList.add("danger");
+    }
+  }, 1000);
+}
+
+function startExamSession() {
+  try {
+    const nameInput = document.getElementById("inputStudentName");
+    const classInput = document.getElementById("inputStudentClass");
+
+    let nameVal = nameInput ? nameInput.value.trim() : "";
+    let classVal = classInput ? classInput.value.trim() : "";
+
+    if (!nameVal) {
+      nameVal = localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "Học viên";
+    }
+    if (!classVal) {
+      classVal = localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "HSK4-Online";
+    }
+
+    studentName = nameVal;
+    studentClass = classVal;
+
+    localStorage.setItem("hsk3_student_name", studentName);
+    localStorage.setItem("hsk3_student_class", studentClass);
+    localStorage.setItem("hsk4_student_name", studentName);
+    localStorage.setItem("hsk4_student_class", studentClass);
+
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+
+    const modal = document.getElementById("welcomeModal");
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.style.display = "none";
+      modal.style.visibility = "hidden";
+      modal.style.opacity = "0";
+      modal.style.pointerEvents = "none";
+    }
+
+    seekAudioPart(1);
+    startTimers();
+  } catch (err) {
+    console.error("Error in startExamSession:", err);
+    const modal = document.getElementById("welcomeModal");
+    if (modal) modal.style.display = "none";
+    startTimers();
+  }
+}
+
+function confirmSubmitExam() {
+  const answered = Object.keys(userAnswers).length;
+  const unanswered = 100 - answered;
+  let msg = `Bạn đã hoàn thành ${answered}/100 câu.`;
+  if (unanswered > 0) {
+    msg += ` Còn ${unanswered} câu chưa trả lời. Bạn có chắc chắn muốn nộp bài để xem kết quả?`;
+  } else {
+    msg += ` Bạn có chắc chắn muốn nộp bài để xem kết quả?`;
+  }
+  if (confirm(msg)) {
+    submitExam();
+  }
+}
+
+function submitExam() {
+  if (isExamSubmitted) return;
+  isExamSubmitted = true;
+  if (timerInterval) clearInterval(timerInterval);
+
+  let correctCount = 0;
+  let correctL = 0, correctR = 0, correctW = 0;
+  const results = {};
+
+  // 1. Listening Part 1 (1-10)
+  activeData.listening.part1.questions.forEach(q => {
+    const user = userAnswers[q.id];
+    const isCor = (user === q.correct);
+    if (isCor) { correctCount++; correctL++; }
+    results[q.id] = { num: q.num, user: (user === undefined ? "Chưa làm" : (user ? "Đúng" : "Sai")), correct: (q.correct ? "Đúng" : "Sai"), isCor };
+  });
+
+  // 2. Listening Part 2 (11-25)
+  activeData.listening.part2.questions.forEach(q => {
+    const user = userAnswers[q.id];
+    const isCor = (user === q.correctId);
+    if (isCor) { correctCount++; correctL++; }
+    results[q.id] = { num: q.num, user: user || "Chưa làm", correct: q.correctId, isCor };
+  });
+
+  // 3. Listening Part 3 (26-45)
+  activeData.listening.part3.questions.forEach(q => {
+    const user = userAnswers[q.id];
+    const isCor = (user === q.correctId);
+    if (isCor) { correctCount++; correctL++; }
+    results[q.id] = { num: q.num, user: user || "Chưa làm", correct: q.correctId, isCor };
+  });
+
+  // 4. Reading Part 1 (46-55)
+  activeData.reading.part1.group1.questions.forEach(q => {
+    const user = userAnswers[q.id];
+    const isCor = (user === q.correctId);
+    if (isCor) { correctCount++; correctR++; }
+    results[q.id] = { num: q.num, user: user || "Chưa làm", correct: q.correctId, isCor };
+  });
+  activeData.reading.part1.group2.questions.forEach(q => {
+    const user = userAnswers[q.id];
+    const isCor = (user === q.correctId);
+    if (isCor) { correctCount++; correctR++; }
+    results[q.id] = { num: q.num, user: user || "Chưa làm", correct: q.correctId, isCor };
+  });
+
+  // 5. Reading Part 2 (56-65)
+  activeData.reading.part2.questions.forEach(q => {
+    const user = userAnswers[q.id];
+    const isCor = (user === q.correctOrder);
+    if (isCor) { correctCount++; correctR++; }
+    results[q.id] = { num: q.num, user: user || "Chưa làm", correct: q.correctOrder, isCor };
+  });
+
+  // 6. Reading Part 3 (66-85)
+  activeData.reading.part3.questions.forEach(q => {
+    const user = userAnswers[q.id];
+    const isCor = (user === q.correctId);
+    if (isCor) { correctCount++; correctR++; }
+    results[q.id] = { num: q.num, user: user || "Chưa làm", correct: q.correctId, isCor };
+  });
+
+  // 7. Writing Part 1 (86-95)
+  activeData.writing.part1.questions.forEach(q => {
+    const rawUser = (userAnswers[q.id] || '').replace(/[。？！?!\s]/g, '');
+    const rawCor = q.correct.replace(/[。？！?!\s]/g, '');
+    const isCor = (rawUser === rawCor);
+    if (isCor) { correctCount++; correctW++; }
+    results[q.id] = { num: q.num, user: userAnswers[q.id] || "Chưa làm", correct: q.correct, isCor };
+  });
+
+  // 8. Writing Part 2 (96-100)
+  activeData.writing.part2.questions.forEach(q => {
+    const rawUser = (userAnswers[q.id] || '').trim();
+    const cleanUser = rawUser.replace(/[.,?!，。？！\s]/g, '');
+    const cleanKey = q.keyword.replace(/[.,?!，。？！\s]/g, '');
+    const hasKey = cleanUser.includes(cleanKey);
+    const validLen = cleanUser.length >= cleanKey.length + 3;
+    const isCor = (hasKey && validLen);
+    if (isCor) { correctCount++; correctW++; }
+    results[q.id] = { num: q.num, user: rawUser || "Chưa làm", correct: q.sampleAnswer, isCor, keyword: q.keyword };
+  });
+
+  const scoreL_100 = Math.round((correctL / 45) * 100);
+  const scoreR_100 = Math.round((correctR / 40) * 100);
+  const scoreW_100 = Math.round((correctW / 15) * 100);
+  const hskTotal = scoreL_100 + scoreR_100 + scoreW_100;
+  const isPassed = (hskTotal >= 180);
+  const finalScore10 = ((correctCount / 100) * 10).toFixed(1);
+
+  const durationSec = (105 * 60) - totalSeconds;
+  const dm = Math.floor(durationSec / 60);
+  const ds = durationSec % 60;
+  const durationFormatted = `${dm} phút ${ds < 10 ? '0' + ds : ds} giây`;
+
+  const detailedSummary = [];
+  for (let i = 1; i <= 100; i++) {
+    let qId = (i <= 45) ? `L${i}` : (i <= 85) ? `R${i}` : `W${i}`;
+    const res = results[qId];
+    detailedSummary.push({
+      num: i,
+      qId: qId,
+      userAns: res ? res.user : "Chưa làm",
+      correctAns: res ? res.correct : "",
+      isCorrect: res ? res.isCor : false
+    });
+  }
+
+  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
+  localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
+
+  const submissionPayload = {
+    studentName: studentName || "Thí sinh",
+    studentClass: studentClass || "Tự do",
+    examCode: EXAM_CONFIG.examCode,
+    examTitle: EXAM_CONFIG.examTitle,
+    attemptCount: attemptCount,
+    durationFormatted: durationFormatted,
+    score10: parseFloat(finalScore10),
+    hskTotal: hskTotal,
+    hskListening: `${scoreL_100} (${correctL}/45)`,
+    hskReading: `${scoreR_100} (${correctR}/40)`,
+    hskWriting: `${scoreW_100} (${correctW}/15)`,
+    correctCount: correctCount,
+    totalQuestions: 100,
+    percent: Math.round((correctCount / 100) * 100),
+    isPassed: isPassed,
+    submitTime: new Date().toISOString(),
+    detailedSummary: detailedSummary
+  };
+
+  // 1. Post to Firebase Realtime DB
+  fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/submissions.json", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(submissionPayload)
+  }).then(r => r.json()).then(d => {
+    console.log("Firebase sync success:", d);
+    const syncEl = document.getElementById("firebaseSyncStatus");
+    if (syncEl) {
+      syncEl.innerHTML = `<span>🟢 Đã gửi bài nộp về cơ sở dữ liệu giáo viên (Firebase Realtime Database) thành công (${new Date().toLocaleTimeString('vi-VN')})</span>`;
+      syncEl.className = "sync-status-box success";
+    }
+  }).catch(err => {
+    console.warn("Firebase sync error:", err);
+    const syncEl = document.getElementById("firebaseSyncStatus");
+    if (syncEl) {
+      syncEl.innerHTML = `<span>⚠️ Không thể kết nối mạng, kết quả đã được lưu tạm trong bộ nhớ máy học sinh.</span>`;
+      syncEl.className = "sync-status-box offline";
+    }
+  });
+
+  // 2. Backup post to scores.json
+  fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/scores.json", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(submissionPayload)
+  }).catch(e => {});
+
+  // 3. Save to localStorage history
+  try {
+    const hist = JSON.parse(localStorage.getItem("hsk3_exam_history") || "[]");
+    hist.unshift(submissionPayload);
+    localStorage.setItem("hsk3_exam_history", JSON.stringify(hist.slice(0, 50)));
+
+    const allSub = JSON.parse(localStorage.getItem("hsk3_all_class_submissions") || "[]");
+    allSub.unshift(submissionPayload);
+    localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSub.slice(0, 100)));
+  } catch(e) {}
+
+  // Enter review mode
+  document.body.classList.add("review-mode");
+  const container = document.getElementById("examContainer");
+  if (container) container.classList.add("review-mode");
+
+  // Highlight user correct/wrong on each question card
+  for (let i = 1; i <= 100; i++) {
+    let qId = (i <= 45) ? `L${i}` : (i <= 85) ? `R${i}` : `W${i}`;
+    const res = results[qId];
+    const qBox = document.getElementById(`qbox-${qId}`);
+    if (qBox && res) {
+      if (res.isCor) qBox.classList.add("user-correct");
+      else qBox.classList.add("user-wrong");
+    }
+    const btn = document.getElementById(`drawer-btn-${i}`);
+    if (btn && res) {
+      if (res.isCor) btn.classList.add('correct-rev');
+      else btn.classList.add('wrong-rev');
+    }
+  }
+
+  // Change header button to View Score
+  const btnHeaderSub = document.getElementById("btnSubmitExam");
+  if (btnHeaderSub) {
+    btnHeaderSub.innerHTML = "📊 Xem Điểm";
+    btnHeaderSub.title = "Xem lại bảng điểm kết quả";
+    btnHeaderSub.onclick = () => openResultModal();
+  }
+
+  // Populate Result Modal UI
+  const score10El = document.getElementById("score10Display");
+  if (score10El) score10El.textContent = finalScore10;
+
+  const subtitleEl = document.getElementById("resultModalSubtitle");
+  if (subtitleEl) subtitleEl.textContent = `Thí sinh: ${studentName} (${studentClass}) • Lần làm thứ ${attemptCount}`;
+
+  const badgeEl = document.getElementById("resultStatusBadge");
+  if (badgeEl) {
+    if (isPassed) {
+      badgeEl.className = "result-badge pass";
+      badgeEl.textContent = `🎉 ĐẠT CHUẨN HSK 4 (${hskTotal}/300 Điểm)`;
+    } else {
+      badgeEl.className = "result-badge fail";
+      badgeEl.textContent = `⚠️ CHƯA ĐẠT (CẦN ÔN THÊM: ${hskTotal}/300)`;
+    }
+  }
+
+  const breakdownEl = document.getElementById("hskScoreBreakdownText");
+  if (breakdownEl) {
+    breakdownEl.innerHTML = `Nghe: <strong>${scoreL_100}</strong>/100 (${correctL}/45) | Đọc: <strong>${scoreR_100}</strong>/100 (${correctR}/40) | Viết: <strong>${scoreW_100}</strong>/100 (${correctW}/15) • Tổng: <strong>${hskTotal}</strong>/300`;
+  }
+
+  const timeSpentEl = document.getElementById("timeSpentText");
+  if (timeSpentEl) {
+    timeSpentEl.textContent = `⏱ Thời gian làm bài: ${durationFormatted} • Đúng: ${correctCount}/100 câu (${Math.round((correctCount / 100) * 100)}%)`;
+  }
+
+  const statLEl = document.getElementById("statListening");
+  if (statLEl) statLEl.textContent = `${scoreL_100}/100 (${correctL}/45)`;
+  const statREl = document.getElementById("statReading");
+  if (statREl) statREl.textContent = `${scoreR_100}/100 (${correctR}/40)`;
+  const statWEl = document.getElementById("statWriting");
+  if (statWEl) statWEl.textContent = `${scoreW_100}/100 (${correctW}/15)`;
+
+  // Show bottom review bar
+  const bottomBar = document.getElementById("reviewBottomBar");
+  if (bottomBar) {
+    bottomBar.style.display = "flex";
+    const bottomText = document.getElementById("reviewBottomBarText");
+    if (bottomText) {
+      bottomText.innerHTML = `Điểm: <strong style="color:var(--primary);font-size:1.1rem;">${finalScore10}/10</strong> (HSK: <strong>${hskTotal}/300</strong>) - ${isPassed ? '<span style="color:#16a34a">ĐẠT</span>' : '<span style="color:#dc2626">CHƯA ĐẠT</span>'}`;
+    }
+  }
+
+  openResultModal();
+}
+
+function openResultModal() {
+  const modal = document.getElementById("resultModal");
+  if (modal) {
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+  }
+}
+
+function closeResultModalToReview() {
+  const modal = document.getElementById("resultModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function retryExamWithShuffle() {
+  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "1") + 1;
+  localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
+
+  isExamSubmitted = false;
+  userAnswers = {};
+  totalSeconds = 105 * 60;
+  listeningSeconds = 35 * 60;
+
+  document.body.classList.remove("review-mode");
+  const container = document.getElementById("examContainer");
+  if (container) container.classList.remove("review-mode");
+
+  const resModal = document.getElementById("resultModal");
+  if (resModal) {
+    resModal.classList.add("hidden");
+    resModal.style.display = "none";
+  }
+
+  const bottomBar = document.getElementById("reviewBottomBar");
+  if (bottomBar) bottomBar.style.display = "none";
+
+  const btnSubmit = document.getElementById("btnSubmitExam");
+  if (btnSubmit) {
+    btnSubmit.innerHTML = "Nộp Bài";
+    btnSubmit.title = "Nộp bài thi";
+    btnSubmit.onclick = () => confirmSubmitExam();
+  }
+
+  const badge = document.getElementById("studentInfoBadge");
+  if (badge) {
+    badge.textContent = `👤 ${studentName} (${studentClass}) • Lần: ${attemptCount}`;
+  }
+
+  randomizeExamData();
+  renderExam();
+  updateProgress();
+  renderDrawerGrid();
+
+  startTimers();
+  const tEl = document.getElementById("totalTimerText");
+  if (tEl) tEl.textContent = "105:00";
+  const lEl = document.getElementById("listeningTimerText");
+  if (lEl) lEl.textContent = "35:00";
+
+  const audio = document.getElementById("mainAudioPlayer");
+  if (audio && typeof audio.pause === 'function') {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+
+  const drawer = document.getElementById("examDrawer");
+  if (drawer && drawer.classList.contains("open")) {
+    drawer.classList.remove("open");
+    document.body.classList.remove("drawer-open");
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function exportResultCSV() {
+  let history = [];
+  try {
+    history = JSON.parse(localStorage.getItem("hsk3_exam_history") || "[]");
+  } catch(e) {}
+  if (!history.length) {
+    alert("Chưa có kết quả để xuất!");
+    return;
+  }
+  const cur = history[0];
+  let csv = "\uFEFF";
+  csv += "Mục,Giá trị\n";
+  csv += `Bài tập,"${cur.examTitle} (${cur.examCode})"\n`;
+  csv += `Họ và tên,"${cur.studentName}"\n`;
+  csv += `Lớp học,"${cur.studentClass}"\n`;
+  csv += `Lần làm bài,"#${cur.attemptCount}"\n`;
+  csv += `Thời gian nộp,"${new Date(cur.submitTime).toLocaleString('vi-VN')}"\n`;
+  csv += `Thời lượng làm bài,"${cur.durationFormatted}"\n`;
+  csv += `Điểm số /10,"${cur.score10}"\n`;
+  csv += `Điểm quy đổi HSK /300,"${cur.hskTotal}"\n`;
+  csv += `Điểm Nghe,"${cur.hskListening}"\n`;
+  csv += `Điểm Đọc,"${cur.hskReading}"\n`;
+  csv += `Điểm Viết,"${cur.hskWriting}"\n`;
+  csv += `Số câu đúng,"${cur.correctCount}/${cur.totalQuestions} (${cur.percent}%)"\n`;
+  csv += `Kết quả,"${cur.isPassed ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n\n`;
+  csv += "Câu,Mã câu,Đáp án thí sinh,Đáp án đúng,Đánh giá\n";
+  cur.detailedSummary.forEach(row => {
+    csv += `"${row.num}","${row.qId}","${row.userAns}","${row.correctAns}","${row.isCorrect ? 'ĐÚNG' : 'SAI'}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `KetQua_${cur.examCode}_${cur.studentName.replace(/\s+/g, '_')}.csv`;
+  a.click();
+}
+
+function copyAuthCode() {
+  const code = `HSK4-VERIFY-${EXAM_CONFIG.examCode}-${Date.now().toString(36).toUpperCase()}`;
+  navigator.clipboard.writeText(code).then(() => {
+    alert(`Đã sao chép mã xác thực bài thi: ${code}`);
+  }).catch(() => {
+    prompt("Mã xác thực bài thi của bạn:", code);
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedName = localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "";
+  const savedClass = localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "";
+
+  if (savedName) {
+    studentName = savedName;
+    studentClass = savedClass || "HSK4-Online";
+    
+    const nameIn = document.getElementById("inputStudentName");
+    const classIn = document.getElementById("inputStudentClass");
+    if (nameIn) nameIn.value = savedName;
+    if (classIn) classIn.value = studentClass;
+
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+
+    const subTitle = document.getElementById("welcomeModalSubtitle");
+    if (subTitle) {
+      subTitle.innerHTML = `Thí sinh: <strong style="color:var(--primary);">${studentName}</strong> (Lớp: ${studentClass})`;
+    }
+  }
+
+  randomizeExamData();
+  renderExam();
+  renderDrawerGrid();
+  updateProgress();
+});</script>
+</body>
+</html>

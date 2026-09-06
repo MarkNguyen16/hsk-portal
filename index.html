@@ -485,7 +485,7 @@ footer.portal-footer {
     <button class="level-tab-btn" onclick="switchLevel('HSK1', this)">HSK 1</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK2', this)">HSK 2</button>
     <button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK3', this)">⭐ HSK 3 (7 Đề & 20 Bài Tập)</button>
-    <button class="level-tab-btn active highlight-tab" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (Đề 01 & Trọn bộ 20 Bài)</button>
+    <button class="level-tab-btn active highlight-tab" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (13 Đề & 20 Bài Tập)</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK5', this)">HSK 5</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK6', this)">HSK 6</button>
     <button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK30', this)">✨ HSK 3.0 (Chuẩn Mới)</button>
@@ -594,15 +594,15 @@ const PORTAL_DATABASE = {
   },
   "HSK4": {
     "title": "HSK Cấp 4 (Học từ vựng 1200 từ • Trung cấp vững vàng)",
-    "desc": "Bộ đề thi mô phỏng HSK 4 và Sách bài tập chuẩn HSK 4 Standard Course.",
+    "desc": "Bộ 13 đề thi mô phỏng HSK 4 chuẩn quốc tế và Sách bài tập chuẩn HSK 4 Standard Course (20 bài).",
     "specs": "Nghe 45 câu • Đọc 40 câu • Viết 15 câu • Thời gian: 105 phút • Điểm tối đa: 300 điểm",
-    "exams": Array.from({length: 10}, (_, i) => ({
+    "exams": Array.from({length: 13}, (_, i) => ({
       num: i + 1,
-      code: `H4100${i+1}`.replace("0010", "010"),
+      code: (i + 1 < 10) ? `H4100${i+1}` : `H410${i+1}`,
       file: `hsk4-de-${i+1}.html`,
-      status: (i <= 4) ? "active" : "pending",
-      title: `HSK 4 - Đề thi số 0${i+1}`.replace("010", "10"),
-      desc: (i <= 4) ? `Đề thi mô phỏng HSK 4 chuẩn quốc tế số 0${i+1} (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)`.replace("010", "10") : `Đề thi mô phỏng HSK 4 chuẩn quốc tế số ${i+1}`,
+      status: "active",
+      title: (i + 1 < 10) ? `HSK 4 - Đề thi số 0${i+1}` : `HSK 4 - Đề thi số ${i+1}`,
+      desc:  (i + 1 < 10) ? `Đề thi mô phỏng HSK 4 chuẩn quốc tế số 0${i+1} (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)` : `Đề thi mô phỏng HSK 4 chuẩn quốc tế số ${i+1} (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)`,
       link: `hsk4-de-${i+1}.html`
     })),
     "workbooks": [
