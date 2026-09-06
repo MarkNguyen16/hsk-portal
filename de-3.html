@@ -431,13 +431,7 @@ main.app-main {
   display: block;
 }
 
-.image-desc {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  padding: 6px 8px;
-  background: #fff;
-  border-top: 1px solid #f0eae1;
-}
+
 
 /* Text Bank (Reading Part 1 & 2) */
 .text-bank-grid {
@@ -1336,32 +1330,45 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 
 
 
-.image-desc {
-  font-size: 0.76rem !important;
-  color: #475569 !important;
-  background: #f8fafc !important;
-  padding: 3px 6px !important;
-  border-top: 1px solid #e2e8f0 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  display: block !important;
+
+
+
+.p1-img-hint, 
+
+
+/* Subtle 2-4 word Vietnamese Image Tag */
+.subtle-img-tag {
+  display: block;
+  font-size: 12px;
+  color: #475569;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 4px 6px;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.image-desc, .p1-img-desc {
+  display: none !important;
 }
 
-
-.p1-img-hint, .image-desc {
-  font-size: 0.76rem !important;
-  color: #475569 !important;
-  background: #f8fafc !important;
-  padding: 4px 6px !important;
-  border-top: 1px solid #e2e8f0 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+/* Explanation Box Styling */
+.answer-explanation {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-left: 5px solid var(--primary);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  display: none;
+}
+body.review-mode .answer-explanation,
+.review-mode .answer-explanation {
   display: block !important;
-  font-weight: 500 !important;
 }
 
 </style>
@@ -3078,6 +3085,19 @@ function cleanAndFormatExplanation(origExp, newLetter, correctText) {
   return res;
 }
 
+
+function getShortImgLabel(desc) {
+  if (!desc) return "Hình ảnh";
+  const map = {'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ', 'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp', 'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày', 'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch', 'em bé khóc': 'Em bé khóc', 'tra từ điển': 'Tra từ điển', 'hai mẹ con tra': 'Tra từ điển', 'từ điển': 'Tra từ điển', 'nấu ăn': 'Nấu ăn trong bếp', 'trong bếp': 'Nấu ăn trong bếp', 'thảo luận': 'Xem máy tính bàn', 'đồng nghiệp': 'Xem máy tính', 'máy tính': 'Xem máy tính', 'nghe điện thoại': 'Nghe điện thoại', 'điện thoại': 'Nghe điện thoại', 'đánh răng': 'Đánh răng rửa mặt', 'vali': 'Kéo vali du lịch', 'hành lý': 'Kéo vali hành lý', 'ghế bập bênh': 'Ghế bập bênh', 'bản đồ': 'Xem bản đồ', 'album': 'Xem album ảnh', 'cưỡi ngựa': 'Tập cưỡi ngựa', 'mỏi mắt': 'Mỏi mắt đọc sách', 'đau chân': 'Vận động viên đau chân', 'xếp hàng': 'Xếp hàng chờ đợi', 'tuyết rơi': 'Mùa đông tuyết rơi', 'uống nước': 'Uống nước giải khát', 'chó': 'Chú chó cưng', 'rửa đĩa': 'Rửa bát đĩa', 'cắt tóc': 'Thợ cắt tóc', 'bánh mì': 'Bánh mì nước quả', 'lấy sách': 'Lấy sách trên giá', 'tìm đồ': 'Mở ngăn kéo tìm đồ', 'chào đón': 'Chào đón nhân viên', 'chào mừng': 'Chào mừng ở ngân hàng', 'ăn mì': 'Hai người ăn mì', 'làm bài tập': 'Cùng làm bài tập', 'đi taxi': 'Đi xe taxi', 'tra thuốc': 'Tra thuốc nhỏ mắt', 'ôm trán': 'Mệt mỏi ôm trán', 'áo ấm': 'Mặc áo ấm mũ len', 'cảm sốt': 'Cảm sốt quấn khăn', 'tìm mũ': 'Tìm mũ trên sàn', 'thay đồ': 'Rửa đĩa dọn dẹp', 'đèn bàn': 'Mua sắm đèn bàn', 'hoa điểu': 'Tranh vẽ hoa điểu'};
+  const dLow = desc.toLowerCase();
+  for (const k in map) {
+    if (dLow.includes(k)) return map[k];
+  }
+  let d = desc.replace(/[\(（][^)]*[\)）]/g, '').trim();
+  const words = d.split(/\s+/).filter(w => w);
+  return words.slice(0, 4).join(' ') || "Hình ảnh";
+}
+
 function renderExam() {
   const container = document.getElementById("examContainer");
   container.innerHTML = "";
@@ -3122,6 +3142,7 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
+      <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
       
     `;
     imgGrid1.appendChild(card);
@@ -3188,6 +3209,7 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
+      <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
       
     `;
     imgGrid2.appendChild(card);
@@ -3618,7 +3640,7 @@ function renderExam() {
       <div class="question-header">
         <div class="question-number">${q.num}.</div>
         <div class="question-content">
-          <div class="question-prompt chinese">${q.prompt.replace(/\n/g, '<br>')}</div>
+          <div class="question-prompt chinese">${(q.prompt || q.dialogue || '').replace(/\n/g, '<br>')}</div>
           <div class="options-bank-selector" id="opts-${q.id}">
             ${activeData.reading.part2.set2.options.map(opt => `
               <button class="opt-pill" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
@@ -4058,17 +4080,14 @@ function submitExam(autoSubmitted) {
 
   let correctL = 0, correctR = 0, correctW = 0;
   let detailedSummary = [];
-
-  // Helper normalizer
   const normStr = s => (s || "").toString().replace(/[\s.,?!。？！，]/g, "").toLowerCase();
 
-  // 1. Evaluate Listening Part 1
+  // 1. Evaluate Listening Part 1 (1-10)
   [...activeData.listening.part1.set1.questions, ...activeData.listening.part1.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctL++;
     
-    // Find current letter for display
     let targetList = activeData.listening.part1.set1.images;
     let found = targetList.find(i => i.id === q.correctId);
     if (!found) {
@@ -4076,52 +4095,66 @@ function submitExam(autoSubmitted) {
       found = targetList.find(i => i.id === q.correctId);
     }
     const correctLetter = found ? found.currentLetter : "";
+    const shortLabel = found ? getShortImgLabel(found.desc) : "";
+    
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + " (" + (found ? found.desc : "") + ")";
-    var expDiv = document.getElementById("exp-" + q.id);
+    if (ansSpan) ansSpan.textContent = correctLetter + (shortLabel ? " (" + shortLabel + ")" : "");
+    
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
-        cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
-    }
-    var expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
-        cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
+      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter} (${shortLabel})</div>` +
+        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, shortLabel)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 2. Evaluate Listening Part 2
+  // 2. Evaluate Listening Part 2 (11-20)
   activeData.listening.part2.questions.forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correct);
     if (isCorrect) correctL++;
+    
+    const correctText = q.correct ? "√ Đúng" : "× Sai";
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.passage}</span></div>` +
+        `<div style="margin-bottom:4px;font-weight:700;color:var(--primary-dark);">✅ Đáp án đúng: ${correctText}</div>` +
+        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctText, '')}</div>`;
+    }
+    
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns === undefined ? "Chưa làm" : (userAns ? "Đúng" : "Sai") });
   });
 
-  // 3. Evaluate Listening Part 3 & 4
+  // 3. Evaluate Listening Part 3 & 4 (21-40)
   [...activeData.listening.part3.questions, ...activeData.listening.part4.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctL++;
     
-    const correctOpt = q.options.find(o => o.id === q.correctId);
+    const corIdx = q.options.findIndex(o => o.id === q.correctId);
+    const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : '';
+    const correctOpt = (corIdx !== -1) ? q.options[corIdx] : null;
+    const optText = correctOpt ? correctOpt.text : '';
+    
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    var expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv && correctOpt) {
-      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
-        cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
+    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Hội thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 4. Evaluate Reading Part 1
+  // 4. Evaluate Reading Part 1 (41-50)
   [...activeData.reading.part1.set1.questions, ...activeData.reading.part1.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4134,22 +4167,22 @@ function submitExam(autoSubmitted) {
       found = targetList.find(o => o.id === q.correctId);
     }
     const correctLetter = found ? found.currentLetter : "";
+    const optText = found ? found.text : "";
+    
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    var expDiv = document.getElementById("exp-" + q.id);
+    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
-    }
-    var expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 5. Evaluate Reading Part 2
+  // 5. Evaluate Reading Part 2 (51-60)
   [...activeData.reading.part2.set1.questions, ...activeData.reading.part2.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4162,54 +4195,73 @@ function submitExam(autoSubmitted) {
       found = targetList.find(o => o.id === q.correctId);
     }
     const correctLetter = found ? found.currentLetter : "";
+    const optText = found ? found.text : "";
+    
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    var expDiv = document.getElementById("exp-" + q.id);
+    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
-    }
-    var expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 6. Evaluate Reading Part 3
+  // 6. Evaluate Reading Part 3 (61-70)
   activeData.reading.part3.questions.forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctR++;
     
-    const correctOpt = q.options.find(o => o.id === q.correctId);
+    const corIdx = q.options.findIndex(o => o.id === q.correctId);
+    const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : '';
+    const correctOpt = (corIdx !== -1) ? q.options[corIdx] : null;
+    const optText = correctOpt ? correctOpt.text : '';
+    
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    var expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv && correctOpt) {
-      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
-        cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
+    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 7. Evaluate Writing Part 1
+  // 7. Evaluate Writing Part 1 (71-75)
   activeData.writing.part1.questions.forEach(q => {
     const userAns = examState.answers[q.id] || "";
     const isCorrect = (normStr(userAns) === normStr(q.correct));
     if (isCorrect) correctW++;
+    
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án chuẩn: <span class="chinese">${q.correct}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Cấu trúc ngữ pháp:</strong> ${cleanAndFormatExplanation(q.explanation, '', '')}</div>`;
+    }
+    
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 8. Evaluate Writing Part 2
+  // 8. Evaluate Writing Part 2 (76-80)
   activeData.writing.part2.questions.forEach(q => {
     const userAns = (examState.answers[q.id] || "").trim();
     const isCorrect = (userAns === q.correct.trim());
     if (isCorrect) correctW++;
+    
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Chữ Hán đúng: <span class="chinese" style="font-size:1.2rem;">${q.correct}</span> (${q.pinyin})</div>` +
+        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích từ vựng:</strong> ${cleanAndFormatExplanation(q.explanation, '', '')}</div>`;
+    }
+    
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
@@ -4221,19 +4273,16 @@ function submitExam(autoSubmitted) {
   examState.correctCount = correctL + correctR + correctW;
   examState.score10 = ((examState.correctCount / examState.totalQuestions) * 10).toFixed(1);
   
-  // HSK Official scale /300
   const hskL = Math.round((correctL / 40) * 100);
   const hskR = Math.round((correctR / 30) * 100);
   const hskW = Math.round((correctW / 10) * 100);
   const hskTotal = hskL + hskR + hskW;
   const isPassed = hskTotal >= 180;
 
-  // Format Duration
   const durM = Math.floor(examState.durationSeconds / 60);
   const durS = examState.durationSeconds % 60;
   const durationFormatted = `${durM} phút ${durS} giây`;
 
-  // UI Updates in Modal
   document.getElementById("score10Display").textContent = examState.score10;
   document.getElementById("resultModalSubtitle").textContent = `Thí sinh: ${studentInfo.name} (${studentInfo.className}) • Lần làm thứ ${studentInfo.attemptCount} • Thời gian: ${durationFormatted}`;
   
@@ -4254,7 +4303,6 @@ function submitExam(autoSubmitted) {
   document.getElementById("statReading").textContent = `${correctR}/30`;
   document.getElementById("statWriting").textContent = `${correctW}/10`;
 
-  // Telemetry Object
   const telemetryData = {
     examCode: "H31003",
     examTitle: "HSK 3 - Đề 03 (H31003)",
@@ -4277,15 +4325,14 @@ function submitExam(autoSubmitted) {
     detailedSummary: detailedSummary
   };
 
-  // Save to Local History
   saveAttemptToHistory(telemetryData);
-
-  // Send to Webhook
   sendTelemetryToWebhook(telemetryData);
 
-  // Open Result Modal
+  // Open Result Modal and ACTIVATE REVIEW MODE on entire page
   document.getElementById("resultModal").classList.remove("hidden");
-  document.getElementById("examContainer").classList.add("review-mode");
+  document.body.classList.add("review-mode");
+  const ec = document.getElementById("examContainer");
+  if (ec) ec.classList.add("review-mode");
 }
 
 function markQuestionResult(qId, isCorrect) {
@@ -4823,32 +4870,45 @@ function viewEnlargedImage(src, title) {
   w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
 
 
-.image-desc {
-  font-size: 0.76rem !important;
-  color: #475569 !important;
-  background: #f8fafc !important;
-  padding: 3px 6px !important;
-  border-top: 1px solid #e2e8f0 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  display: block !important;
+
+
+
+.p1-img-hint, 
+
+
+/* Subtle 2-4 word Vietnamese Image Tag */
+.subtle-img-tag {
+  display: block;
+  font-size: 12px;
+  color: #475569;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 4px 6px;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.image-desc, .p1-img-desc {
+  display: none !important;
 }
 
-
-.p1-img-hint, .image-desc {
-  font-size: 0.76rem !important;
-  color: #475569 !important;
-  background: #f8fafc !important;
-  padding: 4px 6px !important;
-  border-top: 1px solid #e2e8f0 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+/* Explanation Box Styling */
+.answer-explanation {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-left: 5px solid var(--primary);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  display: none;
+}
+body.review-mode .answer-explanation,
+.review-mode .answer-explanation {
   display: block !important;
-  font-weight: 500 !important;
 }
 
 </style></head><body><img src="${src}"></body></html>`);

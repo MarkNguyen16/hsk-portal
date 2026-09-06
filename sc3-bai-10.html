@@ -637,6 +637,45 @@ body.review-mode .explanation-box {
   font-weight: 500 !important;
 }
 
+
+/* Subtle 2-4 word Vietnamese Image Tag */
+.subtle-img-tag {
+  display: block !important;
+  font-size: 11.5px !important;
+  color: #475569 !important;
+  background: #f1f5f9 !important;
+  border-top: 1px solid #e2e8f0 !important;
+  padding: 3px 6px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.3 !important;
+}
+.image-desc, .p1-img-desc {
+  display: none !important;
+}
+
+/* Explanation Box Styling */
+.explanation-box, .answer-explanation {
+  margin-top: 12px !important;
+  padding: 12px 16px !important;
+  background: #f0fdf4 !important;
+  border: 1.5px solid #86efac !important;
+  border-left: 5px solid var(--primary) !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  display: none;
+}
+body.review-mode .explanation-box,
+body.review-mode .answer-explanation,
+.review-mode .explanation-box,
+.review-mode .answer-explanation {
+  display: block !important;
+}
+
 </style>
 </head>
 <body>
@@ -1518,24 +1557,7 @@ function escapeJsStr(str) {
 }
 
 function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
-  if (!origExp && !newLetter) return '';
-  let exp = origExp || '';
-  let rationale = exp
-    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
-    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
-    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
-    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
-    .trim();
-  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
-
-  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
-  if (correctText) {
-    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
-  }
-  if (rationale) {
-    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
-  }
-  return res;
+  return cleanAndFormatExplanation(origExp, newLetter, correctText);
 }
 
 function renderExam() {
