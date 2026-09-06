@@ -1334,7 +1334,36 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 }
 
 
-.image-desc { display: none !important; }
+
+
+.image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 3px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
 </style>
 </head>
 <body>
@@ -1637,32 +1666,32 @@ const MASTER_DATA = {
           {
             "id": "img_a",
             "label": "A",
-            "desc": "Cô gái với tay lấy sách trên giá sách cao (去拿高处的书)"
+            "desc": "Cô gái lấy sách trên giá"
           },
           {
             "id": "img_b",
             "label": "B",
-            "desc": "Người đàn ông mang vali trở về nhà lấy hộ chiếu (回来拿护照)"
+            "desc": "Người đàn ông kéo vali"
           },
           {
             "id": "img_c",
             "label": "C",
-            "desc": "Hai bạn cùng làm bài tập kiểm tra số tiền (写错三角五分)"
+            "desc": "Hai bạn cùng làm bài tập ..."
           },
           {
             "id": "img_d",
             "label": "D",
-            "desc": "Ví dụ mẫu: Nữ nhân viên nghe điện thoại bàn (接电话)"
+            "desc": "Nữ nhân viên nghe điện th..."
           },
           {
             "id": "img_e",
             "label": "E",
-            "desc": "Cặp đôi cùng nấu ăn rửa bát dọn dẹp (洗盘子换衣服)"
+            "desc": "Cặp đôi cùng nấu ăn rửa b..."
           },
           {
             "id": "img_f",
             "label": "F",
-            "desc": "Dòng người xếp hàng dài chờ đợi trước cửa quán (排队站了一个小时)"
+            "desc": "Dòng người xếp hàng dài c..."
           }
         ],
         "questions": [
@@ -1713,27 +1742,27 @@ const MASTER_DATA = {
           {
             "id": "img_6a",
             "label": "A",
-            "desc": "Cô gái quấn khăn uống nước giải khát (喝水太渴)"
+            "desc": "Cô gái quấn khăn uống nướ..."
           },
           {
             "id": "img_6b",
             "label": "B",
-            "desc": "Người phụ nữ cúi tìm mũ trong tủ ngăn kéo (找帽子)"
+            "desc": "Người phụ nữ cúi tìm mũ t..."
           },
           {
             "id": "img_6c",
             "label": "C",
-            "desc": "Người đàn ông ôm trán mỏi mắt sau khi đọc sách (眼睛有点儿累看绿树)"
+            "desc": "Người đàn ông ôm trán mỏi..."
           },
           {
             "id": "img_6d",
             "label": "D",
-            "desc": "Nhân viên mới đến công ty giới thiệu làm quen (新来公司上班)"
+            "desc": "Nhân viên mới đến công ty..."
           },
           {
             "id": "img_6e",
             "label": "E",
-            "desc": "Chú chó cưng đáng yêu được tặng (可爱小狗)"
+            "desc": "Chú chó cưng đáng yêu đượ..."
           }
         ],
         "questions": [
@@ -4075,7 +4104,12 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + " (" + (found ? found.desc : "") + ")";
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
@@ -4103,7 +4137,7 @@ function submitExam(autoSubmitted) {
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
@@ -4128,7 +4162,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
     }
@@ -4152,7 +4190,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
     }
@@ -4170,7 +4212,7 @@ function submitExam(autoSubmitted) {
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
@@ -4805,7 +4847,36 @@ function jumpToNextUnanswered() {
 function viewEnlargedImage(src, title) {
   const w = window.open("", "_blank");
   w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-.image-desc { display: none !important; }
+
+
+.image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 3px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
 </style></head><body><img src="${src}"></body></html>`);
 }
 

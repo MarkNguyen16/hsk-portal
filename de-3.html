@@ -1334,7 +1334,36 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 }
 
 
-.image-desc { display: none !important; }
+
+
+.image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 3px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
 </style>
 </head>
 <body>
@@ -1637,32 +1666,32 @@ const MASTER_DATA = {
           {
             "id": "img_a",
             "label": "A",
-            "desc": "Tranh hoa điểu truyền thống Trung Quốc của ông nội vẽ (爷爷的花鸟画)"
+            "desc": "Tranh hoa điểu truyền thố..."
           },
           {
             "id": "img_b",
             "label": "B",
-            "desc": "Nữ nhân viên khách sạn tận tình chỉ đường đến phòng 204 (请这边走)"
+            "desc": "Nữ nhân viên khách sạn ch..."
           },
           {
             "id": "img_c",
             "label": "C",
-            "desc": "Người đàn ông tra thuốc nhỏ mắt làm dịu mắt đỏ (眼药水滴眼睛)"
+            "desc": "Người đàn ông tra thuốc n..."
           },
           {
             "id": "img_d",
             "label": "D",
-            "desc": "Ví dụ mẫu: Nữ nhân viên nghe điện thoại bàn (接电话)"
+            "desc": "Nữ nhân viên nghe điện th..."
           },
           {
             "id": "img_e",
             "label": "E",
-            "desc": "Cặp đôi ôm chia tay ở sân bay cùng vali hành lý (下飞机打电话)"
+            "desc": "Cặp đôi ôm chia tay ở sân..."
           },
           {
             "id": "img_f",
             "label": "F",
-            "desc": "Bàn mượn sách thư viện, thủ thư đưa sách cho bạn đọc (借书一个月)"
+            "desc": "Bàn mượn sách thư viện, t..."
           }
         ],
         "questions": [
@@ -1713,27 +1742,27 @@ const MASTER_DATA = {
           {
             "id": "img_6a",
             "label": "A",
-            "desc": "Chào đón nhân viên mới đến làm việc tại công ty (欢迎来公司工作)"
+            "desc": "Chào đón nhân viên mới đế..."
           },
           {
             "id": "img_6b",
             "label": "B",
-            "desc": "Thợ cắt tóc cắt ngắn tóc cho khách nữ vào mùa hè (夏天头发短一点)"
+            "desc": "Thợ cắt tóc cắt ngắn tóc ..."
           },
           {
             "id": "img_6c",
             "label": "C",
-            "desc": "Hai vợ chồng vui vẻ ăn mì trứng (今天的鸡蛋面好吃)"
+            "desc": "Hai vợ chồng vui vẻ ăn mì..."
           },
           {
             "id": "img_6d",
             "label": "D",
-            "desc": "Hành khách đi taxi trả 35 tệ (一共多少钱：35块)"
+            "desc": "Hành khách đi taxi trả 35..."
           },
           {
             "id": "img_6e",
             "label": "E",
-            "desc": "Cô gái bị cảm sốt ngồi ôm trán nghỉ ngơi (感冒发烧)"
+            "desc": "Cô gái bị cảm sốt ngồi ôm..."
           }
         ],
         "questions": [
@@ -4049,7 +4078,12 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + " (" + (found ? found.desc : "") + ")";
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
@@ -4077,7 +4111,7 @@ function submitExam(autoSubmitted) {
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
@@ -4102,7 +4136,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
     }
@@ -4126,7 +4164,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
     }
@@ -4144,7 +4186,7 @@ function submitExam(autoSubmitted) {
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
@@ -4779,7 +4821,36 @@ function jumpToNextUnanswered() {
 function viewEnlargedImage(src, title) {
   const w = window.open("", "_blank");
   w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-.image-desc { display: none !important; }
+
+
+.image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 3px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
 </style></head><body><img src="${src}"></body></html>`);
 }
 

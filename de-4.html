@@ -1339,7 +1339,36 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 }
 
 
-.image-desc { display: none !important; }
+
+
+.image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 3px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
 </style>
 </head>
 <body>
@@ -1657,7 +1686,7 @@ const MASTER_DATA = {
           {
             "id": "img_d",
             "label": "D",
-            "desc": "Nữ nhân viên nghe điện thoại bàn"
+            "desc": "Nữ nhân viên nghe điện th..."
           },
           {
             "id": "img_e",
@@ -4050,7 +4079,12 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + " (" + (found ? found.desc : "") + ")";
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
@@ -4078,7 +4112,7 @@ function submitExam(autoSubmitted) {
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
@@ -4103,7 +4137,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
     }
@@ -4127,7 +4165,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
     }
@@ -4145,7 +4187,7 @@ function submitExam(autoSubmitted) {
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
@@ -4780,7 +4822,36 @@ function jumpToNextUnanswered() {
 function viewEnlargedImage(src, title) {
   const w = window.open("", "_blank");
   w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-.image-desc { display: none !important; }
+
+
+.image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 3px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
 </style></head><body><img src="${src}"></body></html>`);
 }
 

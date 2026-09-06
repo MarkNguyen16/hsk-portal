@@ -1334,7 +1334,36 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 }
 
 
-.image-desc { display: none !important; }
+
+
+.image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 3px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
 </style>
 </head>
 <body>
@@ -1637,32 +1666,32 @@ const MASTER_DATA = {
           {
             "id": "img_a",
             "label": "A",
-            "desc": "Chiếc ghế bập bênh cạnh bàn sách thư giãn (椅子)"
+            "desc": "Chiếc ghế bập bênh cạnh b..."
           },
           {
             "id": "img_b",
             "label": "B",
-            "desc": "Cô gái ăn sáng uống nước hoa quả (吃面包喝果汁)"
+            "desc": "Cô gái ăn sáng uống nước ..."
           },
           {
             "id": "img_c",
             "label": "C",
-            "desc": "Hai bạn cùng mở bản đồ tra đường đi (看地图)"
+            "desc": "Hai bạn cùng mở bản đồ xe..."
           },
           {
             "id": "img_d",
             "label": "D",
-            "desc": "Ví dụ mẫu: Nữ nhân viên nghe điện thoại bàn (接电话)"
+            "desc": "Nữ nhân viên nghe điện th..."
           },
           {
             "id": "img_e",
             "label": "E",
-            "desc": "Cô gái cưỡi ngựa đen (骑马)"
+            "desc": "Cô gái cưỡi ngựa đen"
           },
           {
             "id": "img_f",
             "label": "F",
-            "desc": "Chàng trai đánh răng buổi sáng trước gương (刷牙)"
+            "desc": "Chàng trai đánh răng buổi..."
           }
         ],
         "questions": [
@@ -1713,27 +1742,27 @@ const MASTER_DATA = {
           {
             "id": "img_6a",
             "label": "A",
-            "desc": "Cặp đôi xách vali du lịch (拿着行李箱)"
+            "desc": "Cặp đôi xách vali du lịch"
           },
           {
             "id": "img_6b",
             "label": "B",
-            "desc": "Cặp đôi cùng xem album ảnh kỷ niệm (看照片)"
+            "desc": "Cặp đôi cùng xem album ản..."
           },
           {
             "id": "img_6c",
             "label": "C",
-            "desc": "Cô gái mặc áo ấm mũ len mùa đông tuyết rơi (穿棉衣下大雪)"
+            "desc": "Cô gái mặc áo ấm mũ len m..."
           },
           {
             "id": "img_6d",
             "label": "D",
-            "desc": "Vận động viên ngồi xoa bóp chân bị đau (腿疼脚疼)"
+            "desc": "Vận động viên ngồi xoa bó..."
           },
           {
             "id": "img_6e",
             "label": "E",
-            "desc": "Bé trai đánh răng rửa mặt (刷牙洗脸)"
+            "desc": "Bé trai đánh răng rửa mặt"
           }
         ],
         "questions": [
@@ -4075,7 +4104,12 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + " (" + (found ? found.desc : "") + ")";
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.desc : '');
@@ -4103,7 +4137,7 @@ function submitExam(autoSubmitted) {
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
@@ -4128,7 +4162,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
     }
@@ -4152,7 +4190,11 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? found.currentLetter : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
     }
@@ -4170,7 +4212,7 @@ function submitExam(autoSubmitted) {
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan && correctOpt) ansSpan.textContent = correctLetter + ". " + correctOpt.text;
-    const expDiv = document.getElementById("exp-" + q.id);
+    var expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="margin-bottom:4px;"><strong>Nội dung nghe:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
         cleanAndFormatExplanation(q.explanation, correctLetter, correctOpt.text);
@@ -4805,7 +4847,36 @@ function jumpToNextUnanswered() {
 function viewEnlargedImage(src, title) {
   const w = window.open("", "_blank");
   w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-.image-desc { display: none !important; }
+
+
+.image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 3px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
 </style></head><body><img src="${src}"></body></html>`);
 }
 
