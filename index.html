@@ -484,7 +484,7 @@ footer.portal-footer {
   <div class="level-tabs-inner">
     <button class="level-tab-btn" onclick="switchLevel('HSK1', this)">HSK 1</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK2', this)">HSK 2</button>
-    <button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK3', this)">⭐ HSK 3 (7 Đề & 20 Bài Tập)</button>
+    <button class="level-tab-btn highlight-tab" id="tab-btn-HSK3" onclick="switchLevel(\'HSK3\', this)">⭐ HSK 3 (10 Đề & 20 Bài Tập)</button>
     <button class="level-tab-btn active highlight-tab" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (13 Đề & 20 Bài Tập)</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK5', this)">HSK 5</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK6', this)">HSK 6</button>
@@ -555,19 +555,24 @@ const PORTAL_DATABASE = {
   },
   "HSK3": {
     "title": "HSK Cấp 3 (Học từ vựng 600 từ • Nghe, Đọc, Viết hoàn chỉnh)",
-    "desc": "Hệ thống đã cập nhật 8 bộ đề thi chuẩn chính thức (Đề 1 đến 8) cùng trọn bộ 20 bài học Sách bài tập Chuẩn HSK 3 Standard Course.",
+    "desc": "Hệ thống trọn bộ các đề thi chuẩn HSK 3 chính thức (Đề 01 đến 10+) cùng trọn bộ 20 bài học Sách bài tập Chuẩn HSK 3 Standard Course.",
     "specs": "Nghe 40 câu • Đọc 30 câu • Viết 10 câu • Thời gian: 90 phút • Điểm tối đa: 300 điểm",
-    "exams": [
+        "exams": [
       { num: 1, code: "H31001", file: "de-1.html", status: "active", title: "HSK 3 - Đề thi số 01", desc: "Đề thi chuẩn H31001 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-1.html" },
       { num: 2, code: "H31002", file: "de-2.html", status: "active", title: "HSK 3 - Đề thi số 02", desc: "Đề thi chuẩn H31002 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-2.html" },
       { num: 3, code: "H31003", file: "de-3.html", status: "active", title: "HSK 3 - Đề thi số 03", desc: "Đề thi chuẩn H31003 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-3.html" },
-      { num: 4, code: "H31327", file: "de-4.html", status: "active", title: "HSK 3 - Đề thi số 04", desc: "Đề thi chuẩn H31327 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-4.html" },
-      { num: 5, code: "H31328", file: "de-5.html", status: "active", title: "HSK 3 - Đề thi số 05", desc: "Đề thi chuẩn H31328 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-5.html" },
+      { num: 4, code: "H31004", file: "de-4.html", status: "active", title: "HSK 3 - Đề thi số 04", desc: "Đề thi chuẩn H31004 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-4.html" },
+      { num: 5, code: "H31005", file: "de-5.html", status: "active", title: "HSK 3 - Đề thi số 05", desc: "Đề thi chuẩn H31005 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-5.html" },
       { num: 6, code: "H31006", file: "de-6.html", status: "active", title: "HSK 3 - Đề thi số 06", desc: "Đề thi chuẩn H31006 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-6.html" },
       { num: 7, code: "H31007", file: "de-7.html", status: "active", title: "HSK 3 - Đề thi số 07", desc: "Đề thi chuẩn H31007 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-7.html" },
       { num: 8, code: "H31008", file: "de-8.html", status: "active", title: "HSK 3 - Đề thi số 08", desc: "Đề thi chuẩn H31008 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-8.html" },
-      { num: 9, code: "H31009", file: "de-9.html", status: "pending", title: "HSK 3 - Đề thi số 09", desc: "Đề thi chuẩn H31009 (Tự động mở khi có file de-9.html)", link: "de-9.html" },
-      { num: 10, code: "H31010", file: "de-10.html", status: "pending", title: "HSK 3 - Đề thi số 10", desc: "Đề thi chuẩn H31010 (Tự động mở khi có file de-10.html)", link: "de-10.html" }
+      { num: 9, code: "H31009", file: "de-9.html", status: "active", title: "HSK 3 - Đề thi số 09", desc: "Đề thi chuẩn H31009 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-9.html" },
+      { num: 10, code: "H31010", file: "de-10.html", status: "active", title: "HSK 3 - Đề thi số 10", desc: "Đề thi chuẩn H31010 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-10.html" },
+      { num: 11, code: "H31011", file: "de-11.html", status: "active", title: "HSK 3 - Đề thi số 11", desc: "Đề thi chuẩn H31011 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-11.html" },
+      { num: 12, code: "H31012", file: "de-12.html", status: "active", title: "HSK 3 - Đề thi số 12", desc: "Đề thi chuẩn H31012 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-12.html" },
+      { num: 13, code: "H31013", file: "de-13.html", status: "active", title: "HSK 3 - Đề thi số 13", desc: "Đề thi chuẩn H31013 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-13.html" },
+      { num: 14, code: "H31014", file: "de-14.html", status: "active", title: "HSK 3 - Đề thi số 14", desc: "Đề thi chuẩn H31014 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-14.html" },
+      { num: 15, code: "H31015", file: "de-15.html", status: "pending", title: "HSK 3 - Đề thi số 15", desc: "Đề thi chuẩn H31015 (Tự động mở khi có file de-15.html)", link: "de-15.html" }
     ],
     "workbooks": [
       { num: 1, code: "SC3-B01", file: "sc3-bai-1.html", status: "active", title: "Bài 1: 周末你有什么打算", desc: "Sách bài tập chuẩn HSK 3 - Bài 1: Cuối tuần bạn có dự định gì?", link: "sc3-bai-1.html" },
@@ -718,6 +723,7 @@ function initPortal() {
   if (savedCode) document.getElementById("inputCode").value = savedCode;
 
   renderLevel(currentLevel);
+  updateLevelTabCounters();
 }
 
 function switchLevel(lvlKey, btnElement) {
@@ -733,6 +739,20 @@ function setSubFilter(filterType, btnElement) {
   document.querySelectorAll(".sub-filter-btn").forEach(b => b.classList.remove("active"));
   btnElement.classList.add("active");
   renderLevel(currentLevel);
+  updateLevelTabCounters();
+}
+
+
+function updateLevelTabCounters() {
+  const h3Ex = (PORTAL_DATABASE.HSK3 && PORTAL_DATABASE.HSK3.exams) ? PORTAL_DATABASE.HSK3.exams.filter(e => e.status === 'active').length : 10;
+  const h3Wb = (PORTAL_DATABASE.HSK3 && PORTAL_DATABASE.HSK3.workbooks) ? PORTAL_DATABASE.HSK3.workbooks.length : 20;
+  const btnH3 = document.getElementById("tab-btn-HSK3");
+  if (btnH3) btnH3.textContent = `⭐ HSK 3 (${h3Ex} Đề & ${h3Wb} Bài Tập)`;
+
+  const h4Ex = (PORTAL_DATABASE.HSK4 && PORTAL_DATABASE.HSK4.exams) ? PORTAL_DATABASE.HSK4.exams.filter(e => e.status === 'active').length : 1;
+  const h4Wb = (PORTAL_DATABASE.HSK4 && PORTAL_DATABASE.HSK4.workbooks) ? PORTAL_DATABASE.HSK4.workbooks.length : 20;
+  const btnH4 = document.getElementById("tab-btn-HSK4");
+  if (btnH4) btnH4.textContent = `⭐ HSK 4 (${h4Ex} Đề & ${h4Wb} Bài)`;
 }
 
 function renderLevel(lvlKey) {
