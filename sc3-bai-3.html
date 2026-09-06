@@ -311,6 +311,11 @@ body {
   color: #2e7d32;
   border-color: #a5d6a7;
 }
+.sync-status-box.offline {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #b45309;
+}
 
 /* Section Cards */
 .section-card {
@@ -396,16 +401,20 @@ body {
   background: #f1f5f9;
   border: 1px solid #cbd5e1;
   border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11.5px;
-  color: #475569;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #334155;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  transition: all 0.2s;
 }
 .btn-listen-again:hover {
-  background: #e2e8f0;
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary-dark);
 }
 
 /* Listening Part 1 SVGs Grid */
@@ -855,7 +864,7 @@ body.review-mode .question-item.user-wrong {
     <span style="font-size: 12.5px; font-weight: 700; color: var(--primary-dark); display: flex; align-items: center; gap: 4px; white-space:nowrap;">
       🎧 Audio:
     </span>
-    <audio id="mainAudioPlayer" controls preload="metadata">
+    <audio id="mainAudioPlayer" controls preload="auto" src="audio/03.mp3">
       <source src="audio/03.mp3" type="audio/mpeg">
       <source src="audio/3.mp3" type="audio/mpeg">
       <source src="03.mp3" type="audio/mpeg">
@@ -969,10 +978,9 @@ body.review-mode .question-item.user-wrong {
 
 <script>
 const EXAM_CONFIG = {
-  examCode: "SC3-B03",
-  examTitle: "HSK 3 - Bài 3: 桌子上放着很多饮料"
+  "examCode": "SC3-B03",
+  "examTitle": "HSK 3 - Bài 3: 桌子上放着很多饮料"
 };
-
 const MASTER_DATA = {
   "listening": {
     "part1": {
@@ -985,20 +993,20 @@ const MASTER_DATA = {
         {
           "id": "img_a",
           "label": "A",
-          "desc": "买衬衫 (选红的还是绿的)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👔</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">买衬衫 (选红的还是绿的)</text></svg>"
+          "desc": "选衬衫颜色 (红的还是绿的)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👔</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">选衬衫颜色 (红的还是绿的)</text></svg>"
         },
         {
           "id": "img_b",
           "label": "B",
-          "desc": "喝花茶 (朋友送的好喝花茶)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍵</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">喝花茶 (朋友送的好喝花茶)</text></svg>"
+          "desc": "喝香甜花茶 (花茶真好喝)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍵</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">喝香甜花茶 (花茶真好喝)</text></svg>"
         },
         {
           "id": "img_c",
           "label": "C",
-          "desc": "新鲜苹果 (水果都很新鲜)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍎</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">新鲜苹果 (水果都很新鲜)</text></svg>"
+          "desc": "吃新鲜苹果 (给我个苹果吧)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍎</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">吃新鲜苹果 (给我个苹果吧)</text></svg>"
         },
         {
           "id": "img_d",
@@ -1009,24 +1017,24 @@ const MASTER_DATA = {
         {
           "id": "img_e",
           "label": "E",
-          "desc": "机场下飞机 (下了飞机打电话)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">✈️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">机场下飞机 (下了飞机打电话)</text></svg>"
+          "desc": "下飞机打电话 (到了北京打电话)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">✈️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">下飞机打电话 (到了北京打电话)</text></svg>"
         },
         {
           "id": "img_f",
           "label": "F",
-          "desc": "试穿裤子 (给爸爸买裤子)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👖</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">试穿裤子 (给爸爸买裤子)</text></svg>"
+          "desc": "送爸爸裤子 (爸爸生日送裤子)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👖</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">送爸爸裤子 (爸爸生日送裤子)</text></svg>"
         }
       ],
       "questions": [
         {
           "id": "L1",
           "num": 1,
-          "dialogue": "男：这花茶在哪儿买的？真好喝！\n女：我也不知道，一个朋友送的。",
+          "dialogue": "男：这花茶在哪儿买的?真好喝!\n女：我也不知道，一个朋友送的。",
           "correctId": "img_b",
           "timestamp": 38,
-          "explanation": "好喝的花茶 -> B"
+          "explanation": "花茶真好喝 -> B"
         },
         {
           "id": "L2",
@@ -1039,26 +1047,26 @@ const MASTER_DATA = {
         {
           "id": "L3",
           "num": 3,
-          "dialogue": "女：这些水果都很新鲜，你想吃什么？\n男：给我一个苹果吧。",
+          "dialogue": "女：这些水果都很新鲜，你想吃什么?\n男：给我一个苹果吧。",
           "correctId": "img_c",
-          "timestamp": 88,
-          "explanation": "新鲜水果给个苹果 -> C"
+          "timestamp": 86,
+          "explanation": "吃新鲜苹果 -> C"
         },
         {
           "id": "L4",
           "num": 4,
-          "dialogue": "女：爸爸的生日快到了，我想送他一条裤子，你看这条怎么样？\n男：颜色不错，但是我觉得大了一点儿。",
+          "dialogue": "女：爸爸的生日快到了，我想送他一条裤子，你看这条怎么样?\n男：颜色不错，但是我觉得大了一点儿。",
           "correctId": "img_f",
-          "timestamp": 112,
+          "timestamp": 110,
           "explanation": "送爸爸裤子 -> F"
         },
         {
           "id": "L5",
           "num": 5,
-          "dialogue": "男：我想买件衬衫。\n女：颜色很多啊，你喜欢红的还是绿的？",
+          "dialogue": "男：我想买件衬衫。\n女：颜色很多啊，你喜欢红的还是绿的?",
           "correctId": "img_a",
-          "timestamp": 138,
-          "explanation": "买衬衫选颜色 -> A"
+          "timestamp": 134,
+          "explanation": "选衬衫红的还是绿的 -> A"
         }
       ]
     },
@@ -1067,11 +1075,11 @@ const MASTER_DATA = {
         {
           "id": "L6",
           "num": 6,
-          "passage": "你还记得前边的那个女孩儿吗？去年我们去上海玩儿的时候认识的。",
+          "passage": "你还记得前边的那个女孩儿吗?去年我们去上海玩儿的时候认识的。",
           "statement": "他不认识那个女孩儿。",
           "correct": false,
-          "timestamp": 214,
-          "explanation": "去年认识的，说明认识 (Sai)"
+          "timestamp": 212,
+          "explanation": "去年认识的，说明认识 -> Sai"
         },
         {
           "id": "L7",
@@ -1079,8 +1087,8 @@ const MASTER_DATA = {
           "passage": "我记得这条裤子上个月是八百元，现在只要四百元，我一次买了两条。",
           "statement": "这条裤子现在便宜得多。",
           "correct": true,
-          "timestamp": 258,
-          "explanation": "八百降到四百，便宜得多 (Đúng)"
+          "timestamp": 255,
+          "explanation": "800降到400，便宜得多 (Đúng)"
         },
         {
           "id": "L8",
@@ -1088,17 +1096,17 @@ const MASTER_DATA = {
           "passage": "工作很累的时候可以听歌、玩儿游戏或者去运动，这样，你会觉得舒服点儿。",
           "statement": "运动时可以听歌。",
           "correct": false,
-          "timestamp": 302,
-          "explanation": "听歌玩游戏或运动，是选择项 (Sai)"
+          "timestamp": 298,
+          "explanation": "听歌或运动，不是运动时听歌 -> Sai"
         },
         {
           "id": "L9",
           "num": 9,
-          "passage": "我刚买的鲜奶你放到哪儿了？我现在想喝。",
+          "passage": "我刚买的鲜奶你放到哪儿了?我现在想喝。",
           "statement": "他不知道鲜奶在哪儿。",
           "correct": true,
-          "timestamp": 348,
-          "explanation": "问放到哪儿了说明不知道 (Đúng)"
+          "timestamp": 342,
+          "explanation": "放到哪儿了 -> 不知道在哪儿 (Đúng)"
         },
         {
           "id": "L10",
@@ -1106,7 +1114,7 @@ const MASTER_DATA = {
           "passage": "你怎么只吃饭不吃菜啊，来，多吃点儿。",
           "statement": "她菜吃得很少。",
           "correct": true,
-          "timestamp": 394,
+          "timestamp": 386,
           "explanation": "只吃饭不吃菜说明菜吃得少 (Đúng)"
         }
       ]
@@ -1116,7 +1124,7 @@ const MASTER_DATA = {
         {
           "id": "L11",
           "num": 11,
-          "dialogue": "女：我的脚还没好，我们周末别去爬山了。\n男：好，那我们就在家看看电视，玩儿玩儿游戏。\n问：女的为什么不去爬山？",
+          "dialogue": "女：我的脚还没好，我们周末别去爬山了。\n男：好，那我们就在家看看电视，玩儿玩儿游戏。\n问：女的为什么不去爬山?",
           "options": [
             {
               "id": "a",
@@ -1124,21 +1132,21 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "天气不好"
+              "text": "想看电视"
             },
             {
               "id": "c",
-              "text": "要看电视"
+              "text": "要玩游戏"
             }
           ],
           "correctId": "a",
-          "timestamp": 465,
+          "timestamp": 460,
           "explanation": "脚还没好 -> A"
         },
         {
           "id": "L12",
           "num": 12,
-          "dialogue": "女：今天买的冷饮很甜，你要不要喝点儿？\n男：不喝了，我打算睡觉了。\n问：男的为什么不喝冷饮？",
+          "dialogue": "女：今天买的冷饮很甜，你要不要喝点儿?\n男：不喝了，我打算睡觉了。\n问：男的为什么不喝冷饮?",
           "options": [
             {
               "id": "a",
@@ -1150,21 +1158,21 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "不爱喝"
+              "text": "不渴"
             }
           ],
           "correctId": "b",
-          "timestamp": 518,
+          "timestamp": 522,
           "explanation": "打算睡觉了 -> B"
         },
         {
           "id": "L13",
           "num": 13,
-          "dialogue": "男：你新给我买的那条裤子放哪儿了？\n女：我洗完衬衫就给你拿。\n问：女的在做什么？",
+          "dialogue": "男：你新给我买的那条裤子放哪儿了?\n女：我洗完衬衫就给你拿。\n问：女的在做什么?",
           "options": [
             {
               "id": "a",
-              "text": "买裤子"
+              "text": "找裤子"
             },
             {
               "id": "b",
@@ -1172,39 +1180,39 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "做饭"
+              "text": "叠衣服"
             }
           ],
           "correctId": "b",
-          "timestamp": 588,
-          "explanation": "洗完衬衫给你拿 -> B"
+          "timestamp": 584,
+          "explanation": "洗完衬衫就拿 -> 洗衬衫 (B)"
         },
         {
           "id": "L14",
           "num": 14,
-          "dialogue": "男：你上午给我打电话的时候，我正在上课。有什么事吗？\n女：对不起，是我不小心打错了。\n问：女的为什么给男的打电话？",
+          "dialogue": "男：你上午给我打电话的时候，我正在上课。有什么事吗?\n女：对不起，是我不小心打错了。\n问：女的为什么给男的打电话?",
           "options": [
             {
               "id": "a",
-              "text": "有急事"
+              "text": "问上课的事"
             },
             {
               "id": "b",
-              "text": "打错了电话"
+              "text": "不小心打错了"
             },
             {
               "id": "c",
-              "text": "想去上课"
+              "text": "找他吃饭"
             }
           ],
           "correctId": "b",
-          "timestamp": 655,
+          "timestamp": 645,
           "explanation": "不小心打错了 -> B"
         },
         {
           "id": "L15",
           "num": 15,
-          "dialogue": "女：桌子上面放着一杯咖啡，是你的吗？\n男：小丽放在那儿的。\n问：咖啡是谁的？",
+          "dialogue": "女：桌子上面放着一杯咖啡，是你的吗?\n男：小丽放在那儿的。\n问：咖啡是谁的?",
           "options": [
             {
               "id": "a",
@@ -1220,7 +1228,7 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "c",
-          "timestamp": 720,
+          "timestamp": 708,
           "explanation": "小丽放在那儿的 -> C"
         }
       ]
@@ -1230,7 +1238,7 @@ const MASTER_DATA = {
         {
           "id": "L16",
           "num": 16,
-          "dialogue": "男：今天买什么了？\n女：我买了衬衫，还给妈妈买了一条裤子。\n男：那你给我买什么了？\n女：桌子上的饮料给你吧。\n问：女的给自己买什么了？",
+          "dialogue": "男：今天买什么了?\n女：我买了衬衫，还给妈妈买了一条裤子。\n男：那你给我买什么了?\n女：桌子上的饮料给你吧。\n问：女的给自己买什么了?",
           "options": [
             {
               "id": "a",
@@ -1246,35 +1254,35 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "a",
-          "timestamp": 805,
+          "timestamp": 788,
           "explanation": "给自己买了衬衫 -> A"
         },
         {
           "id": "L17",
           "num": 17,
-          "dialogue": "女：我的手机放哪儿了？我怎么不记得了？\n男：别着急，慢慢想。\n女：你给我打个电话吧。\n男：好，没问题。\n问：女的为什么让男的给她打个电话？",
+          "dialogue": "女：我的手机放哪儿了?我怎么不记得了?\n男：别着急，慢慢想。\n女：你给我打个电话吧。\n男：好，没问题。\n问：女的为什么让男的给她打个电话?",
           "options": [
             {
               "id": "a",
-              "text": "有事商量"
+              "text": "有话要说"
             },
             {
               "id": "b",
-              "text": "听铃声找手机"
+              "text": "听声音找手机"
             },
             {
               "id": "c",
-              "text": "看看手机好不好"
+              "text": "查手机号"
             }
           ],
           "correctId": "b",
-          "timestamp": 885,
+          "timestamp": 868,
           "explanation": "打电话听铃声找手机 -> B"
         },
         {
           "id": "L18",
           "num": 18,
-          "dialogue": "男：给我来杯绿茶吧。\n女：这儿没有绿茶。\n男：桌子上不是放着绿茶吗？\n女：那不是绿茶，是水果饮料。\n问：桌子上放着什么？",
+          "dialogue": "男：给我来杯绿茶吧。\n女：这儿没有绿茶。\n男：桌子上不是放着绿茶吗?\n女：那不是绿茶，是水果饮料。\n问：桌子上放着什么?",
           "options": [
             {
               "id": "a",
@@ -1282,7 +1290,7 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "咖啡"
+              "text": "红茶"
             },
             {
               "id": "c",
@@ -1290,17 +1298,17 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "c",
-          "timestamp": 965,
+          "timestamp": 948,
           "explanation": "是水果饮料 -> C"
         },
         {
           "id": "L19",
           "num": 19,
-          "dialogue": "女：你送儿子上学吧。\n男：好，你怎么了？不舒服吗？\n女：没有，我觉得有点儿累。\n男：那你在家休息吧。\n问：女的怎么了？",
+          "dialogue": "女：你送儿子上学吧。\n男：好，你怎么了?不舒服吗?\n女：没有，我觉得有点儿累。\n男：那你在家休息吧。\n问：女的怎么了?",
           "options": [
             {
               "id": "a",
-              "text": "病了"
+              "text": "生病发烧"
             },
             {
               "id": "b",
@@ -1308,21 +1316,21 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "要上班"
+              "text": "不想做早饭"
             }
           ],
           "correctId": "b",
-          "timestamp": 1045,
-          "explanation": "觉得有点累 -> B"
+          "timestamp": 1025,
+          "explanation": "觉得有点儿累 -> B"
         },
         {
           "id": "L20",
           "num": 20,
-          "dialogue": "男：你不是要买牛肉吗？怎么买鱼了？\n女：去晚了，牛肉都卖完了。我看这条鱼很新鲜就买了。\n男：是很好。对了，我们吃米饭还是面条？\n女：今天有鱼，我们吃米饭吧。\n问：女的为什么没买牛肉？",
+          "dialogue": "男：你不是要买牛肉吗?怎么买鱼了?\n女：去晚了，牛肉都卖完了。我看这条鱼很新鲜就买了。\n男：是很好。对了，我们吃米饭还是面条?\n女：今天有鱼，我们吃米饭吧。\n问：为什么没买牛肉?",
           "options": [
             {
               "id": "a",
-              "text": "太贵了"
+              "text": "牛肉太贵"
             },
             {
               "id": "b",
@@ -1330,12 +1338,12 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "不喜欢吃牛肉"
+              "text": "牛肉不新鲜"
             }
           ],
           "correctId": "b",
-          "timestamp": 1125,
-          "explanation": "牛肉卖完了 -> B"
+          "timestamp": 1102,
+          "explanation": "牛肉都卖完了 -> B"
         }
       ]
     }
@@ -1350,7 +1358,7 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "给我来一杯红茶吧。"
+          "text": "你想喝红茶还是绿茶？"
         },
         {
           "id": "b",
@@ -1358,56 +1366,56 @@ const MASTER_DATA = {
         },
         {
           "id": "c",
-          "text": "我觉得这条黑色的裤子很合适。"
+          "text": "我洗完衬衫就给你拿。"
         },
         {
           "id": "d",
-          "text": "听说明天要降温，会很冷。"
+          "text": "爬山的时候一定要小心点儿。"
         },
         {
           "id": "e",
-          "text": "记得到了就给我发短信。"
+          "text": "当然。我们先坐公共汽车，然后换地铁。"
         },
         {
           "id": "f",
-          "text": "我正在厨房洗盘子呢。"
+          "text": "这条裤子比那条便宜得多。"
         }
       ],
       "questions": [
         {
           "id": "R21",
           "num": 21,
-          "prompt": "家里有什么吃的吗？有点儿饿。",
+          "prompt": "桌子上放着什么好吃的？",
           "correctId": "b",
-          "explanation": "桌上放着新鲜水果 (B)"
+          "explanation": "新鲜水果 (B)"
         },
         {
           "id": "R22",
           "num": 22,
-          "prompt": "我下了飞机就给你打电话。",
-          "correctId": "e",
-          "explanation": "记得到了发短信 (E)"
+          "prompt": "我的新裤子放哪儿了？",
+          "correctId": "c",
+          "explanation": "洗完衬衫给你拿 (C)"
         },
         {
           "id": "R23",
           "num": 23,
-          "prompt": "你看我穿哪条裤子好看？",
-          "correctId": "c",
-          "explanation": "黑色裤子很合适 (C)"
+          "prompt": "你觉得哪条裤子合适？",
+          "correctId": "f",
+          "explanation": "便宜得多 (F)"
         },
         {
           "id": "R24",
           "num": 24,
-          "prompt": "你在做什么呢？快出来。",
-          "correctId": "f",
-          "explanation": "正在厨房洗盘子 (F)"
+          "prompt": "服务员，请问有什么喝的？",
+          "correctId": "a",
+          "explanation": "红茶还是绿茶 (A)"
         },
         {
           "id": "R25",
           "num": 25,
-          "prompt": "天气这么热，你想喝点儿什么？",
-          "correctId": "a",
-          "explanation": "来一杯红茶吧 (A)"
+          "prompt": "周末我们一起去爬山吧，",
+          "correctId": "d",
+          "explanation": "小心点儿 (D)"
         }
       ]
     },
@@ -1420,7 +1428,7 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "记得 (jìde)"
+          "text": "小心 (xiǎoxīn)"
         },
         {
           "id": "b",
@@ -1428,7 +1436,7 @@ const MASTER_DATA = {
         },
         {
           "id": "c",
-          "text": "饮料 (yǐnliào)"
+          "text": "放 (fàng)"
         },
         {
           "id": "d",
@@ -1436,46 +1444,46 @@ const MASTER_DATA = {
         },
         {
           "id": "e",
-          "text": "声音 (shēngyīn)"
+          "text": "条 (tiáo)"
         },
         {
           "id": "f",
-          "text": "裤子 (kùzi)"
+          "text": "绿 (lǜ)"
         }
       ],
       "questions": [
         {
           "id": "R26",
           "num": 26,
-          "prompt": "冰箱里放着很多好喝的水果（ ）。",
+          "prompt": "请把书包（ ）在椅子上。",
           "correctId": "c",
-          "explanation": "饮料 (C)"
+          "explanation": "放在椅子上 (C)"
         },
         {
           "id": "R27",
           "num": 27,
-          "prompt": "你还（ ）去年我们在上海认识的小李吗？",
+          "prompt": "路上车很多，骑自行车要（ ）一点儿。",
           "correctId": "a",
-          "explanation": "记得 (A)"
+          "explanation": "小心 (A)"
         },
         {
           "id": "R28",
           "num": 28,
-          "prompt": "这条黑色（ ）穿起来不大不小，刚刚好。",
+          "prompt": "夏天大家都喜欢喝冰凉可口的（ ）茶。",
           "correctId": "f",
-          "explanation": "裤子 (F)"
+          "explanation": "绿茶 (F)"
         },
         {
           "id": "R29",
           "num": 29,
-          "prompt": "菜市场里的鱼和蔬菜都非常（ ）。",
+          "prompt": "菜市场里的鱼和青菜都很（ ）。",
           "correctId": "b",
           "explanation": "新鲜 (B)"
         },
         {
           "id": "R30",
           "num": 30,
-          "prompt": "坐在阳台上一边喝茶一边看书，感觉特别（ ）。",
+          "prompt": "坐在软软的沙发上看书特别（ ）。",
           "correctId": "d",
           "explanation": "舒服 (D)"
         }
@@ -1486,112 +1494,112 @@ const MASTER_DATA = {
         {
           "id": "R31",
           "num": 31,
-          "passage": "中国茶文化历史悠久。茶不仅能解渴，还对身体健康有益。常见的中国茶有绿茶、红茶、花茶等，不同季节适合喝不同的茶。",
-          "question": "喝茶的好处是：",
+          "passage": "很多人喜欢在工作或学习的时候喝一杯清茶。绿茶清香，红茶温润，花茶甘甜。喝茶不仅能提神醒脑，还可以补充身体水分，是一种非常健康的生活习惯。",
+          "question": "喝茶的主要好处是：",
           "options": [
             {
               "id": "a",
-              "text": "容易肚子饿"
+              "text": "让人想睡觉"
             },
             {
               "id": "b",
-              "text": "解渴且对身体有益"
+              "text": "提神醒脑补充水分"
             },
             {
               "id": "c",
-              "text": "让人晚上睡不着"
+              "text": "让牙齿变白"
             }
           ],
           "correctId": "b",
-          "explanation": "解渴且有益健康 (B)"
+          "explanation": "提神醒脑补水 (B)"
         },
         {
           "id": "R32",
           "num": 32,
-          "passage": "买衣服不仅要看款式好看不好看，更要看穿起来舒不舒服。如果衣服好看但穿着不舒服，买回家也往往被放在衣柜里不穿。",
-          "question": "买衣服关键要看：",
+          "passage": "挑选新鲜水果时，不仅要看外表颜色是否光鲜，还可以闻一闻果香。自然成熟的水果往往带有浓郁自然的清香，摸起来软硬适中，口感最好。",
+          "question": "挑选好水果的方法是：",
           "options": [
             {
               "id": "a",
-              "text": "颜色必须鲜艳"
+              "text": "只挑个头最大的"
             },
             {
               "id": "b",
-              "text": "穿起来是否舒服"
+              "text": "观察颜色并闻香气"
             },
             {
               "id": "c",
-              "text": "价格越贵越好"
+              "text": "摸起来越硬越好"
             }
           ],
           "correctId": "b",
-          "explanation": "穿起来是否舒服 (B)"
+          "explanation": "观察颜色闻香气 (B)"
         },
         {
           "id": "R33",
           "num": 33,
-          "passage": "医生建议大家多喝温水，少喝冰镇饮料。尤其是在夏天出汗很多的时候，如果猛喝冰水，容易引起肠胃不适。",
-          "question": "夏天出汗多时应该：",
+          "passage": "家里物品摆放整齐有序，能让生活变得更轻松愉快。每天用完东西随手放回原处，既能避免找不到东西的烦恼，也能保持屋子干净明亮。",
+          "question": "物品用完后随手放回原处可以：",
           "options": [
             {
               "id": "a",
-              "text": "多喝温水少喝冷饮"
+              "text": "避免找不到东西"
             },
             {
               "id": "b",
-              "text": "多喝大瓶冰水"
+              "text": "让东西变多"
             },
             {
               "id": "c",
-              "text": "完全不喝水"
+              "text": "不用买新东西"
             }
           ],
           "correctId": "a",
-          "explanation": "多喝温水少喝冷饮 (A)"
+          "explanation": "避免找不到东西 (A)"
         },
         {
           "id": "R34",
           "num": 34,
-          "passage": "坚持体育锻炼是保持健康活力的最好方法。每周跑跑步、游游泳，不仅能增强体质，还能有效缓解生活和工作的压力。",
-          "question": "这段话主要讲：",
+          "passage": "春天是去户外爬山踏青的好季节。山林里空气清新，风景如画。不过爬山前要穿上舒适防滑的运动鞋，带上足够的水和简单食物，注意安全。",
+          "question": "爬山前的准备工作是：",
           "options": [
             {
               "id": "a",
-              "text": "怎样挑选运动鞋"
+              "text": "穿高跟鞋"
             },
             {
               "id": "b",
-              "text": "游泳比较危险"
+              "text": "不带水和食物"
             },
             {
               "id": "c",
-              "text": "坚持运动的好处"
+              "text": "穿防滑运动鞋带足水"
             }
           ],
           "correctId": "c",
-          "explanation": "坚持运动的好处 (C)"
+          "explanation": "穿防滑鞋带水 (C)"
         },
         {
           "id": "R35",
           "num": 35,
-          "passage": "很多人喜欢在书桌上摆一盆绿色植物。工作学习累了抬头看一看绿叶，可以让疲劳的眼睛和紧张的心情得到放松。",
-          "question": "书桌上摆绿植的作用是：",
+          "passage": "合理的日常开销能帮助我们更好地管理生活。买东西前列一个清单，买真正需要而不是仅仅因为打折而买的东西，这样既能省钱又避免浪费。",
+          "question": "这段话建议购物时：",
           "options": [
             {
               "id": "a",
-              "text": "买起来很贵"
+              "text": "只要打折就买"
             },
             {
               "id": "b",
-              "text": "放松眼睛和心情"
+              "text": "列好清单买真正需要的"
             },
             {
               "id": "c",
-              "text": "容易招引小虫"
+              "text": "不买任何东西"
             }
           ],
           "correctId": "b",
-          "explanation": "放松眼睛和心情 (B)"
+          "explanation": "列清单买真正需要的 (B)"
         }
       ]
     }
@@ -1617,7 +1625,8 @@ const MASTER_DATA = {
           "words": [
             "爬山的时候",
             "要",
-            "小心点儿"
+            "小心",
+            "点儿"
           ],
           "correct": "爬山的时候要小心点儿。",
           "explanation": "爬山的时候要小心点儿。"
@@ -1627,9 +1636,9 @@ const MASTER_DATA = {
           "num": 38,
           "words": [
             "我记得",
-            "他穿了",
-            "一件",
-            "白衬衫"
+            "他穿了一件",
+            "白",
+            "衬衫"
           ],
           "correct": "我记得他穿了一件白衬衫。",
           "explanation": "我记得他穿了一件白衬衫。"
@@ -1652,7 +1661,8 @@ const MASTER_DATA = {
           "words": [
             "我不知道",
             "他想买裤子",
-            "还是衬衫"
+            "还是",
+            "衬衫"
           ],
           "correct": "我不知道他想买裤子还是衬衫。",
           "explanation": "我不知道他想买裤子还是衬衫。"
@@ -1664,47 +1674,47 @@ const MASTER_DATA = {
         {
           "id": "W41",
           "num": 41,
-          "before": "夏天天气热，多喝点儿冷（ ",
+          "before": "桌子上放着很多冷（ ",
           "pinyin": "yǐn",
-          "after": " ）吧。",
+          "after": " ）。",
           "correct": "饮",
           "explanation": "冷饮 -> 饮"
         },
         {
           "id": "W42",
           "num": 42,
-          "before": "过马路的时候要小（ ",
+          "before": "过马路一定要小（ ",
           "pinyin": "xīn",
-          "after": " ）看车。",
+          "after": " ）。",
           "correct": "心",
           "explanation": "小心 -> 心"
         },
         {
           "id": "W43",
           "num": 43,
-          "before": "我买了一（ ",
+          "before": "妈妈送给我一（ ",
           "pinyin": "tiáo",
-          "after": " ）新裤子。",
+          "after": " ）漂亮的裙子。",
           "correct": "条",
-          "explanation": "一条裤子 -> 条"
+          "explanation": "一条 -> 条"
         },
         {
           "id": "W44",
           "num": 44,
-          "before": "骑自行车或（ ",
+          "before": "或者（ ",
           "pinyin": "zhě",
-          "after": " ）坐地铁去都很方便。",
+          "after": " ）你可以明天再来。",
           "correct": "者",
           "explanation": "或者 -> 者"
         },
         {
           "id": "W45",
           "num": 45,
-          "before": "这个西瓜吃起来真（ ",
+          "before": "这里的西瓜又大又（ ",
           "pinyin": "tián",
-          "after": " ）啊！",
+          "after": " ）。",
           "correct": "甜",
-          "explanation": "香甜 -> 甜"
+          "explanation": "甜 -> 甜"
         }
       ]
     }
@@ -1818,6 +1828,29 @@ function randomizeExamData() {
   }
 }
 
+// Helper to adjust explanation dynamically based on randomized letter
+function formatDynamicExplanation(origExp, newLetter, secType) {
+  if (!origExp) return "";
+  let res = origExp;
+  if (secType === "lp1" || secType === "rp1" || secType === "rp2") {
+    res = res.replace(/(->\s*)(?:Khớp hình\s*)?[A-Fa-f]\.?/g, `$1${newLetter}`);
+    res = res.replace(/\([A-Fa-f]\)/g, `(${newLetter})`);
+  } else if (secType === "lp3" || secType === "lp4" || secType === "rp3") {
+    res = res.replace(/(->\s*)[A-Ca-c]\.?/g, `$1${newLetter}.`);
+    res = res.replace(/\([A-Ca-c]\)/g, `(${newLetter})`);
+  }
+  return res;
+}
+
+function escapeJsStr(str) {
+  if (!str) return '';
+  return str
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '&quot;')
+    .replace(/\r?\n/g, ' ');
+}
+
 function renderExam() {
   const container = document.getElementById("examContainer");
   if (!container) return;
@@ -1854,7 +1887,7 @@ function renderExam() {
     <div class="question-item" style="background:#f8fafc;border-left:4px solid #64748b;">
       <div class="q-title-row">
         <span><strong>例如 (Ví dụ mẫu):</strong></span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(24, 'Ví dụ')">▶ 00:24</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(24, 'Ví dụ mẫu')">▶ 00:24</button>
       </div>
       <div style="font-size:14px;margin-bottom:8px;">Đáp án mẫu: <strong>D</strong></div>
       <div class="explanation-box" style="display:block;border-left-color:#64748b;background:#f1f5f9;color:#334155;">
@@ -1865,11 +1898,14 @@ function renderExam() {
 
   // Questions 1 - 5
   activeData.listening.part1.questions.forEach(q => {
+    const curImg = activeData.listening.part1.images.find(img => img.id === q.correctId);
+    const correctLetter = curImg ? curImg.label : 'D';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="options-pills" id="opts-${q.id}">`;
     activeData.listening.part1.images.filter(img => img.id !== (ex1 ? ex1.correctId : 'img_d')).forEach(img => {
@@ -1882,7 +1918,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -1897,7 +1933,7 @@ function renderExam() {
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.passage + ' ' + q.statement)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
         ★ <span class="chinese" style="font-weight:600;">${q.statement}</span>
@@ -1924,11 +1960,14 @@ function renderExam() {
       <strong>第 11 - 15 题：</strong>听短对话，选择正确答案 (Nghe hội thoại ngắn, chọn đáp án đúng)
     </div>`;
   activeData.listening.part3.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="radio-options">`;
     q.options.forEach(opt => {
@@ -1942,7 +1981,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -1953,11 +1992,14 @@ function renderExam() {
       <strong>第 16 - 20 题：</strong>听长对话，选择正确答案 (Nghe hội thoại dài, chọn đáp án đúng)
     </div>`;
   activeData.listening.part4.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="radio-options">`;
     q.options.forEach(opt => {
@@ -1971,7 +2013,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -1998,6 +2040,9 @@ function renderExam() {
   html += `</div>`;
 
   activeData.reading.part1.questions.forEach(q => {
+    const curOpt = activeData.reading.part1.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
@@ -2013,7 +2058,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2031,6 +2076,9 @@ function renderExam() {
   html += `</div>`;
 
   activeData.reading.part2.questions.forEach(q => {
+    const curOpt = activeData.reading.part2.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
@@ -2046,7 +2094,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2057,6 +2105,9 @@ function renderExam() {
       <strong>第 31 - 35 题：</strong>阅读短文，选择正确答案 (Đọc đoạn văn ngắn, chọn đáp án đúng)
     </div>`;
   activeData.reading.part3.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;line-height:1.65;background:#f8fafc;padding:10px 14px;border-radius:6px;margin-bottom:8px;" class="chinese">
@@ -2076,7 +2127,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2345,11 +2396,66 @@ function startTimers() {
   }, 1000);
 }
 
-function playQuestionSnippet(timestamp, text) {
+// 100% reliable Audio playback with seek and Chinese SpeechSynthesis fallback
+function playQuestionSnippet(timestamp, textFallback) {
   const audio = document.getElementById("mainAudioPlayer");
-  if (audio && audio.src && !audio.error) {
-    audio.currentTime = timestamp;
-    audio.play().catch(() => {});
+  const t = Number(timestamp) || 0;
+  
+  if (audio) {
+    if (!audio.src && audio.querySelector("source")) {
+      audio.src = audio.querySelector("source").src;
+    }
+    try {
+      if (audio.readyState >= 1) {
+        audio.currentTime = t;
+        const p = audio.play();
+        if (p !== undefined) {
+          p.catch(err => {
+            console.warn("Audio play prevented or file not found, falling back to TTS:", err);
+            speakChineseText(textFallback);
+          });
+        }
+        return;
+      } else {
+        audio.load();
+        const onLoaded = function() {
+          audio.removeEventListener("loadedmetadata", onLoaded);
+          try {
+            audio.currentTime = t;
+            audio.play().catch(() => speakChineseText(textFallback));
+          } catch(e) {
+            speakChineseText(textFallback);
+          }
+        };
+        audio.addEventListener("loadedmetadata", onLoaded);
+        setTimeout(() => {
+          if (audio.paused && (!audio.readyState || audio.readyState < 1)) {
+            speakChineseText(textFallback);
+          }
+        }, 1200);
+        return;
+      }
+    } catch(e) {
+      console.warn("Audio error:", e);
+    }
+  }
+  
+  speakChineseText(textFallback);
+}
+
+function speakChineseText(text) {
+  if (!text || typeof window === 'undefined') return;
+  if ('speechSynthesis' in window) {
+    try {
+      window.speechSynthesis.cancel();
+      const clean = text.replace(/[男女]\d?：/g, " ").replace(/问：.*$/g, "").replace(/\n/g, " ").trim();
+      const utt = new SpeechSynthesisUtterance(clean);
+      utt.lang = 'zh-CN';
+      utt.rate = 0.85;
+      window.speechSynthesis.speak(utt);
+    } catch(e) {
+      console.warn("TTS error:", e);
+    }
   }
 }
 
@@ -2653,7 +2759,7 @@ function submitExam() {
     }
   }
 
-  // Open Visual Result Modal (NO simple alert!)
+  // Open Visual Result Modal
   openResultModal();
 }
 
@@ -2709,7 +2815,7 @@ function retryExamWithShuffle() {
     badge.textContent = `👤 ${studentName} (${studentClass}) • Lần: ${attemptCount}`;
   }
 
-  // Re-randomize and re-render
+  // Re-randomize and re-render (this recalculates all dynamic explanations!)
   randomizeExamData();
   renderExam();
   updateProgress();

@@ -311,6 +311,11 @@ body {
   color: #2e7d32;
   border-color: #a5d6a7;
 }
+.sync-status-box.offline {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #b45309;
+}
 
 /* Section Cards */
 .section-card {
@@ -396,16 +401,20 @@ body {
   background: #f1f5f9;
   border: 1px solid #cbd5e1;
   border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11.5px;
-  color: #475569;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #334155;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  transition: all 0.2s;
 }
 .btn-listen-again:hover {
-  background: #e2e8f0;
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary-dark);
 }
 
 /* Listening Part 1 SVGs Grid */
@@ -855,7 +864,7 @@ body.review-mode .question-item.user-wrong {
     <span style="font-size: 12.5px; font-weight: 700; color: var(--primary-dark); display: flex; align-items: center; gap: 4px; white-space:nowrap;">
       🎧 Audio:
     </span>
-    <audio id="mainAudioPlayer" controls preload="metadata">
+    <audio id="mainAudioPlayer" controls preload="auto" src="audio/04.mp3">
       <source src="audio/04.mp3" type="audio/mpeg">
       <source src="audio/4.mp3" type="audio/mpeg">
       <source src="04.mp3" type="audio/mpeg">
@@ -969,10 +978,9 @@ body.review-mode .question-item.user-wrong {
 
 <script>
 const EXAM_CONFIG = {
-  examCode: "SC3-B04",
-  examTitle: "HSK 3 - Bài 4: 她总是笑着跟客人说话"
+  "examCode": "SC3-B04",
+  "examTitle": "HSK 3 - Bài 4: 她总是笑着跟客人说话"
 };
-
 const MASTER_DATA = {
   "listening": {
     "part1": {
@@ -985,20 +993,20 @@ const MASTER_DATA = {
         {
           "id": "img_a",
           "label": "A",
-          "desc": "超市买西瓜 (又甜又新鲜)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍉</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">超市买西瓜 (又甜又新鲜)</text></svg>"
+          "desc": "超市又甜又新鲜的西瓜",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍉</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">超市又甜又新鲜的西瓜</text></svg>"
         },
         {
           "id": "img_b",
           "label": "B",
-          "desc": "吃蛋糕 (太饿了吃蛋糕)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍰</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">吃蛋糕 (太饿了吃蛋糕)</text></svg>"
+          "desc": "肚子饿吃蛋糕 (太饿了)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍰</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">肚子饿吃蛋糕 (太饿了)</text></svg>"
         },
         {
           "id": "img_c",
           "label": "C",
-          "desc": "看足球赛 (球赛真好看)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">⚽</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">看足球赛 (球赛真好看)</text></svg>"
+          "desc": "去看足球比赛 (去球场看球)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">⚽</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">去看足球比赛 (去球场看球)</text></svg>"
         },
         {
           "id": "img_d",
@@ -1009,21 +1017,21 @@ const MASTER_DATA = {
         {
           "id": "img_e",
           "label": "E",
-          "desc": "站着不坐 (吃了两块蛋糕)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🧍</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">站着不坐 (吃了两块蛋糕)</text></svg>"
+          "desc": "站着不想坐 (吃了两块蛋糕)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🧍</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">站着不想坐 (吃了两块蛋糕)</text></svg>"
         },
         {
           "id": "img_f",
           "label": "F",
-          "desc": "笑着看照片 (妹妹和好朋友)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👭</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">笑着看照片 (妹妹和好朋友)</text></svg>"
+          "desc": "笑着看照片的女孩",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🖼️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">笑着看照片的女孩</text></svg>"
         }
       ],
       "questions": [
         {
           "id": "L1",
           "num": 1,
-          "dialogue": "女：你去做什么？\n男：我去看足球比赛。",
+          "dialogue": "女: 你去做什么?\n男: 我去看足球比赛。",
           "correctId": "img_c",
           "timestamp": 38,
           "explanation": "去看足球比赛 -> C"
@@ -1031,7 +1039,7 @@ const MASTER_DATA = {
         {
           "id": "L2",
           "num": 2,
-          "dialogue": "男：那两个笑着看照片的女孩是谁？\n女：那是我妹妹和她的好朋友。",
+          "dialogue": "男: 那两个笑着看照片的女孩是谁?\n女: 那是我妹妹和她的好朋友。",
           "correctId": "img_f",
           "timestamp": 62,
           "explanation": "笑着看照片的女孩 -> F"
@@ -1039,25 +1047,25 @@ const MASTER_DATA = {
         {
           "id": "L3",
           "num": 3,
-          "dialogue": "女：我太饿了，我想吃块儿蛋糕。\n男：别吃了，我们去吃饭吧。",
+          "dialogue": "女: 我太饿了，我想吃块儿蛋糕。\n男: 别吃了，我们去吃饭吧。",
           "correctId": "img_b",
-          "timestamp": 88,
-          "explanation": "想吃块儿蛋糕 -> B"
+          "timestamp": 86,
+          "explanation": "太饿想吃蛋糕 -> B"
         },
         {
           "id": "L4",
           "num": 4,
-          "dialogue": "男：你怎么总是站着？快坐吧。\n女：我吃了两块蛋糕，现在不想坐着。",
+          "dialogue": "男: 你怎么总是站着?快坐吧。\n女: 我吃了两块蛋糕，现在不想坐着。",
           "correctId": "img_e",
-          "timestamp": 112,
-          "explanation": "吃了蛋糕站着不想坐 -> E"
+          "timestamp": 110,
+          "explanation": "站着不想坐 -> E"
         },
         {
           "id": "L5",
           "num": 5,
-          "dialogue": "女：我记得那家超市的西瓜又甜又新鲜，我们去看看吧。\n男：好，走吧。",
+          "dialogue": "女: 我记得那家超市的西瓜又甜又新鲜，我们去看看吧。\n男: 好，走吧。",
           "correctId": "img_a",
-          "timestamp": 138,
+          "timestamp": 134,
           "explanation": "超市西瓜又甜又新鲜 -> A"
         }
       ]
@@ -1067,10 +1075,10 @@ const MASTER_DATA = {
         {
           "id": "L6",
           "num": 6,
-          "passage": "这几天你总是不爱吃东西，是不是不舒服啊？",
+          "passage": "这几天你总是不爱吃东西，是不是不舒服啊?",
           "statement": "这几天他吃得很少。",
           "correct": true,
-          "timestamp": 214,
+          "timestamp": 212,
           "explanation": "不爱吃东西说明吃得少 (Đúng)"
         },
         {
@@ -1079,17 +1087,17 @@ const MASTER_DATA = {
           "passage": "他又聪明又努力，老师的问题他都会回答。",
           "statement": "他学习很好。",
           "correct": true,
-          "timestamp": 258,
-          "explanation": "又聪明又努力回答问题 (Đúng)"
+          "timestamp": 255,
+          "explanation": "又聪明又努力都会回答 -> 学习好 (Đúng)"
         },
         {
           "id": "L8",
           "num": 8,
-          "passage": "你知道我手机里还有多少钱吗？还有一元一角一分，三个一。",
+          "passage": "你知道我手机里还有多少钱吗?还有一元一角一分，三个一。",
           "statement": "他手机里钱不多了。",
           "correct": true,
-          "timestamp": 302,
-          "explanation": "只有一元一角一分 (Đúng)"
+          "timestamp": 298,
+          "explanation": "一元一角一分说明钱不多了 (Đúng)"
         },
         {
           "id": "L9",
@@ -1097,8 +1105,8 @@ const MASTER_DATA = {
           "passage": "妈妈很热情，总是帮助人，所以大家有问题，都会来找她。",
           "statement": "妈妈现在有问题。",
           "correct": false,
-          "timestamp": 348,
-          "explanation": "是别人有问题找妈妈 (Sai)"
+          "timestamp": 342,
+          "explanation": "别人有问题找妈妈，不是妈妈有问题 -> Sai"
         },
         {
           "id": "L10",
@@ -1106,8 +1114,8 @@ const MASTER_DATA = {
           "passage": "同学们，谁能告诉我这个句子是什么意思。",
           "statement": "他在请人回答问题。",
           "correct": true,
-          "timestamp": 394,
-          "explanation": "请同学们回答句子意思 (Đúng)"
+          "timestamp": 386,
+          "explanation": "谁能告诉我 -> 请人回答问题 (Đúng)"
         }
       ]
     },
@@ -1116,37 +1124,37 @@ const MASTER_DATA = {
         {
           "id": "L11",
           "num": 11,
-          "dialogue": "女：你怎么总是听着音乐写作业？别听了，认真写吧。\n男：没关系，你看我写的都对。\n问：女的让男的做什么？",
+          "dialogue": "女: 你怎么总是听着音乐写作业?别听了，认真写吧。\n男: 没关系，你看我写的都对。\n问: 女的让男的做什么?",
           "options": [
             {
               "id": "a",
-              "text": "别听音乐认真写作业"
+              "text": "认真写作业别听音乐"
             },
             {
               "id": "b",
-              "text": "继续听音乐"
+              "text": "多听音乐"
             },
             {
               "id": "c",
-              "text": "去睡觉"
+              "text": "检查作业"
             }
           ],
           "correctId": "a",
-          "timestamp": 465,
+          "timestamp": 460,
           "explanation": "别听了认真写吧 -> A"
         },
         {
           "id": "L12",
           "num": 12,
-          "dialogue": "男：你打电话有什么事吗？\n女：家里有人来做客，你下了班就回来吧。\n问：女的让男的做什么？",
+          "dialogue": "男: 你打电话有什么事吗?\n女: 家里有人来做客，你下了班就回来吧。\n问: 女的让男的做什么?",
           "options": [
             {
               "id": "a",
-              "text": "去买菜"
+              "text": "去做客"
             },
             {
               "id": "b",
-              "text": "去接客人"
+              "text": "打电话"
             },
             {
               "id": "c",
@@ -1154,17 +1162,17 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "c",
-          "timestamp": 518,
-          "explanation": "下班就回来 -> C"
+          "timestamp": 522,
+          "explanation": "下了班就回来吧 -> C"
         },
         {
           "id": "L13",
           "num": 13,
-          "dialogue": "女：下课了，同学们都去哪儿啊？\n男：今天下午有篮球比赛，我们要去看球赛。\n问：同学们要做什么？",
+          "dialogue": "女: 下课了，同学们都去哪儿啊?\n男: 今天下午有篮球比赛，我们要去看球赛。\n问: 同学们要做什么?",
           "options": [
             {
               "id": "a",
-              "text": "回家"
+              "text": "去上课"
             },
             {
               "id": "b",
@@ -1172,17 +1180,17 @@ const MASTER_DATA = {
             },
             {
               "id": "c",
-              "text": "去上课"
+              "text": "回家做作业"
             }
           ],
           "correctId": "b",
-          "timestamp": 588,
-          "explanation": "去看篮球比赛 -> B"
+          "timestamp": 584,
+          "explanation": "去看球赛 -> B"
         },
         {
           "id": "L14",
           "num": 14,
-          "dialogue": "男：你真的要去国外上学？\n女：是，我爸妈也想让我去，说年轻的时候多出去走走很好。\n问：关于女的，可以知道什么？",
+          "dialogue": "男: 你真的要去国外上学?\n女: 是，我爸妈也想让我去，说年轻的时候多出去走走很好。\n问: 关于女的，可以知道什么?",
           "options": [
             {
               "id": "a",
@@ -1190,38 +1198,38 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "打算出国上学"
+              "text": "要去国外留学学习"
             },
             {
               "id": "c",
-              "text": "已经毕业了"
+              "text": "爸妈反对"
             }
           ],
           "correctId": "b",
-          "timestamp": 655,
-          "explanation": "打算出国上学 -> B"
+          "timestamp": 645,
+          "explanation": "要去国外上学 -> B"
         },
         {
           "id": "L15",
           "num": 15,
-          "dialogue": "男：请你来回答这个问题，好吗？\n女：对不起，你说得太快了，我没听懂你的问题。\n问：关于女的，可以知道什么？",
+          "dialogue": "男: 请你来回答这个问题，好吗?\n女: 对不起，你说得太快了，我没听懂你的问题。\n问: 关于女的，可以知道什么?",
           "options": [
             {
               "id": "a",
-              "text": "不想回答"
+              "text": "听懂了"
             },
             {
               "id": "b",
-              "text": "回答对了"
+              "text": "回答得很好"
             },
             {
               "id": "c",
-              "text": "没听懂老师的问题"
+              "text": "没听懂问题"
             }
           ],
           "correctId": "c",
-          "timestamp": 720,
-          "explanation": "没听懂问题 -> C"
+          "timestamp": 708,
+          "explanation": "没听懂你的问题 -> C"
         }
       ]
     },
@@ -1230,29 +1238,29 @@ const MASTER_DATA = {
         {
           "id": "L16",
           "num": 16,
-          "dialogue": "男：你儿子上学了吗？现在几年级？\n女：他现在二年级。\n男：学习怎么样？\n女：还可以，很努力，每天都复习、写作业。\n问：关于儿子，可以知道什么？",
+          "dialogue": "男: 你儿子上学了吗?现在几年级?\n女: 他现在二年级。\n男: 学习怎么样?\n女: 还可以，很努力，每天都复习、写作业。\n问: 关于儿子，可以知道什么?",
           "options": [
             {
               "id": "a",
-              "text": "学习很努力上二年级"
+              "text": "学习很努力"
             },
             {
               "id": "b",
-              "text": "不喜欢学习"
+              "text": "上一年级"
             },
             {
               "id": "c",
-              "text": "还没上学"
+              "text": "不爱做作业"
             }
           ],
           "correctId": "a",
-          "timestamp": 805,
-          "explanation": "二年级很努力 -> A"
+          "timestamp": 788,
+          "explanation": "很努力每天复习写作业 -> A"
         },
         {
           "id": "L17",
           "num": 17,
-          "dialogue": "男：这是你小时候的照片吗？\n女：是啊，漂亮吧。\n男：很漂亮，是什么时候照的？\n女：小学五年级，你看，我那时多瘦啊。\n问：关于女的，可以知道什么？",
+          "dialogue": "男: 这是你小时候的照片吗?\n女: 是啊，漂亮吧。\n男: 很漂亮，是什么时候照的?\n女: 小学五年级，你看，我那时多瘦啊。\n问: 关于女的，可以知道什么?",
           "options": [
             {
               "id": "a",
@@ -1260,51 +1268,51 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "现在上五年级"
+              "text": "现在上小学"
             },
             {
               "id": "c",
-              "text": "不喜欢拍照"
+              "text": "不喜欢照相"
             }
           ],
           "correctId": "a",
-          "timestamp": 885,
-          "explanation": "那时多瘦啊 -> A"
+          "timestamp": 868,
+          "explanation": "我那时多瘦啊 -> 小时候很瘦 (A)"
         },
         {
           "id": "L18",
           "num": 18,
-          "dialogue": "男：站着吃蛋糕的那个人是谁？\n女：我们公司新来的年轻人，小周。\n男：什么？她姓什么？\n女：姓周。小周又漂亮又热情，以后有时间我介绍你们认识一下。\n问：关于小周，可以知道什么？",
+          "dialogue": "男: 站着吃蛋糕的那个人是谁?\n女: 我们公司新来的年轻人，小周。\n男: 什么?她姓什么?\n女: 姓周。小周又漂亮又热情，以后有时间我介绍你们认识一下。\n问: 关于小周，可以知道什么?",
           "options": [
             {
               "id": "a",
-              "text": "不爱说话"
+              "text": "不爱吃蛋糕"
             },
             {
               "id": "b",
-              "text": "喜欢跑步"
+              "text": "不热情"
             },
             {
               "id": "c",
-              "text": "新来的又漂亮又热情"
+              "text": "又漂亮又热情"
             }
           ],
           "correctId": "c",
-          "timestamp": 965,
-          "explanation": "新来的又漂亮又热情 -> C"
+          "timestamp": 948,
+          "explanation": "又漂亮又热情 -> C"
         },
         {
           "id": "L19",
           "num": 19,
-          "dialogue": "女：你站那么高，小心点儿。\n男：好的，你看，照片放在这儿怎么样？\n女：往右边一点儿吧。\n男：现在好了吧。\n问：他们在做什么？",
+          "dialogue": "女: 你站那么高，小心点儿。\n男: 好的，你看，照片放在这儿怎么样?\n女: 往右边一点儿吧。\n男: 现在好了吧。\n问: 他们在做什么?",
           "options": [
             {
               "id": "a",
-              "text": "打扫卫生"
+              "text": "照相"
             },
             {
               "id": "b",
-              "text": "看电视"
+              "text": "买画儿"
             },
             {
               "id": "c",
@@ -1312,13 +1320,13 @@ const MASTER_DATA = {
             }
           ],
           "correctId": "c",
-          "timestamp": 1045,
+          "timestamp": 1025,
           "explanation": "照片放在这儿怎么样 -> C"
         },
         {
           "id": "L20",
           "num": 20,
-          "dialogue": "女：周末你别总是坐着看电视，出去运动一下吧。\n男：好啊，我们去爬山怎么样？\n女：今天我腿疼，就去楼下走一走吧。\n男：好吧，我们走着去超市买点儿菜。\n问：他们打算做什么？",
+          "dialogue": "女: 周末你别总是坐着看电视，出去运动一下吧。\n男: 好啊，我们去爬山怎么样?\n女: 今天我腿疼，就去楼下走一走吧。\n男: 好吧，我们走着去超市买点儿菜。\n问: 他们打算做什么?",
           "options": [
             {
               "id": "a",
@@ -1326,16 +1334,16 @@ const MASTER_DATA = {
             },
             {
               "id": "b",
-              "text": "去爬山"
+              "text": "去看电影"
             },
             {
               "id": "c",
-              "text": "在家看电视"
+              "text": "去爬山"
             }
           ],
           "correctId": "a",
-          "timestamp": 1125,
-          "explanation": "楼下走走去超市买菜 -> A"
+          "timestamp": 1105,
+          "explanation": "去楼下走走买菜 -> A"
         }
       ]
     }
@@ -1350,19 +1358,19 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "今天的足球比赛太精彩了。"
+          "text": "服务员总是笑着跟客人说话。"
         },
         {
           "id": "b",
-          "text": "她总是笑着跟客人说话。"
+          "text": "他特别聪明，学习很好。"
         },
         {
           "id": "c",
-          "text": "他学习又聪明又努力。"
+          "text": "今天下午有精彩的足球比赛。"
         },
         {
           "id": "d",
-          "text": "站着吃东西对胃不太好。"
+          "text": "快坐下吃块儿甜甜的蛋糕吧。"
         },
         {
           "id": "e",
@@ -1370,44 +1378,44 @@ const MASTER_DATA = {
         },
         {
           "id": "f",
-          "text": "我们班新来了一个热情的同学。"
+          "text": "你去做什么？"
         }
       ],
       "questions": [
         {
           "id": "R21",
           "num": 21,
-          "prompt": "听说你们班最近来了新同学？",
+          "prompt": "你换好运动服去哪儿？",
           "correctId": "f",
-          "explanation": "新来热情的同学 (F)"
+          "explanation": "你去做什么 (F)"
         },
         {
           "id": "R22",
           "num": 22,
-          "prompt": "谁每次考试都拿全班第一名？",
-          "correctId": "c",
-          "explanation": "学习又聪明又努力 (C)"
+          "prompt": "这家饭馆生意为什么这么好？",
+          "correctId": "a",
+          "explanation": "服务员笑着对客人说话 (A)"
         },
         {
           "id": "R23",
           "num": 23,
-          "prompt": "下午体育馆里那么多人欢呼，怎么了？",
-          "correctId": "a",
-          "explanation": "足球比赛太精彩 (A)"
+          "prompt": "走累了，肚子也饿了，",
+          "correctId": "d",
+          "explanation": "坐下吃蛋糕 (D)"
         },
         {
           "id": "R24",
           "num": 24,
-          "prompt": "这家饭馆的服务员态度真好，",
+          "prompt": "老师提的问题他都会回答，",
           "correctId": "b",
-          "explanation": "总是笑着跟客人说话 (B)"
+          "explanation": "特别聪明学习好 (B)"
         },
         {
           "id": "R25",
           "num": 25,
-          "prompt": "快坐下吃吧，",
-          "correctId": "d",
-          "explanation": "站着吃东西不好 (D)"
+          "prompt": "周末有什么好玩的安排？",
+          "correctId": "c",
+          "explanation": "看足球比赛 (C)"
         }
       ]
     },
@@ -1420,64 +1428,64 @@ const MASTER_DATA = {
       "options": [
         {
           "id": "a",
-          "text": "回答 (huídá)"
-        },
-        {
-          "id": "b",
-          "text": "蛋糕 (dàngāo)"
-        },
-        {
-          "id": "c",
-          "text": "总是 (zǒngshì)"
-        },
-        {
-          "id": "d",
           "text": "热情 (rèqíng)"
         },
         {
+          "id": "b",
+          "text": "总是 (zǒngshì)"
+        },
+        {
+          "id": "c",
+          "text": "回答 (huídá)"
+        },
+        {
+          "id": "d",
+          "text": "聪明 (cōngming)"
+        },
+        {
           "id": "e",
-          "text": "声音 (shēngyīn)"
+          "text": "客人 (kèrén)"
         },
         {
           "id": "f",
-          "text": "聪明 (cōngmíng)"
+          "text": "年级 (niánjí)"
         }
       ],
       "questions": [
         {
           "id": "R26",
           "num": 26,
-          "prompt": "这里的服务员对每一位客人都非常（ ）。",
+          "prompt": "他是一个非常（ ）好学的好孩子。",
           "correctId": "d",
-          "explanation": "热情 (D)"
+          "explanation": "聪明 (D)"
         },
         {
           "id": "R27",
           "num": 27,
-          "prompt": "请大家积极举手（ ）老师提出的问题。",
-          "correctId": "a",
-          "explanation": "回答 (A)"
+          "prompt": "李老师（ ）微笑着对待身边的每个人。",
+          "correctId": "b",
+          "explanation": "总是 (B)"
         },
         {
           "id": "R28",
           "num": 28,
-          "prompt": "那个（ ）的小男孩很快就解出了这道数学难题。",
-          "correctId": "f",
-          "explanation": "聪明 (F)"
+          "prompt": "请大家积极举手（ ）老师的问题。",
+          "correctId": "c",
+          "explanation": "回答 (C)"
         },
         {
           "id": "R29",
           "num": 29,
-          "prompt": "他每天早起晨练，（ ）第一个来到运动场。",
-          "correctId": "c",
-          "explanation": "总是 (C)"
+          "prompt": "家里来了一位远方来的贵重（ ）。",
+          "correctId": "e",
+          "explanation": "客人 (E)"
         },
         {
           "id": "R30",
           "num": 30,
-          "prompt": "妹妹今天过八岁生日，妈妈给她订了一个漂亮的大（ ）。",
-          "correctId": "b",
-          "explanation": "蛋糕 (B)"
+          "prompt": "这间商店的售货员对顾客特别（ ）。",
+          "correctId": "a",
+          "explanation": "热情 (A)"
         }
       ]
     },
@@ -1486,112 +1494,112 @@ const MASTER_DATA = {
         {
           "id": "R31",
           "num": 31,
-          "passage": "微笑是人与人交往中最好的名片。一个真诚的微笑，不仅能让别人感到温暖，还能化解许多生活中的矛盾与误会。",
-          "question": "微笑的作用是：",
+          "passage": "微笑是人与人交往中最美好的语言。无论是在工作中面对顾客，还是在生活中面对家人朋友，一个真诚温暖的微笑都能拉近彼此的距离，化解许多不必要的误会。",
+          "question": "微笑的主要作用是：",
           "options": [
             {
               "id": "a",
-              "text": "让人感到温暖化解矛盾"
+              "text": "拉近人与人之间的距离"
             },
             {
               "id": "b",
-              "text": "让人觉得奇怪"
+              "text": "让工作变得很慢"
             },
             {
               "id": "c",
-              "text": "浪费时间没有意义"
+              "text": "让人不说话"
             }
           ],
           "correctId": "a",
-          "explanation": "感到温暖化解矛盾 (A)"
+          "explanation": "拉近人与人的距离 (A)"
         },
         {
           "id": "R32",
           "num": 32,
-          "passage": "服务行业最重要的是服务态度。热情礼貌、耐心细致地对待每一位顾客，顾客才会愿意再次光临，生意才会越来越好。",
-          "question": "怎样才能吸引更多顾客？",
+          "passage": "小孩子在成长过程中，培养良好的学习习惯比单纯考高分更重要。每天固定时间认真完成作业，遇到不懂的问题主动查字典或请教老师，能让人受益终生。",
+          "question": "培养孩子最关键的是：",
           "options": [
             {
               "id": "a",
-              "text": "提高商品价格"
+              "text": "只看考试分数"
             },
             {
               "id": "b",
-              "text": "态度热情礼貌耐心"
+              "text": "良好的学习习惯"
             },
             {
               "id": "c",
-              "text": "不跟顾客打招呼"
+              "text": "每天玩游戏"
             }
           ],
           "correctId": "b",
-          "explanation": "热情礼貌耐心 (B)"
+          "explanation": "良好学习习惯 (B)"
         },
         {
           "id": "R33",
           "num": 33,
-          "passage": "许多人在工作或者写作业的时候习惯戴着耳机听音乐。研究发现，听舒缓的轻音乐有助于放松心情，但听声音太大的流行歌曲容易分散注意力。",
-          "question": "工作时听太吵的音乐容易：",
+          "passage": "很多人喜欢在运动中释放工作压力。不管是踢足球、打羽毛球还是慢跑，适量出出汗能促进身体新陈代谢，让人心情愉快、精神饱满。",
+          "question": "运动能让人：",
           "options": [
             {
               "id": "a",
-              "text": "提高工作效率"
+              "text": "更加疲倦烦躁"
             },
             {
               "id": "b",
-              "text": "分散注意力"
+              "text": "心情愉快精神饱满"
             },
             {
               "id": "c",
-              "text": "让人马上睡着"
+              "text": "不想吃东西"
             }
           ],
           "correctId": "b",
-          "explanation": "分散注意力 (B)"
+          "explanation": "心情愉快精神饱满 (B)"
         },
         {
           "id": "R34",
           "num": 34,
-          "passage": "孩子的学习成绩并不是衡量他们能力的唯一标准。培养他们独立思考的习惯、良好的品德以及勇敢面对困难的精神，远比单纯的分数更重要。",
-          "question": "比分数更重要的是：",
+          "passage": "照相能够帮我们记录下生活中的美好瞬间。多年以后翻开老相册，看到自己小时候稚嫩的笑脸和家人团聚的场景，心里总是充满温暖与回忆。",
+          "question": "看老相册能带来：",
           "options": [
             {
               "id": "a",
-              "text": "独立思考与良好品格"
+              "text": "温暖与美好的回忆"
             },
             {
               "id": "b",
-              "text": "每天写很多张试卷"
+              "text": "很多难过"
             },
             {
               "id": "c",
-              "text": "不用去学校上课"
+              "text": "买很多新照片"
             }
           ],
           "correctId": "a",
-          "explanation": "独立思考良好品格 (A)"
+          "explanation": "温暖与美好回忆 (A)"
         },
         {
           "id": "R35",
           "num": 35,
-          "passage": "坚持规律的体育运动不仅能强健体魄，还能改善一个人的精神面貌。经常运动的人，往往看起来更加阳光、自信、充满朝气。",
-          "question": "经常运动的人往往：",
+          "passage": "现代生活节奏快，很多人久坐少动。医生建议每坐一小时就应该站起来活动两三分钟，伸伸懒腰，眺望远方，这对保护眼睛和颈椎都大有益处。",
+          "question": "医生建议久坐后应该：",
           "options": [
             {
               "id": "a",
-              "text": "容易疲惫生病"
+              "text": "继续坐着玩手机"
             },
             {
               "id": "b",
-              "text": "变得非常严肃"
+              "text": "躺下睡大觉"
             },
             {
               "id": "c",
-              "text": "阳光自信充满朝气"
+              "text": "站起来活动两三分钟"
             }
           ],
           "correctId": "c",
-          "explanation": "阳光自信充满朝气 (C)"
+          "explanation": "站起来活动 (C)"
         }
       ]
     }
@@ -1603,8 +1611,7 @@ const MASTER_DATA = {
           "id": "W36",
           "num": 36,
           "words": [
-            "他的",
-            "女儿",
+            "他的女儿",
             "非常",
             "聪明"
           ],
@@ -1617,8 +1624,8 @@ const MASTER_DATA = {
           "words": [
             "这家饭馆的",
             "服务员",
-            "都很",
-            "热情"
+            "都",
+            "很热情"
           ],
           "correct": "这家饭馆的服务员都很热情。",
           "explanation": "这家饭馆的服务员都很热情。"
@@ -1627,8 +1634,8 @@ const MASTER_DATA = {
           "id": "W38",
           "num": 38,
           "words": [
-            "你去哪家",
-            "超市",
+            "你",
+            "去哪家超市",
             "买",
             "鸡蛋"
           ],
@@ -1651,8 +1658,8 @@ const MASTER_DATA = {
           "id": "W40",
           "num": 40,
           "words": [
-            "你去",
-            "回答一下",
+            "你",
+            "去回答一下",
             "客人的",
             "问题"
           ],
@@ -1666,16 +1673,16 @@ const MASTER_DATA = {
         {
           "id": "W41",
           "num": 41,
-          "before": "欢迎各位（ ",
+          "before": "家里来了一位新（ ",
           "pinyin": "kè",
-          "after": " ）人来到我们美丽的海滨城市。",
+          "after": " ）人。",
           "correct": "客",
           "explanation": "客人 -> 客"
         },
         {
           "id": "W42",
           "num": 42,
-          "before": "弟弟今年刚上小学二（ ",
+          "before": "弟弟现在上小学三（ ",
           "pinyin": "jí",
           "after": " ）。",
           "correct": "级",
@@ -1684,16 +1691,16 @@ const MASTER_DATA = {
         {
           "id": "W43",
           "num": 43,
-          "before": "你（ ",
+          "before": "他做事非常（ ",
           "pinyin": "rèn",
-          "after": " ）识那位穿西装的先生吗？",
+          "after": " ）真负责。",
           "correct": "认",
-          "explanation": "认识 -> 认"
+          "explanation": "认真 -> 认"
         },
         {
           "id": "W44",
           "num": 44,
-          "before": "这是一张珍贵的家庭老相（ ",
+          "before": "这是我小时候拍的一张照（ ",
           "pinyin": "piàn",
           "after": " ）。",
           "correct": "片",
@@ -1702,11 +1709,11 @@ const MASTER_DATA = {
         {
           "id": "W45",
           "num": 45,
-          "before": "请大家（ ",
+          "before": "你怎么总是（ ",
           "pinyin": "zhàn",
-          "after": " ）起来跟着音乐做运动。",
+          "after": " ）着不坐下？",
           "correct": "站",
-          "explanation": "站起来 -> 站"
+          "explanation": "站着 -> 站"
         }
       ]
     }
@@ -1820,6 +1827,29 @@ function randomizeExamData() {
   }
 }
 
+// Helper to adjust explanation dynamically based on randomized letter
+function formatDynamicExplanation(origExp, newLetter, secType) {
+  if (!origExp) return "";
+  let res = origExp;
+  if (secType === "lp1" || secType === "rp1" || secType === "rp2") {
+    res = res.replace(/(->\s*)(?:Khớp hình\s*)?[A-Fa-f]\.?/g, `$1${newLetter}`);
+    res = res.replace(/\([A-Fa-f]\)/g, `(${newLetter})`);
+  } else if (secType === "lp3" || secType === "lp4" || secType === "rp3") {
+    res = res.replace(/(->\s*)[A-Ca-c]\.?/g, `$1${newLetter}.`);
+    res = res.replace(/\([A-Ca-c]\)/g, `(${newLetter})`);
+  }
+  return res;
+}
+
+function escapeJsStr(str) {
+  if (!str) return '';
+  return str
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '&quot;')
+    .replace(/\r?\n/g, ' ');
+}
+
 function renderExam() {
   const container = document.getElementById("examContainer");
   if (!container) return;
@@ -1856,7 +1886,7 @@ function renderExam() {
     <div class="question-item" style="background:#f8fafc;border-left:4px solid #64748b;">
       <div class="q-title-row">
         <span><strong>例如 (Ví dụ mẫu):</strong></span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(24, 'Ví dụ')">▶ 00:24</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(24, 'Ví dụ mẫu')">▶ 00:24</button>
       </div>
       <div style="font-size:14px;margin-bottom:8px;">Đáp án mẫu: <strong>D</strong></div>
       <div class="explanation-box" style="display:block;border-left-color:#64748b;background:#f1f5f9;color:#334155;">
@@ -1867,11 +1897,14 @@ function renderExam() {
 
   // Questions 1 - 5
   activeData.listening.part1.questions.forEach(q => {
+    const curImg = activeData.listening.part1.images.find(img => img.id === q.correctId);
+    const correctLetter = curImg ? curImg.label : 'D';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="options-pills" id="opts-${q.id}">`;
     activeData.listening.part1.images.filter(img => img.id !== (ex1 ? ex1.correctId : 'img_d')).forEach(img => {
@@ -1884,7 +1917,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -1899,7 +1932,7 @@ function renderExam() {
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.passage + ' ' + q.statement)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
         ★ <span class="chinese" style="font-weight:600;">${q.statement}</span>
@@ -1926,11 +1959,14 @@ function renderExam() {
       <strong>第 11 - 15 题：</strong>听短对话，选择正确答案 (Nghe hội thoại ngắn, chọn đáp án đúng)
     </div>`;
   activeData.listening.part3.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="radio-options">`;
     q.options.forEach(opt => {
@@ -1944,7 +1980,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -1955,11 +1991,14 @@ function renderExam() {
       <strong>第 16 - 20 题：</strong>听长对话，选择正确答案 (Nghe hội thoại dài, chọn đáp án đúng)
     </div>`;
   activeData.listening.part4.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="radio-options">`;
     q.options.forEach(opt => {
@@ -1973,7 +2012,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2000,6 +2039,9 @@ function renderExam() {
   html += `</div>`;
 
   activeData.reading.part1.questions.forEach(q => {
+    const curOpt = activeData.reading.part1.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
@@ -2015,7 +2057,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2033,6 +2075,9 @@ function renderExam() {
   html += `</div>`;
 
   activeData.reading.part2.questions.forEach(q => {
+    const curOpt = activeData.reading.part2.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
@@ -2048,7 +2093,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2059,6 +2104,9 @@ function renderExam() {
       <strong>第 31 - 35 题：</strong>阅读短文，选择正确答案 (Đọc đoạn văn ngắn, chọn đáp án đúng)
     </div>`;
   activeData.reading.part3.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;line-height:1.65;background:#f8fafc;padding:10px 14px;border-radius:6px;margin-bottom:8px;" class="chinese">
@@ -2078,7 +2126,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2347,11 +2395,66 @@ function startTimers() {
   }, 1000);
 }
 
-function playQuestionSnippet(timestamp, text) {
+// 100% reliable Audio playback with seek and Chinese SpeechSynthesis fallback
+function playQuestionSnippet(timestamp, textFallback) {
   const audio = document.getElementById("mainAudioPlayer");
-  if (audio && audio.src && !audio.error) {
-    audio.currentTime = timestamp;
-    audio.play().catch(() => {});
+  const t = Number(timestamp) || 0;
+  
+  if (audio) {
+    if (!audio.src && audio.querySelector("source")) {
+      audio.src = audio.querySelector("source").src;
+    }
+    try {
+      if (audio.readyState >= 1) {
+        audio.currentTime = t;
+        const p = audio.play();
+        if (p !== undefined) {
+          p.catch(err => {
+            console.warn("Audio play prevented or file not found, falling back to TTS:", err);
+            speakChineseText(textFallback);
+          });
+        }
+        return;
+      } else {
+        audio.load();
+        const onLoaded = function() {
+          audio.removeEventListener("loadedmetadata", onLoaded);
+          try {
+            audio.currentTime = t;
+            audio.play().catch(() => speakChineseText(textFallback));
+          } catch(e) {
+            speakChineseText(textFallback);
+          }
+        };
+        audio.addEventListener("loadedmetadata", onLoaded);
+        setTimeout(() => {
+          if (audio.paused && (!audio.readyState || audio.readyState < 1)) {
+            speakChineseText(textFallback);
+          }
+        }, 1200);
+        return;
+      }
+    } catch(e) {
+      console.warn("Audio error:", e);
+    }
+  }
+  
+  speakChineseText(textFallback);
+}
+
+function speakChineseText(text) {
+  if (!text || typeof window === 'undefined') return;
+  if ('speechSynthesis' in window) {
+    try {
+      window.speechSynthesis.cancel();
+      const clean = text.replace(/[男女]\d?：/g, " ").replace(/问：.*$/g, "").replace(/\n/g, " ").trim();
+      const utt = new SpeechSynthesisUtterance(clean);
+      utt.lang = 'zh-CN';
+      utt.rate = 0.85;
+      window.speechSynthesis.speak(utt);
+    } catch(e) {
+      console.warn("TTS error:", e);
+    }
   }
 }
 
@@ -2655,7 +2758,7 @@ function submitExam() {
     }
   }
 
-  // Open Visual Result Modal (NO simple alert!)
+  // Open Visual Result Modal
   openResultModal();
 }
 
@@ -2711,7 +2814,7 @@ function retryExamWithShuffle() {
     badge.textContent = `👤 ${studentName} (${studentClass}) • Lần: ${attemptCount}`;
   }
 
-  // Re-randomize and re-render
+  // Re-randomize and re-render (this recalculates all dynamic explanations!)
   randomizeExamData();
   renderExam();
   updateProgress();

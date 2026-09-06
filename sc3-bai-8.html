@@ -311,6 +311,11 @@ body {
   color: #2e7d32;
   border-color: #a5d6a7;
 }
+.sync-status-box.offline {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #b45309;
+}
 
 /* Section Cards */
 .section-card {
@@ -396,16 +401,20 @@ body {
   background: #f1f5f9;
   border: 1px solid #cbd5e1;
   border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11.5px;
-  color: #475569;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #334155;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  transition: all 0.2s;
 }
 .btn-listen-again:hover {
-  background: #e2e8f0;
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary-dark);
 }
 
 /* Listening Part 1 SVGs Grid */
@@ -825,7 +834,7 @@ body.review-mode .question-item.user-wrong {
       </a>
       <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo HSK Nha Trang" class="center-logo">
       <span class="exam-code-badge">B08</span>
-      <span class="exam-title-compact hide-mobile">Bài 08: 你去哪儿我就去哪儿</span>
+      <span class="exam-title-compact hide-mobile">Bài 8: 你去哪儿我就去哪儿</span>
       <span id="studentInfoBadge" class="hide-mobile" style="font-size:0.78rem;color:var(--gold-light);background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:10px;">👤 Thí sinh</span>
     </div>
     
@@ -855,7 +864,7 @@ body.review-mode .question-item.user-wrong {
     <span style="font-size: 12.5px; font-weight: 700; color: var(--primary-dark); display: flex; align-items: center; gap: 4px; white-space:nowrap;">
       🎧 Audio:
     </span>
-    <audio id="mainAudioPlayer" controls preload="metadata">
+    <audio id="mainAudioPlayer" controls preload="auto" src="audio/08.mp3">
       <source src="audio/08.mp3" type="audio/mpeg">
       <source src="audio/8.mp3" type="audio/mpeg">
       <source src="08.mp3" type="audio/mpeg">
@@ -969,10 +978,9 @@ body.review-mode .question-item.user-wrong {
 
 <script>
 const EXAM_CONFIG = {
-  examCode: "SC3-B08",
-  examTitle: "HSK 3 - Bài 8: 你去哪儿我就去哪儿"
+  "examCode": "SC3-B08",
+  "examTitle": "HSK 3 - Bài 8: 你去哪儿我就去哪儿"
 };
-
 const MASTER_DATA = {
   "listening": {
     "part1": {
@@ -1819,6 +1827,29 @@ function randomizeExamData() {
   }
 }
 
+// Helper to adjust explanation dynamically based on randomized letter
+function formatDynamicExplanation(origExp, newLetter, secType) {
+  if (!origExp) return "";
+  let res = origExp;
+  if (secType === "lp1" || secType === "rp1" || secType === "rp2") {
+    res = res.replace(/(->\s*)(?:Khớp hình\s*)?[A-Fa-f]\.?/g, `$1${newLetter}`);
+    res = res.replace(/\([A-Fa-f]\)/g, `(${newLetter})`);
+  } else if (secType === "lp3" || secType === "lp4" || secType === "rp3") {
+    res = res.replace(/(->\s*)[A-Ca-c]\.?/g, `$1${newLetter}.`);
+    res = res.replace(/\([A-Ca-c]\)/g, `(${newLetter})`);
+  }
+  return res;
+}
+
+function escapeJsStr(str) {
+  if (!str) return '';
+  return str
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '&quot;')
+    .replace(/\r?\n/g, ' ');
+}
+
 function renderExam() {
   const container = document.getElementById("examContainer");
   if (!container) return;
@@ -1855,7 +1886,7 @@ function renderExam() {
     <div class="question-item" style="background:#f8fafc;border-left:4px solid #64748b;">
       <div class="q-title-row">
         <span><strong>例如 (Ví dụ mẫu):</strong></span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(24, 'Ví dụ')">▶ 00:24</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(24, 'Ví dụ mẫu')">▶ 00:24</button>
       </div>
       <div style="font-size:14px;margin-bottom:8px;">Đáp án mẫu: <strong>D</strong></div>
       <div class="explanation-box" style="display:block;border-left-color:#64748b;background:#f1f5f9;color:#334155;">
@@ -1866,11 +1897,14 @@ function renderExam() {
 
   // Questions 1 - 5
   activeData.listening.part1.questions.forEach(q => {
+    const curImg = activeData.listening.part1.images.find(img => img.id === q.correctId);
+    const correctLetter = curImg ? curImg.label : 'D';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="options-pills" id="opts-${q.id}">`;
     activeData.listening.part1.images.filter(img => img.id !== (ex1 ? ex1.correctId : 'img_d')).forEach(img => {
@@ -1883,7 +1917,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -1898,7 +1932,7 @@ function renderExam() {
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.passage + ' ' + q.statement)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
         ★ <span class="chinese" style="font-weight:600;">${q.statement}</span>
@@ -1925,11 +1959,14 @@ function renderExam() {
       <strong>第 11 - 15 题：</strong>听短对话，选择正确答案 (Nghe hội thoại ngắn, chọn đáp án đúng)
     </div>`;
   activeData.listening.part3.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="radio-options">`;
     q.options.forEach(opt => {
@@ -1943,7 +1980,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -1954,11 +1991,14 @@ function renderExam() {
       <strong>第 16 - 20 题：</strong>听长对话，选择正确答案 (Nghe hội thoại dài, chọn đáp án đúng)
     </div>`;
   activeData.listening.part4.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
         <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp}, 'Câu ${q.num}')">▶ Nghe câu ${q.num}</button>
+        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="radio-options">`;
     q.options.forEach(opt => {
@@ -1972,7 +2012,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -1999,6 +2039,9 @@ function renderExam() {
   html += `</div>`;
 
   activeData.reading.part1.questions.forEach(q => {
+    const curOpt = activeData.reading.part1.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
@@ -2014,7 +2057,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2032,6 +2075,9 @@ function renderExam() {
   html += `</div>`;
 
   activeData.reading.part2.questions.forEach(q => {
+    const curOpt = activeData.reading.part2.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
@@ -2047,7 +2093,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2058,6 +2104,9 @@ function renderExam() {
       <strong>第 31 - 35 题：</strong>阅读短文，选择正确答案 (Đọc đoạn văn ngắn, chọn đáp án đúng)
     </div>`;
   activeData.reading.part3.questions.forEach(q => {
+    const curOpt = q.options.find(o => o.id === q.correctId);
+    const correctLetter = curOpt ? curOpt.renderLetter : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;line-height:1.65;background:#f8fafc;padding:10px 14px;border-radius:6px;margin-bottom:8px;" class="chinese">
@@ -2077,7 +2126,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${q.explanation}
+        <strong>💡 Giải thích:</strong> ${dynExp}
       </div>
     </div>`;
   });
@@ -2346,11 +2395,66 @@ function startTimers() {
   }, 1000);
 }
 
-function playQuestionSnippet(timestamp, text) {
+// 100% reliable Audio playback with seek and Chinese SpeechSynthesis fallback
+function playQuestionSnippet(timestamp, textFallback) {
   const audio = document.getElementById("mainAudioPlayer");
-  if (audio && audio.src && !audio.error) {
-    audio.currentTime = timestamp;
-    audio.play().catch(() => {});
+  const t = Number(timestamp) || 0;
+  
+  if (audio) {
+    if (!audio.src && audio.querySelector("source")) {
+      audio.src = audio.querySelector("source").src;
+    }
+    try {
+      if (audio.readyState >= 1) {
+        audio.currentTime = t;
+        const p = audio.play();
+        if (p !== undefined) {
+          p.catch(err => {
+            console.warn("Audio play prevented or file not found, falling back to TTS:", err);
+            speakChineseText(textFallback);
+          });
+        }
+        return;
+      } else {
+        audio.load();
+        const onLoaded = function() {
+          audio.removeEventListener("loadedmetadata", onLoaded);
+          try {
+            audio.currentTime = t;
+            audio.play().catch(() => speakChineseText(textFallback));
+          } catch(e) {
+            speakChineseText(textFallback);
+          }
+        };
+        audio.addEventListener("loadedmetadata", onLoaded);
+        setTimeout(() => {
+          if (audio.paused && (!audio.readyState || audio.readyState < 1)) {
+            speakChineseText(textFallback);
+          }
+        }, 1200);
+        return;
+      }
+    } catch(e) {
+      console.warn("Audio error:", e);
+    }
+  }
+  
+  speakChineseText(textFallback);
+}
+
+function speakChineseText(text) {
+  if (!text || typeof window === 'undefined') return;
+  if ('speechSynthesis' in window) {
+    try {
+      window.speechSynthesis.cancel();
+      const clean = text.replace(/[男女]\d?：/g, " ").replace(/问：.*$/g, "").replace(/\n/g, " ").trim();
+      const utt = new SpeechSynthesisUtterance(clean);
+      utt.lang = 'zh-CN';
+      utt.rate = 0.85;
+      window.speechSynthesis.speak(utt);
+    } catch(e) {
+      console.warn("TTS error:", e);
+    }
   }
 }
 
@@ -2654,7 +2758,7 @@ function submitExam() {
     }
   }
 
-  // Open Visual Result Modal (NO simple alert!)
+  // Open Visual Result Modal
   openResultModal();
 }
 
@@ -2710,7 +2814,7 @@ function retryExamWithShuffle() {
     badge.textContent = `👤 ${studentName} (${studentClass}) • Lần: ${attemptCount}`;
   }
 
-  // Re-randomize and re-render
+  // Re-randomize and re-render (this recalculates all dynamic explanations!)
   randomizeExamData();
   renderExam();
   updateProgress();
