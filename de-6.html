@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HSK 3 - Đề Thi Số 6 (H31328) - Đề Thi Tương Tác</title>
+<title>HSK 3 - Đề Thi Số 6 (H31006) - Đề Thi Tương Tác</title>
 <style>
 :root {
   --primary: #176B63;
@@ -1405,11 +1405,11 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
     </div>
     <div class="audio-file-input-wrapper">
       <span id="audioStatusIndicator" class="status-badge online" style="background:#e0f2fe;color:#0369a1;padding:3px 10px;border-radius:12px;font-size:0.8rem;font-weight:600;">
-        🎧 Audio: audio/H31328.mp3
+        🎧 Audio: audio/H31006.mp3
       </span>
       <label for="localAudioFile" style="cursor:pointer;text-decoration:underline;font-size:0.8rem;color:var(--primary);">Chọn file khác</label>
       <input type="file" id="localAudioFile" accept="audio/mp3,audio/*" onchange="loadLocalAudio(this)" style="display:none;">
-      <audio id="globalAudioPlayer" preload="auto" src="audio/H31328.mp3" style="display:none;"></audio>
+      <audio id="globalAudioPlayer" preload="auto" src="audio/H31006.mp3" style="display:none;"></audio>
     </div>
   </div>
 </div>
@@ -1419,7 +1419,7 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
     <div class="audio-controls">
       <button class="btn-audio" id="btnMasterAudio" onclick="toggleMasterAudio()">▶ Phát Toàn Bài Nghe</button>
       <button class="btn-audio-subtle" onclick="stopMasterAudio()">⏹ Dừng</button>
-      <span class="audio-time" id="audioTimeDisplay">00:00 / 36:18</span>
+      <span class="audio-time" id="audioTimeDisplay">00:00 / 35:55</span>
       <select id="audioSpeedSelect" class="btn-audio-subtle" onchange="changeAudioSpeed(this.value)">
         <option value="0.75">0.75x (Chậm)</option>
         <option value="1.0" selected>1.0x (Chuẩn)</option>
@@ -1428,11 +1428,11 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
     </div>
     <div class="audio-file-input-wrapper">
       <span id="audioStatusIndicator" class="status-badge online" style="background:#e0f2fe;color:#0369a1;padding:4px 10px;border-radius:12px;font-size:0.82rem;font-weight:600;">
-        ⏳ Đang kết nối audio: audio/H31328.mp3
+        ⏳ Đang kết nối audio: audio/H31006.mp3
       </span>
       <label for="localAudioFile" style="cursor:pointer;text-decoration:underline;font-size:0.82rem;color:var(--primary);">Chọn file khác</label>
       <input type="file" id="localAudioFile" accept="audio/mp3,audio/*" onchange="loadLocalAudio(this)" style="display:none;">
-      <audio id="globalAudioPlayer" preload="auto" src="audio/H31328.mp3" style="display:none;"></audio>
+      <audio id="globalAudioPlayer" preload="auto" src="audio/H31006.mp3" style="display:none;"></audio>
     </div>
   </div>
 </div>
@@ -1446,7 +1446,7 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 <footer class="app-footer">
   <div class="footer-inner">
     <div class="footer-status" id="footerStatusText">
-      Đề thi HSK3 Mã H31328 • Tổng cộng 80 câu (Nghe 40 - Đọc 30 - Viết 10)
+      Đề thi HSK3 Mã H31006 • Tổng cộng 80 câu (Nghe 40 - Đọc 30 - Viết 10)
     </div>
     <div class="footer-btns">
       <button class="btn-secondary" onclick="openTeacherPortal()" title="Dành cho Giáo viên (Ctrl+Shift+T)">🔒 Quản lý Giáo viên</button>
@@ -1459,7 +1459,7 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 <div class="modal-backdrop" id="welcomeModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h2>Chào mừng đến với Kỳ thi HSK 3 - Đề 06</h2>
+      <h2>Chào mừng đến với Kỳ thi HSK 3 - Đề 2</h2>
       <p>Vui lòng điền thông tin để bắt đầu tính giờ làm bài và ghi nhận kết quả</p>
     </div>
     <div class="modal-body">
@@ -1502,7 +1502,7 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 <div class="modal-backdrop hidden" id="resultModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h2>Kết Quả Làm Bài HSK 3 - Đề 6 (H31328)</h2>
+      <h2>Kết Quả Làm Bài HSK 3 - Đề 6 (H31006)</h2>
       <p id="resultModalSubtitle">Thí sinh: Nguyễn Đình Minh • Lần làm thứ 1</p>
     </div>
     <div class="modal-body">
@@ -1620,6 +1620,8 @@ function doPost(e) {
 </div>
 
 <script>
+expDiv = null;
+
 /* --- CONFIG & DATA MODEL --- */
 const FIREBASE_DB_URL = "https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/";
 let DEFAULT_ACCESS_CODE = "HSK32026";
@@ -1656,80 +1658,80 @@ const MASTER_DATA = {
         "example": {
           "dialogue": "男：喂，请问张经理在吗？\n女：他正在开会，您半个小时以后再打，好吗？",
           "correctId": "img_d",
-          "explanation": "Trương kinh lý đang họp, xin gọi lại sau 30 phút -> Hình D (lễ tân nghe điện thoại)."
+          "explanation": "Cô gái bảo Trương kinh lý đang họp, xin gọi lại sau nửa tiếng -> Hình D (nhân viên nghe điện thoại)."
         },
         "images": [
           {
             "id": "img_a",
             "label": "A",
-            "desc": "Cô gái với tay lấy sách trên giá sách cao (去拿高处的书)"
+            "desc": "Cô gái mặc váy ngắn soi gương (穿裙子短)"
           },
           {
             "id": "img_b",
             "label": "B",
-            "desc": "Người đàn ông mang vali trở về nhà lấy hộ chiếu (回来拿护照)"
+            "desc": "Hai bạn trẻ đi dạo hoa viên (小花园散步)"
           },
           {
             "id": "img_c",
             "label": "C",
-            "desc": "Hai bạn cùng làm bài tập kiểm tra số tiền (写错三角五分)"
+            "desc": "Người đàn ông tìm hộ chiếu trong cặp (找护照)"
           },
           {
             "id": "img_d",
             "label": "D",
-            "desc": "Ví dụ mẫu: Nữ nhân viên nghe điện thoại bàn (接电话)"
+            "desc": "Ví dụ mẫu: Nữ nhân viên trực điện thoại (接电话)"
           },
           {
             "id": "img_e",
             "label": "E",
-            "desc": "Cặp đôi cùng nấu ăn rửa bát dọn dẹp (洗盘子换衣服)"
+            "desc": "Người bưng hộp trà xếp lên cao (放茶杯在最上面)"
           },
           {
             "id": "img_f",
             "label": "F",
-            "desc": "Dòng người xếp hàng dài chờ đợi trước cửa quán (排队站了一个小时)"
+            "desc": "Phục vụ rót rượu vang đá lạnh (红酒放冰块)"
           }
         ],
         "questions": [
           {
             "id": "L1",
             "num": 1,
-            "dialogue": "女：我先把盘子洗了，再换条裙子就能走。\n男：你去换衣服吧，盘子我来洗。",
-            "correctId": "img_e",
-            "timestamp": 103,
-            "explanation": "Rửa bát và thay quần áo chuẩn bị đi (洗盘子换裙子) -> Khớp với hình E."
+            "dialogue": "女：我穿这条裙子怎么样？好看不好看？\n男：颜色不错，会不会有些短？",
+            "correctId": "img_a",
+            "timestamp": 105,
+            "explanation": "我穿这条裙子怎么样，会不会有些短 -> Khớp với hình A (thử váy ngắn)."
           },
           {
             "id": "L2",
             "num": 2,
-            "dialogue": "男：你这里写错了，应该是三角五分。\n女：哪儿？让我看看。",
-            "correctId": "img_c",
-            "timestamp": 133,
-            "explanation": "Chỉ ra chỗ viết sai giá tiền (写错三角五分) -> Khớp với hình C."
+            "dialogue": "男：这个箱子放哪儿？\n女：这箱是茶杯，放左边，放最上面，小心点儿。",
+            "correctId": "img_e",
+            "timestamp": 134,
+            "explanation": "这箱是茶杯，放最上面 -> Khớp với hình E (thùng carton đựng cốc chén để trên cao)."
           },
           {
             "id": "L3",
             "num": 3,
-            "dialogue": "女：都站了一个小时了，怎么还没到我们？\n男：这家店一到过节就这样，你在这儿等着，我去前面问问。",
-            "correctId": "img_f",
-            "timestamp": 160,
-            "explanation": "Xếp hàng đứng đợi cả tiếng đồng hồ ngày lễ (排队站了一个小时) -> Khớp với hình F."
+            "dialogue": "女：你的护照呢？不会又没带吧？\n男：我记得早上放包里了，我再找找。",
+            "correctId": "img_c",
+            "timestamp": 163,
+            "explanation": "护照放包里了我再找找 -> Khớp với hình C (tìm hộ chiếu trong túi xách)."
           },
           {
             "id": "L4",
             "num": 4,
-            "dialogue": "男：你能放上去吗？要不要我来放？\n女：不用，你帮我把桌子上的那几本词典也拿过来。",
-            "correctId": "img_a",
-            "timestamp": 194,
-            "explanation": "Xếp sách và từ điển lên giá cao (放书拿词典) -> Khớp với hình A."
+            "dialogue": "男：这是您要的红酒，现在给您打开吗？\n女：好的，谢谢你。请放点儿冰块儿。",
+            "correctId": "img_f",
+            "timestamp": 193,
+            "explanation": "红酒请放点儿冰块儿 -> Khớp với hình F (phục vụ rót rượu vang)."
           },
           {
             "id": "L5",
             "num": 5,
-            "dialogue": "女：哥，你怎么又回来了？\n男：上了出租车才想起来没带护照。",
+            "dialogue": "女：今天起床这么早啊？去哪儿了？\n男：我去旁边那个小花园了。",
             "correctId": "img_b",
-            "timestamp": 226,
-            "explanation": "Lên xe taxi mới nhớ ra quên mang hộ chiếu nên quay lại (没带护照又回来) -> Khớp với hình B."
+            "timestamp": 222,
+            "explanation": "我去旁边那个小花园了 -> Khớp với hình B (đi dạo ở vườn hoa)."
           }
         ]
       },
@@ -1738,69 +1740,69 @@ const MASTER_DATA = {
           {
             "id": "img_6a",
             "label": "A",
-            "desc": "Cô gái quấn khăn uống nước giải khát (喝水太渴)"
+            "desc": "Kéo vali to đi công tác du lịch (大行李箱)"
           },
           {
             "id": "img_6b",
             "label": "B",
-            "desc": "Người phụ nữ cúi tìm mũ trong tủ ngăn kéo (找帽子)"
+            "desc": "Mừng sinh nhật bố cùng ăn bánh kem (祝爸爸生日快乐吃蛋糕)"
           },
           {
             "id": "img_6c",
             "label": "C",
-            "desc": "Người đàn ông ôm trán mỏi mắt sau khi đọc sách (眼睛有点儿累看绿树)"
+            "desc": "Hai đồng nghiệp bắt tay chào hẹn gặp lại (握手合作下周见)"
           },
           {
             "id": "img_6d",
             "label": "D",
-            "desc": "Nhân viên mới đến công ty giới thiệu làm quen (新来公司上班)"
+            "desc": "Nữ nhân viên đọc email hội nghị (看电子邮箱)"
           },
           {
             "id": "img_6e",
             "label": "E",
-            "desc": "Chú chó cưng đáng yêu được tặng (可爱小狗)"
+            "desc": "Hai cô gái trang điểm chuẩn bị biểu diễn (准备跳舞)"
           }
         ],
         "questions": [
           {
             "id": "L6",
             "num": 6,
-            "dialogue": "男：别喝那么快，慢点儿。\n女：太渴了，今天跟班里同学打了一下午球。",
-            "correctId": "img_6a",
-            "timestamp": 260,
-            "explanation": "Khát nước sau khi chơi bóng cả buổi chiều (太渴了喝水) -> Khớp với hình A."
+            "dialogue": "男：小王，那个电子邮件你看到了吗？\n女：是关于7号那个会议的吧？我正在看。",
+            "correctId": "img_6d",
+            "timestamp": 253,
+            "explanation": "那个电子邮件看到了吗，我正在看 -> Khớp với hình D (nhân viên xem email trên máy tính)."
           },
           {
             "id": "L7",
             "num": 7,
-            "dialogue": "女：看见我的帽子了吗？怎么找不到了？\n男：是不是被笑笑拿走了？他刚才出去了。",
-            "correctId": "img_6b",
-            "timestamp": 287,
-            "explanation": "Tìm chiếc mũ (看见我的帽子了吗) -> Khớp với hình B."
+            "dialogue": "女：认识您很高兴，谢谢您选择了我们公司。\n男：不客气，我们下周见，再见。",
+            "correctId": "img_6c",
+            "timestamp": 284,
+            "explanation": "谢谢您选择我们公司，我们下周见 -> Khớp với hình C (bắt tay hợp tác)."
           },
           {
             "id": "L8",
             "num": 8,
-            "dialogue": "男：看了这一天书，眼睛有点儿累。\n女：你可以多看看外面绿色的树，这样对眼睛好。",
-            "correctId": "img_6c",
-            "timestamp": 319,
-            "explanation": "Đọc sách cả ngày mỏi mắt (眼睛有点儿累) -> Khớp với hình C."
+            "dialogue": "男：准备好了吗？该你们跳舞了。\n女：马上就好，再等一分钟。",
+            "correctId": "img_6e",
+            "timestamp": 314,
+            "explanation": "该你们跳舞了，马上就好 -> Khớp với hình E (hai cô gái chuẩn bị nhảy múa)."
           },
           {
             "id": "L9",
             "num": 9,
-            "dialogue": "女：你好，我姓高，叫高小月，今天第一天来公司上班。\n男：你好，我叫李亮，欢迎你。",
-            "correctId": "img_6d",
-            "timestamp": 349,
-            "explanation": "Ngày đầu tiên đến công ty nhận việc (第一天来公司上班) -> Khớp với hình D."
+            "dialogue": "女：爸爸，祝您生日快乐！\n男：谢谢，谢谢你的蛋糕，来，我们一起吃。",
+            "correctId": "img_6b",
+            "timestamp": 339,
+            "explanation": "爸爸祝您生日快乐，谢谢你的蛋糕 -> Khớp với hình B (sinh nhật bố ăn bánh kem)."
           },
           {
             "id": "L10",
             "num": 10,
-            "dialogue": "男：这只小狗真可爱，是你的吗？\n女：对，是我叔叔送给我的。",
-            "correctId": "img_6e",
-            "timestamp": 383,
-            "explanation": "Khen chú chó con đáng yêu (这只小狗真可爱) -> Khớp với hình E."
+            "dialogue": "男：这次只去两三天，不用带那么多东西，多不方便啊。\n女：没关系，我的行李箱很大。",
+            "correctId": "img_6a",
+            "timestamp": 370,
+            "explanation": "我的行李箱很大 -> Khớp với hình A (kéo vali to đi xa)."
           }
         ]
       }
@@ -1810,92 +1812,92 @@ const MASTER_DATA = {
         {
           "id": "L11",
           "num": 11,
-          "passage": "聪明的人，每一个机会都不会错过，因为他们懂得，很多时候机会只有一次。",
-          "statement": "聪明人知道机会不常有。",
+          "passage": "下午他让服务员给他换了一个房间，因为那个房间的空调坏了，太热了。",
+          "statement": "空调的声音太大。",
           "correct": false,
           "timestamp": 504,
-          "explanation": "Bài nói về việc nắm bắt cơ hội, đáp án chuẩn Hanban là Sai (×)."
+          "explanation": "Vì phòng quá nóng do điều hòa hỏng, không phải do tiếng ồn quá lớn -> Phán đoán Sai (×)."
         },
         {
           "id": "L12",
           "num": 12,
-          "passage": "我们这儿秋天很短，夏天过完，很快就到冬天了。相信住的时间长了，你就习惯了。",
-          "statement": "那儿秋天很短。",
+          "passage": "今天是阴天，外面很冷，希望别刮风。你多拿件衣服，看完电影早点儿回来。",
+          "statement": "今天天气很冷。",
           "correct": true,
-          "timestamp": 544,
-          "explanation": "Người nói nêu rõ '我们这儿秋天很短' -> Đúng (√)."
+          "timestamp": 546,
+          "explanation": "今天是阴天，外面很冷 -> Hôm nay trời rất lạnh là Đúng (√)."
         },
         {
           "id": "L13",
           "num": 13,
-          "passage": "不用着急，从公司到火车站，坐地铁只要40分钟，我们不会晚的。",
-          "statement": "他害怕会迟到。",
+          "passage": "王经理虽然是南方人，但是能说一口很好的普通话，这跟他以前在北京工作过四年有关系。",
+          "statement": "王经理是北方人。",
           "correct": false,
-          "timestamp": 589,
-          "explanation": "Người nói khuyên không cần lo, sẽ không muộn (不用着急，我们不会晚的) -> Sai (×)."
+          "timestamp": 590,
+          "explanation": "Vương kinh lý là người miền Nam (南方人) -> Phán đoán Sai (×)."
         },
         {
           "id": "L14",
           "num": 14,
-          "passage": "你检查一下名单有没有错，如果有问题，就用笔画出来，一会儿给我。",
-          "statement": "名单不用检查了。",
+          "passage": "经过一个多月的努力，我们班终于在今年的运动会上拿了第一名，同学们高兴极了。",
+          "statement": "运动会还没举行。",
           "correct": false,
-          "timestamp": 627,
-          "explanation": "Yêu cầu kiểm tra lại danh sách (你检查一下名单) -> Sai (×)."
+          "timestamp": 638,
+          "explanation": "Đại hội thể thao đã diễn ra và lớp đạt giải nhất -> Phán đoán Sai (×)."
         },
         {
           "id": "L15",
           "num": 15,
-          "passage": "对不起，先生，您刚才点的这个菜已经卖完了。我们这儿其他的菜也都很不错，您看是不是换一个？",
-          "statement": "他希望那位先生换个菜。",
-          "correct": true,
-          "timestamp": 665,
-          "explanation": "Món đã hết nên mong khách đổi món khác (您看是不是换一个) -> Đúng (√)."
+          "passage": "儿子，去厨房给我拿三个盘子来，然后叫你爸爸来吃饭。爸爸去上班了。",
+          "statement": "爸爸去上班了。",
+          "correct": false,
+          "timestamp": 682,
+          "explanation": "Người mẹ bảo gọi bố vào ăn cơm, sau đó nói bố đã đi làm -> Trong ngữ cảnh này nhận định sai vì mâu thuẫn -> Phán đoán Sai (×)."
         },
         {
           "id": "L16",
           "num": 16,
-          "passage": "奶奶年轻时，是他们学校里有名的音乐老师，歌唱得特别好听，对人也非常热情，大家都很有喜欢她。",
-          "statement": "奶奶年轻时是历史老师。",
-          "correct": false,
+          "passage": "您是我们店今天的第一位客人，欢迎您。您要看眼镜吗？这边请。",
+          "statement": "他在眼镜店里。",
+          "correct": true,
           "timestamp": 714,
-          "explanation": "Bà là giáo viên âm nhạc (音乐老师), không phải giáo viên lịch sử -> Sai (×)."
+          "explanation": "Đón tiếp khách xem kính (您要看眼镜吗) -> Ở hiệu kính là Đúng (√)."
         },
         {
           "id": "L17",
           "num": 17,
-          "passage": "这个季节的西瓜不怎么好吃了，一点儿都不甜，以后还是买苹果吧。",
-          "statement": "现在西瓜很好吃。",
-          "correct": false,
-          "timestamp": 766,
-          "explanation": "Dưa mùa này không ngon, không ngọt chút nào (不怎么好吃了) -> Sai (×)."
+          "passage": "想对朋友表示关心，其实有很多种办法。天天见面当然好，有时打个电话，或者写个电子邮件，也一样会让朋友觉得你一直在关心他。",
+          "statement": "关心朋友的办法很多。",
+          "correct": true,
+          "timestamp": 751,
+          "explanation": "有很多种办法表示关心 -> Đúng (√)."
         },
         {
           "id": "L18",
           "num": 18,
-          "passage": "这是今年最新的手机，虽然6000元有点儿贵，但您要求的那些，它都能做到，我给您简单介绍一下。",
-          "statement": "那个手机卖10000元。",
+          "passage": "很多年过去了，她虽然不那么年轻、漂亮了，但我们还是能从她的眼睛里看出，她非常快乐。",
+          "statement": "她越来越漂亮了。",
           "correct": false,
-          "timestamp": 804,
-          "explanation": "Chiếc điện thoại giá 6000 tệ (6000元), không phải 10000 tệ -> Sai (×)."
+          "timestamp": 813,
+          "explanation": "虽然不那么年轻漂亮了 (không còn trẻ đẹp như xưa) -> Sai (×)."
         },
         {
           "id": "L19",
           "num": 19,
-          "passage": "小黄，你帮我看一下笔记本电脑吧，昨天我上网聊天儿和玩儿游戏时还有声音，今天突然就没了，不知道是怎么回事。",
-          "statement": "他的电脑出了点儿问题。",
+          "passage": "校长的猫叫小白，因为它像雪一样白。它喜欢在校长的椅子上睡觉，而且特别爱吃鱼。",
+          "statement": "校长的猫喜欢在椅子上睡觉。",
           "correct": true,
-          "timestamp": 851,
-          "explanation": "Máy tính đột nhiên mất tiếng, có trục trặc (出了点儿问题) -> Đúng (√)."
+          "timestamp": 859,
+          "explanation": "Mèo thích ngủ trên ghế của hiệu trưởng -> Đúng (√)."
         },
         {
           "id": "L20",
           "num": 20,
-          "passage": "我的爱好是看书，没事儿的时候，找一个安静的地方，静静地读一本好书，是我最大的快乐。",
-          "statement": "他喜欢读书。",
+          "passage": "同一个故事，别人讲给我听的时候，我听着很有意思。但是我讲给我的学生听时，他们说没听清楚，没听明白，不懂我为什么会笑。",
+          "statement": "他是老师。",
           "correct": true,
-          "timestamp": 905,
-          "explanation": "Sở thích là đọc sách (爱好是看书 = 喜欢读书) -> Đúng (√)."
+          "timestamp": 910,
+          "explanation": "Kể chuyện cho học sinh của mình (讲给我的学生听) -> Người đó là giáo viên -> Đúng (√)."
         }
       ]
     },
@@ -1904,222 +1906,222 @@ const MASTER_DATA = {
         {
           "id": "L21",
           "num": 21,
-          "dialogue": "女：刚才电梯里那个瘦瘦的女孩儿你认识？\n男：对，是我以前的同事，听说她现在都是经理了。\n问：男的在电梯里遇到了谁？",
+          "dialogue": "女：李医生，您是骑自行车来的？\n男：对，上下班的时候，骑车比开车快。\n问：李医生是怎么来的？",
           "options": [
             {
               "id": "opt_21a",
-              "text": "司机"
+              "text": "骑车"
             },
             {
               "id": "opt_21b",
-              "text": "服务员"
+              "text": "坐船"
             },
             {
               "id": "opt_21c",
-              "text": "过去的同事"
+              "text": "坐地铁"
             }
           ],
-          "correctId": "opt_21c",
-          "timestamp": 1001,
-          "explanation": "Đó là đồng nghiệp trước đây của anh ấy (以前的同事) -> Chọn C."
+          "correctId": "opt_21a",
+          "timestamp": 1022,
+          "explanation": "李医生是骑车来的 -> Đáp án A (骑车)."
         },
         {
           "id": "L22",
           "num": 22,
-          "dialogue": "男：妈，妹妹怎么又哭了？\n女：应该是饿了，你帮我把奶瓶拿过来。\n问：妹妹怎么了？",
+          "dialogue": "男：怎么了？你不太高兴。\n女：没有，没有，就是有点儿感冒，有些头疼，没关系的。\n问：女的怎么了？",
           "options": [
             {
               "id": "opt_22a",
-              "text": "哭了"
+              "text": "饿了"
             },
             {
               "id": "opt_22b",
-              "text": "生气了"
+              "text": "很难过"
             },
             {
               "id": "opt_22c",
-              "text": "忘吃药了"
+              "text": "身体不舒服"
             }
           ],
-          "correctId": "opt_22a",
-          "timestamp": 1049,
-          "explanation": "Người anh hỏi '妹妹怎么又哭了' -> Em gái khóc (哭了) -> Chọn A."
+          "correctId": "opt_22c",
+          "timestamp": 1063,
+          "explanation": "有点儿感冒有些头疼 -> Không khỏe trong người (身体不舒服 - C)."
         },
         {
           "id": "L23",
           "num": 23,
-          "dialogue": "女：“黄”后面是什么字？我有点儿看不清。\n男：是“河”字，你离黑板这么近，还看不清吗？\n问：关于女的，可以知道什么？",
+          "dialogue": "女：想好了吗？决定去哪儿玩儿？\n男：我想去云南，听朋友说，这个季节去云南最好。\n问：男的想去云南做什么？",
           "options": [
             {
               "id": "opt_23a",
-              "text": "在还书"
+              "text": "旅游"
             },
             {
               "id": "opt_23b",
-              "text": "坐在右边"
+              "text": "开会"
             },
             {
               "id": "opt_23c",
-              "text": "看不清字"
+              "text": "参加比赛"
             }
           ],
-          "correctId": "opt_23c",
-          "timestamp": 1089,
-          "explanation": "Nữ nói '我有点儿看不清' -> Nhìn không rõ chữ -> Chọn C."
+          "correctId": "opt_23a",
+          "timestamp": 1103,
+          "explanation": "决定去哪儿玩儿，想去云南 -> Đi du lịch (旅游 - A)."
         },
         {
           "id": "L24",
           "num": 24,
-          "dialogue": "男：王阿姨，您这辆车买了多久了？\n女：快两年了，去年春天买的。\n问：王阿姨的车是哪年买的？",
+          "dialogue": "男：昨天的新闻你看完了吗？我...\n女：别说话了，表演马上就要开始了。\n问：女的为什么让男的别说话了？",
           "options": [
             {
               "id": "opt_24a",
-              "text": "前年"
+              "text": "考试结束了"
             },
             {
               "id": "opt_24b",
-              "text": "去年"
+              "text": "她在看电视"
             },
             {
               "id": "opt_24c",
-              "text": "今年"
+              "text": "表演要开始了"
             }
           ],
-          "correctId": "opt_24b",
-          "timestamp": 1136,
-          "explanation": "Bà Vương nói mua vào mùa xuân năm ngoái (去年春天买的) -> Chọn B."
+          "correctId": "opt_24c",
+          "timestamp": 1150,
+          "explanation": "表演马上就要开始了 -> Tiết mục sắp bắt đầu (表演要开始了 - C)."
         },
         {
           "id": "L25",
           "num": 25,
-          "dialogue": "女：405房间的客人刚才打电话说，洗手间的灯坏了，你去看一下。\n男：好，我这就过去。\n问：他们最可能在哪儿？",
+          "dialogue": "女：冰箱里还有什么水果？\n男：没水果了，我打算中午出去买，你去不去？\n问：男的准备去买什么？",
           "options": [
             {
               "id": "opt_25a",
-              "text": "宾馆"
+              "text": "水果"
             },
             {
               "id": "opt_25b",
-              "text": "超市"
+              "text": "羊肉"
             },
             {
               "id": "opt_25c",
-              "text": "图书馆"
+              "text": "鸡蛋"
             }
           ],
           "correctId": "opt_25a",
-          "timestamp": 1179,
-          "explanation": "Khách phòng 405 báo hỏng đèn nhà vệ sinh -> Ở khách sạn (宾馆) -> Chọn A."
+          "timestamp": 1192,
+          "explanation": "没水果了，打算中午去买 -> Mua hoa quả (水果 - A)."
         },
         {
           "id": "L26",
           "num": 26,
-          "dialogue": "男：您好，我要一杯红茶和一块水果蛋糕，带走。\n女：好的，一共27块。\n问：关于男的，可以知道什么？",
+          "dialogue": "男：这双鞋怎么样？我觉得很漂亮。\n女：穿着很舒服，就是贵了点儿。\n问：女的觉得这双鞋怎么样？",
           "options": [
             {
               "id": "opt_26a",
-              "text": "要了杯茶"
+              "text": "一般"
             },
             {
               "id": "opt_26b",
-              "text": "爱吃面包"
+              "text": "不便宜"
             },
             {
               "id": "opt_26c",
-              "text": "没带信用卡"
+              "text": "不好看"
             }
           ],
-          "correctId": "opt_26a",
-          "timestamp": 1222,
-          "explanation": "Nam gọi một cốc hồng trà (我要一杯红茶) -> Chọn A."
+          "correctId": "opt_26b",
+          "timestamp": 1234,
+          "explanation": "就是贵了点儿 -> Đắt, không rẻ (不便宜 - B)."
         },
         {
           "id": "L27",
           "num": 27,
-          "dialogue": "女：最近在忙什么呢？也不见你去打篮球。\n男：下周就要考数学了，我一直在复习。\n问：男的为什么没去打球？",
+          "dialogue": "女：昨天我们去爬山，以为你会来。\n男：我的一个老同学结婚，所以就没去。下次一定和你们一起去。\n问：昨天谁结婚？",
           "options": [
             {
               "id": "opt_27a",
-              "text": "不感兴趣"
+              "text": "女儿"
             },
             {
               "id": "opt_27b",
-              "text": "在准备考试"
+              "text": "同学"
             },
             {
               "id": "opt_27c",
-              "text": "没完成作业"
+              "text": "同事"
             }
           ],
           "correctId": "opt_27b",
-          "timestamp": 1269,
-          "explanation": "Tuần sau thi toán nên đang ôn tập (在准备考试) -> Chọn B."
+          "timestamp": 1275,
+          "explanation": "老同学结婚 -> Bạn học kết hôn (同学 - B)."
         },
         {
           "id": "L28",
           "num": 28,
-          "dialogue": "男：脚还疼不疼？要不要先坐下来休息一下？\n女：没关系，马上就到了，等会儿再休息。\n问：女的是什么意思？",
+          "dialogue": "男：请问，洗手间在哪儿？\n女：洗手间在二层，在电梯右边。\n问：男的想去哪儿？",
           "options": [
             {
               "id": "opt_28a",
-              "text": "很累"
+              "text": "洗手间"
             },
             {
               "id": "opt_28b",
-              "text": "腿疼"
+              "text": "图书馆"
             },
             {
               "id": "opt_28c",
-              "text": "到了再休息"
+              "text": "办公室"
             }
           ],
-          "correctId": "opt_28c",
-          "timestamp": 1315,
-          "explanation": "Nữ nói sắp đến nơi rồi, tới nơi rồi hẵng nghỉ (等会儿再休息 = 到了再休息) -> Chọn C."
+          "correctId": "opt_28a",
+          "timestamp": 1327,
+          "explanation": "请问洗手间在哪儿 -> Nhà vệ sinh (洗手间 - A)."
         },
         {
           "id": "L29",
           "num": 29,
-          "dialogue": "女：小兰怎么没来上班？\n男：她请假了，今天她弟弟结婚。\n问：小兰为什么请假？",
+          "dialogue": "女：真奇怪，我最近吃得很少，怎么还是变胖了？\n男：你应该多锻炼，去跑跑步，或者去游泳。\n问：女的想怎么样？",
           "options": [
             {
               "id": "opt_29a",
-              "text": "生病了"
+              "text": "变瘦"
             },
             {
               "id": "opt_29b",
-              "text": "弟弟结婚"
+              "text": "去找丈夫"
             },
             {
               "id": "opt_29c",
-              "text": "要接孩子"
+              "text": "休息一个月"
             }
           ],
-          "correctId": "opt_29b",
-          "timestamp": 1358,
-          "explanation": "Hôm nay em trai cô ấy kết hôn (今天她弟弟结婚) -> Chọn B."
+          "correctId": "opt_29a",
+          "timestamp": 1365,
+          "explanation": "吃得少还是变胖，男建议多锻炼 -> Muốn giảm cân gầy đi (变瘦 - A)."
         },
         {
           "id": "L30",
           "num": 30,
-          "dialogue": "男：你觉得这次比赛谁会拿年级第一？\n女：不知道，这次参赛同学的水平都很高。\n问：女的认为参加比赛的同学怎么样？",
+          "dialogue": "男：我想买张世界地图，你知道哪儿有卖的吗？\n女：附近商店我没看到有卖的，我有张旧的，你先拿去用吧。\n问：关于女的，可以知道什么？",
           "options": [
             {
               "id": "opt_30a",
-              "text": "水平高"
+              "text": "在卖报纸"
             },
             {
               "id": "opt_30b",
-              "text": "比较胖"
+              "text": "有张旧地图"
             },
             {
               "id": "opt_30c",
-              "text": "很高兴"
+              "text": "想去世界公园"
             }
           ],
-          "correctId": "opt_30a",
-          "timestamp": 1398,
-          "explanation": "Trình độ các thí sinh đều rất cao (水平都很高) -> Chọn A."
+          "correctId": "opt_30b",
+          "timestamp": 1415,
+          "explanation": "我有张旧的，你先拿去用吧 -> Có tấm bản đồ cũ (有张旧地图 - B)."
         }
       ]
     },
@@ -2128,222 +2130,222 @@ const MASTER_DATA = {
         {
           "id": "L31",
           "num": 31,
-          "dialogue": "男：阿姨，我家来客人了，能跟您借几把椅子吗？\n女：没问题，你进来拿吧。\n男：好的，谢谢您。\n女：别客气，你不也经常帮我照顾小猫吗？\n问：关于男的，可以知道什么？",
+          "dialogue": "男：你怎么了？低着头想什么呢？\n女：我在想，是不是可以一边工作，一边读书。\n男：我觉得很好啊。\n女：但我又担心这会影响工作，学习也学不好。\n问：女的怎么了？",
           "options": [
             {
               "id": "opt_31a",
-              "text": "在找猫"
+              "text": "哭了"
             },
             {
               "id": "opt_31b",
-              "text": "要借椅子"
+              "text": "生病了"
             },
             {
               "id": "opt_31c",
-              "text": "要买裤子"
+              "text": "在想问题"
             }
           ],
-          "correctId": "opt_31b",
-          "timestamp": 1517,
-          "explanation": "Sang mượn mấy chiếc ghế (借几把椅子) -> Chọn B."
+          "correctId": "opt_31c",
+          "timestamp": 1539,
+          "explanation": "我在想是不是可以边工作边读书 -> Đang suy nghĩ vấn đề (在想问题 - C)."
         },
         {
           "id": "L32",
           "num": 32,
-          "dialogue": "女：你会骑自行车吗？\n男：当然，我以前经常骑车去上课。\n女：那你教教我吧，我一直想学。\n男：可以啊，你什么时候有时间？\n女：明天上午怎么样？\n问：女的想学什么？",
+          "dialogue": "女：房间打扫完了，我现在去洗洗头发。\n男：你那两个同学几点来？\n女：8点，还有一刻钟。香蕉买了吧？\n男：忘了，忘了，对不起，我现在就去买。\n问：女的刚才做什么了？",
           "options": [
             {
               "id": "opt_32a",
-              "text": "跳舞"
+              "text": "洗脸"
             },
             {
               "id": "opt_32b",
-              "text": "开车"
+              "text": "买药"
             },
             {
               "id": "opt_32c",
-              "text": "骑自行车"
+              "text": "打扫房间"
             }
           ],
           "correctId": "opt_32c",
-          "timestamp": 1576,
-          "explanation": "Nữ nhờ dạy đi xe đạp (那你教教我吧 = 想学骑自行车) -> Chọn C."
+          "timestamp": 1598,
+          "explanation": "房间打扫完了 -> Dọn dẹp phòng (打扫房间 - C)."
         },
         {
           "id": "L33",
           "num": 33,
-          "dialogue": "男：怎么了？\n女：刚才游泳时，耳朵进水了。\n男：现在好些了吗？下次小心点儿。\n女：没事，别担心。\n问：女的怎么了？",
+          "dialogue": "男：我们今天喝点儿什么？啤酒怎么样？\n女：我看看菜单，我还是喝苹果汁吧。\n男：好，我也喝果汁吧，我要西瓜汁。\n女：好，服务员，我们点菜。\n问：他们最可能在哪儿？",
           "options": [
             {
               "id": "opt_33a",
-              "text": "发烧了"
+              "text": "教室"
             },
             {
               "id": "opt_33b",
-              "text": "鼻子不舒服"
+              "text": "医院"
             },
             {
               "id": "opt_33c",
-              "text": "耳朵进水了"
+              "text": "饭馆儿"
             }
           ],
           "correctId": "opt_33c",
-          "timestamp": 1634,
-          "explanation": "Bơi bị nước vào tai (耳朵进水了) -> Chọn C."
+          "timestamp": 1660,
+          "explanation": "服务员我们点菜，看菜单 -> Nhà hàng (饭馆儿 - C)."
         },
         {
           "id": "L34",
           "num": 34,
-          "dialogue": "女：怎么拿了这么多东西？\n男：我们换办公室了，正在搬东西。\n女：搬到几楼了？需要我帮忙吗？\n男：六楼，不用了，还有两个箱子就搬完了。\n问：关于男的，可以知道什么？",
+          "dialogue": "女：你的手机怎么了？\n男：刚才洗衣服的时候，我忘了把手机拿出来了。\n女：不会吧，那手机还能用吗？\n男：进水了，不能用了。\n问：什么东西不能用了？",
           "options": [
             {
               "id": "opt_34a",
-              "text": "正在洗脸"
+              "text": "手表"
             },
             {
               "id": "opt_34b",
-              "text": "要搬到6层"
+              "text": "手机"
             },
             {
               "id": "opt_34c",
-              "text": "在帮邻居搬家"
+              "text": "照相机"
             }
           ],
           "correctId": "opt_34b",
-          "timestamp": 1683,
-          "explanation": "Đổi văn phòng chuyển lên tầng 6 (六楼 = 搬到6层) -> Chọn B."
+          "timestamp": 1723,
+          "explanation": "手机进水不能用了 -> Điện thoại (手机 - B)."
         },
         {
           "id": "L35",
           "num": 35,
-          "dialogue": "男：孩子们都睡觉了吗？\n女：还没有，等我讲故事呢。\n男：这边的事情一办完，我就回去。\n女：好的，听说北京这两天很冷，你别感冒了。\n问：他们最可能是什么关系？",
+          "dialogue": "男：您孩子多大了？\n女：她今年6岁。\n男：6岁的孩子就开学习元角分了？\n女：是，小孩子学东西很快的。\n问：女的认为孩子怎么样？",
           "options": [
             {
               "id": "opt_35a",
-              "text": "夫妻"
+              "text": "学得快"
             },
             {
               "id": "opt_35b",
-              "text": "姐弟"
+              "text": "吃得太饱"
             },
             {
               "id": "opt_35c",
-              "text": "老师和学生"
+              "text": "喜欢小动物"
             }
           ],
           "correctId": "opt_35a",
-          "timestamp": 1742,
-          "explanation": "Nói chuyện con cái ở nhà và đi công tác -> Vợ chồng (夫妻) -> Chọn A."
+          "timestamp": 1777,
+          "explanation": "小孩子学东西很快的 -> Học rất nhanh (学得快 - A)."
         },
         {
           "id": "L36",
           "num": 36,
-          "dialogue": "女：我们晚上去唱歌，你和小张也来吧？\n男：我先问问他，然后再告诉你。你们打算去哪儿唱？\n女：就在公司附近，我们8点一刻在公司门口见。\n男：好的，我知道了。\n问：他们最可能几点见面？",
+          "dialogue": "女：弟弟，你能帮我个忙吗？\n男：什么事？怎么这么客气？\n女：你能帮我上网查一下我的成绩吗？\n男：当然可以，你为什么不自己查？\n女：我不敢查，我担心自己考得太差。\n问：女的为什么不自己查成绩？",
           "options": [
             {
               "id": "opt_36a",
-              "text": "19:00"
+              "text": "电脑坏了"
             },
             {
               "id": "opt_36b",
-              "text": "20:15"
+              "text": "害怕没考好"
             },
             {
               "id": "opt_36c",
-              "text": "21:30"
+              "text": "没完成作业"
             }
           ],
           "correctId": "opt_36b",
-          "timestamp": 1797,
-          "explanation": "Hẹn 8 giờ 15 phút tối (8点一刻 = 20:15) -> Chọn B."
+          "timestamp": 1830,
+          "explanation": "担心自己考得太差不敢查 -> Sợ thi không tốt (害怕没考好 - B)."
         },
         {
           "id": "L37",
           "num": 37,
-          "dialogue": "男：我要去跑步，你去不去？\n女：我已经洗过澡了，不想出去了。\n男：好，要带点儿什么东西吗？\n女：你回来时，在楼下超市买斤香蕉和两瓶牛奶吧。\n问：女的为什么不去跑步？",
+          "dialogue": "男：名单里怎么少了两个人？\n女：对不起，应该是我写错了。\n男：你再检查一下，一定不能再出现这样的问题。\n女：好的，我现在就去检查。\n问：那个名单有什么问题？",
           "options": [
             {
               "id": "opt_37a",
-              "text": "在洗碗"
+              "text": "用错词语了"
             },
             {
               "id": "opt_37b",
-              "text": "洗过澡了"
+              "text": "少了两个人"
             },
             {
               "id": "opt_37c",
-              "text": "吃得太饱"
+              "text": "两个人的名字相同"
             }
           ],
           "correctId": "opt_37b",
-          "timestamp": 1864,
-          "explanation": "Đã tắm rồi nên không muốn ra ngoài chạy bộ (已经洗过澡了) -> Chọn B."
+          "timestamp": 1898,
+          "explanation": "名单里怎么少了两个人 -> Thiếu mất 2 người (少了两个人 - B)."
         },
         {
           "id": "L38",
           "num": 38,
-          "dialogue": "女：你衣服和包上怎么都是水？\n男：外面下雨了，你不知道吗？\n女：不知道，我今天没出门，你没带伞？\n男：没有，刚才还是晴天呢，突然就下起来了。\n问：现在天气怎么样？",
+          "dialogue": "女：哪辆车是你的？\n男：我的车在那边，中间白色的那辆。\n女：那我们在这儿等吧。\n男：好，你在树下等我，我去开车。\n问：关于那辆车，可以知道什么？",
           "options": [
             {
               "id": "opt_38a",
-              "text": "阴天"
+              "text": "在西边"
             },
             {
               "id": "opt_38b",
-              "text": "热极了"
+              "text": "是白色的"
             },
             {
               "id": "opt_38c",
-              "text": "下雨了"
+              "text": "里面有只小狗"
             }
           ],
-          "correctId": "opt_38c",
-          "timestamp": 1927,
-          "explanation": "Quần áo ướt vì trời mưa (外面下雨了) -> Chọn C."
+          "correctId": "opt_38b",
+          "timestamp": 1956,
+          "explanation": "中间白色的那辆 -> Xe màu trắng (是白色的 - B)."
         },
         {
           "id": "L39",
           "num": 39,
-          "dialogue": "男：小姐，这双皮鞋多少钱？\n女：680，给您拿双试试？\n男：帮我找双43的。\n女：好的，您等一下。\n问：他们最可能在哪儿？",
+          "dialogue": "男：小刘，已经下班了，怎么还不回家？\n女：我今天没带雨伞，我想等雨小了再走。\n男：我这儿有两把雨伞，这把蓝的给你。\n女：谢谢您。\n问：小刘现在最可能在哪儿？",
           "options": [
             {
               "id": "opt_39a",
-              "text": "商店"
+              "text": "公司"
             },
             {
               "id": "opt_39b",
-              "text": "饭店"
+              "text": "家里"
             },
             {
               "id": "opt_39c",
-              "text": "银行"
+              "text": "出租车上"
             }
           ],
           "correctId": "opt_39a",
-          "timestamp": 1983,
-          "explanation": "Hỏi giá và cỡ giày da -> Ở cửa hàng (商店) -> Chọn A."
+          "timestamp": 2013,
+          "explanation": "已经下班了，等雨小再走 -> Ở công ty (公司 - A)."
         },
         {
           "id": "L40",
           "num": 40,
-          "dialogue": "女：你不是要买羊肉吗？为什么买了条鱼回来？\n男：去得晚，羊肉都卖完了。我看这条鱼很新鲜，就买了。\n女：是不错。对了，中午吃米饭还是面条？\n男：米饭。\n问：男的为什么没买羊肉？",
+          "dialogue": "女：你看，天上的云像不像只小鸟？\n男：小鸟？我怎么没看见，在哪儿？\n女：我说的是云，你看那儿。\n男：不像，我努力地看，还是不像。\n问：他们在看什么？",
           "options": [
             {
               "id": "opt_40a",
-              "text": "卖完了"
+              "text": "云"
             },
             {
               "id": "opt_40b",
-              "text": "不新鲜"
+              "text": "黑板"
             },
             {
               "id": "opt_40c",
-              "text": "想吃鸡蛋面"
+              "text": "面条儿"
             }
           ],
           "correctId": "opt_40a",
-          "timestamp": 2033,
-          "explanation": "Đến muộn thịt cừu đã bán hết (羊肉都卖完了) -> Chọn A."
+          "timestamp": 2076,
+          "explanation": "天上的云像不像只小鸟 -> Mây trên trời (云 - A)."
         }
       ]
     }
@@ -2352,77 +2354,71 @@ const MASTER_DATA = {
     "part1": {
       "set1": {
         "example": {
-          "text": "你知道怎么去那儿吗？",
-          "correctLetter": "E",
-          "explanation": "Hỏi cách đi -> Đi xe buýt rồi đổi tàu điện ngầm (E)."
+          "prompt": "你知道怎么去那儿吗？",
+          "correctId": "opt_41e",
+          "letter": "E"
         },
         "options": [
           {
             "id": "opt_41a",
-            "letter": "A",
-            "text": "老王的儿子今年才15岁，就长到一米八五了。"
+            "text": "这是一年级的数学题？这么难！"
           },
           {
             "id": "opt_41b",
-            "letter": "B",
-            "text": "好，我看完了这个节目就去睡。"
+            "text": "那是我叔叔去年送我的生日礼物。"
           },
           {
             "id": "opt_41c",
-            "letter": "C",
-            "text": "这次汉语考试，张东考得比上次好很多。"
+            "text": "跑完一万米后，你觉得怎么样？"
           },
           {
             "id": "opt_41d",
-            "letter": "D",
-            "text": "你看见我的铅笔了吗？刚才做练习题我还用了呢。"
+            "text": "好的，如果没什么其他事，我一定去。"
           },
           {
             "id": "opt_41e",
-            "letter": "E",
             "text": "当然。我们先坐公共汽车，然后换地铁。"
           },
           {
             "id": "opt_41f",
-            "letter": "F",
-            "text": "喂，路上车比较多，我可能晚点儿才能到机场。"
+            "text": "你妹妹也爱看体育节目啊？"
           }
         ],
         "questions": [
           {
             "id": "R41",
             "num": 41,
-            "text": "报纸下面你找了没有？",
-            "correctLetter": "D",
-            "explanation": "Tìm bút chì -> Hỏi dưới tờ báo đã tìm chưa -> Chọn D."
+            "prompt": "这个帽子真可爱，你在哪儿买的？",
+            "correctId": "opt_41b",
+            "explanation": "Mũ mua ở đâu -> Quà sinh nhật chú tặng năm ngoái (B)."
           },
           {
             "id": "R42",
             "num": 42,
-            "text": "早点儿休息吧，都10点半了。",
-            "correctLetter": "B",
-            "explanation": "Giục đi ngủ sớm -> Xem xong chương trình này con sẽ ngủ ngay -> Chọn B."
+            "prompt": "是的，特别是足球比赛，她喜欢踢足球。",
+            "correctId": "opt_41f",
+            "explanation": "Em gái cũng thích xem thể thao à -> Đúng, đặc biệt là bóng đá (F)."
           },
           {
             "id": "R43",
             "num": 43,
-            "text": "他的学习成绩有了很大提高。",
-            "correctLetter": "C",
-            "explanation": "Thành tích tiến bộ lớn -> Trương Đông thi tốt hơn lần trước nhiều -> Chọn C."
+            "prompt": "又渴又累，腿也疼。",
+            "correctId": "opt_41c",
+            "explanation": "Chạy 10.000 mét xong thấy thế nào -> Vừa khát vừa mệt (C)."
           },
           {
             "id": "R44",
             "num": 44,
-            "text": "我记得他小时候个子很矮，没想到现在这么高了。",
-            "correctLetter": "A",
-            "explanation": "Bất ngờ vì con trai Lão Vương mới 15 tuổi đã cao 1m85 -> Chọn A."
+            "prompt": "这个周末大家都去唱歌，你和我们一起去？",
+            "correctId": "opt_41d",
+            "explanation": "Rủ đi hát cuối tuần -> Được, không bận gì tôi nhất định đi (D)."
           },
           {
             "id": "R45",
             "num": 45,
-            "text": "没关系，我还在等着拿行李呢。",
-            "correctLetter": "F",
-            "explanation": "Bạn báo đến sân bay muộn -> Trả lời không sao, tớ cũng đang đợi lấy hành lý -> Chọn F."
+            "prompt": "你认真点儿，其实很简单。",
+            "correctId": "opt_41a",
+            "explanation": "Toán lớp 1 mà khó thế -> Chăm chú chút, thực ra rất dễ (A)."
           }
         ]
       },
@@ -2430,65 +2426,60 @@ const MASTER_DATA = {
         "options": [
           {
             "id": "opt_46a",
-            "letter": "A",
-            "text": "过去那么久了，你不说我都想不起来了。"
+            "text": "东边有一家，但是要到9点才开门。"
           },
           {
             "id": "opt_46b",
-            "letter": "B",
-            "text": "这种鸟我还是第一次见。"
+            "text": "放心吧，我不会忘记的。"
           },
           {
             "id": "opt_46c",
-            "letter": "C",
-            "text": "不要总想着让别人来帮你。"
+            "text": "你等我一下，我换件衬衫就来。"
           },
           {
             "id": "opt_46d",
-            "letter": "D",
-            "text": "他在医院住了三个月，医生说星期日就可以出院了。"
+            "text": "姐姐，这个词是什么意思啊？"
           },
           {
             "id": "opt_46e",
-            "letter": "E",
-            "text": "我穿这件白衬衫怎么样？"
+            "text": "孩子，遇到问题时，你应该想办法去解决。"
           }
         ],
         "questions": [
           {
             "id": "R46",
             "num": 46,
-            "text": "它的嘴长得真奇怪。",
-            "correctLetter": "B",
-            "explanation": "Mỏ của con chim này trông lạ thật -> Lần đầu tiên tôi nhìn thấy loài chim này -> Chọn B."
+            "prompt": "你总是这么慢，快7点了，要迟到了。",
+            "correctId": "opt_46c",
+            "explanation": "Muộn rồi -> Đợi tôi thay áo sơ mi rồi ra ngay (C)."
           },
           {
             "id": "R47",
             "num": 47,
-            "text": "我丈夫的腿已经好多了。",
-            "correctLetter": "D",
-            "explanation": "Chân chồng đỡ nhiều rồi, chủ nhật có thể xuất viện -> Chọn D."
+            "prompt": "宾馆附近有银行吗？",
+            "correctId": "opt_46a",
+            "explanation": "Gần khách sạn có ngân hàng không -> Phía đông có 1 cái 9h mở cửa (A)."
           },
           {
             "id": "R48",
             "num": 48,
-            "text": "遇到问题要自己想办法解决。",
-            "correctLetter": "C",
-            "explanation": "Gặp khó khăn phải tự tìm cách giải quyết, đừng luôn trông chờ người khác giúp -> Chọn C."
+            "prompt": "你出去的时候，记得把灯关上。",
+            "correctId": "opt_46b",
+            "explanation": "Ra ngoài nhớ tắt đèn -> Yên tâm tôi không quên đâu (B)."
           },
           {
             "id": "R49",
             "num": 49,
-            "text": "还不错，你再试试蓝色的，看看哪个更好。",
-            "correctLetter": "E",
-            "explanation": "Thử thêm chiếc áo màu xanh xem cái nào đẹp hơn -> Ghép với 'Tôi mặc chiếc áo sơ mi trắng này thế nào?' -> Chọn E."
+            "prompt": "不能只是着急和生气。",
+            "correctId": "opt_46e",
+            "explanation": "Gặp khó khăn nên tìm cách giải quyết chứ đừng chỉ giận dữ (E)."
           },
           {
             "id": "R50",
             "num": 50,
-            "text": "他几乎把那件事忘了。",
-            "correctLetter": "A",
-            "explanation": "Chuyện qua lâu rồi, cậu không nhắc tớ chẳng nhớ ra nổi -> Chọn A."
+            "prompt": "我也不知道，你去查一下字典吧。",
+            "correctId": "opt_46d",
+            "explanation": "Chị ơi từ này nghĩa là gì -> Đi tra từ điển nhé (D)."
           }
         ]
       }
@@ -2496,158 +2487,141 @@ const MASTER_DATA = {
     "part2": {
       "set1": {
         "example": {
-          "text": "她说话的（ E ）多好听啊！",
-          "correctLetter": "E",
-          "explanation": "Giọng nói -> Chọn 声音 (E)."
+          "prompt": "她说话的（ E ）多好听啊！",
+          "word": "声音",
+          "letter": "E"
         },
         "options": [
           {
             "id": "opt_51a",
-            "letter": "A",
-            "text": "向"
+            "text": "有名 (yǒumíng)"
           },
           {
             "id": "opt_51b",
-            "letter": "B",
-            "text": "关"
+            "text": "变化 (biànhuà)"
           },
           {
             "id": "opt_51c",
-            "letter": "C",
-            "text": "突然"
+            "text": "季节 (jìjié)"
           },
           {
             "id": "opt_51d",
-            "letter": "D",
-            "text": "同意"
+            "text": "只 (zhǐ)"
           },
           {
             "id": "opt_51e",
-            "letter": "E",
-            "text": "声音"
+            "text": "声音 (shēngyīn)"
           },
           {
             "id": "opt_51f",
-            "letter": "F",
-            "text": "世界"
+            "text": "瘦 (shòu)"
           }
         ],
         "questions": [
           {
             "id": "R51",
             "num": 51,
-            "before": "放心，妈妈一定会（ ",
-            "after": " ）你这么做的。",
-            "correctLetter": "D",
-            "explanation": "Mẹ nhất định sẽ đồng ý (同意) -> Chọn D."
+            "prompt": "这个城市已经有900多年的历史了，非常（ ）。",
+            "correctId": "opt_51a",
+            "explanation": "Thành phố hơn 900 năm lịch sử rất nổi tiếng -> Chọn A (有名)."
           },
           {
             "id": "R52",
             "num": 52,
-            "before": "你昨天走的时候是不是忘记（ ",
-            "after": " ）空调？",
-            "correctLetter": "B",
-            "explanation": "Quên tắt điều hòa (关空调) -> Chọn B."
+            "prompt": "因为工作比较忙，小李最近（ ）了很多。",
+            "correctId": "opt_51f",
+            "explanation": "Bận việc nên dạo này gầy đi nhiều -> Chọn F (瘦)."
           },
           {
             "id": "R53",
             "num": 53,
-            "before": "你那儿有（ ",
-            "after": " ）地图吗？借我用用。",
-            "correctLetter": "F",
-            "explanation": "Bản đồ thế giới (世界地图) -> Chọn F."
+            "prompt": "春、夏、秋、冬，你最喜欢哪个（ ）？",
+            "correctId": "opt_51c",
+            "explanation": "Xuân hạ thu đông thích mùa nào -> Chọn C (季节)."
           },
           {
             "id": "R54",
             "num": 54,
-            "before": "过去的就让它过去吧，做人应该（ ",
-            "after": " ）前看。",
-            "correctLetter": "A",
-            "explanation": "Nhìn về phía trước (向前看) -> Chọn A."
+            "prompt": "你阿姨的（ ）真大，我几乎没认出她来。",
+            "correctId": "opt_51b",
+            "explanation": "Sự thay đổi của dì lớn quá suýt không nhận ra -> Chọn B (变化)."
           },
           {
             "id": "R55",
             "num": 55,
-            "before": "怎么（ ",
-            "after": " ）刮起风来了？我们还去爬山吗？",
-            "correctLetter": "C",
-            "explanation": "Đột nhiên nổi gió (突然刮起风) -> Chọn C."
+            "prompt": "从我们学校坐公共汽车去火车站，（ ）需要10分钟。",
+            "correctId": "opt_51d",
+            "explanation": "Chỉ mất 10 phút -> Chọn D (只)."
           }
         ]
       },
       "set2": {
         "example": {
-          "text": "A: 你有什么（ D ）？\nB: 我喜欢体育。",
-          "correctLetter": "D",
-          "explanation": "Sở thích -> Chọn 爱好 (D)."
+          "prompt": "A：你有什么（ D ）？\nB：我喜欢体育。",
+          "word": "爱好",
+          "letter": "D"
         },
         "options": [
           {
             "id": "opt_56a",
-            "letter": "A",
-            "text": "差"
+            "text": "刷牙 (shuāyá)"
           },
           {
             "id": "opt_56b",
-            "letter": "B",
-            "text": "决定"
+            "text": "太阳 (tàiyáng)"
           },
           {
             "id": "opt_56c",
-            "letter": "C",
-            "text": "啤酒"
+            "text": "一共 (yígòng)"
           },
           {
             "id": "opt_56d",
-            "letter": "D",
-            "text": "爱好"
+            "text": "爱好 (àihào)"
           },
           {
             "id": "opt_56e",
-            "letter": "E",
-            "text": "中间"
+            "text": "借 (jiè)"
           },
           {
             "id": "opt_56f",
-            "letter": "F",
-            "text": "清楚"
+            "text": "新鲜 (xīnxiān)"
           }
         ],
         "questions": [
           {
             "id": "R56",
             "num": 56,
-            "dialogue": "A: 这件事电话里说不（ F ），我们见面再说吧。\nB: 好，下了班我去接你。",
-            "correctLetter": "F",
-            "explanation": "Nói không rõ ràng qua điện thoại (说不清楚) -> Chọn F."
+            "prompt": "A：音乐会的门票我放在桌子上了，（ ）4张。\nB：我看见了，谢谢你。",
+            "correctId": "opt_56c",
+            "explanation": "Tổng cộng 4 vé -> Chọn C (一共)."
           },
           {
             "id": "R57",
             "num": 57,
-            "dialogue": "A: 爸，你看（ E ）那个怎么样？\nB: 太小了，冰箱要买大一点儿的，左边那个不错。",
-            "correctLetter": "E",
-            "explanation": "Chiếc ở giữa (中间那个) -> Chọn E."
+            "prompt": "A：（ ）以后不能再吃东西了。\nB：妈，您说第1001次了。",
+            "correctId": "opt_56a",
+            "explanation": "Sau khi đánh răng không được ăn đồ -> Chọn A (刷牙)."
           },
           {
             "id": "R58",
             "num": 58,
-            "dialogue": "A: 喝点儿什么？（ C ）还是饮料？\nB: 饮料，晚上还要开车回去。",
-            "correctLetter": "C",
-            "explanation": "Uống bia hay nước ngọt (啤酒还是饮料) -> Chọn C."
+            "prompt": "A：小姐，葡萄多少钱一斤？\nB：3块。今天的葡萄很（ ），也很甜。",
+            "correctId": "opt_56f",
+            "explanation": "Nho rất tươi ngon -> Chọn F (新鲜)."
           },
           {
             "id": "R59",
             "num": 59,
-            "dialogue": "A: 我（ B ）从明天开始，每天早上6点起床。\nB: 真的吗？太阳要从西边出来了。",
-            "correctLetter": "B",
-            "explanation": "Tôi quyết định từ ngày mai dậy lúc 6 giờ (我决定) -> Chọn B."
+            "prompt": "A：喂，上次（ ）的那本书，晚几天还你可以吗？\nB：没问题，我现在在外地，回去再说。",
+            "correctId": "opt_56e",
+            "explanation": "Quyển sách mượn lần trước -> Chọn E (借)."
           },
           {
             "id": "R60",
             "num": 60,
-            "dialogue": "A: 我们要去踢足球，你去不去？\nB: 去，我还（ A ）最后两个句子就写完了，等我一下。",
-            "correctLetter": "A",
-            "explanation": "Còn thiếu/kém 2 câu nữa là xong (还差最后两个句子) -> Chọn A."
+            "prompt": "A：天终于晴了，好久没看见（ ）了。\nB：天气这么好，我们去河边走走？",
+            "correctId": "opt_56b",
+            "explanation": "Trời hửng nắng lâu rồi không thấy mặt trời -> Chọn B (太阳)."
           }
         ]
       }
@@ -2657,222 +2631,222 @@ const MASTER_DATA = {
         {
           "id": "R61",
           "num": 61,
-          "passage": "中国的很多城市都有好几个名字，像广州市，除了羊城外，人们还叫它花城。",
-          "question": "根据这段话，广州市：",
+          "passage": "站得高，才能看得远。所以，人们对自己的要求高一些，了解的事情就会更多一些。",
+          "question": "想要了解更多，我们需要：",
           "options": [
             {
               "id": "opt_61a",
-              "text": "很漂亮"
+              "text": "换新的环境"
             },
             {
               "id": "opt_61b",
-              "text": "又叫羊城"
+              "text": "多帮助别人"
             },
             {
               "id": "opt_61c",
-              "text": "变化很大"
+              "text": "提高对自己的要求"
             }
           ],
-          "correctId": "opt_61b",
-          "explanation": "Quảng Châu còn gọi là Dương Thành (除了羊城外 = 又叫羊城) -> Chọn B."
+          "correctId": "opt_61c",
+          "explanation": "Yêu cầu bản thân cao hơn thì biết nhiều hơn -> Chọn C (提高对自己的要求)."
         },
         {
           "id": "R62",
           "num": 62,
-          "passage": "我们学校旁边有家咖啡馆儿，环境不错，我们去那儿边喝咖啡边等小李吧。",
-          "question": "那家咖啡馆儿：",
+          "passage": "熊猫的耳朵、眼睛、鼻子是黑色的，脚也是黑色的，它身上除了白色就是黑色。所以人们说：熊猫的照片只能是黑白的。",
+          "question": "根据这段话，熊猫：",
           "options": [
             {
               "id": "opt_62a",
-              "text": "环境一般"
+              "text": "爱照相"
             },
             {
               "id": "opt_62b",
-              "text": "换菜单了"
+              "text": "很聪明"
             },
             {
               "id": "opt_62c",
-              "text": "离学校不远"
+              "text": "有个黑鼻子"
             }
           ],
           "correctId": "opt_62c",
-          "explanation": "Quán cà phê ở bên cạnh trường (学校旁边 = 离学校不远) -> Chọn C."
+          "explanation": "Mũi của gấu trúc màu đen -> Chọn C (有个黑鼻子)."
         },
         {
           "id": "R63",
           "num": 63,
-          "passage": "现在，北京很多公园的门票都很便宜，有的只需要两三块钱。如果你经常去公园运动，还可以办年票，这样不但不用每次去都买票，而且也更便宜了。",
-          "question": "对常去公园的人来说，有了年票：",
+          "passage": "老师问小明：“北京和月亮，哪个离你更近？”“当然是月亮了。”小明说。老师问他为什么，他说：“因为我经常可以看到月亮，但要看到北京，我需要花很长时间。”",
+          "question": "小明为什么认为月亮离他近？",
           "options": [
             {
               "id": "opt_63a",
-              "text": "更方便"
+              "text": "月亮很大"
             },
             {
               "id": "opt_63b",
-              "text": "选择少了"
+              "text": "容易看到月亮"
             },
             {
               "id": "opt_63c",
-              "text": "出门更容易"
+              "text": "他没去过北京"
             }
           ],
-          "correctId": "opt_63a",
-          "explanation": "Không phải mua vé từng lần, tiện lợi hơn (更方便) -> Chọn A."
+          "correctId": "opt_63b",
+          "explanation": "Vì thường nhìn thấy mặt trăng trên trời -> Chọn B (容易看到月亮)."
         },
         {
           "id": "R64",
           "num": 64,
-          "passage": "如果想了解一个国家的文化，就不能只看书本，还必须到这个国家走一走、看一看，这样才能明白“文化”二字的意思。",
-          "question": "根据这段话，要了解一个国家的文化，必须：",
+          "passage": "他刚才给我打电话，说那本书里还有一个问题，一会儿你去他那儿看看。以后要注意，一定要认真。",
+          "question": "那本书：",
           "options": [
             {
               "id": "opt_64a",
-              "text": "多看书"
+              "text": "作用不大"
             },
             {
               "id": "opt_64b",
-              "text": "去留学"
+              "text": "有不少错字"
             },
             {
               "id": "opt_64c",
-              "text": "去那个国家看看"
+              "text": "被发现还有问题"
             }
           ],
           "correctId": "opt_64c",
-          "explanation": "Cần trực tiếp đến quốc gia đó trải nghiệm (到这个国家走一走、看一看) -> Chọn C."
+          "explanation": "Sách bị phát hiện còn có lỗi/vấn đề -> Chọn C (被发现还有问题)."
         },
         {
           "id": "R65",
           "num": 65,
-          "passage": "上周末我和同事一起去云南玩儿了两天，那里跟北方真的很不一样，我们照了很多照片，都在我电脑里，你要不要看看？",
-          "question": "他：",
+          "passage": "小黄，明天上午我有个会，你帮我去机场接李先生吧。他明天8点的飞机，你早点儿去，早半个小时到，好不好？谢谢你了。",
+          "question": "小黄明天最可能：",
           "options": [
             {
               "id": "opt_65a",
-              "text": "爱帮助人"
+              "text": "去旅游"
             },
             {
               "id": "opt_65b",
-              "text": "没带相机"
+              "text": "去机场接人"
             },
             {
               "id": "opt_65c",
-              "text": "去云南旅游过"
+              "text": "要照顾病人"
             }
           ],
-          "correctId": "opt_65c",
-          "explanation": "Cuối tuần trước vừa đi Vân Nam chơi 2 ngày -> Từng đi du lịch Vân Nam (去云南旅游过) -> Chọn C."
+          "correctId": "opt_65b",
+          "explanation": "Đi đón người ở sân bay -> Chọn B (去机场接人)."
         },
         {
           "id": "R66",
           "num": 66,
-          "passage": "我们等了快半个小时，那条街上都没有出租车经过，后来只能坐公共汽车过去了。",
-          "question": "他们一开始打算：",
+          "passage": "因为工作需要，我要用到汉语。为了使自己的汉语说得更好，我参加了一个汉语学习班。除了星期天，每天晚上都有课。",
+          "question": "我星期几没有课？",
           "options": [
             {
               "id": "opt_66a",
-              "text": "往南走"
+              "text": "星期日"
             },
             {
               "id": "opt_66b",
-              "text": "打车去"
+              "text": "星期六"
             },
             {
               "id": "opt_66c",
-              "text": "坐公共汽车"
+              "text": "星期五"
             }
           ],
-          "correctId": "opt_66b",
-          "explanation": "Ban đầu đứng chờ taxi suốt nửa tiếng -> Dự định đi taxi (打车去) -> Chọn B."
+          "correctId": "opt_66a",
+          "explanation": "Ngoài chủ nhật ra tối nào cũng có lớp -> Chủ nhật không có lớp (星期日 - A)."
         },
         {
           "id": "R67",
           "num": 67,
-          "passage": "电视上说，这个月20号动物园会新来两只大熊猫，女儿还没见过大熊猫呢，到时候我们带她去吧。",
-          "question": "他想带女儿：",
+          "passage": "爸爸希望爷爷和奶奶搬到城里跟我们一起住，但是他们不同意。爷爷说，他们不习惯住楼房，而且不愿意离开那些老邻居。",
+          "question": "爷爷奶奶不同意什么？",
           "options": [
             {
               "id": "opt_67a",
-              "text": "看电影"
+              "text": "卖房子"
             },
             {
               "id": "opt_67b",
-              "text": "去骑马"
+              "text": "搬到城里"
             },
             {
               "id": "opt_67c",
-              "text": "看大熊猫"
+              "text": "检查身体"
             }
           ],
-          "correctId": "opt_67c",
-          "explanation": "Muốn dắt con gái đi ngắm gấu trúc (看大熊猫) -> Chọn C."
+          "correctId": "opt_67b",
+          "explanation": "Không đồng ý chuyển vào thành phố sống -> Chọn B (搬到城里)."
         },
         {
           "id": "R68",
           "num": 68,
-          "passage": "很多人年轻的时候不注意锻炼，只想着工作，等老了才发现再多的钱也比不上一个好身体，所以工作越忙越应该照顾好自己。",
-          "question": "这段话主要想告诉我们：",
+          "passage": "我妻子是出租车司机，她开车十几年了，北京每一条街道的名字她几乎都知道。她很热情，工作很努力。",
+          "question": "我妻子是个什么样的人？",
           "options": [
             {
               "id": "opt_68a",
-              "text": "健康更重要"
+              "text": "比较矮"
             },
             {
               "id": "opt_68b",
-              "text": "要努力工作"
+              "text": "喜欢安静"
             },
             {
               "id": "opt_68c",
-              "text": "要多关心老人"
+              "text": "很了解北京"
             }
           ],
-          "correctId": "opt_68a",
-          "explanation": "Bao nhiêu tiền cũng không sánh được một cơ thể khỏe mạnh -> Sức khỏe quan trọng hơn (健康更重要) -> Chọn A."
+          "correctId": "opt_68c",
+          "explanation": "Thuộc mọi con phố ở Bắc Kinh -> Rất hiểu Bắc Kinh (很了解北京 - C)."
         },
         {
           "id": "R69",
           "num": 69,
-          "passage": "在中国，去朋友家做客，离开时朋友可能会对你说“慢走”。其实他们的意思是让你在回去的路上小心点儿，不是让你慢点儿走。",
-          "question": "朋友说“慢走”，最可能是什么意思？",
+          "passage": "中国人常说：“好马不吃回头草。”意思是说，已经过去的就不要再想了，要向前看，别走回头路。",
+          "question": "这句话主要想告诉我们：",
           "options": [
             {
               "id": "opt_69a",
-              "text": "欢迎再来"
+              "text": "要多吃米饭"
             },
             {
               "id": "opt_69b",
-              "text": "路上小心"
+              "text": "兴趣很重要"
             },
             {
               "id": "opt_69c",
-              "text": "别走得太快"
+              "text": "遇事要向前看"
             }
           ],
-          "correctId": "opt_69b",
-          "explanation": "Ý là trên đường về đi lại cẩn thận (路上小心点儿) -> Chọn B."
+          "correctId": "opt_69c",
+          "explanation": "Phải nhìn về phía trước -> Chọn C (遇事要向前看)."
         },
         {
           "id": "R70",
           "num": 70,
-          "passage": "这块儿手表是我10岁生日时爷爷送给我的，已经用了很多年了，虽然现在看上去有点儿旧，颜色也变了，但我还是很喜欢它，不愿意换新的。",
-          "question": "那块儿手表：",
+          "passage": "哥哥长得很高，只有一个爱好，就是打篮球。他希望有机会做篮球运动员，但是他现在的水平还不是很高。",
+          "question": "根据这段话，哥哥：",
           "options": [
             {
-              "id": "opt_70a",
-              "text": "已经旧了"
+              "id": "opt_69a",
+              "text": "爱打篮球"
             },
             {
-              "id": "opt_70b",
-              "text": "是节日礼物"
+              "id": "opt_69b",
+              "text": "正在复习"
             },
             {
-              "id": "opt_70c",
-              "text": "是为爷爷买的"
+              "id": "opt_69c",
+              "text": "以前是运动员"
             }
           ],
-          "correctId": "opt_70a",
-          "explanation": "Đồng hồ dùng nhiều năm trông đã cũ (现在看上去有点儿旧 = 已经旧了) -> Chọn A."
+          "correctId": "opt_69a",
+          "explanation": "Thích chơi bóng rổ -> Chọn A (爱打篮球)."
         }
       ]
     }
@@ -2884,61 +2858,62 @@ const MASTER_DATA = {
           "id": "W71",
           "num": 71,
           "words": [
-            "她的",
-            "又黑又长",
-            "头发"
+            "咖啡里",
+            "放糖",
+            "不要"
           ],
-          "correct": "她的头发又黑又长。",
-          "explanation": "Chủ ngữ + Vị ngữ miêu tả: 她的头发又黑又长。"
+          "correct": "咖啡里不要放糖。",
+          "explanation": "Chủ ngữ nơi chốn + Động từ + Tân ngữ: 咖啡里不要放糖。"
         },
         {
           "id": "W72",
           "num": 72,
           "words": [
-            "我",
-            "学会用",
-            "终于",
-            "筷子了"
+            "干净了",
+            "把",
+            "碗和筷子",
+            "洗",
+            "吗"
           ],
-          "correct": "我终于学会用筷子了。",
-          "explanation": "Trạng ngữ 终于: 我终于学会用筷子了。"
+          "correct": "把碗和筷子洗干净了吗？",
+          "explanation": "Câu chữ 把: 把碗和筷子洗干净了吗？"
         },
         {
           "id": "W73",
           "num": 73,
           "words": [
-            "他",
-            "打扫得",
-            "把",
-            "干干净净",
-            "教室"
+            "孩子",
+            "了",
+            "突然",
+            "发烧"
           ],
-          "correct": "他把教室打扫得干干净净。",
-          "explanation": "Câu chữ 把 + bổ ngữ tình thái: 他把教室打扫得干干净净。"
+          "correct": "孩子突然发烧了。",
+          "explanation": "Chủ ngữ + Trạng ngữ + Động từ + Trợ từ: 孩子突然发烧了。"
         },
         {
           "id": "W74",
           "num": 74,
           "words": [
-            "我",
-            "体育新闻",
-            "喜欢",
-            "不看"
+            "这个句子",
+            "游戏结束",
+            "表示",
+            "看到"
           ],
-          "correct": "我不喜欢看体育新闻。",
-          "explanation": "Phủ định 不喜欢: 我不喜欢看体育新闻。"
+          "correct": "看到这个句子表示游戏结束。",
+          "explanation": "Cụm chủ vị làm chủ ngữ: 看到这个句子表示游戏结束。"
         },
         {
           "id": "W75",
           "num": 75,
           "words": [
-            "校长对",
-            "非常",
-            "你的回答",
+            "她",
+            "很",
+            "这条绿裤子",
+            "对",
             "满意"
           ],
-          "correct": "校长对你的回答非常满意。",
-          "explanation": "Cấu trúc 对...满意: 校长对你的回答非常满意。"
+          "correct": "她对这条绿裤子很满意。",
+          "explanation": "Cấu trúc 对...满意: 她对这条绿裤子很满意。"
         }
       ]
     },
@@ -2947,56 +2922,54 @@ const MASTER_DATA = {
         {
           "id": "W76",
           "num": 76,
-          "before": "你觉得学（ ",
-          "pinyin": "Zhōng",
-          "after": " ）文难不难？",
-          "correct": "中",
-          "explanation": "中文 (Zhōngwén - tiếng Trung) -> Điền chữ 中."
+          "before": "相信我，面包会有的，牛奶（ ",
+          "pinyin": "yě",
+          "after": " ）会有的。",
+          "correct": "也",
+          "explanation": "牛奶也会有的 -> Chữ 也 (yě)."
         },
         {
           "id": "W77",
           "num": 77,
-          "before": "春天（ ",
-          "pinyin": "lái",
-          "after": " ）了，街道两边的草都绿了。",
-          "correct": "来",
-          "explanation": "春天来了 (chūntiān lái le - mùa xuân đến rồi) -> Điền chữ 来."
+          "before": "每个国家都有自己的节（ ",
+          "pinyin": "rì",
+          "after": " ）、自己的文化。",
+          "correct": "日",
+          "explanation": "节日 (ngày lễ) -> Chữ 日 (rì)."
         },
         {
           "id": "W78",
           "num": 78,
-          "before": "再见，有事可以给我打电话或者发（ ",
-          "pinyin": "diàn",
-          "after": " ）子邮件。",
-          "correct": "电",
-          "explanation": "电子邮件 (diànzǐ yóujiàn - email) -> Điền chữ 电."
+          "before": "请用铅笔把姓名写（ ",
+          "pinyin": "zài",
+          "after": " ）照片后面。",
+          "correct": "在",
+          "explanation": "写在照片后面 -> Chữ 在 (zài)."
         },
         {
           "id": "W79",
           "num": 79,
-          "before": "要想有一口（ ",
-          "pinyin": "hǎo",
-          "after": " ）牙，就要每天认真刷牙。",
-          "correct": "好",
-          "explanation": "一口好牙 (yī kǒu hǎo yá - một hàm răng tốt/chắc khỏe) -> Điền chữ 好."
+          "before": "要学好画画儿，第一，要老师教得好；第二，必须（ ",
+          "pinyin": "duō",
+          "after": " ）练习。",
+          "correct": "多",
+          "explanation": "必须多练习 -> Chữ 多 (duō)."
         },
         {
           "id": "W80",
           "num": 80,
-          "before": "雪下得这么大，不（ ",
-          "pinyin": "zhī",
-          "after": " ）道会不会影响飞机起飞。",
-          "correct": "知",
-          "explanation": "不知道 (bù zhīdào - không biết) -> Điền chữ 知."
+          "before": "我想请您（ ",
+          "pinyin": "wèi",
+          "after": " ）我写介绍信。",
+          "correct": "为",
+          "explanation": "为我写介绍信 -> Chữ 为 (wèi)."
         }
       ]
     }
   }
 };
 
-// Active working data that can be shuffled
-
-const SVG_ASSETS = {"img_a": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"20\" y=\"110\" width=\"200\" height=\"50\" fill=\"#176b63\" opacity=\"0.15\" rx=\"6\"/><rect x=\"35\" y=\"90\" width=\"100\" height=\"40\" fill=\"#fff\" stroke=\"#176b63\" stroke-width=\"2\" rx=\"4\"/><path d=\"M75 90 Q75 60 95 60 Q115 60 115 85\" fill=\"none\" stroke=\"#607d8b\" stroke-width=\"5\" stroke-linecap=\"round\"/><circle cx=\"115\" cy=\"88\" r=\"4\" fill=\"#607d8b\"/><ellipse cx=\"140\" cy=\"80\" rx=\"28\" ry=\"40\" fill=\"#ffe0b2\"/><path d=\"M120 70 Q140 120 160 70\" fill=\"#176b63\"/><circle cx=\"140\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M125 45 Q140 30 155 45\" fill=\"#5d4037\" stroke=\"#5d4037\" stroke-width=\"4\"/><ellipse cx=\"65\" cy=\"115\" rx=\"20\" ry=\"8\" fill=\"#e0f2fe\" stroke=\"#0284c7\" stroke-width=\"2\"/><ellipse cx=\"75\" cy=\"110\" rx=\"18\" ry=\"7\" fill=\"#fff\" stroke=\"#0284c7\" stroke-width=\"2\"/><circle cx=\"85\" cy=\"98\" r=\"5\" fill=\"#bae6fd\" opacity=\"0.8\"/><circle cx=\"60\" cy=\"102\" r=\"7\" fill=\"#bae6fd\" opacity=\"0.8\"/><circle cx=\"95\" cy=\"108\" r=\"4\" fill=\"#bae6fd\" opacity=\"0.8\"/></svg>", "img_b": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"22\" fill=\"#ffcc80\"/><path d=\"M100 45 Q120 25 140 45 Q145 70 95 70\" fill=\"#4a2e18\"/><path d=\"M95 75 Q120 120 145 75\" fill=\"#374151\"/><path d=\"M85 105 C85 90 155 90 155 105 L165 155 C165 165 75 165 75 155 Z\" fill=\"#b45309\" stroke=\"#78350f\" stroke-width=\"2\"/><path d=\"M100 100 Q120 75 140 100\" fill=\"none\" stroke=\"#78350f\" stroke-width=\"4\"/><path d=\"M105 75 L115 110\" stroke=\"#ffcc80\" stroke-width=\"8\" stroke-linecap=\"round\"/><rect x=\"110\" y=\"115\" width=\"30\" height=\"22\" rx=\"4\" fill=\"#0f172a\"/><circle cx=\"125\" cy=\"126\" r=\"6\" fill=\"#38bdf8\"/></svg>", "img_c": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"30\" y=\"125\" width=\"180\" height=\"14\" fill=\"#8d6e63\" rx=\"3\"/><rect x=\"50\" y=\"139\" width=\"10\" height=\"30\" fill=\"#5d4037\"/><rect x=\"180\" y=\"139\" width=\"10\" height=\"30\" fill=\"#5d4037\"/><circle cx=\"85\" cy=\"65\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M70 85 L100 85 L95 125 L75 125 Z\" fill=\"#0284c7\"/><circle cx=\"150\" cy=\"60\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M135 80 L165 80 L160 125 L140 125 Z\" fill=\"#ea580c\"/><circle cx=\"190\" cy=\"148\" r=\"14\" fill=\"#fff\" stroke=\"#1e293b\" stroke-width=\"2\"/><polygon points=\"190,140 196,145 194,152 186,152 184,145\" fill=\"#1e293b\"/><rect x=\"105\" y=\"85\" width=\"8\" height=\"20\" rx=\"3\" fill=\"#38bdf8\"/></svg>", "img_d": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"25\" y=\"120\" width=\"190\" height=\"45\" fill=\"#cbd5e1\" rx=\"4\"/><rect x=\"40\" y=\"85\" width=\"45\" height=\"35\" rx=\"3\" fill=\"#1e293b\"/><rect x=\"58\" y=\"120\" width=\"10\" height=\"10\" fill=\"#94a3b8\"/><circle cx=\"130\" cy=\"55\" r=\"20\" fill=\"#ffcc80\"/><path d=\"M110 50 Q130 30 150 50 Q155 75 110 75\" fill=\"#1e293b\"/><path d=\"M105 80 L155 80 L160 120 L100 120 Z\" fill=\"#176b63\"/><path d=\"M142 55 Q155 70 148 85\" stroke=\"#ef4444\" stroke-width=\"6\" stroke-linecap=\"round\" fill=\"none\"/><rect x=\"150\" y=\"105\" width=\"30\" height=\"15\" rx=\"3\" fill=\"#64748b\"/></svg>", "img_e": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"95\" cy=\"55\" r=\"17\" fill=\"#ffcc80\"/><path d=\"M80 50 Q95 32 110 50\" fill=\"#1e293b\"/><rect x=\"80\" y=\"75\" width=\"32\" height=\"65\" fill=\"#1e293b\" rx=\"4\"/><polygon points=\"96,80 92,92 100,92\" fill=\"#fff\"/><circle cx=\"145\" cy=\"60\" r=\"17\" fill=\"#ffcc80\"/><path d=\"M130 55 Q145 35 160 55 Q165 80 125 75\" fill=\"#78350f\"/><path d=\"M125 80 Q145 75 165 80 L175 145 L115 145 Z\" fill=\"#fff\" stroke=\"#cbd5e1\"/><ellipse cx=\"145\" cy=\"40\" rx=\"18\" ry=\"8\" fill=\"#f1f5f9\" opacity=\"0.6\"/><circle cx=\"120\" cy=\"100\" r=\"10\" fill=\"#ec4899\"/><circle cx=\"115\" cy=\"96\" r=\"6\" fill=\"#f43f5e\"/><circle cx=\"125\" cy=\"98\" r=\"5\" fill=\"#fb7185\"/></svg>", "img_f": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"85\" cy=\"55\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M70 50 Q85 32 100 50\" fill=\"#475569\"/><rect x=\"68\" y=\"75\" width=\"34\" height=\"65\" fill=\"#fff\" stroke=\"#cbd5e1\" stroke-width=\"2\" rx=\"4\"/><path d=\"M78 85 Q85 105 92 85\" fill=\"none\" stroke=\"#0284c7\" stroke-width=\"3\"/><circle cx=\"150\" cy=\"58\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M135 52 Q150 35 165 52\" fill=\"#1e293b\"/><rect x=\"133\" y=\"78\" width=\"34\" height=\"62\" fill=\"#fff\" stroke=\"#cbd5e1\" stroke-width=\"2\" rx=\"4\"/><rect x=\"105\" y=\"90\" width=\"22\" height=\"30\" rx=\"2\" fill=\"#d97706\"/><rect x=\"108\" y=\"95\" width=\"16\" height=\"20\" rx=\"1\" fill=\"#fff\"/><line x1=\"110\" y1=\"100\" x2=\"122\" y2=\"100\" stroke=\"#94a3b8\" stroke-width=\"2\"/><line x1=\"110\" y1=\"105\" x2=\"122\" y2=\"105\" stroke=\"#94a3b8\" stroke-width=\"2\"/></svg>", "img_6a": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"25\" y=\"115\" width=\"190\" height=\"45\" fill=\"#cbd5e1\" rx=\"4\"/><circle cx=\"80\" cy=\"55\" r=\"17\" fill=\"#ffcc80\"/><path d=\"M65 50 Q80 32 95 50\" fill=\"#334155\"/><rect x=\"65\" y=\"75\" width=\"30\" height=\"45\" fill=\"#176b63\" rx=\"3\"/><circle cx=\"155\" cy=\"55\" r=\"17\" fill=\"#ffcc80\"/><path d=\"M140 50 Q155 30 170 50 Q175 75 135 70\" fill=\"#475569\"/><rect x=\"140\" y=\"75\" width=\"30\" height=\"45\" fill=\"#d97706\" rx=\"3\"/><rect x=\"85\" y=\"95\" width=\"70\" height=\"40\" rx=\"3\" fill=\"#1e293b\"/><rect x=\"88\" y=\"98\" width=\"64\" height=\"30\" rx=\"2\" fill=\"#38bdf8\"/><polygon points=\"98,110 110,118 125,105 140,115\" fill=\"#bae6fd\"/></svg>", "img_6b": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"95\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M80 45 Q95 30 110 45\" fill=\"#1e293b\"/><rect x=\"80\" y=\"70\" width=\"30\" height=\"65\" fill=\"#334155\" rx=\"3\"/><rect x=\"90\" y=\"135\" width=\"8\" height=\"30\" fill=\"#1e293b\"/><rect x=\"100\" y=\"135\" width=\"8\" height=\"30\" fill=\"#1e293b\"/><rect x=\"105\" y=\"55\" width=\"7\" height=\"14\" rx=\"2\" fill=\"#0f172a\"/><rect x=\"145\" y=\"85\" width=\"35\" height=\"55\" rx=\"5\" fill=\"#b45309\"/><line x1=\"162\" y1=\"85\" x2=\"162\" y2=\"45\" stroke=\"#78350f\" stroke-width=\"4\"/><circle cx=\"152\" cy=\"144\" r=\"5\" fill=\"#1e293b\"/><circle cx=\"172\" cy=\"144\" r=\"5\" fill=\"#1e293b\"/><line x1=\"110\" y1=\"80\" x2=\"162\" y2=\"45\" stroke=\"#78350f\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg>", "img_6c": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"85\" y=\"70\" width=\"70\" height=\"60\" rx=\"6\" fill=\"#ef4444\"/><rect x=\"80\" y=\"62\" width=\"80\" height=\"14\" rx=\"3\" fill=\"#dc2626\"/><rect x=\"115\" y=\"62\" width=\"10\" height=\"68\" fill=\"#fde047\"/><rect x=\"85\" y=\"95\" width=\"70\" height=\"10\" fill=\"#fde047\"/><path d=\"M120 62 Q105 40 115 45 Q120 55 120 62\" fill=\"#fde047\"/><path d=\"M120 62 Q135 40 125 45 Q120 55 120 62\" fill=\"#fde047\"/><path d=\"M35 110 Q65 100 85 105\" stroke=\"#ffcc80\" stroke-width=\"12\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M205 110 Q175 100 155 105\" stroke=\"#ffcc80\" stroke-width=\"12\" stroke-linecap=\"round\" fill=\"none\"/></svg>", "img_6d": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"40\" y=\"30\" width=\"110\" height=\"75\" rx=\"5\" fill=\"#1e293b\"/><rect x=\"45\" y=\"35\" width=\"100\" height=\"65\" rx=\"3\" fill=\"#22c55e\"/><circle cx=\"95\" cy=\"67\" r=\"14\" fill=\"#fff\" stroke=\"#000\"/><polygon points=\"95,60 100,64 98,71 92,71 90,64\" fill=\"#000\"/><rect x=\"88\" y=\"105\" width=\"14\" height=\"20\" fill=\"#475569\"/><rect x=\"75\" y=\"125\" width=\"40\" height=\"8\" rx=\"2\" fill=\"#334155\"/><circle cx=\"180\" cy=\"95\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M165 90 Q180 75 195 90\" fill=\"#1e293b\"/><rect x=\"165\" y=\"115\" width=\"30\" height=\"40\" fill=\"#0284c7\" rx=\"4\"/></svg>", "img_6e": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"40\" y=\"110\" width=\"160\" height=\"45\" fill=\"#d9b86c\" rx=\"8\"/><rect x=\"30\" y=\"90\" width=\"25\" height=\"50\" fill=\"#b5944d\" rx=\"6\"/><rect x=\"185\" y=\"90\" width=\"25\" height=\"50\" fill=\"#b5944d\" rx=\"6\"/><circle cx=\"85\" cy=\"65\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M70 60 Q85 40 100 60 Q105 75 75 75\" fill=\"#991b1b\"/><rect x=\"72\" y=\"83\" width=\"26\" height=\"35\" fill=\"#f43f5e\" rx=\"3\"/><circle cx=\"145\" cy=\"70\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M130 65 Q145 45 160 65 Q165 80 135 80\" fill=\"#1e293b\"/><rect x=\"132\" y=\"88\" width=\"26\" height=\"32\" fill=\"#8b5cf6\" rx=\"3\"/></svg>"};
+const SVG_ASSETS = {"img_a": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef2f2\" rx=\"10\"/><rect x=\"40\" y=\"25\" width=\"45\" height=\"130\" fill=\"#cbd5e1\" rx=\"4\" stroke=\"#94a3b8\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M135 45 Q150 25 165 45 Q170 70 130 70\" fill=\"#1e293b\"/><rect x=\"135\" y=\"70\" width=\"30\" height=\"35\" rx=\"3\" fill=\"#ec4899\"/><polygon points=\"135,105 165,105 172,125 128,125\" fill=\"#db2777\"/><rect x=\"140\" y=\"125\" width=\"8\" height=\"40\" fill=\"#ffcc80\"/><rect x=\"152\" y=\"125\" width=\"8\" height=\"40\" fill=\"#ffcc80\"/><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#64748b\" text-anchor=\"middle\">试穿短裙</text></svg>", "img_b": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f0fdf4\" rx=\"10\"/><circle cx=\"190\" cy=\"50\" r=\"22\" fill=\"#fef08a\"/><path d=\"M0 140 Q60 110 120 135 T240 125 L240 180 L0 180 Z\" fill=\"#86efac\"/><circle cx=\"85\" cy=\"70\" r=\"15\" fill=\"#ffcc80\"/><rect x=\"75\" y=\"88\" width=\"20\" height=\"45\" fill=\"#0284c7\" rx=\"3\"/><circle cx=\"130\" cy=\"75\" r=\"14\" fill=\"#ffcc80\"/><rect x=\"122\" y=\"92\" width=\"18\" height=\"40\" fill=\"#f43f5e\" rx=\"3\"/><path d=\"M40 145 Q45 130 50 145\" stroke=\"#15803d\" stroke-width=\"3\"/><path d=\"M170 140 Q175 125 180 140\" stroke=\"#15803d\" stroke-width=\"3\"/><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#166534\" text-anchor=\"middle\">小花园散步</text></svg>", "img_c": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f8fafc\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M102 45 Q120 28 138 45\" fill=\"#475569\"/><rect x=\"100\" y=\"70\" width=\"40\" height=\"50\" fill=\"#1e293b\" rx=\"4\"/><rect x=\"80\" y=\"110\" width=\"80\" height=\"45\" rx=\"5\" fill=\"#92400e\"/><rect x=\"105\" y=\"100\" width=\"30\" height=\"25\" fill=\"#38bdf8\" rx=\"2\"/><text x=\"120\" y=\"118\" font-size=\"10\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">护照</text><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#64748b\" text-anchor=\"middle\">包里找护照</text></svg>", "img_d": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"25\" y=\"120\" width=\"190\" height=\"45\" fill=\"#cbd5e1\" rx=\"4\"/><circle cx=\"130\" cy=\"55\" r=\"20\" fill=\"#ffcc80\"/><path d=\"M110 50 Q130 30 150 50 Q155 75 110 75\" fill=\"#1e293b\"/><path d=\"M105 80 L155 80 L160 120 L100 120 Z\" fill=\"#176b63\"/><path d=\"M142 55 Q155 70 148 85\" stroke=\"#ef4444\" stroke-width=\"6\" stroke-linecap=\"round\" fill=\"none\"/><rect x=\"150\" y=\"105\" width=\"30\" height=\"15\" rx=\"3\" fill=\"#64748b\"/><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#64748b\" text-anchor=\"middle\">接电话</text></svg>", "img_e": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fffbeb\" rx=\"10\"/><rect x=\"30\" y=\"60\" width=\"70\" height=\"105\" fill=\"#e2e8f0\" stroke=\"#cbd5e1\" stroke-width=\"2\"/><rect x=\"35\" y=\"65\" width=\"60\" height=\"35\" fill=\"#b45309\" rx=\"3\"/><text x=\"65\" y=\"87\" font-size=\"11\" fill=\"#fff\" text-anchor=\"middle\">茶杯</text><circle cx=\"160\" cy=\"65\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"145\" y=\"85\" width=\"30\" height=\"60\" fill=\"#2563eb\" rx=\"4\"/><path d=\"M145 95 L100 80\" stroke=\"#2563eb\" stroke-width=\"6\" stroke-linecap=\"round\"/><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#b45309\" text-anchor=\"middle\">搬箱子放上面</text></svg>", "img_f": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fdf2f8\" rx=\"10\"/><rect x=\"40\" y=\"130\" width=\"160\" height=\"35\" fill=\"#cbd5e1\" rx=\"4\"/><rect x=\"70\" y=\"70\" width=\"22\" height=\"60\" fill=\"#831843\" rx=\"3\"/><path d=\"M76 50 L86 50 L86 70 L76 70 Z\" fill=\"#9d174d\"/><path d=\"M140 95 Q140 120 155 120 Q170 120 170 95 Z\" fill=\"#e2e8f0\" stroke=\"#94a3b8\" stroke-width=\"2\"/><line x1=\"155\" y1=\"120\" x2=\"155\" y2=\"135\" stroke=\"#94a3b8\" stroke-width=\"3\"/><rect x=\"145\" y=\"100\" width=\"8\" height=\"8\" fill=\"#bae6fd\" rx=\"1\"/><rect x=\"156\" y=\"103\" width=\"8\" height=\"8\" fill=\"#bae6fd\" rx=\"1\"/><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#be185d\" text-anchor=\"middle\">红酒加冰块</text></svg>", "img_6a": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f1f5f9\" rx=\"10\"/><circle cx=\"85\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"72\" y=\"70\" width=\"26\" height=\"65\" fill=\"#047857\" rx=\"3\"/><rect x=\"120\" y=\"65\" width=\"55\" height=\"80\" rx=\"8\" fill=\"#dc2626\"/><rect x=\"135\" y=\"45\" width=\"25\" height=\"20\" fill=\"none\" stroke=\"#475569\" stroke-width=\"4\" rx=\"2\"/><circle cx=\"132\" cy=\"148\" r=\"6\" fill=\"#1e293b\"/><circle cx=\"162\" cy=\"148\" r=\"6\" fill=\"#1e293b\"/><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#475569\" text-anchor=\"middle\">大行李箱</text></svg>", "img_6b": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fefce8\" rx=\"10\"/><rect x=\"40\" y=\"125\" width=\"160\" height=\"40\" fill=\"#e2e8f0\" rx=\"4\"/><rect x=\"85\" y=\"90\" width=\"70\" height=\"35\" rx=\"5\" fill=\"#fbcfe8\"/><ellipse cx=\"120\" cy=\"90\" rx=\"35\" ry=\"10\" fill=\"#f472b6\"/><line x1=\"120\" y1=\"90\" x2=\"120\" y2=\"70\" stroke=\"#f59e0b\" stroke-width=\"3\"/><circle cx=\"120\" cy=\"65\" r=\"5\" fill=\"#ef4444\"/><circle cx=\"60\" cy=\"60\" r=\"16\" fill=\"#ffcc80\"/><circle cx=\"180\" cy=\"60\" r=\"16\" fill=\"#ffcc80\"/><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#ca8a04\" text-anchor=\"middle\">生日蛋糕</text></svg>", "img_6c": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f8fafc\" rx=\"10\"/><circle cx=\"75\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"62\" y=\"70\" width=\"26\" height=\"65\" fill=\"#1e293b\" rx=\"3\"/><circle cx=\"165\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"152\" y=\"70\" width=\"26\" height=\"65\" fill=\"#0369a1\" rx=\"3\"/><rect x=\"95\" y=\"85\" width=\"50\" height=\"25\" rx=\"4\" fill=\"#fde047\"/><text x=\"120\" y=\"102\" font-size=\"11\" fill=\"#713f12\" text-anchor=\"middle\">🤝 合作</text><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#64748b\" text-anchor=\"middle\">商务握手</text></svg>", "img_6d": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f0f9ff\" rx=\"10\"/><rect x=\"30\" y=\"120\" width=\"180\" height=\"45\" fill=\"#cbd5e1\" rx=\"4\"/><circle cx=\"120\" cy=\"45\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M102 40 Q120 20 138 40\" fill=\"#0f172a\"/><rect x=\"100\" y=\"65\" width=\"40\" height=\"55\" fill=\"#4338ca\" rx=\"3\"/><rect x=\"80\" y=\"95\" width=\"80\" height=\"45\" rx=\"4\" fill=\"#0284c7\"/><rect x=\"85\" y=\"100\" width=\"70\" height=\"30\" fill=\"#e0f2fe\" rx=\"2\"/><text x=\"120\" y=\"120\" font-size=\"11\" fill=\"#0369a1\" text-anchor=\"middle\">✉ Email</text><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#1e40af\" text-anchor=\"middle\">查看邮件</text></svg>", "img_6e": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fdf4ff\" rx=\"10\"/><circle cx=\"80\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"68\" y=\"70\" width=\"24\" height=\"45\" fill=\"#a855f7\" rx=\"3\"/><circle cx=\"160\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"148\" y=\"70\" width=\"24\" height=\"45\" fill=\"#ec4899\" rx=\"3\"/><path d=\"M65 115 Q80 145 95 115\" stroke=\"#7e22ce\" stroke-width=\"4\" fill=\"none\"/><path d=\"M145 115 Q160 145 175 115\" stroke=\"#be185d\" stroke-width=\"4\" fill=\"none\"/><text x=\"120\" y=\"170\" font-size=\"12\" fill=\"#7e22ce\" text-anchor=\"middle\">准备跳舞</text></svg>"};
 MASTER_DATA.listening.part1.set1.images.forEach(img => { img.svg = SVG_ASSETS[img.id] || ""; });
 MASTER_DATA.listening.part1.set2.images.forEach(img => { img.svg = SVG_ASSETS[img.id] || ""; });
 
@@ -3084,47 +3057,60 @@ function randomizeExamData() {
 function getShortImgLabel(desc) {
   if (!desc) return "Hình ảnh";
   var map = {
+    // De 6
+    'thử váy': 'Thử váy mới', 'váy ngắn': 'Thử váy mới', '穿裙子': 'Thử váy mới',
+    'hoa viên': 'Dạo hoa viên', 'vườn hoa': 'Dạo hoa viên', '小花园': 'Dạo hoa viên',
+    'hộ chiếu': 'Tìm hộ chiếu', '找护照': 'Tìm hộ chiếu',
+    'chuyển nhà': 'Dịch vụ dọn nhà', 'hộp trà': 'Cốc chén trong hộp', '茶杯': 'Cốc chén trong hộp',
+    'rượu vang': 'Rót rượu vang', '红酒': 'Rót rượu vang',
+    'vali': 'Vali du lịch', 'hành lý': 'Vali du lịch', '行李箱': 'Vali du lịch',
+    'sinh nhật bố': 'Bánh sinh nhật', 'bố cùng ăn bánh': 'Bánh sinh nhật',
+    'bắt tay': 'Bắt tay hợp tác', '握手': 'Bắt tay hợp tác',
+    'email': 'Đọc email', 'thư điện tử': 'Đọc email', '电子邮': 'Đọc email',
+    'nhảy': 'Biểu diễn nhảy', '跳舞': 'Biểu diễn nhảy',
+
+    // De 7
+    'quần tây': 'Quần tây', '裤子': 'Quần tây',
+    'đau đầu': 'Đau đầu xoa trán', '头疼': 'Đau đầu xoa trán',
+    'chồng báo': 'Chồng báo cũ', 'báo cũ': 'Chồng báo cũ', '旧报纸': 'Chồng báo cũ',
+    'du lịch miền bắc': 'Cẩm nang du lịch', '北方旅游': 'Cẩm nang du lịch',
+    'cầu hôn': 'Cầu hôn', '结婚': 'Cầu hôn',
+    'vừa đi vừa đọc': 'Vừa đi vừa đọc', '边走边看': 'Vừa đi vừa đọc',
+    'đánh răng': 'Đánh răng', '刷牙': 'Đánh răng',
+    'chụp ảnh': 'Chụp ảnh trên cỏ', '照相': 'Chụp ảnh trên cỏ', '草地上': 'Chụp ảnh trên cỏ',
+    'giải quyết': 'Suy nghĩ giải quyết', '想办法': 'Suy nghĩ giải quyết',
+    'biểu diễn': 'Chuẩn bị biểu diễn', '表演': 'Chuẩn bị biểu diễn',
+
+    // De 8
+    'vuốt tóc': 'Vuốt tóc dài', 'tóc dài': 'Vuốt tóc dài', '头发': 'Vuốt tóc dài',
+    'tiền lẻ': 'Đếm tiền lẻ', '三十五元': 'Đếm tiền lẻ', 'tiền': 'Đếm tiền lẻ',
+    'mua đồ ăn': 'Túi đồ mua sắm', 'đi chợ': 'Túi đồ mua sắm', '羊肉': 'Túi đồ mua sắm',
+    'thay bóng đèn': 'Thay bóng đèn', '换灯': 'Thay bóng đèn',
+    'bàn chân': 'Đôi bàn chân nhỏ', 'trẻ sơ sinh': 'Đôi bàn chân nhỏ', '小脚': 'Đôi bàn chân nhỏ',
+    'chậu cỏ': 'Cây cỏ trong phòng', 'nhà vệ sinh': 'Cây cỏ trong phòng', '草': 'Cây cỏ trong phòng',
+    'giày trẻ em': 'Giày hình con thú', 'hình thú': 'Giày hình con thú', '小动物': 'Giày hình con thú',
+    'hộp quà': 'Hộp quà sinh nhật', 'mở hộp quà': 'Hộp quà sinh nhật', '礼物': 'Hộp quà sinh nhật',
+    'máy tính': 'Mạng internet hỏng', 'không vào được mạng': 'Mạng internet hỏng', '不能上网': 'Mạng internet hỏng',
+
+    // De 1 - 5 common
     'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ',
     'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp',
-    'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày',
-    'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch',
-    'em bé khóc': 'Dỗ em bé khóc', 'tra từ điển': 'Tra từ điển điện tử', 'từ điển': 'Tra từ điển',
+    'cô gái ngồi': 'Cô gái chọn giày', 'giày': 'Chọn giày',
+    'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch',
+    'em bé khóc': 'Dỗ em bé khóc', 'tra từ điển': 'Tra từ điển', 'từ điển': 'Tra từ điển',
     'nấu ăn': 'Nấu ăn trong bếp', 'bếp': 'Nấu ăn trong bếp',
-    'giải quyết': 'Thảo luận công việc', 'máy tính': 'Thảo luận công việc',
-    'điện thoại': 'Trực điện thoại', 'nghe điện thoại': 'Trực điện thoại',
-    'chuyển nhà': 'Dịch vụ dọn nhà', 'bánh mì': 'Mua bánh mì', 'thịt bò': 'Nấu thịt bò',
-    'xem phim': 'Cùng xem phim', 'đau chân': 'Chạy bộ đau chân', 'văn phòng': 'Lên văn phòng',
-    'trời mưa': 'Trời mưa không ô', 'taxi': 'Đi xe taxi', 'giảm cân': 'Chạy bộ giảm cân',
-    'sơ mi': 'Chọn áo sơ mi', 'trà hoa': 'Uống trà hoa', 'táo': 'Ăn táo tươi',
-    'sân bay': 'Gọi điện sân bay', 'quần': 'Tặng quần cho bố',
-    'dưa hấu': 'Dưa hấu tươi', 'bánh ngọt': 'Ăn bánh ngọt', 'đá bóng': 'Xem đá bóng',
-    'nghỉ ngơi': 'Đứng nghỉ ngơi', 'ảnh': 'Ngắm ảnh kỷ niệm', 'váy': 'Thử váy mới',
-    'hoa': 'Hoa đào nở', 'kính': 'Đeo kính nhìn rõ', 'xe hỏng': 'Xe ô tô hỏng',
-    'con nhỏ': 'Trông con nhỏ', 'leo núi': 'Leo núi dã ngoại', 'ngủ': 'Nằm ngủ thêm',
-    'đọc báo': 'Đọc báo đợi xe', 'ngân hàng': 'Giao dịch ngân hàng', 'gấu trúc': 'Gấu trúc đáng yêu',
-    'hỏi đường': 'Hỏi đường đi bộ', 'sợ cao': 'Tầng 15 sợ cao', 'nhận cúp': 'Nhận cúp giải nhất',
-    'lớp': 'Ảnh chụp cả lớp', 'thâm quầng': 'Mắt thâm quầng', 'cô giáo': 'Cô giáo giảng bài',
-    'yên tĩnh': 'Tìm chỗ yên tĩnh', 'đổi xe': 'Đổi xe đạp mới', 'đũa': 'Lấy đôi đũa',
-    'thể thao': 'Đại hội thể thao', 'bình hoa': 'Bình hoa đẹp', 'máy bay': 'Máy bay cất cánh',
-    'vali': 'Xếp vali hành lý', 'tắm nắng': 'Đau chân tắm nắng', 'họp': 'Họp muộn vội vã',
-    'sinh nhật': 'Tặng quà sinh nhật', 'phỏng vấn': 'Phỏng vấn công ty', 'cún': 'Cún cưng chạy lại',
-    'thực đơn': 'Xem thực đơn', 'kể chuyện': 'Kể chuyện cho bà', 'gió': 'Gió to bay ô',
-    'tủ lạnh': 'Tủ lạnh hết đồ', 'rửa bát': 'Rửa bát đĩa cốc', 'mua sắm': 'Mua sắm trung tâm',
-    'bóng rổ': 'Chơi bóng rổ', 'thịt cừu': 'Thịt cừu tươi ngon', 'răng': 'Bác sĩ khám răng',
-    'tóc dài': 'Cô gái tóc dài', 'đau đầu': 'Đau đầu đi khám', 'phong cảnh': 'Phong cảnh non nước',
-    'nghỉ': 'Đơn xin nghỉ', 'hàng xóm': 'Hàng xóm chào hỏi', 'uống nước': 'Uống nước nghỉ ngơi',
-    'tuyết': 'Mùa đông tuyết rơi', 'vườn thú': 'Vườn thú động vật', 'phòng tranh': 'Phòng tranh nghệ thuật',
-    'tai': 'Bác sĩ khám tai', 'chim': 'Chim đỏ trên cành', 'rửa mặt': 'Rửa mặt sạch sẽ',
-    'ngựa': 'Cưỡi ngựa dạo chơi', 'mì': 'Bát mì nóng', 'cá': 'Cá tươi trong tủ', 'máy ảnh': 'Máy ảnh du lịch'
+    'điện thoại': 'Trực điện thoại', 'nghe điện thoại': 'Trực điện thoại'
   };
   var d = desc.toLowerCase();
   for (var k in map) {
-    if (d.indexOf(k) !== -1) return map[k];
+    if (d.indexOf(k.toLowerCase()) !== -1) return map[k];
   }
   var clean = desc.replace(/[\(（][^\)）]*[\)）]/g, '').trim();
   var words = clean.split(/\s+/);
-  return words.length > 4 ? words.slice(0, 3).join(' ') : clean;
+  return words.length > 3 ? words.slice(0, 3).join(' ') : clean;
 }
+
+function applyFontPreferences() {}
 
 function cleanRationale(exp) {
   if (!exp) return "";
@@ -3156,6 +3142,27 @@ function cleanRationale(exp) {
 
   res = res.replace(/(?:->|→)\s*$/, "").trim();
   res = res.replace(/\s+\./g, ".").trim();
+  return res;
+}
+
+function cleanAndFormatExplanation(origExp, newLetter, correctText) {
+  if (!origExp && !newLetter) return '';
+  let exp = origExp || '';
+  let rationale = exp
+    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
+    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
+    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
+    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
+    .trim();
+  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
+
+  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
+  if (correctText) {
+    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
+  }
+  if (rationale) {
+    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
+  }
   return res;
 }
 
@@ -3203,6 +3210,7 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
+      <div class="image-desc">${(img.desc || "").replace(/\s*\(.*?\)/g, "")}</div>
       <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
     `;
     imgGrid1.appendChild(card);
@@ -3269,6 +3277,7 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
+      <div class="image-desc">${(img.desc || "").replace(/\s*\(.*?\)/g, "")}</div>
       <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
     `;
     imgGrid2.appendChild(card);
@@ -4161,7 +4170,7 @@ function submitExam(autoSubmitted) {
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + (shortLabel ? " (" + shortLabel + ")" : "");
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.split(String.fromCharCode(10)).join('<br>')}</span></div>` +
         `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter} (${shortLabel})</div>` +
@@ -4195,7 +4204,7 @@ function submitExam(autoSubmitted) {
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4220,8 +4229,12 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
+    expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4246,8 +4259,12 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
+    expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4271,7 +4288,7 @@ function submitExam(autoSubmitted) {
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4286,7 +4303,7 @@ function submitExam(autoSubmitted) {
     const userAns = examState.answers[q.id] || "";
     const isCorrect = (normStr(userAns) === normStr(q.correct));
     if (isCorrect) correctW++;
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án chuẩn: <span class="chinese">${q.correct}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Cấu trúc ngữ pháp:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4301,7 +4318,7 @@ function submitExam(autoSubmitted) {
     const userAns = (examState.answers[q.id] || "").trim();
     const isCorrect = (userAns === q.correct.trim());
     if (isCorrect) correctW++;
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Chữ Hán đúng: <span class="chinese" style="font-size:1.2rem;">${q.correct}</span> (${q.pinyin})</div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích từ vựng:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4353,8 +4370,8 @@ function submitExam(autoSubmitted) {
 
   // Telemetry Object
   const telemetryData = {
-    examCode: "H31328",
-    examTitle: "HSK 3 - Đề 06 (H31328)",
+    examCode: "H31006",
+    examTitle: "HSK 3 - Đề 06 (H31006)",
     examLevel: "HSK3",
     studentName: studentInfo.name,
     studentClass: studentInfo.className,
@@ -4665,7 +4682,7 @@ const globalAudio = document.getElementById("globalAudioPlayer");
 function toggleMasterAudio() {
   const btn = document.getElementById("btnMasterAudio");
   if (!globalAudio.src) {
-    alert("Chưa có file âm thanh được nạp. Hãy chọn file H31328.mp3 bên cạnh, hoặc nhấp vào nút 'Nghe câu này' ở từng câu để nghe giọng đọc chuẩn.");
+    alert("Chưa có file âm thanh được nạp. Hãy chọn file H31006.mp3 bên cạnh, hoặc nhấp vào nút 'Nghe câu này' ở từng câu để nghe giọng đọc chuẩn.");
     return;
   }
   if (globalAudio.paused) {
@@ -4728,7 +4745,7 @@ function playQuestionAudio(timestamp, ttsDialogue) {
 
 function playTtsTwice(text) {
   if (!('speechSynthesis' in window)) {
-    alert("Trình duyệt của bạn không hỗ trợ tính năng đọc phát âm. Vui lòng nạp file H31328.mp3 ở thanh công cụ.");
+    alert("Trình duyệt của bạn không hỗ trợ tính năng đọc phát âm. Vui lòng nạp file H31006.mp3 ở thanh công cụ.");
     return;
   }
   window.speechSynthesis.cancel();
@@ -4787,7 +4804,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Audio auto-detect
-function applyFontPreferences() {}
 window.addEventListener("DOMContentLoaded", () => {
   applyFontPreferences();
   
@@ -4796,7 +4812,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (gAudio) {
     gAudio.addEventListener("canplaythrough", () => {
       if (ind) {
-        ind.innerHTML = "🟢 Đã tải audio gốc: H31328.mp3";
+        ind.innerHTML = "🟢 Đã tải audio gốc: H31006.mp3";
         ind.style.background = "#dcfce7";
         ind.style.color = "#15803d";
       }
@@ -4963,7 +4979,7 @@ updateProgress = function() {
   <div class="drawer-header">
     <div>
       <h3 style="font-size:1.15rem;font-weight:700;">📋 Bảng Trạng Thái Làm Bài</h3>
-      <small style="color:var(--gold-light);">HSK 3 - Mã đề H31328 (80 câu)</small>
+      <small style="color:var(--gold-light);">HSK 3 - Mã đề H31006 (80 câu)</small>
     </div>
     <button onclick="toggleExamNavigator()" style="background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;">✕</button>
   </div>

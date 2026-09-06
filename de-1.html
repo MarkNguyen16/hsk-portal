@@ -1620,6 +1620,8 @@ function doPost(e) {
 </div>
 
 <script>
+expDiv = null;
+
 /* --- CONFIG & DATA MODEL --- */
 const FIREBASE_DB_URL = "https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/";
 let DEFAULT_ACCESS_CODE = "HSK32026";
@@ -1662,32 +1664,32 @@ const MASTER_DATA = {
           {
             "id": "img_a",
             "label": "A",
-            "desc": "Hai đồng nghiệp xem máy tính thảo luận giải quyết vấn đề (解决问题)"
+            "desc": "Xem máy tính thảo luận"
           },
           {
             "id": "img_b",
             "label": "B",
-            "desc": "Nam nhân viên vội vã xem đồng hồ về văn phòng (看手表回办公室)"
+            "desc": "Xem đồng hồ"
           },
           {
             "id": "img_c",
             "label": "C",
-            "desc": "Cô gái ngồi phân vân chọn giày đi dự đám cưới (想穿哪双鞋)"
+            "desc": "Phân vân chọn giày"
           },
           {
             "id": "img_d",
             "label": "D",
-            "desc": "Ví dụ mẫu: Nữ nhân viên nghe điện thoại bàn (接电话)"
+            "desc": "Nghe điện thoại"
           },
           {
             "id": "img_e",
             "label": "E",
-            "desc": "Chàng trai đi xe đạp đi làm rèn luyện sức khỏe (骑自行车上下班)"
+            "desc": "Đi xe đạp"
           },
           {
             "id": "img_f",
             "label": "F",
-            "desc": "Bác sĩ dặn dò bệnh nhân không cần uống thuốc (医生看病)"
+            "desc": "Bác sĩ khám bệnh"
           }
         ],
         "questions": [
@@ -1738,27 +1740,27 @@ const MASTER_DATA = {
           {
             "id": "img_6a",
             "label": "A",
-            "desc": "Đồ dùng đi du lịch: kính mắt, mũ, bản đồ, bia (眼镜、帽子、地图、啤酒)"
+            "desc": "Đồ dùng du lịch"
           },
           {
             "id": "img_6b",
             "label": "B",
-            "desc": "Em bé khóc, bố mẹ dỗ cho kẹo hoặc chơi trò chơi (小孩子哭)"
+            "desc": "Em bé khóc"
           },
           {
             "id": "img_6c",
             "label": "C",
-            "desc": "Hai mẹ con tra từ điển điện tử làm bài tập (电子词典做练习)"
+            "desc": "Tra từ điển điện tử"
           },
           {
             "id": "img_6d",
             "label": "D",
-            "desc": "Người đàn ông vui vẻ nấu ăn trong bếp (愿意做饭)"
+            "desc": "Nấu ăn trong bếp"
           },
           {
             "id": "img_6e",
             "label": "E",
-            "desc": "Chồng cầm điều khiển tivi, vợ ngồi đọc sách (读我的书)"
+            "desc": "Xem tivi và đọc sách"
           }
         ],
         "questions": [
@@ -3054,46 +3056,57 @@ function randomizeExamData() {
 function getShortImgLabel(desc) {
   if (!desc) return "Hình ảnh";
   var map = {
+    // De 6
+    'thử váy': 'Thử váy mới', 'váy ngắn': 'Thử váy mới', '穿裙子': 'Thử váy mới',
+    'hoa viên': 'Dạo hoa viên', 'vườn hoa': 'Dạo hoa viên', '小花园': 'Dạo hoa viên',
+    'hộ chiếu': 'Tìm hộ chiếu', '找护照': 'Tìm hộ chiếu',
+    'chuyển nhà': 'Dịch vụ dọn nhà', 'hộp trà': 'Cốc chén trong hộp', '茶杯': 'Cốc chén trong hộp',
+    'rượu vang': 'Rót rượu vang', '红酒': 'Rót rượu vang',
+    'vali': 'Vali du lịch', 'hành lý': 'Vali du lịch', '行李箱': 'Vali du lịch',
+    'sinh nhật bố': 'Bánh sinh nhật', 'bố cùng ăn bánh': 'Bánh sinh nhật',
+    'bắt tay': 'Bắt tay hợp tác', '握手': 'Bắt tay hợp tác',
+    'email': 'Đọc email', 'thư điện tử': 'Đọc email', '电子邮': 'Đọc email',
+    'nhảy': 'Biểu diễn nhảy', '跳舞': 'Biểu diễn nhảy',
+
+    // De 7
+    'quần tây': 'Quần tây', '裤子': 'Quần tây',
+    'đau đầu': 'Đau đầu xoa trán', '头疼': 'Đau đầu xoa trán',
+    'chồng báo': 'Chồng báo cũ', 'báo cũ': 'Chồng báo cũ', '旧报纸': 'Chồng báo cũ',
+    'du lịch miền bắc': 'Cẩm nang du lịch', '北方旅游': 'Cẩm nang du lịch',
+    'cầu hôn': 'Cầu hôn', '结婚': 'Cầu hôn',
+    'vừa đi vừa đọc': 'Vừa đi vừa đọc', '边走边看': 'Vừa đi vừa đọc',
+    'đánh răng': 'Đánh răng', '刷牙': 'Đánh răng',
+    'chụp ảnh': 'Chụp ảnh trên cỏ', '照相': 'Chụp ảnh trên cỏ', '草地上': 'Chụp ảnh trên cỏ',
+    'giải quyết': 'Suy nghĩ giải quyết', '想办法': 'Suy nghĩ giải quyết',
+    'biểu diễn': 'Chuẩn bị biểu diễn', '表演': 'Chuẩn bị biểu diễn',
+
+    // De 8
+    'vuốt tóc': 'Vuốt tóc dài', 'tóc dài': 'Vuốt tóc dài', '头发': 'Vuốt tóc dài',
+    'tiền lẻ': 'Đếm tiền lẻ', '三十五元': 'Đếm tiền lẻ', 'tiền': 'Đếm tiền lẻ',
+    'mua đồ ăn': 'Túi đồ mua sắm', 'đi chợ': 'Túi đồ mua sắm', '羊肉': 'Túi đồ mua sắm',
+    'thay bóng đèn': 'Thay bóng đèn', '换灯': 'Thay bóng đèn',
+    'bàn chân': 'Đôi bàn chân nhỏ', 'trẻ sơ sinh': 'Đôi bàn chân nhỏ', '小脚': 'Đôi bàn chân nhỏ',
+    'chậu cỏ': 'Cây cỏ trong phòng', 'nhà vệ sinh': 'Cây cỏ trong phòng', '草': 'Cây cỏ trong phòng',
+    'giày trẻ em': 'Giày hình con thú', 'hình thú': 'Giày hình con thú', '小动物': 'Giày hình con thú',
+    'hộp quà': 'Hộp quà sinh nhật', 'mở hộp quà': 'Hộp quà sinh nhật', '礼物': 'Hộp quà sinh nhật',
+    'máy tính': 'Mạng internet hỏng', 'không vào được mạng': 'Mạng internet hỏng', '不能上网': 'Mạng internet hỏng',
+
+    // De 1 - 5 common
     'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ',
     'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp',
-    'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày',
-    'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch',
-    'em bé khóc': 'Dỗ em bé khóc', 'tra từ điển': 'Tra từ điển điện tử', 'từ điển': 'Tra từ điển',
+    'cô gái ngồi': 'Cô gái chọn giày', 'giày': 'Chọn giày',
+    'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch',
+    'em bé khóc': 'Dỗ em bé khóc', 'tra từ điển': 'Tra từ điển', 'từ điển': 'Tra từ điển',
     'nấu ăn': 'Nấu ăn trong bếp', 'bếp': 'Nấu ăn trong bếp',
-    'giải quyết': 'Thảo luận công việc', 'máy tính': 'Thảo luận công việc',
-    'điện thoại': 'Trực điện thoại', 'nghe điện thoại': 'Trực điện thoại',
-    'chuyển nhà': 'Dịch vụ dọn nhà', 'bánh mì': 'Mua bánh mì', 'thịt bò': 'Nấu thịt bò',
-    'xem phim': 'Cùng xem phim', 'đau chân': 'Chạy bộ đau chân', 'văn phòng': 'Lên văn phòng',
-    'trời mưa': 'Trời mưa không ô', 'taxi': 'Đi xe taxi', 'giảm cân': 'Chạy bộ giảm cân',
-    'sơ mi': 'Chọn áo sơ mi', 'trà hoa': 'Uống trà hoa', 'táo': 'Ăn táo tươi',
-    'sân bay': 'Gọi điện sân bay', 'quần': 'Tặng quần cho bố',
-    'dưa hấu': 'Dưa hấu tươi', 'bánh ngọt': 'Ăn bánh ngọt', 'đá bóng': 'Xem đá bóng',
-    'nghỉ ngơi': 'Đứng nghỉ ngơi', 'ảnh': 'Ngắm ảnh kỷ niệm', 'váy': 'Thử váy mới',
-    'hoa': 'Hoa đào nở', 'kính': 'Đeo kính nhìn rõ', 'xe hỏng': 'Xe ô tô hỏng',
-    'con nhỏ': 'Trông con nhỏ', 'leo núi': 'Leo núi dã ngoại', 'ngủ': 'Nằm ngủ thêm',
-    'đọc báo': 'Đọc báo đợi xe', 'ngân hàng': 'Giao dịch ngân hàng', 'gấu trúc': 'Gấu trúc đáng yêu',
-    'hỏi đường': 'Hỏi đường đi bộ', 'sợ cao': 'Tầng 15 sợ cao', 'nhận cúp': 'Nhận cúp giải nhất',
-    'lớp': 'Ảnh chụp cả lớp', 'thâm quầng': 'Mắt thâm quầng', 'cô giáo': 'Cô giáo giảng bài',
-    'yên tĩnh': 'Tìm chỗ yên tĩnh', 'đổi xe': 'Đổi xe đạp mới', 'đũa': 'Lấy đôi đũa',
-    'thể thao': 'Đại hội thể thao', 'bình hoa': 'Bình hoa đẹp', 'máy bay': 'Máy bay cất cánh',
-    'vali': 'Xếp vali hành lý', 'tắm nắng': 'Đau chân tắm nắng', 'họp': 'Họp muộn vội vã',
-    'sinh nhật': 'Tặng quà sinh nhật', 'phỏng vấn': 'Phỏng vấn công ty', 'cún': 'Cún cưng chạy lại',
-    'thực đơn': 'Xem thực đơn', 'kể chuyện': 'Kể chuyện cho bà', 'gió': 'Gió to bay ô',
-    'tủ lạnh': 'Tủ lạnh hết đồ', 'rửa bát': 'Rửa bát đĩa cốc', 'mua sắm': 'Mua sắm trung tâm',
-    'bóng rổ': 'Chơi bóng rổ', 'thịt cừu': 'Thịt cừu tươi ngon', 'răng': 'Bác sĩ khám răng',
-    'tóc dài': 'Cô gái tóc dài', 'đau đầu': 'Đau đầu đi khám', 'phong cảnh': 'Phong cảnh non nước',
-    'nghỉ': 'Đơn xin nghỉ', 'hàng xóm': 'Hàng xóm chào hỏi', 'uống nước': 'Uống nước nghỉ ngơi',
-    'tuyết': 'Mùa đông tuyết rơi', 'vườn thú': 'Vườn thú động vật', 'phòng tranh': 'Phòng tranh nghệ thuật',
-    'tai': 'Bác sĩ khám tai', 'chim': 'Chim đỏ trên cành', 'rửa mặt': 'Rửa mặt sạch sẽ',
-    'ngựa': 'Cưỡi ngựa dạo chơi', 'mì': 'Bát mì nóng', 'cá': 'Cá tươi trong tủ', 'máy ảnh': 'Máy ảnh du lịch'
+    'điện thoại': 'Trực điện thoại', 'nghe điện thoại': 'Trực điện thoại'
   };
   var d = desc.toLowerCase();
   for (var k in map) {
-    if (d.indexOf(k) !== -1) return map[k];
+    if (d.indexOf(k.toLowerCase()) !== -1) return map[k];
   }
   var clean = desc.replace(/[\(（][^\)）]*[\)）]/g, '').trim();
   var words = clean.split(/\s+/);
-  return words.length > 4 ? words.slice(0, 3).join(' ') : clean;
+  return words.length > 3 ? words.slice(0, 3).join(' ') : clean;
 }
 
 function applyFontPreferences() {}
@@ -3128,6 +3141,27 @@ function cleanRationale(exp) {
 
   res = res.replace(/(?:->|→)\s*$/, "").trim();
   res = res.replace(/\s+\./g, ".").trim();
+  return res;
+}
+
+function cleanAndFormatExplanation(origExp, newLetter, correctText) {
+  if (!origExp && !newLetter) return '';
+  let exp = origExp || '';
+  let rationale = exp
+    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
+    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
+    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
+    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
+    .trim();
+  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
+
+  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
+  if (correctText) {
+    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
+  }
+  if (rationale) {
+    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
+  }
   return res;
 }
 
@@ -3175,6 +3209,7 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
+      <div class="image-desc">${(img.desc || "").replace(/\s*\(.*?\)/g, "")}</div>
       <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
     `;
     imgGrid1.appendChild(card);
@@ -3241,6 +3276,7 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
+      <div class="image-desc">${(img.desc || "").replace(/\s*\(.*?\)/g, "")}</div>
       <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
     `;
     imgGrid2.appendChild(card);
@@ -4133,7 +4169,7 @@ function submitExam(autoSubmitted) {
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + (shortLabel ? " (" + shortLabel + ")" : "");
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.split(String.fromCharCode(10)).join('<br>')}</span></div>` +
         `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter} (${shortLabel})</div>` +
@@ -4167,7 +4203,7 @@ function submitExam(autoSubmitted) {
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4192,8 +4228,12 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
+    expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4218,8 +4258,12 @@ function submitExam(autoSubmitted) {
     const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
+    expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
+    }
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4243,7 +4287,7 @@ function submitExam(autoSubmitted) {
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4258,7 +4302,7 @@ function submitExam(autoSubmitted) {
     const userAns = examState.answers[q.id] || "";
     const isCorrect = (normStr(userAns) === normStr(q.correct));
     if (isCorrect) correctW++;
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án chuẩn: <span class="chinese">${q.correct}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Cấu trúc ngữ pháp:</strong> ${cleanRationale(q.explanation)}</div>`;
@@ -4273,7 +4317,7 @@ function submitExam(autoSubmitted) {
     const userAns = (examState.answers[q.id] || "").trim();
     const isCorrect = (userAns === q.correct.trim());
     if (isCorrect) correctW++;
-    const expDiv = document.getElementById("exp-" + q.id);
+    expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Chữ Hán đúng: <span class="chinese" style="font-size:1.2rem;">${q.correct}</span> (${q.pinyin})</div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích từ vựng:</strong> ${cleanRationale(q.explanation)}</div>`;
