@@ -484,8 +484,8 @@ footer.portal-footer {
   <div class="level-tabs-inner">
     <button class="level-tab-btn" onclick="switchLevel('HSK1', this)">HSK 1</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK2', this)">HSK 2</button>
-    <button class="level-tab-btn highlight-tab" id="tab-btn-HSK3" onclick="switchLevel(\'HSK3\', this)">⭐ HSK 3 (10 Đề & 20 Bài Tập)</button>
-    <button class="level-tab-btn active highlight-tab" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (13 Đề & 20 Bài Tập)</button>
+    <button class="level-tab-btn active highlight-tab" id="tab-btn-HSK3" onclick="switchLevel('HSK3', this)">⭐ HSK 3 (7 Đề & 20 Bài Tập)</button>
+    <button class="level-tab-btn highlight-tab" id="tab-btn-HSK4" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (1 Đề & 20 Bài Tập)</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK5', this)">HSK 5</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK6', this)">HSK 6</button>
     <button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK30', this)">✨ HSK 3.0 (Chuẩn Mới)</button>
@@ -700,29 +700,68 @@ let currentLevel = "HSK3";
 let currentFilter = "all"; // 'all', 'exams', 'workbooks'
 
 function initPortal() {
-  const hash = window.location.hash;
-  if (hash === '#WORKBOOK_HSK4' || hash === '#HSK4_WORKBOOK' || hash === '#HSK4') {
+  const hash = (window.location.hash || '').toUpperCase();
+  if (hash.includes('HSK4')) {
     currentLevel = 'HSK4';
-    currentFilter = 'workbooks';
-    document.querySelectorAll('.level-tab-btn').forEach(b => {
-      b.classList.toggle('active', b.textContent.includes('HSK 4') || b.textContent.includes('HSK4'));
-    });
-  } else if (hash === '#WORKBOOK_HSK3' || hash === '#WORKBOOK' || hash === '#HSK3') {
-    currentLevel = 'HSK3';
-    currentFilter = 'workbooks';
-    document.querySelectorAll('.level-tab-btn').forEach(b => {
-      b.classList.toggle('active', b.textContent.includes('HSK 3') || b.textContent.includes('HSK3'));
-    });
+    if (hash.includes('WORKBOOK')) currentFilter = 'workbooks';
+    else if (hash.includes('EXAM')) currentFilter = 'exams';
+    else currentFilter = 'all';
+  } else if (hash.includes('HSK30') || hash.includes('HSK3.0')) {
+    currentLevel = 'HSK30';
+    currentFilter = 'all';
+  } else if (hash.includes('HSK1')) {
+    currentLevel = 'HSK1';
+    currentFilter = 'all';
+  } else if (hash.includes('HSK2')) {
+    currentLevel = 'HSK2';
+    currentFilter = 'all';
+  } else if (hash.includes('HSK5')) {
+    currentLevel = 'HSK5';
+    currentFilter = 'all';
+  } else if (hash.includes('HSK6')) {
+    currentLevel = 'HSK6';
+    currentFilter = 'all';
+  } else {
+    // Default to HSK3 or saved level from session
+    const savedLvl = localStorage.getItem('hsk_current_level');
+    currentLevel = (savedLvl && PORTAL_DATABASE[savedLvl]) ? savedLvl : 'HSK3';
+    if (hash.includes('WORKBOOK')) currentFilter = 'workbooks';
+    else if (hash.includes('EXAM')) currentFilter = 'exams';
+    else currentFilter = 'all';
   }
+
+  // Update tab buttons active class
+  document.querySelectorAll('.level-tab-btn').forEach(b => {
+    const oc = b.getAttribute('onclick') || '';
+    b.classList.toggle('active', oc.includes(`'${currentLevel}'`));
+  });
+
   const savedName = localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "";
   const savedClass = localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "";
   const savedCode = localStorage.getItem("hsk_custom_access_code") || "HSK32026";
   
-  if (savedName) document.getElementById("inputName").value = savedName;
-  if (savedClass) document.getElementById("inputClass").value = savedClass;
-  if (savedCode) document.getElementById("inputCode").value = savedCode;
+  if (savedName && document.getElementById("inputName")) document.getElementById("inputName").value = savedName;
+  if (savedClass && document.getElementById("inputClass")) document.getElementById("inputClass").value = savedClass;
+  if (savedCode && document.getElementById("inputCode")) document.getElementById("inputCode").value = savedCode;
 
   renderLevel(currentLevel);
+  updateLevelTabCounters();
+}
+
+window.addEventListener('hashchange', initPortal);
+
+function switchLevel(lvlKey, btnElement) {
+  currentLevel = lvlKey;
+  currentFilter = "all";
+  try { localStorage.setItem('hsk_current_level', lvlKey); } catch(e) {}
+  document.querySelectorAll(".level-tab-btn").forEach(b => b.classList.remove("active"));
+  if (btnElement) {
+    if (btnElement && btnElement.classList) btnElement.classList.add("active");
+  } else {
+    const target = document.querySelector(`.level-tab-btn[onclick*="'${lvlKey}'"]`);
+    if (target) target.classList.add("active");
+  }
+  renderLevel(lvlKey);
   updateLevelTabCounters();
 }
 
@@ -730,14 +769,14 @@ function switchLevel(lvlKey, btnElement) {
   currentLevel = lvlKey;
   currentFilter = "all"; // reset sub-filter
   document.querySelectorAll(".level-tab-btn").forEach(b => b.classList.remove("active"));
-  btnElement.classList.add("active");
+  if (btnElement && btnElement.classList) btnElement.classList.add("active");
   renderLevel(lvlKey);
 }
 
 function setSubFilter(filterType, btnElement) {
   currentFilter = filterType;
   document.querySelectorAll(".sub-filter-btn").forEach(b => b.classList.remove("active"));
-  btnElement.classList.add("active");
+  if (btnElement && btnElement.classList) btnElement.classList.add("active");
   renderLevel(currentLevel);
   updateLevelTabCounters();
 }
@@ -878,7 +917,8 @@ function renderLevel(lvlKey) {
 }
 
 function checkAndActivateFile(lvlKey, item, type) {
-  if (location.protocol === 'file:') return;
+  if (item.status === 'active') return; // File is already active, instant render!
+  if (window.location && window.location.protocol === 'file:') return;
   fetch(item.file, { method: 'HEAD' })
     .then(res => {
       if (res.ok) {
