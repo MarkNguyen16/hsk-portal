@@ -1043,7 +1043,7 @@ aside.persistent-drawer.open {
   <div class="modal-card">
     <div class="modal-header">
       <h2>HSK 4 - Bài 4: 不要太着急赚钱</h2>
-      <p>Giáo trình chuẩn HSK 4 • 50 câu hỏi tương tác hoàn chỉnh</p>
+      <p id="welcomeModalSubtitle">Giáo trình chuẩn HSK 4 • 50 câu hỏi tương tác hoàn chỉnh</p>
     </div>
     <div class="modal-body">
       <div style="margin-bottom:12px;">
@@ -2575,28 +2575,22 @@ function renderExam() {
     qDiv.className = "question-item";
     qDiv.id = `qbox-${q.id}`;
 
-    let promptHtml = q.prompt;
-    let lines = promptHtml.split(/
-|\n/);
-    if (lines.length < 2 && (promptHtml.includes("B:") || promptHtml.includes("B："))) {
-      lines = promptHtml.split(/(?=B[:：])/);
+    let promptText = q.prompt || "";
+    let lines = promptText.indexOf(String.fromCharCode(10)) !== -1 ? promptText.split(String.fromCharCode(10)) : (promptText.indexOf(String.fromCharCode(92) + "n") !== -1 ? promptText.split(String.fromCharCode(92) + "n") : []);
+    if (lines.length === 0 && (promptText.indexOf("B:") !== -1 || promptText.indexOf("B：") !== -1)) {
+      let idxB = promptText.indexOf("B:");
+      if (idxB === -1) idxB = promptText.indexOf("B：");
+      lines = [promptText.slice(0, idxB), promptText.slice(idxB)];
     }
     let formattedDialogue = "";
     if (lines.length >= 2) {
-      const lineA = lines[0].replace(/^A[:：]\s*/, '').trim();
-      const lineB = lines[1].replace(/^B[:：]\s*/, '').trim();
-      formattedDialogue = `
-        <div class="dialogue-row" style="margin-bottom:8px;display:flex;align-items:flex-start;">
-          <span class="speaker-tag">A:</span>
-          <span style="flex:1;">${lineA}</span>
-        </div>
-        <div class="dialogue-row" style="display:flex;align-items:flex-start;">
-          <span class="speaker-tag">B:</span>
-          <span style="flex:1;">${lineB}</span>
-        </div>
-      `;
+      let lineA = lines[0].trim();
+      let lineB = lines[1].trim();
+      if (lineA.indexOf("A:") === 0 || lineA.indexOf("A：") === 0) lineA = lineA.slice(2).trim();
+      if (lineB.indexOf("B:") === 0 || lineB.indexOf("B：") === 0) lineB = lineB.slice(2).trim();
+      formattedDialogue = '<div class="dialogue-row" style="margin-bottom:8px;display:flex;align-items:flex-start;"><span class="speaker-tag">A:</span><span style="flex:1;">' + lineA + '</span></div><div class="dialogue-row" style="display:flex;align-items:flex-start;"><span class="speaker-tag">B:</span><span style="flex:1;">' + lineB + '</span></div>';
     } else {
-      formattedDialogue = `<div class="dialogue-row">${promptHtml}</div>`;
+      formattedDialogue = '<div class="dialogue-row">' + promptText + '</div>';
     }
 
     qDiv.innerHTML = `
@@ -2614,8 +2608,8 @@ function renderExam() {
         </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctId.toUpperCase()} (${activeData.reading.part1.group2.options.find(o=>o.id===q.correctId)?.text})</div>
-        <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
+        <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctId.toUpperCase()} (${activeData.reading.part1.group2.options.find(o => o.id === q.correctId)?.text || ''})</div>
+        <div>${q.explanation || ''}</div>
       </div>
     `;
     rp1.appendChild(qDiv);
@@ -2828,75 +2822,50 @@ function startTimers() {
   }, 1000);
 }
 
-function checkAutoStudentSession() {
-  const savedName = localStorage.getItem("hsk4_student_name") || localStorage.getItem("hsk3_student_name");
-  const savedClass = localStorage.getItem("hsk4_student_class") || localStorage.getItem("hsk3_student_class") || "HSK4-Online";
-  const modal = document.getElementById("welcomeModal");
+function startExamSession() {
+  try {
+    const nameInput = document.getElementById("inputStudentName");
+    const classInput = document.getElementById("inputStudentClass");
 
-  if (savedName && savedName.trim()) {
-    studentName = savedName.trim();
-    studentClass = savedClass.trim();
-    const badge = document.getElementById("studentInfoBadge");
-    if (badge) {
-      badge.innerHTML = `👤 ${studentName} (${studentClass}) <button onclick="changeStudentAccount()" style="background:none;border:none;color:#fbbf24;cursor:pointer;font-size:0.75rem;text-decoration:underline;margin-left:4px;">[Đổi]</button>`;
+    let nameVal = nameInput ? nameInput.value.trim() : "";
+    let classVal = classInput ? classInput.value.trim() : "";
+
+    if (!nameVal) {
+      nameVal = localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "Học viên";
     }
-    if (modal) modal.style.display = "none";
-    switchAudioTrack(1);
-    startTimers();
-  } else {
-    if (modal) modal.style.display = "flex";
-  }
-}
+    if (!classVal) {
+      classVal = localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "HSK4-Online";
+    }
 
-function changeStudentAccount() {
-  if (confirm("Bạn có muốn đổi sang thông tin học viên khác?")) {
-    localStorage.removeItem("hsk4_student_name");
-    localStorage.removeItem("hsk3_student_name");
+    studentName = nameVal;
+    studentClass = classVal;
+
+    // Save to localStorage for ALL exams across the platform
+    localStorage.setItem("hsk3_student_name", studentName);
+    localStorage.setItem("hsk3_student_class", studentClass);
+    localStorage.setItem("hsk4_student_name", studentName);
+    localStorage.setItem("hsk4_student_class", studentClass);
+
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+
     const modal = document.getElementById("welcomeModal");
     if (modal) {
-      const nIn = document.getElementById("inputStudentName");
-      const cIn = document.getElementById("inputStudentClass");
-      if (nIn) nIn.value = "";
-      if (cIn) cIn.value = "";
-      modal.style.display = "flex";
+      modal.classList.add("hidden");
+      modal.style.display = "none";
+      modal.style.visibility = "hidden";
+      modal.style.opacity = "0";
+      modal.style.pointerEvents = "none";
     }
-    const badge = document.getElementById("studentInfoBadge");
-    if (badge) badge.textContent = "👤 Thí sinh";
+
+    switchAudioTrack(1);
+    startTimers();
+  } catch (err) {
+    console.error("Error in startExamSession:", err);
+    const modal = document.getElementById("welcomeModal");
+    if (modal) modal.style.display = "none";
+    startTimers();
   }
-}
-
-function startExamSession() {
-  const nameInput = document.getElementById("inputStudentName");
-  const classInput = document.getElementById("inputStudentClass");
-  if (nameInput && nameInput.value.trim()) {
-    studentName = nameInput.value.trim();
-  } else {
-    alert("Vui lòng nhập Họ và Tên của bạn!");
-    if (nameInput) nameInput.focus();
-    return;
-  }
-  if (classInput && classInput.value.trim()) {
-    studentClass = classInput.value.trim();
-  } else {
-    studentClass = "HSK4-Online";
-  }
-
-  // Save persistently for ALL exams across the platform
-  localStorage.setItem("hsk4_student_name", studentName);
-  localStorage.setItem("hsk4_student_class", studentClass);
-  localStorage.setItem("hsk3_student_name", studentName);
-  localStorage.setItem("hsk3_student_class", studentClass);
-
-  const badge = document.getElementById("studentInfoBadge");
-  if (badge) {
-    badge.innerHTML = `👤 ${studentName} (${studentClass}) <button onclick="changeStudentAccount()" style="background:none;border:none;color:#fbbf24;cursor:pointer;font-size:0.75rem;text-decoration:underline;margin-left:4px;">[Đổi]</button>`;
-  }
-
-  const modal = document.getElementById("welcomeModal");
-  if (modal) modal.style.display = "none";
-
-  switchAudioTrack(1);
-  startTimers();
 }
 
 function confirmSubmitExam() {
@@ -3291,12 +3260,32 @@ function copyAuthCode() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  // Automatically retrieve saved student info from localStorage
+  const savedName = localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "";
+  const savedClass = localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "";
+
+  if (savedName) {
+    studentName = savedName;
+    studentClass = savedClass || "HSK4-Online";
+    
+    const nameIn = document.getElementById("inputStudentName");
+    const classIn = document.getElementById("inputStudentClass");
+    if (nameIn) nameIn.value = savedName;
+    if (classIn) classIn.value = studentClass;
+
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+
+    const subTitle = document.getElementById("welcomeModalSubtitle");
+    if (subTitle) {
+      subTitle.innerHTML = `Thí sinh: <strong style="color:var(--primary);">${studentName}</strong> (Lớp: ${studentClass})`;
+    }
+  }
+
   randomizeExamData();
   renderExam();
   renderDrawerGrid();
   updateProgress();
-  checkAutoStudentSession();
-});
-</script>
+});</script>
 </body>
 </html>

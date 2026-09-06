@@ -732,11 +732,11 @@ table.data-table th, table.data-table td {
     <!-- Login Form -->
     <div class="auth-body" id="loginForm">
       <div class="form-group">
-        <label class="form-label">Tài khoản / Email giáo viên: <small style="color:var(--primary);font-weight:normal;">(Mặc định: <b>admin</b> hoặc <b>marknguyen</b>)</small></label>
+        <label class="form-label">Tài khoản / Email giáo viên:</label>
         <input type="text" class="form-input" id="loginUser" placeholder="Email hoặc tên đăng nhập..." value="">
       </div>
       <div class="form-group">
-        <label class="form-label">Mật khẩu: <small style="color:var(--primary);font-weight:normal;">(Mặc định: <b>123456</b> hoặc <b>HSKteacher@2026</b>)</small></label>
+        <label class="form-label">Mật khẩu:</label>
         <input type="password" class="form-input" id="loginPass" placeholder="Nhập mật khẩu..." value="">
       </div>
       <button class="btn-auth-submit" onclick="handleTeacherLogin()">Đăng Nhập Vào Hệ Thống ➔</button>
@@ -755,11 +755,11 @@ table.data-table th, table.data-table td {
       </div>
       <div class="form-group">
         <label class="form-label">Mật khẩu mới (*):</label>
-        <input type="password" class="form-input" id="regPass" placeholder="Tối thiểu 6 ký tự">
+        <input type="password" class="form-input" id="regPass" placeholder="Nhập mật khẩu...">
       </div>
       <div class="form-group">
-        <label class="form-label">Mã kích hoạt Giáo viên (*):</label>
-        <input type="password" class="form-input" id="regSecretKey" placeholder="Nhập mã bảo mật trung tâm...">
+        <label class="form-label">Mã bảo mật đăng ký tài khoản mới (*):</label>
+        <input type="password" class="form-input" id="regSecretKey" placeholder="Mặc định: HSKTEACHER2026">
 
       </div>
       <button class="btn-auth-submit" style="background:var(--gold-dark);" onclick="handleTeacherRegister()">Tạo Tài Khoản Giáo Viên ➔</button>
@@ -1030,6 +1030,16 @@ function handleTeacherLogin() {
     return;
   }
 
+  // Check locally registered teachers
+  try {
+    const localTeachers = JSON.parse(localStorage.getItem("hsk_registered_teachers") || "[]");
+    const foundLocal = localTeachers.find(t => (t.email === u || t.username === u) && t.password === p);
+    if (foundLocal) {
+      setTeacherLoggedIn(foundLocal.name || "Giáo viên", foundLocal.email);
+      return;
+    }
+  } catch(e) {}
+
   // Check against Firebase teachers list
   fetch(HARDCODED_FIREBASE_URL + "teachers.json")
     .then(r => r.json())
@@ -1045,7 +1055,7 @@ function handleTeacherLogin() {
       if (found) {
         setTeacherLoggedIn(found.name, found.email);
       } else {
-        alert("Sai tài khoản hoặc mật khẩu! Vui lòng thử lại hoặc dùng tài khoản mặc định: admin / 123456");
+        alert("Sai tài khoản hoặc mật khẩu! Vui lòng thử lại.");
       }
     })
     .catch(() => {
@@ -1059,40 +1069,36 @@ function handleTeacherLogin() {
 }
 
 function handleTeacherRegister() {
-  const name = document.getElementById("regName").value.trim();
-  const email = document.getElementById("regEmail").value.trim();
-  const pass = document.getElementById("regPass").value.trim();
-  const key = document.getElementById("regSecretKey").value.trim();
+  const name = (document.getElementById("regName").value || "").trim() || "Giáo viên";
+  const email = (document.getElementById("regEmail").value || "").trim();
+  const pass = (document.getElementById("regPass").value || "").trim();
+  const key = (document.getElementById("regSecretKey").value || "").trim();
 
-  if (!name || !email || !pass || !key) {
-    alert("Vui lòng điền đầy đủ các thông tin đăng ký!");
+  if (!email || !pass) {
+    alert("Vui lòng nhập tài khoản/email và mật khẩu!");
     return;
   }
-  if (key !== TEACHER_SECRET_KEY && key !== "HSK32026") {
-    alert("Mã kích hoạt giáo viên không đúng! Vui lòng liên hệ trung tâm.");
-    return;
-  }
-  if (pass.length < 6) {
-    alert("Mật khẩu phải có tối thiểu 6 ký tự!");
+  if (key !== "HSKTEACHER2026") {
+    alert("Mã bảo mật đăng ký tài khoản mới không đúng! Mặc định là HSKTEACHER2026.");
     return;
   }
 
-  const newTeacher = { name, email, password: pass, createdAt: new Date().toISOString() };
+  // Save to localStorage for instant reliable login
+  try {
+    const localTeachers = JSON.parse(localStorage.getItem("hsk_registered_teachers") || "[]");
+    localTeachers.push({ name: name, email: email, username: email, password: pass });
+    localStorage.setItem("hsk_registered_teachers", JSON.stringify(localTeachers));
+  } catch(e) {}
+
+  const newTeacher = { name, email, username: email, password: pass, createdAt: new Date().toISOString() };
   fetch(HARDCODED_FIREBASE_URL + "teachers.json", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newTeacher)
-  })
-  .then(() => {
-    alert("Đăng ký tài khoản giáo viên thành công! Bạn có thể đăng nhập ngay bây giờ.");
-    switchAuthTab('login');
-    document.getElementById("loginUser").value = email;
-    document.getElementById("loginPass").value = pass;
-  })
-  .catch(() => {
-    alert("Đăng ký tài khoản cục bộ thành công!");
-    setTeacherLoggedIn(name, email);
-  });
+  }).catch(e => console.warn(e));
+
+  alert("Đăng ký tài khoản giáo viên thành công! Đang tự động đăng nhập...");
+  setTeacherLoggedIn(name, email);
 }
 
 function setTeacherLoggedIn(name, email) {
@@ -1108,6 +1114,8 @@ function teacherLogout() {
     checkAuthStatus();
   }
 }
+window.teacherLogout = teacherLogout;
+window.logoutTeacher = teacherLogout;
 
 /* --- DASHBOARD INIT & SYNC --- */
 function initDashboard() {
@@ -1504,10 +1512,12 @@ function exportExcelCSV() {
     alert("Không có dữ liệu bài nộp để xuất!");
     return;
   }
-  let csv = "\uFEFFSTT,Họ và tên,Lớp,Mã đề,Lần làm,Thời gian nộp,Thời lượng,Điểm /10,Tổng HSK /300,Điểm Nghe,Điểm Đọc,Điểm Viết,Kết quả\n";
+  let csv = "﻿STT,Họ và tên,Lớp,Mã đề,Lần làm,Thời gian nộp,Thời lượng,Điểm /10,Tổng HSK /300,Điểm Nghe,Điểm Đọc,Điểm Viết,Kết quả
+";
   allSubmissions.forEach((s, i) => {
     const isPass = (s.hskTotal >= 180 || s.isPassed);
-    csv += `"${i+1}","${s.studentName || ''}","${s.studentClass || ''}","${s.examCode || 'H31002'}","${s.attemptCount || 1}","${new Date(s.submitTime).toLocaleString('vi-VN')}","${s.durationFormatted || ''}","${s.score10 || 0}","${s.hskTotal || 0}","${s.hskListening || 0}","${s.hskReading || 0}","${s.hskWriting || 0}","${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n`;
+    csv += `"${i+1}","${s.studentName || ''}","${s.studentClass || ''}","${s.examCode || 'H31002'}","${s.attemptCount || 1}","${new Date(s.submitTime).toLocaleString('vi-VN')}","${s.durationFormatted || ''}","${s.score10 || 0}","${s.hskTotal || 0}","${s.hskListening || 0}","${s.hskReading || 0}","${s.hskWriting || 0}","${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}"
+`;
   });
 
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -1533,7 +1543,7 @@ function closeAccessCodeModal() {
   if (modal) modal.classList.add("hidden");
 }
 
-function saveNewAccessCode() {
+function saveAccessCode() {
   const newCode = document.getElementById("currentAccessCodeInput").value.trim().toUpperCase();
   if (!newCode || newCode.length < 4) {
     alert("Mã vào thi phải có ít nhất 4 ký tự!");
