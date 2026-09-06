@@ -1566,25 +1566,33 @@ function onCharInputChange(qId, val) {
   updateProgress();
 }
 
-function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
-  if (!origExp && !newLetter) return '';
+function formatDynamicExplanation(origExp, newLetter, secType, correctText, dialogueContext) {
   let exp = origExp || '';
   let rationale = exp
-    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
+    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f]\b[^.]*/gi, '')
     .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
     .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
-    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
+    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]\b/gi, '')
     .trim();
   rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
 
-  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
-  if (correctText) {
-    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
+  let letterDisplay = newLetter || '';
+  let textDisplay = correctText ? ` (${correctText})` : '';
+
+  let contextStr = '';
+  if (dialogueContext) {
+    contextStr = dialogueContext.replace(/\n/g, ' ') + ' -> ';
   }
-  if (rationale) {
-    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
+
+  let fullExpl = '';
+  if (secType === 'lp1') {
+    fullExpl = `${contextStr}Khớp với hình ${correctText || ('hình ' + letterDisplay)}`;
+  } else {
+    fullExpl = `${contextStr}${rationale || correctText || ''}`;
   }
-  return res;
+
+  return `<div style="font-weight:700;color:var(--primary-dark);font-size:0.92rem;margin-bottom:4px;">✅ Đáp án đúng: ${letterDisplay}${textDisplay}</div>` +
+         `<div style="color:var(--text-main);font-size:0.88rem;line-height:1.5;">💡 <strong>Giải thích:</strong> ${fullExpl}</div>`;
 }
 
 function randomizeExamData() {
