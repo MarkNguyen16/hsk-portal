@@ -3,674 +3,928 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HSK 4 - Bài 1: 简单的爱情 - Hệ thống bài tập HSK 4</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<title>HSK 4 - Bài 1: 简单的爱情 - Tiếng Trung HSK Nha Trang</title>
 <style>
 :root {
-  --primary: #1e3a8a;
-  --primary-light: #3b82f6;
-  --primary-dark: #1e293b;
-  --gold: #f59e0b;
-  --gold-light: #fef3c7;
-  --success: #10b981;
-  --danger: #ef4444;
-  --bg-page: #f8fafc;
-  --bg-card: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border: #e2e8f0;
-  --header-height: 48px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-page);
-  color: var(--text-main);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-.chinese {
-  font-family: 'Noto Serif SC', 'PingFang SC', 'SimSun', serif;
+  --primary: #176B63;
+  --primary-dark: #0D423D;
+  --primary-light: #208b81;
+  --primary-subtle: #e6f3f1;
+  --gold: #D9B86C;
+  --gold-dark: #b59447;
+  --gold-light: #faecd0;
+  --bg-cream: #F7F3E8;
+  --card-bg: #FFFFFF;
+  --text-main: #2D3748;
+  --text-muted: #718096;
+  --border-color: #E2DAC7;
+  --correct: #2E7D32;
+  --wrong: #C62828;
+  --success: #2E7D32;
+  --danger: #C62828;
 }
 
-/* Header (48px ultra-slim) */
-.exam-header {
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  line-height: 1.65;
+  padding-bottom: 75px;
+  transition: margin-right 0.3s ease;
+}
+
+body.drawer-open {
+  margin-right: 360px;
+}
+
+.chinese {
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+/* Header */
+header.exam-header {
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
   position: sticky;
   top: 0;
-  height: var(--header-height);
-  background: var(--primary);
-  color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
 }
-.header-left, .header-center, .header-right {
+
+.header-left {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.btn-portal-back {
-  display: inline-flex;
-  align-items: center;
-  color: #fff;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  background: rgba(255,255,255,0.15);
-  padding: 5px 12px;
-  border-radius: 6px;
-  transition: background 0.2s;
-}
-.btn-portal-back:hover {
-  background: rgba(255,255,255,0.25);
-}
-.exam-badge-tag {
-  background: var(--gold);
-  color: #000;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-.student-info-tag {
-  font-size: 12px;
-  color: var(--gold-light);
-  background: rgba(0,0,0,0.2);
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-.timer-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 13px;
-  font-weight: 700;
-  background: rgba(0,0,0,0.25);
-  padding: 4px 10px;
-  border-radius: 6px;
-  color: #f8fafc;
-}
-.timer-badge.danger {
-  color: #fca5a5;
-  background: rgba(220,38,38,0.3);
-  animation: pulse 1s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-.btn-toggle-drawer {
-  background: rgba(255,255,255,0.2);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-}
-.btn-submit-exam {
-  background: var(--gold);
-  color: #000;
-  border: none;
-  padding: 6px 16px;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  transition: all 0.2s;
-}
-.btn-submit-exam:hover {
-  background: #d97706;
-  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-/* Sticky Audio Control Bar */
-.audio-sticky-bar {
-  position: sticky;
-  top: var(--header-height);
-  background: #ffffff;
-  border-bottom: 1px solid var(--border);
-  padding: 10px 16px;
+.btn-nav-back {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  z-index: 90;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  gap: 4px;
 }
-.audio-track-selector {
+
+.btn-nav-back:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+.brand-badge {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.student-tag {
+  background: rgba(217, 184, 108, 0.25);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.timer-pill {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timer-pill.danger {
+  background: rgba(198, 40, 40, 0.4);
+  border-color: #f87171;
+  color: #fca5a5;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.header-right {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.track-tab-btn {
-  background: #f1f5f9;
-  border: 1px solid var(--border);
-  color: var(--text-main);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 13px;
+
+.btn-drawer-toggle {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
+
+.btn-drawer-toggle:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+.btn-submit-exam {
+  background: var(--gold);
+  color: var(--primary-dark);
+  border: none;
+  padding: 6px 16px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.1s, background 0.2s;
+}
+
+.btn-submit-exam:hover {
+  background: #e5ca89;
+  transform: translateY(-1px);
+}
+
+/* Audio Controller Bar */
+.audio-bar {
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 16px;
+  position: sticky;
+  top: 48px;
+  z-index: 990;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.audio-bar-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.audio-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.track-tab-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .track-tab-btn.active {
   background: var(--primary);
   color: #fff;
   border-color: var(--primary);
 }
+
 .audio-player-wrap {
+  flex: 1;
+  min-width: 260px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex: 1;
-  max-width: 420px;
+  justify-content: flex-end;
 }
+
 .audio-player-wrap audio {
   width: 100%;
-  height: 36px;
+  max-width: 380px;
+  height: 32px;
 }
 
-/* Main Layout */
-.main-exam-layout {
+/* Main Exam Content */
+main.exam-main {
   max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 16px 80px;
-}
-.sync-status-box {
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-.sync-status-box.success {
-  background: #ecfdf5;
-  border: 1px solid #10b981;
-  color: #065f46;
-}
-.sync-status-box.offline {
-  background: #fffbeb;
-  border: 1px solid #f59e0b;
-  color: #92400e;
+  margin: 20px auto;
+  padding: 0 16px;
 }
 
-/* Section Cards */
 .section-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
+  padding: 24px;
   margin-bottom: 24px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
+
 .section-card-header {
-  background: #f8fafc;
-  border-bottom: 1px solid var(--border);
-  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--primary-subtle);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-dark);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 8px;
 }
-.section-title {
-  font-size: 17px;
+
+.section-badge {
+  background: var(--primary-subtle);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.part-header {
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--primary-dark);
-}
-.section-badge {
-  font-size: 12px;
-  background: #e2e8f0;
-  color: var(--text-muted);
-  padding: 3px 8px;
+  margin-bottom: 14px;
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-left: 4px solid var(--gold);
   border-radius: 4px;
-  font-weight: 600;
-}
-.part-header {
-  padding: 16px 20px 8px;
-  font-size: 15px;
-  color: var(--text-muted);
-  border-bottom: 1px dashed var(--border);
-  margin-bottom: 12px;
 }
 
-/* Question Item */
+/* Question Cards */
 .question-item {
-  padding: 18px 20px;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.15s;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #fff;
+  transition: all 0.2s;
 }
-.question-item:last-child {
-  border-bottom: none;
+
+.question-item:hover {
+  border-color: #cbd5e1;
 }
+
+.question-item.active-scroll {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(217, 184, 108, 0.4);
+}
+
 .q-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
-}
-.q-number {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--primary);
-  background: #eff6ff;
-  padding: 3px 10px;
-  border-radius: 4px;
-}
-.btn-tts-replay {
-  background: #f1f5f9;
-  border: 1px solid var(--border);
-  color: var(--primary-light);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  display: inline-flex;
   align-items: center;
-  gap: 4px;
-}
-.btn-tts-replay:hover {
-  background: #e2e8f0;
-}
-.q-body {
   margin-bottom: 10px;
 }
-.judge-statement-box {
-  background: #f8fafc;
-  border-left: 4px solid var(--primary-light);
-  padding: 10px 14px;
-  border-radius: 0 6px 6px 0;
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 14px;
+
+.q-number {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 0.95rem;
 }
+
+.btn-tts-replay {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-tts-replay:hover {
+  background: var(--primary-subtle);
+  color: var(--primary);
+}
+
+.judge-statement-box {
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
 .judge-btn-group {
   display: flex;
   gap: 12px;
 }
+
 .btn-judge {
   flex: 1;
-  max-width: 180px;
-  padding: 10px 16px;
-  border: 2px solid var(--border);
+  padding: 8px 14px;
+  border: 1.5px solid #cbd5e1;
   background: #fff;
   border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.2s;
+  gap: 6px;
+  transition: all 0.15s;
 }
+
 .btn-judge:hover {
-  border-color: #cbd5e1;
   background: #f8fafc;
-}
-.btn-judge.selected {
-  border-color: var(--primary-light);
-  background: #eff6ff;
-  color: var(--primary);
-}
-
-/* Choice List (4 options A, B, C, D) */
-.choice-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-  margin-top: 10px;
-}
-.choice-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border: 2px solid var(--border);
-  background: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.choice-item:hover {
-  border-color: #cbd5e1;
-  background: #f8fafc;
-}
-.choice-item.selected {
-  border-color: var(--primary-light);
-  background: #eff6ff;
-}
-.choice-badge {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #e2e8f0;
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-.choice-item.selected .choice-badge {
-  background: var(--primary-light);
-  color: #fff;
-}
-.choice-text {
-  font-size: 16px;
-}
-
-/* Fill Word Bank Box */
-.word-bank-box {
-  background: #f1f5f9;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin: 12px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.word-bank-chip {
-  background: #ffffff;
-  border: 1px solid var(--border);
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--primary-dark);
-}
-.bank-options-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-.btn-bank-opt {
-  width: 40px;
-  height: 38px;
-  border: 2px solid var(--border);
-  background: #fff;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-main);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-bank-opt:hover {
   border-color: #94a3b8;
 }
-.btn-bank-opt.selected {
+
+.btn-judge.selected {
   background: var(--primary);
-  border-color: var(--primary);
   color: #fff;
+  border-color: var(--primary-dark);
 }
 
-/* Sentence Reorder Part 2 (A, B, C) */
+/* Choice Options */
+.choice-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.choice-item {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  transition: all 0.15s;
+}
+
+.choice-item:hover {
+  border-color: var(--primary);
+  background: var(--primary-subtle);
+}
+
+.choice-item.selected {
+  border-color: var(--primary);
+  background: var(--primary-subtle);
+  font-weight: 700;
+}
+
+.choice-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.choice-item.selected .choice-badge {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary-dark);
+}
+
+.choice-text {
+  font-size: 0.98rem;
+}
+
+/* Word Bank */
+.word-bank-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px dashed var(--primary);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.word-bank-chip {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.92rem;
+}
+
+.bank-options-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-bank-opt {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  font-weight: 800;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.btn-bank-opt.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary-dark);
+}
+
+/* Sentence Order */
 .order-selector-group {
   display: flex;
   gap: 8px;
-  margin-top: 12px;
-}
-.btn-order-opt {
-  padding: 8px 16px;
-  border: 2px solid var(--border);
-  background: #fff;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-order-opt.selected {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: #fff;
+  flex-wrap: wrap;
 }
 
-/* Word Chips for Writing Part 1 */
+.btn-order-opt {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-order-opt.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary-dark);
+}
+
+/* Writing Part 1: Chips */
 .word-chips-container {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 12px;
 }
+
 .word-chip {
-  background: #e0f2fe;
-  border: 1px solid #7dd3fc;
-  color: #0369a1;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 16px;
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 1.02rem;
   font-weight: 600;
   cursor: pointer;
   user-select: none;
-  transition: all 0.2s;
 }
-.word-chip:hover {
-  background: #bae6fd;
-}
+
 .word-chip.used {
-  opacity: 0.4;
-  pointer-events: none;
+  opacity: 0.35;
+  cursor: not-allowed;
 }
+
 .answer-slot-line {
-  min-height: 48px;
-  border: 2px dashed #cbd5e1;
+  min-height: 44px;
+  background: #f8fafc;
+  border: 1.5px dashed var(--primary);
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
-  background: #f8fafc;
-  margin-bottom: 10px;
 }
+
 .answer-chip {
   background: var(--primary);
   color: #fff;
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 0.98rem;
   font-weight: 600;
   cursor: pointer;
 }
 
-/* Writing Part 2 (Q49-50 - Sentence writing with word & picture) */
+/* Writing Part 2: Look at photo write sentence */
 .write-sentence-card {
   display: flex;
+  gap: 16px;
   flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-start;
-  margin-top: 10px;
 }
+
 .write-sentence-img {
   width: 220px;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   flex-shrink: 0;
 }
+
 .write-sentence-input-wrap {
   flex: 1;
-  min-width: 280px;
+  min-width: 240px;
 }
+
 .prompt-keyword-badge {
   display: inline-block;
   background: #fef3c7;
-  border: 1px solid #fde047;
+  border: 1px solid var(--gold);
   color: #92400e;
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-.sentence-textarea {
-  width: 100%;
-  min-height: 90px;
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 16px;
-  font-family: inherit;
-  resize: vertical;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.sentence-textarea:focus {
-  border-color: var(--primary-light);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
 }
 
-/* Explanation Box (Hidden during test, revealed on submit) */
+.sentence-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  outline: none;
+}
+
+.sentence-textarea:focus {
+  border-color: var(--primary);
+}
+
+/* Explanation Box */
 .explanation-box {
   display: none;
-  margin-top: 14px;
-  padding: 14px 16px;
-  background: #fefce8;
-  border: 1px solid #fef08a;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
   border-radius: 8px;
-  font-size: 14px;
-  color: #713f12;
+  padding: 12px 14px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
-body.review-mode .explanation-box {
+
+.review-mode .explanation-box {
   display: block !important;
 }
 
-/* Right-side Drawer */
-.exam-drawer {
+.review-mode .question-item.user-correct {
+  border-color: var(--correct);
+  background: #f0fdf4;
+}
+
+.review-mode .question-item.user-wrong {
+  border-color: var(--wrong);
+  background: #fef2f2;
+}
+
+/* Persistent Drawer */
+aside.persistent-drawer {
   position: fixed;
-  top: var(--header-height);
-  right: -340px;
-  width: 320px;
-  height: calc(100vh - var(--header-height));
+  top: 48px;
+  right: -360px;
+  width: 360px;
+  bottom: 0;
   background: #fff;
-  border-left: 1px solid var(--border);
-  box-shadow: -2px 0 8px rgba(0,0,0,0.1);
-  z-index: 95;
+  border-left: 2px solid var(--border-color);
+  box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+  z-index: 995;
   transition: right 0.3s ease;
   display: flex;
   flex-direction: column;
 }
-.exam-drawer.open {
+
+aside.persistent-drawer.open {
   right: 0;
 }
+
 .drawer-header {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
   font-weight: 700;
-  background: #f8fafc;
 }
+
 .drawer-body {
-  padding: 16px;
-  overflow-y: auto;
   flex: 1;
+  overflow-y: auto;
+  padding: 16px;
 }
+
 .drawer-section-title {
-  font-size: 13px;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--text-muted);
-  margin: 12px 0 8px;
   text-transform: uppercase;
+  margin: 10px 0 6px;
 }
+
 .drawer-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-}
-.drawer-btn {
-  height: 38px;
-  border: 1px solid var(--border);
-  background: #f8fafc;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.drawer-btn.answered {
-  background: #e0f2fe;
-  border-color: #38bdf8;
-  color: #0369a1;
-}
-.drawer-btn.correct-rev {
-  background: #dcfce7 !important;
-  border-color: #22c55e !important;
-  color: #15803d !important;
-}
-.drawer-btn.wrong-rev {
-  background: #fee2e2 !important;
-  border-color: #ef4444 !important;
-  color: #b91c1c !important;
+  gap: 6px;
+  margin-bottom: 12px;
 }
 
-/* Welcome Modal */
-.welcome-modal-overlay {
+.drawer-btn {
+  padding: 6px 0;
+  text-align: center;
+  border: 1.5px dashed #cbd5e1;
+  background: #fff;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.drawer-btn.answered {
+  background: var(--primary);
+  color: #fff;
+  border-style: solid;
+  border-color: var(--primary-dark);
+}
+
+.drawer-btn.correct-rev {
+  background: var(--correct) !important;
+  color: #fff !important;
+  border-style: solid !important;
+  border-color: var(--correct) !important;
+}
+
+.drawer-btn.wrong-rev {
+  background: var(--wrong) !important;
+  color: #fff !important;
+  border-style: solid !important;
+  border-color: var(--wrong) !important;
+}
+
+/* Review Bottom Bar */
+.review-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 2px solid var(--primary);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  z-index: 998;
+}
+
+/* Modals */
+.modal-backdrop {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 200;
-  padding: 16px;
+  z-index: 2000;
 }
-.welcome-modal-card {
+
+.modal-backdrop.hidden {
+  display: none !important;
+}
+
+.modal-card {
   background: #fff;
-  border-radius: 12px;
-  max-width: 480px;
-  width: 100%;
-  padding: 28px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  width: 92%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25);
+  box-sizing: border-box;
 }
-.modal-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--primary-dark);
-  margin-bottom: 8px;
-}
-.modal-input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 6px;
-  font-size: 15px;
-  margin-bottom: 14px;
-  outline: none;
-}
-.modal-input:focus {
-  border-color: var(--primary-light);
-}
-.btn-modal-start {
-  width: 100%;
-  background: var(--primary);
+
+.modal-header {
+  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: #fff;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-header h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.modal-header p {
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  margin-top: 2px;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.score-hero {
+  text-align: center;
+  padding: 5px 0 15px;
+}
+
+.score-circle {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  box-shadow: 0 4px 15px rgba(23,107,99,0.3);
+}
+
+.score-num {
+  font-size: 2.3rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 0.78rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.result-badge {
+  display: inline-block;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+}
+
+.result-badge.pass {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.result-badge.fail {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.score-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 14px 0;
+  text-align: center;
+}
+
+.score-stat-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.score-stat-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.score-stat-lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sync-status-box {
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sync-status-box.success {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #15803d;
+}
+
+.sync-status-box.offline {
+  background: #fef9c3;
+  border: 1px solid #fde047;
+  color: #854d0e;
+}
+
+.btn-secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 8px;
 }
-.btn-modal-start:hover {
-  background: var(--primary-light);
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--primary-dark);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  background: #e5ca89;
+}
+
+.modal-footer {
+  padding: 12px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body.drawer-open {
+    margin-right: 0;
+  }
+  aside.persistent-drawer {
+    width: 300px;
+  }
+  .choice-list {
+    grid-template-columns: 1fr;
+  }
+  .score-breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+  .write-sentence-card {
+    flex-direction: column;
+  }
+  .write-sentence-img {
+    width: 100%;
+    max-width: 240px;
+  }
 }
 </style>
 </head>
@@ -679,61 +933,151 @@ body.review-mode .explanation-box {
 <!-- Header -->
 <header class="exam-header">
   <div class="header-left">
-    <a href="index.html#WORKBOOK_HSK4" class="btn-portal-back">⬅ Bài Tập HSK4</a>
-    <span class="exam-badge-tag">Bài 01: 简单的爱情</span>
-    <span id="studentInfoBadge" class="student-info-tag">👤 Thí sinh (Tự do)</span>
+    <a href="index.html" class="btn-nav-back">⬅ Cổng Đề</a>
+    <div class="brand-badge">
+      <span>HSK 4</span>
+      <span class="chinese" style="font-weight:600;font-size:0.82rem;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">简单的爱情</span>
+    </div>
+    <span class="student-tag" id="studentInfoBadge">👤 Thí sinh</span>
   </div>
   <div class="header-center">
-    <div class="timer-badge" id="totalTimerBadge">⏳ Tổng: <span id="totalTimerText">50:00</span></div>
-    <div class="timer-badge" id="listeningTimerBadge">🎧 Nghe: <span id="listeningTimerText">18:00</span></div>
+    <div class="timer-pill" id="totalTimerBadge" title="Thời gian toàn bài">
+      <span>⏱</span> <span id="totalTimerText">50:00</span>
+    </div>
+    <div class="timer-pill" id="listeningTimerBadge" title="Thời gian nghe hiểu">
+      <span>🎧</span> <span id="listeningTimerText">18:00</span>
+    </div>
   </div>
   <div class="header-right">
-    <button class="btn-toggle-drawer" onclick="toggleExamDrawer()">📋 Bảng câu (<span id="answeredCount">0</span>/50)</button>
-    <button class="btn-submit-exam" onclick="confirmSubmitExam()">Nộp Bài</button>
+    <button class="btn-drawer-toggle" onclick="toggleExamDrawer()">
+      <span>📋</span> Trạng thái (<span id="answeredCount">0</span>/50)
+    </button>
+    <button class="btn-submit-exam" id="btnSubmitExam" onclick="confirmSubmitExam()">Nộp Bài</button>
   </div>
 </header>
 
-<!-- Sticky Audio Player Bar (3 Tracks Switcher) -->
-<div class="audio-sticky-bar">
-  <div class="audio-track-selector">
-    <button class="track-tab-btn active" id="btn-track-1" onclick="switchAudioTrack(1)">🎧 Phần 1 (Câu 1-5)</button>
-    <button class="track-tab-btn" id="btn-track-2" onclick="switchAudioTrack(2)">🎧 Phần 2 (Câu 6-12)</button>
-    <button class="track-tab-btn" id="btn-track-3" onclick="switchAudioTrack(3)">🎧 Phần 3 (Câu 13-22)</button>
-  </div>
-  <div class="audio-player-wrap">
-    <audio id="mainAudioPlayer" controls preload="metadata"></audio>
-  </div>
-</div>
-
-<!-- Drawer -->
-<div class="exam-drawer" id="examDrawer">
-  <div class="drawer-header">
-    <span>Bảng Trạng Thái (50 Câu)</span>
-    <button onclick="toggleExamDrawer()" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button>
-  </div>
-  <div class="drawer-body" id="drawerGrid">
-    <!-- Rendered via JS -->
+<!-- Audio Controller Bar -->
+<div class="audio-bar">
+  <div class="audio-bar-inner">
+    <div class="audio-tabs">
+      <button class="track-tab-btn active" onclick="switchAudioTrack(1)">Phần 1 (Nghe 1-5)</button>
+      <button class="track-tab-btn" onclick="switchAudioTrack(2)">Phần 2 (Nghe 6-12)</button>
+      <button class="track-tab-btn" onclick="switchAudioTrack(3)">Phần 3 (Nghe 13-22)</button>
+    </div>
+    <div class="audio-player-wrap">
+      <audio id="mainAudioPlayer" controls preload="auto"></audio>
+    </div>
   </div>
 </div>
 
-<!-- Main Exam Layout -->
-<main class="main-exam-layout">
-  <div id="firebaseSyncStatus" class="sync-status-box" style="display:none;"></div>
-  <div id="examContainer">
-    <!-- Rendered via JS -->
-  </div>
+<!-- Main Exam Content -->
+<main class="exam-main" id="examContainer">
+  <!-- Rendered via JavaScript -->
 </main>
 
+<!-- Bottom Review Bar -->
+<div id="reviewBottomBar" class="review-bottom-bar" style="display:none;">
+  <div style="font-weight:700;font-size:0.9rem;color:var(--primary-dark);" id="reviewBottomBarText">
+    Kết quả: Đang cập nhật...
+  </div>
+  <div style="display:flex;gap:8px;">
+    <button class="btn-secondary" style="padding:6px 12px;font-size:0.8rem;" onclick="openResultModal()">📊 Bảng Điểm</button>
+    <button class="btn-gold" style="padding:6px 14px;font-size:0.8rem;" onclick="retryExamWithShuffle()">🔄 Làm lại bài</button>
+  </div>
+</div>
+
+<!-- Persistent Right Drawer -->
+<aside class="persistent-drawer" id="examDrawer">
+  <div class="drawer-header">
+    <strong>Bảng Trạng Thái (50 Câu)</strong>
+    <button onclick="toggleExamDrawer()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerGrid">
+    <!-- Injected via JS -->
+  </div>
+  <div style="padding:12px;border-top:1px solid #e2e8f0;background:#f8fafc;">
+    <button class="btn-gold" style="width:100%;padding:8px;border-radius:8px;font-weight:700;font-size:0.85rem;" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Đảo đề mới)</button>
+  </div>
+</aside>
+
 <!-- Welcome Modal -->
-<div class="welcome-modal-overlay" id="welcomeModal">
-  <div class="welcome-modal-card">
-    <h2 class="modal-title">HSK 4 - Bài 1: 简单的爱情</h2>
-    <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Hệ thống bài tập Giáo trình Chuẩn HSK 4 gồm 50 câu (Nghe 22, Đọc 21, Viết 7). Thời gian làm bài 50 phút. Kết quả sẽ tự động lưu và gửi về hệ thống Giáo viên.</p>
-    <label style="display:block;font-size:13px;font-weight:600;margin-bottom:4px;">Họ và tên thí sinh (*):</label>
-    <input type="text" id="inputStudentName" class="modal-input" placeholder="Ví dụ: Nguyễn Văn A">
-    <label style="display:block;font-size:13px;font-weight:600;margin-bottom:4px;">Lớp / Khóa học (*):</label>
-    <input type="text" id="inputStudentClass" class="modal-input" placeholder="Ví dụ: HSK4-K12">
-    <button class="btn-modal-start" onclick="startExamSession()">Bắt Đầu Làm Bài ➔</button>
+<div class="modal-backdrop" id="welcomeModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2>HSK 4 - Bài 1: 简单的爱情</h2>
+      <p>Giáo trình chuẩn HSK 4 • 50 câu hỏi tương tác hoàn chỉnh</p>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:4px;">Họ và tên thí sinh (*):</label>
+        <input type="text" id="inputStudentName" style="width:100%;padding:8px 12px;border:1.5px solid var(--border-color);border-radius:8px;font-size:14px;" placeholder="Ví dụ: Nguyễn Văn A">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:4px;">Lớp / Khóa học (*):</label>
+        <input type="text" id="inputStudentClass" style="width:100%;padding:8px 12px;border:1.5px solid var(--border-color);border-radius:8px;font-size:14px;" placeholder="Ví dụ: HSK4-K01">
+      </div>
+      <div style="font-size:13px;color:#64748b;line-height:1.6;background:#f8fafc;padding:12px;border-radius:8px;">
+        • Cấu trúc: Nghe (22 câu), Đọc (21 câu), Viết (7 câu).<br>
+        • Thời gian: 50 phút toàn bài (18 phút phần nghe).<br>
+        • Hệ thống tự động chấm điểm tức thì theo chuẩn HSK 4 và đồng bộ về cơ sở dữ liệu giáo viên.
+      </div>
+    </div>
+    <div class="modal-footer" style="justify-content:flex-end;">
+      <button class="btn-gold" onclick="startExamSession()">Bắt đầu làm bài ➔</button>
+    </div>
+  </div>
+</div>
+
+<!-- Results & Grading Modal (HSK3 standard: Rich modal, no simple popup) -->
+<div class="modal-backdrop hidden" id="resultModal" style="display:none;">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2 id="resultModalTitle">Kết Quả Bài Làm: HSK 4 - Bài 1: 简单的爱情</h2>
+      <p id="resultModalSubtitle">Thí sinh: Thí sinh • Lớp: Tự do • Lần làm thứ 1</p>
+    </div>
+    <div class="modal-body">
+      <div class="score-hero">
+        <div class="score-circle">
+          <div class="score-num" id="score10Display">0.0</div>
+          <div class="score-label">Thang điểm 10</div>
+        </div>
+        <div class="result-badge" id="resultStatusBadge">ĐẠT CHUẨN HSK 4</div>
+        <p style="margin-top: 8px; font-size: 0.95rem; font-weight:600;" id="hskScoreBreakdownText">
+          Điểm quy đổi HSK: 0 / 300 (Yêu cầu đỗ: ≥ 180 điểm)
+        </p>
+        <p style="font-size: 0.82rem; color: #64748b; margin-top: 4px;" id="timeSpentText">
+          ⏱ Thời gian làm bài: 0 phút 00 giây
+        </p>
+      </div>
+
+      <div class="score-breakdown-grid">
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statListening">0/22</div>
+          <div class="score-stat-lbl">Phần Nghe (听力)</div>
+        </div>
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statReading">0/21</div>
+          <div class="score-stat-lbl">Phần Đọc (阅读)</div>
+        </div>
+        <div class="score-stat-card">
+          <div class="score-stat-val" id="statWriting">0/7</div>
+          <div class="score-stat-lbl">Phần Viết (书写)</div>
+        </div>
+      </div>
+
+      <div class="sync-status-box success" id="firebaseSyncStatus">
+        <span>🟢 Kết quả đã được tự động lưu cục bộ và gửi về hệ thống quản lý của giáo viên (Firebase Realtime Database).</span>
+      </div>
+
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+        <button class="btn-secondary" onclick="exportResultCSV()">📥 Xuất phiếu điểm CSV</button>
+        <button class="btn-secondary" onclick="copyAuthCode()">📋 Sao chép Mã xác thực</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeResultModalToReview()">🔍 Xem Chi Tiết Đáp Án & Giải Thích</button>
+      <button class="btn-gold" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Đảo đề mới)</button>
+    </div>
   </div>
 </div>
 
@@ -1751,18 +2095,19 @@ const MASTER_DATA = {
     }
   }
 };
+
 const EXAM_CONFIG = {
   examCode: "SC4-B01",
   examTitle: "HSK 4 - Bài 1: 简单的爱情",
   audioTracks: {
-    1: "audio/01-1.mp3",
-    2: "audio/01-2.mp3",
-    3: "audio/01-3.mp3"
-  }
+  "1": "audio/01-1.mp3",
+  "2": "audio/01-2.mp3",
+  "3": "audio/01-3.mp3"
+}
 };
 
 let activeData = null;
-const userAnswers = {};
+let userAnswers = {};
 let studentName = (typeof localStorage !== "undefined" && localStorage.getItem("hsk3_student_name")) || "Thí sinh";
 let studentClass = (typeof localStorage !== "undefined" && localStorage.getItem("hsk3_student_class")) || "Tự do";
 let totalSeconds = 50 * 60;
@@ -1770,14 +2115,17 @@ let listeningSeconds = 18 * 60;
 let timerInterval = null;
 let isExamSubmitted = false;
 let currentAudioTrack = 1;
+let attemptCount = 1;
 
 function randomizeExamData() {
   activeData = JSON.parse(JSON.stringify(MASTER_DATA));
 
-  // Listening Part 2 & Part 3 option letters
+  // Listening Part 2 & Part 3 option shuffle & dynamic letters
   ['part2', 'part3'].forEach(pk => {
     if (activeData.listening && activeData.listening[pk]) {
       activeData.listening[pk].questions.forEach(q => {
+        // Shuffle options for retry
+        q.options.sort(() => Math.random() - 0.5);
         const letters = ['A', 'B', 'C', 'D'];
         q.options.forEach((opt, idx) => {
           opt.currentLetter = letters[idx];
@@ -1788,9 +2136,10 @@ function randomizeExamData() {
     }
   });
 
-  // Reading Part 3 option letters
+  // Reading Part 3 option shuffle
   if (activeData.reading && activeData.reading.part3) {
     activeData.reading.part3.questions.forEach(q => {
+      q.options.sort(() => Math.random() - 0.5);
       const letters = ['A', 'B', 'C', 'D'];
       q.options.forEach((opt, idx) => {
         opt.currentLetter = letters[idx];
@@ -1803,7 +2152,7 @@ function randomizeExamData() {
 
 function escapeJsStr(str) {
   if (!str) return "";
-  return str.split('\\\\').join('\\\\\\\\').split("'").join("\\\\'").split('\\n').join(' ');
+  return str.split('\\').join('\\\\').split("'").join("\\'").split('\n').join(' ');
 }
 
 function switchAudioTrack(trackNum) {
@@ -1815,7 +2164,6 @@ function switchAudioTrack(trackNum) {
   if (audio && EXAM_CONFIG.audioTracks[trackNum]) {
     audio.src = EXAM_CONFIG.audioTracks[trackNum];
     audio.load();
-    audio.play().catch(() => {});
   }
 }
 
@@ -1837,14 +2185,26 @@ function playQuestionAudio(partNum, timestamp, fallbackText) {
 
 function toggleExamDrawer() {
   const drawer = document.getElementById("examDrawer");
-  if (drawer) drawer.classList.toggle("open");
+  if (!drawer) return;
+  drawer.classList.toggle("open");
+  if (window.innerWidth > 1024) {
+    document.body.classList.toggle("drawer-open");
+  }
 }
 
 function scrollToQuestion(qId) {
   const el = document.getElementById(`qbox-${qId}`);
   if (el) {
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    toggleExamDrawer();
+    el.classList.add('active-scroll');
+    setTimeout(() => el.classList.remove('active-scroll'), 1500);
+    if (window.innerWidth <= 768) {
+      const drawer = document.getElementById("examDrawer");
+      if (drawer && drawer.classList.contains("open")) {
+        drawer.classList.remove("open");
+        document.body.classList.remove("drawer-open");
+      }
+    }
   }
 }
 
@@ -1854,11 +2214,7 @@ function updateProgress() {
   if (countEl) countEl.textContent = count;
 
   for (let i = 1; i <= 50; i++) {
-    let qId = '';
-    if (i <= 22) qId = `L${i}`;
-    else if (i <= 43) qId = `R${i}`;
-    else qId = `W${i}`;
-
+    let qId = (i <= 22) ? `L${i}` : (i <= 43) ? `R${i}` : `W${i}`;
     const btn = document.getElementById(`drawer-btn-${i}`);
     if (btn) {
       if (userAnswers[qId] !== undefined && userAnswers[qId] !== "") {
@@ -2055,7 +2411,7 @@ function renderExam() {
         </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Đối thoại & Câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, '<br>')}</span></div>
+        <div style="margin-bottom:6px;"><strong>🎧 Đối thoại & Câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>
         <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctLetter}. ${q.options.find(o=>o.id===q.correctId)?.text || ''}</div>
         <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
       </div>
@@ -2091,7 +2447,7 @@ function renderExam() {
         </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & Câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, '<br>')}</span></div>
+        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & Câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>
         <div style="margin-bottom:6px;"><strong>✅ Đáp án đúng:</strong> ${q.correctLetter}. ${q.options.find(o=>o.id===q.correctId)?.text || ''}</div>
         <div><strong>💡 Giải thích:</strong> ${q.explanation}</div>
       </div>
@@ -2135,7 +2491,7 @@ function renderExam() {
         <span class="q-number">Câu ${q.num}</span>
       </div>
       <div class="q-body">
-        <div class="chinese" style="font-size:17px;margin-bottom:10px;">${q.prompt.replace(/\\n/g, '<br>')}</div>
+        <div class="chinese" style="font-size:17px;margin-bottom:10px;">${q.prompt.replace(/\n/g, '<br>')}</div>
         <div class="bank-options-row">
           ${activeData.reading.part1.group1.options.map(opt => `
             <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankWord('${q.id}', '${opt.id}', this)">
@@ -2169,7 +2525,7 @@ function renderExam() {
         <span class="q-number">Câu ${q.num}</span>
       </div>
       <div class="q-body">
-        <div class="chinese" style="font-size:17px;margin-bottom:10px;">${q.prompt.replace(/\\n/g, '<br>')}</div>
+        <div class="chinese" style="font-size:17px;margin-bottom:10px;">${q.prompt.replace(/\n/g, '<br>')}</div>
         <div class="bank-options-row">
           ${activeData.reading.part1.group2.options.map(opt => `
             <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankWord('${q.id}', '${opt.id}', this)">
@@ -2348,7 +2704,6 @@ function renderExam() {
 function startTimers() {
   if (timerInterval) clearInterval(timerInterval);
   timerInterval = setInterval(() => {
-    // Total countdown (50 min)
     if (totalSeconds > 0) {
       totalSeconds--;
       const m = Math.floor(totalSeconds / 60);
@@ -2364,7 +2719,6 @@ function startTimers() {
       return;
     }
 
-    // Listening countdown (18 min)
     if (listeningSeconds > 0) {
       listeningSeconds--;
       const lm = Math.floor(listeningSeconds / 60);
@@ -2394,7 +2748,6 @@ function startExamSession() {
   const modal = document.getElementById("welcomeModal");
   if (modal) modal.style.display = "none";
 
-  // Switch to audio track 1 by default
   switchAudioTrack(1);
   startTimers();
 }
@@ -2404,7 +2757,7 @@ function confirmSubmitExam() {
   const unanswered = 50 - answered;
   let msg = `Bạn đã hoàn thành ${answered}/50 câu.`;
   if (unanswered > 0) {
-    msg += ` Còn ${unanswered} câu chưa trả lời. Bạn có chắc chắn muốn nộp bài?`;
+    msg += ` Còn ${unanswered} câu chưa trả lời. Bạn có chắc chắn muốn nộp bài để xem kết quả?`;
   } else {
     msg += ` Bạn có chắc chắn muốn nộp bài để xem kết quả?`;
   }
@@ -2478,20 +2831,18 @@ function submitExam() {
 
   // 7. Writing Part 1 (44-48)
   activeData.writing.part1.questions.forEach(q => {
-    const rawUser = (userAnswers[q.id] || '').replace(/[。？！?!\\s]/g, '');
-    const rawCor = q.correct.replace(/[。？！?!\\s]/g, '');
+    const rawUser = (userAnswers[q.id] || '').replace(/[。？！?!\s]/g, '');
+    const rawCor = q.correct.replace(/[。？！?!\s]/g, '');
     const isCor = (rawUser === rawCor);
     if (isCor) { correctCount++; correctW++; }
     results[q.id] = { num: q.num, user: userAnswers[q.id] || "Chưa làm", correct: q.correct, isCor };
   });
 
-  // 8. Writing Part 2 (49-50: Flexible evaluation with keyword)
+  // 8. Writing Part 2 (49-50)
   activeData.writing.part2.questions.forEach(q => {
     const rawUser = (userAnswers[q.id] || '').trim();
-    const cleanUser = rawUser.replace(/[.,?!，。？！\\s]/g, '');
-    const cleanKey = q.keyword.replace(/[.,?!，。？！\\s]/g, '');
-    
-    // Evaluation criteria: contains given word and forms a reasonable sentence
+    const cleanUser = rawUser.replace(/[.,?!，。？！\s]/g, '');
+    const cleanKey = q.keyword.replace(/[.,?!，。？！\s]/g, '');
     const hasKey = cleanUser.includes(cleanKey);
     const validLen = cleanUser.length >= cleanKey.length + 3;
     const isCor = (hasKey && validLen);
@@ -2521,10 +2872,9 @@ function submitExam() {
     });
   }
 
-  let attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
+  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "0") + 1;
   localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
 
-  // Payload for Teacher Dashboard and Firebase
   const submissionPayload = {
     studentName: studentName || "Thí sinh",
     studentClass: studentClass || "Tự do",
@@ -2545,26 +2895,24 @@ function submitExam() {
     detailedSummary: detailedSummary
   };
 
-  // 1. Post to submissions.json (Read by Teacher Dashboard teacher.html)
+  // 1. Post to Firebase Realtime DB submissions.json
   fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/submissions.json", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(submissionPayload)
   }).then(r => r.json()).then(d => {
-    console.log("Firebase sync to teacher dashboard success:", d);
+    console.log("Firebase sync success:", d);
     const syncEl = document.getElementById("firebaseSyncStatus");
     if (syncEl) {
-      syncEl.innerHTML = `<span>🟢 Đã gửi bài nộp về hệ thống giáo viên (Firebase Realtime Database) thành công (${new Date().toLocaleTimeString('vi-VN')})</span>`;
+      syncEl.innerHTML = `<span>🟢 Đã gửi bài nộp về cơ sở dữ liệu giáo viên (Firebase Realtime Database) thành công (${new Date().toLocaleTimeString('vi-VN')})</span>`;
       syncEl.className = "sync-status-box success";
-      syncEl.style.display = "block";
     }
   }).catch(err => {
     console.warn("Firebase sync error:", err);
     const syncEl = document.getElementById("firebaseSyncStatus");
     if (syncEl) {
-      syncEl.innerHTML = `<span>⚠️ Không thể kết nối mạng, kết quả đã lưu tạm trong bộ nhớ máy học sinh.</span>`;
+      syncEl.innerHTML = `<span>⚠️ Không thể kết nối mạng, kết quả đã được lưu tạm trong bộ nhớ máy học sinh.</span>`;
       syncEl.className = "sync-status-box offline";
-      syncEl.style.display = "block";
     }
   });
 
@@ -2588,11 +2936,18 @@ function submitExam() {
 
   // Enter review mode
   document.body.classList.add("review-mode");
+  const container = document.getElementById("examContainer");
+  if (container) container.classList.add("review-mode");
 
-  // Highlight drawer buttons
+  // Highlight user correct/wrong on each question card
   for (let i = 1; i <= 50; i++) {
     let qId = (i <= 22) ? `L${i}` : (i <= 43) ? `R${i}` : `W${i}`;
     const res = results[qId];
+    const qBox = document.getElementById(`qbox-${qId}`);
+    if (qBox && res) {
+      if (res.isCor) qBox.classList.add("user-correct");
+      else qBox.classList.add("user-wrong");
+    }
     const btn = document.getElementById(`drawer-btn-${i}`);
     if (btn && res) {
       if (res.isCor) btn.classList.add('correct-rev');
@@ -2600,49 +2955,199 @@ function submitExam() {
     }
   }
 
-  // Open drawer
-  const drawer = document.getElementById("examDrawer");
-  if (drawer && !drawer.classList.contains("open")) {
-    toggleExamDrawer();
+  // Change header button to View Score
+  const btnHeaderSub = document.getElementById("btnSubmitExam");
+  if (btnHeaderSub) {
+    btnHeaderSub.innerHTML = "📊 Xem Điểm";
+    btnHeaderSub.title = "Xem lại bảng điểm kết quả";
+    btnHeaderSub.onclick = () => openResultModal();
   }
 
-  alert(`KẾT QUẢ BÀI LÀM:
+  // Populate Result Modal UI (HSK3 standard: No simple popup!)
+  const score10El = document.getElementById("score10Display");
+  if (score10El) score10El.textContent = finalScore10;
 
-Thí sinh: ${studentName} (Lớp: ${studentClass})
-Bài tập: ${EXAM_CONFIG.examTitle} [${EXAM_CONFIG.examCode}]
-- Số câu đúng: ${correctCount}/50 câu (${submissionPayload.percent}%)
-- Điểm thang 10: ${finalScore10}/10
-- Điểm quy đổi HSK: ${hskTotal}/300
-  + Nghe hiểu: ${correctL}/22 câu
-  + Đọc hiểu: ${correctR}/21 câu
-  + Viết: ${correctW}/7 câu
-- Kết quả: ${isPassed ? 'ĐẠT YÊU CẦU' : 'CHƯA ĐẠT'}
+  const subtitleEl = document.getElementById("resultModalSubtitle");
+  if (subtitleEl) subtitleEl.textContent = `Thí sinh: ${studentName} (${studentClass}) • Lần làm thứ ${attemptCount}`;
 
-☁️ Đã gửi dữ liệu kết quả về hệ thống cơ sở dữ liệu của giáo viên (Firebase Realtime Database) thành công!
+  const badgeEl = document.getElementById("resultStatusBadge");
+  if (badgeEl) {
+    if (isPassed) {
+      badgeEl.className = "result-badge pass";
+      badgeEl.textContent = `🎉 ĐẠT CHUẨN HSK 4 (${hskTotal}/300 Điểm)`;
+    } else {
+      badgeEl.className = "result-badge fail";
+      badgeEl.textContent = `⚠️ CHƯA ĐẠT (CẦN ÔN THÊM: ${hskTotal}/300)`;
+    }
+  }
 
-Hệ thống đã chuyển sang chế độ Xem Lại. Bạn có thể kéo xuống từng câu để đối chiếu bài làm, xem lời thoại nghe và giải thích chi tiết.`);
+  const breakdownEl = document.getElementById("hskScoreBreakdownText");
+  if (breakdownEl) {
+    const hskL = Math.round((correctL / 22) * 100);
+    const hskR = Math.round((correctR / 21) * 100);
+    const hskW = Math.round((correctW / 7) * 100);
+    breakdownEl.innerHTML = `Nghe: <strong>${hskL}</strong>/100 | Đọc: <strong>${hskR}</strong>/100 | Viết: <strong>${hskW}</strong>/100 • Tổng: <strong>${hskTotal}</strong>/300`;
+  }
+
+  const timeSpentEl = document.getElementById("timeSpentText");
+  if (timeSpentEl) {
+    timeSpentEl.textContent = `⏱ Thời gian làm bài: ${durationFormatted} • Đúng: ${correctCount}/50 câu (${Math.round((correctCount / 50) * 100)}%)`;
+  }
+
+  const statLEl = document.getElementById("statListening");
+  if (statLEl) statLEl.textContent = `${correctL}/22`;
+  const statREl = document.getElementById("statReading");
+  if (statREl) statREl.textContent = `${correctR}/21`;
+  const statWEl = document.getElementById("statWriting");
+  if (statWEl) statWEl.textContent = `${correctW}/7`;
+
+  // Show bottom review bar (Thanh đáp án chi tiết ở chân trang)
+  const bottomBar = document.getElementById("reviewBottomBar");
+  if (bottomBar) {
+    bottomBar.style.display = "flex";
+    const bottomText = document.getElementById("reviewBottomBarText");
+    if (bottomText) {
+      bottomText.innerHTML = `Điểm: <strong style="color:var(--primary);font-size:1.1rem;">${finalScore10}/10</strong> (HSK: <strong>${hskTotal}/300</strong>) - ${isPassed ? '<span style="color:#16a34a">ĐẠT</span>' : '<span style="color:#dc2626">CHƯA ĐẠT</span>'}`;
+    }
+  }
+
+  // Open result modal directly
+  openResultModal();
 }
 
-// Initialize on DOMContentLoaded
+function openResultModal() {
+  const modal = document.getElementById("resultModal");
+  if (modal) {
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+  }
+}
+
+function closeResultModalToReview() {
+  const modal = document.getElementById("resultModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function retryExamWithShuffle() {
+  attemptCount = parseInt(localStorage.getItem(`attempt_${EXAM_CONFIG.examCode}`) || "1") + 1;
+  localStorage.setItem(`attempt_${EXAM_CONFIG.examCode}`, attemptCount);
+
+  isExamSubmitted = false;
+  userAnswers = {};
+  totalSeconds = 50 * 60;
+  listeningSeconds = 18 * 60;
+
+  document.body.classList.remove("review-mode");
+  const container = document.getElementById("examContainer");
+  if (container) container.classList.remove("review-mode");
+
+  const resModal = document.getElementById("resultModal");
+  if (resModal) {
+    resModal.classList.add("hidden");
+    resModal.style.display = "none";
+  }
+
+  const bottomBar = document.getElementById("reviewBottomBar");
+  if (bottomBar) bottomBar.style.display = "none";
+
+  const btnSubmit = document.getElementById("btnSubmitExam");
+  if (btnSubmit) {
+    btnSubmit.innerHTML = "Nộp Bài";
+    btnSubmit.title = "Nộp bài thi";
+    btnSubmit.onclick = () => confirmSubmitExam();
+  }
+
+  const badge = document.getElementById("studentInfoBadge");
+  if (badge) {
+    badge.textContent = `👤 ${studentName} (${studentClass}) • Lần: ${attemptCount}`;
+  }
+
+  // Re-randomize choices and re-render
+  randomizeExamData();
+  renderExam();
+  updateProgress();
+  renderDrawerGrid();
+
+  // Reset timers
+  startTimers();
+  const tEl = document.getElementById("totalTimerText");
+  if (tEl) tEl.textContent = "50:00";
+  const lEl = document.getElementById("listeningTimerText");
+  if (lEl) lEl.textContent = "18:00";
+
+  // Reset audio
+  const audio = document.getElementById("mainAudioPlayer");
+  if (audio && typeof audio.pause === 'function') {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+
+  // Close drawer
+  const drawer = document.getElementById("examDrawer");
+  if (drawer && drawer.classList.contains("open")) {
+    drawer.classList.remove("open");
+    document.body.classList.remove("drawer-open");
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function exportResultCSV() {
+  let history = [];
+  try {
+    history = JSON.parse(localStorage.getItem("hsk3_exam_history") || "[]");
+  } catch(e) {}
+  if (!history.length) {
+    alert("Chưa có kết quả để xuất!");
+    return;
+  }
+  const cur = history[0];
+  let csv = "\uFEFF";
+  csv += "Mục,Giá trị\n";
+  csv += `Bài tập,"${cur.examTitle} (${cur.examCode})"\n`;
+  csv += `Họ và tên,"${cur.studentName}"\n`;
+  csv += `Lớp học,"${cur.studentClass}"\n`;
+  csv += `Lần làm bài,"#${cur.attemptCount}"\n`;
+  csv += `Thời gian nộp,"${new Date(cur.submitTime).toLocaleString('vi-VN')}"\n`;
+  csv += `Thời lượng làm bài,"${cur.durationFormatted}"\n`;
+  csv += `Điểm số /10,"${cur.score10}"\n`;
+  csv += `Điểm quy đổi HSK /300,"${cur.hskTotal}"\n`;
+  csv += `Điểm Nghe,"${cur.hskListening}"\n`;
+  csv += `Điểm Đọc,"${cur.hskReading}"\n`;
+  csv += `Điểm Viết,"${cur.hskWriting}"\n`;
+  csv += `Số câu đúng,"${cur.correctCount}/${cur.totalQuestions} (${cur.percent}%)"\n`;
+  csv += `Kết quả,"${cur.isPassed ? 'ĐẠT' : 'CHƯA ĐẠT'}"\n\n`;
+  csv += "Câu,Mã câu,Đáp án thí sinh,Đáp án đúng,Đánh giá\n";
+  cur.detailedSummary.forEach(row => {
+    csv += `"${row.num}","${row.qId}","${row.userAns}","${row.correctAns}","${row.isCorrect ? 'ĐÚNG' : 'SAI'}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `KetQua_${cur.examCode}_${cur.studentName.replace(/\s+/g, '_')}.csv`;
+  a.click();
+}
+
+function copyAuthCode() {
+  const code = `HSK4-VERIFY-${EXAM_CONFIG.examCode}-${Date.now().toString(36).toUpperCase()}`;
+  navigator.clipboard.writeText(code).then(() => {
+    alert(`Đã sao chép mã xác thực bài thi: ${code}`);
+  }).catch(() => {
+    prompt("Mã xác thực bài thi của bạn:", code);
+  });
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   randomizeExamData();
-  renderDrawerGrid();
   renderExam();
-
-  const savedName = localStorage.getItem("hsk3_student_name");
-  const savedClass = localStorage.getItem("hsk3_student_class");
-  if (savedName) {
-    studentName = savedName;
-    const ni = document.getElementById("inputStudentName");
-    if (ni) ni.value = savedName;
-  }
-  if (savedClass) {
-    studentClass = savedClass;
-    const ci = document.getElementById("inputStudentClass");
-    if (ci) ci.value = savedClass;
-  }
-  const badge = document.getElementById("studentInfoBadge");
-  if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+  renderDrawerGrid();
+  updateProgress();
 });
 </script>
 </body>

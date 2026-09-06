@@ -441,6 +441,80 @@ table.data-table tr:hover {
 }
 
 .hidden { display: none !important; }
+
+/* Responsive & Mobile Enhancements */
+.badge-class {
+  background: #edf2f7;
+  color: #334155;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.badge-exam {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+.btn-delete-single {
+  color: var(--danger);
+  border-color: #fca5a5;
+  background: #fff;
+  font-weight: 600;
+}
+.btn-delete-single:hover {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border-color: #f87171 !important;
+}
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+@media (max-width: 1024px) {
+  header.dash-header { padding: 14px 18px; }
+  main.dash-main { margin: 16px auto; padding: 0 12px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+@media (max-width: 768px) {
+  header.dash-header { padding: 12px 14px; }
+  .header-inner { flex-direction: column; align-items: stretch; gap: 12px; }
+  .brand { justify-content: space-between; width: 100%; }
+  .header-actions { justify-content: flex-start; flex-wrap: wrap; width: 100%; gap: 6px; }
+  .header-actions button, .header-actions a { font-size: 0.8rem; padding: 6px 12px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat-card { padding: 12px 14px; gap: 10px; }
+  .stat-icon { width: 40px; height: 40px; font-size: 1.15rem; border-radius: 8px; }
+  .stat-val { font-size: 1.3rem; }
+  .stat-label { font-size: 0.75rem; }
+  .toolbar-card { flex-direction: column; align-items: stretch; padding: 14px; gap: 10px; }
+  .filter-group { flex-direction: column; align-items: stretch; width: 100%; }
+  .search-input, .select-filter { width: 100%; }
+  .table-card { border-radius: 10px; }
+  table.data-table th, table.data-table td { padding: 8px 10px; font-size: 0.82rem; }
+  .modal-card { width: 95%; max-height: 85vh; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .brand-title h1 { font-size: 1.1rem; }
+}
+
 </style>
 </head>
 <body>
@@ -464,7 +538,12 @@ table.data-table tr:hover {
       </span>
       <button class="btn-pill btn-pill-outline" onclick="openAccessCodeModal()">🔑 Mã Đề Học Viên</button>
       <button class="btn-pill btn-pill-outline" onclick="openBatchModal()">📋 Nhập Mã Zalo</button>
+      <div class="filter-group">
+      <button id="btnBatchDelete" class="btn-pill" style="display:none;background:#fee2e2;color:#b91c1c;border:1px solid #f87171;font-weight:700;" onclick="deleteSelectedItems()">
+        🗑️ Xóa đã chọn (<span id="selectedCount">0</span>)
+      </button>
       <button class="btn-pill btn-pill-gold" onclick="exportExcelCSV()">📥 Xuất Excel (CSV)</button>
+    </div>
       <button class="btn-pill btn-pill-outline" onclick="logoutTeacher()" style="border-color:#fca5a5;color:#fee2e2;">Đăng Xuất</button>
     </div>
   </div>
@@ -599,7 +678,10 @@ table.data-table tr:hover {
       <table class="data-table" id="submissionsTable">
         <thead>
           <tr>
-            <th>#</th>
+            <th style="width:40px;text-align:center;">
+              <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)" title="Chọn tất cả">
+            </th>
+            <th style="width:50px;">STT</th>
             <th>Họ và Tên</th>
             <th>Lớp</th>
             <th>Mã Đề</th>
@@ -610,7 +692,7 @@ table.data-table tr:hover {
             <th>Điểm HSK /300</th>
             <th>Nghe / Đọc / Viết</th>
             <th>Trạng thái</th>
-            <th>Thao tác</th>
+            <th style="text-align:center;">Thao tác</th>
           </tr>
         </thead>
         <tbody id="tableBody">
@@ -899,10 +981,13 @@ function renderTable() {
     const isPass = (sub.hskTotal >= 180 || sub.isPassed);
     const tr = document.createElement("tr");
     tr.innerHTML = `
+      <td style="text-align:center;">
+        <input type="checkbox" class="sub-checkbox" data-id="${sub._id || ''}" data-idx="${idx}" onchange="updateSelectedCount()">
+      </td>
       <td>${idx + 1}</td>
       <td><strong>${sub.studentName || "Ẩn danh"}</strong></td>
-      <td><span style="background:#edf2f7;padding:2px 8px;border-radius:4px;font-size:0.85rem;">${sub.studentClass || "N/A"}</span></td>
-      <td><span style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:600;font-size:0.82rem;">${sub.examCode || "H31002"}</span></td>
+      <td><span class="badge-class">${sub.studentClass || "N/A"}</span></td>
+      <td><span class="badge-exam">${sub.examCode || "H31002"}</span></td>
       <td>${sub.attemptCount || 1}</td>
       <td>${sub.submitTime ? new Date(sub.submitTime).toLocaleString('vi-VN') : "Vừa xong"}</td>
       <td>${sub.durationFormatted || "N/A"}</td>
@@ -914,9 +999,8 @@ function renderTable() {
       <td>
         <span class="${isPass ? 'tag-pass' : 'tag-fail'}">${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}</span>
       </td>
-      <td>
-        <button class="btn-action-sm" onclick="viewDetails(${idx})">🔍 Xem</button>
-        <button class="btn-action-sm" style="color:var(--danger);" onclick="deleteItem(${idx})">✕</button>
+      <td style="text-align:center;">
+        <button class="btn-action-sm btn-delete-single" onclick="deleteItem('${sub._id || ''}', ${idx})" title="Xóa bài nộp này">🗑️ Xóa</button>
       </td>
     `;
     tbody.appendChild(tr);
@@ -944,27 +1028,96 @@ function filterData() {
   renderTable();
 }
 
-function viewDetails(idx) {
-  const item = allSubmissions[idx];
-  if (!item) return;
-  let info = `Thí sinh: ${item.studentName} (Lớp ${item.studentClass})\n`;
-  info += `Bài thi: ${item.examCode || 'H31002'} • Lần: ${item.attemptCount} • Điểm /10: ${item.score10} • Điểm HSK: ${item.hskTotal}/300\n`;
-  info += `Thời gian nộp: ${new Date(item.submitTime).toLocaleString('vi-VN')}\n`;
-  info += `Thời lượng làm bài: ${item.durationFormatted}\n`;
-  info += `Kết quả: ${item.isPassed ? 'ĐẠT CHUẨN' : 'CHƯA ĐẠT'}\n`;
-  alert(info);
+/* --- CHECKBOX SELECTION & BATCH DELETION --- */
+function toggleSelectAll(master) {
+  const checkboxes = document.querySelectorAll('.sub-checkbox');
+  checkboxes.forEach(cb => { cb.checked = master.checked; });
+  updateSelectedCount();
 }
 
-function deleteItem(idx) {
+function updateSelectedCount() {
+  const checkboxes = document.querySelectorAll('.sub-checkbox');
+  const checked = document.querySelectorAll('.sub-checkbox:checked');
+  const count = checked.length;
+  
+  const countEl = document.getElementById("selectedCount");
+  if (countEl) countEl.textContent = count;
+  
+  const btnBatch = document.getElementById("btnBatchDelete");
+  if (btnBatch) {
+    btnBatch.style.display = (count > 0) ? "inline-flex" : "none";
+  }
+  
+  const master = document.getElementById("selectAllCheckbox");
+  if (master) {
+    if (count === 0) {
+      master.checked = false;
+      master.indeterminate = false;
+    } else if (count === checkboxes.length) {
+      master.checked = true;
+      master.indeterminate = false;
+    } else {
+      master.checked = false;
+      master.indeterminate = true;
+    }
+  }
+}
+
+function deleteItem(id, idx) {
   const item = allSubmissions[idx];
-  if (confirm("Bạn có chắc chắn muốn xóa bài nộp này?")) {
-    if (item._id) {
-      fetch(`${HARDCODED_FIREBASE_URL}submissions/${item._id}.json`, { method: "DELETE" });
+  const name = item ? item.studentName : "này";
+  if (confirm(`Bạn có chắc chắn muốn xóa bài nộp của thí sinh "${name}"?`)) {
+    if (id || (item && item._id)) {
+      const targetId = id || item._id;
+      fetch(`${HARDCODED_FIREBASE_URL}submissions/${targetId}.json`, { method: "DELETE" }).catch(e => {});
     }
     allSubmissions.splice(idx, 1);
     localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
     renderTable();
+    updateSelectedCount();
   }
+}
+
+function deleteSelectedItems() {
+  const checked = document.querySelectorAll('.sub-checkbox:checked');
+  if (!checked.length) return;
+  
+  const count = checked.length;
+  if (!confirm(`Bạn có chắc chắn muốn xóa ${count} bài nộp đã chọn khỏi hệ thống?`)) return;
+  
+  const idsToDelete = [];
+  const indicesToDelete = [];
+  
+  checked.forEach(cb => {
+    const id = cb.getAttribute('data-id');
+    const idx = parseInt(cb.getAttribute('data-idx'));
+    if (id) idsToDelete.push(id);
+    if (!isNaN(idx)) indicesToDelete.push(idx);
+  });
+  
+  // 1. Delete from Firebase
+  idsToDelete.forEach(id => {
+    fetch(`${HARDCODED_FIREBASE_URL}submissions/${id}.json`, { method: "DELETE" }).catch(e => {});
+  });
+  
+  // 2. Remove from local list (descending order by index to prevent shifting)
+  indicesToDelete.sort((a, b) => b - a).forEach(idx => {
+    if (idx >= 0 && idx < allSubmissions.length) {
+      allSubmissions.splice(idx, 1);
+    }
+  });
+  
+  localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
+  
+  const master = document.getElementById("selectAllCheckbox");
+  if (master) {
+    master.checked = false;
+    master.indeterminate = false;
+  }
+  
+  renderTable();
+  updateSelectedCount();
+  alert(`Đã xóa thành công ${count} bài nộp!`);
 }
 
 /* --- EXPORT CSV --- */
