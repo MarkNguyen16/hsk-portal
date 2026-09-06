@@ -600,9 +600,9 @@ const PORTAL_DATABASE = {
       num: i + 1,
       code: `H4100${i+1}`.replace("0010", "010"),
       file: `hsk4-de-${i+1}.html`,
-      status: (i === 0) ? "active" : "pending",
+      status: (i <= 4) ? "active" : "pending",
       title: `HSK 4 - Đề thi số 0${i+1}`.replace("010", "10"),
-      desc: (i === 0) ? "Đề thi mô phỏng HSK 4 chuẩn quốc tế số 01 (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)" : `Đề thi mô phỏng HSK 4 chuẩn quốc tế số ${i+1}`,
+      desc: (i <= 4) ? `Đề thi mô phỏng HSK 4 chuẩn quốc tế số 0${i+1} (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)`.replace("010", "10") : `Đề thi mô phỏng HSK 4 chuẩn quốc tế số ${i+1}`,
       link: `hsk4-de-${i+1}.html`
     })),
     "workbooks": [
