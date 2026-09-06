@@ -951,6 +951,19 @@ aside.persistent-drawer.open {
   font-weight: 700;
 }
 
+
+.dialogue-row {
+  line-height: 1.65;
+  font-size: 1.1rem;
+}
+.speaker-tag {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--primary);
+  margin-right: 8px;
+  min-width: 24px;
+}
+
 </style>
 </head>
 <body>
@@ -2050,10 +2063,10 @@ const MASTER_DATA = {
           "id": "W44",
           "num": 44,
           "words": [
-            "友谊宾馆",
-            "离",
+            "远吗",
             "大使馆",
-            "远吗"
+            "离",
+            "友谊宾馆"
           ],
           "correct": "友谊宾馆离大使馆远吗？",
           "explanation": "距离介词句疑问句：主语（友谊宾馆）+ 介词短语（离大使馆）+ 形容词谓语（远）+ 疑问助词（吗）。"
@@ -2062,10 +2075,10 @@ const MASTER_DATA = {
           "id": "W45",
           "num": 45,
           "words": [
-            "那位司机师傅",
-            "对这儿",
+            "熟悉",
             "非常",
-            "熟悉"
+            "对这儿",
+            "那位司机师傅"
           ],
           "correct": "那位司机师傅对这儿非常熟悉。",
           "explanation": "主语（那位司机师傅）+ 介词短语状语（对这儿）+ 程度状语（非常）+ 形容词谓语（熟悉）。"
@@ -2074,9 +2087,9 @@ const MASTER_DATA = {
           "id": "W46",
           "num": 46,
           "words": [
-            "任何事情的发生",
+            "有原因的",
             "都是",
-            "有原因的"
+            "任何事情的发生"
           ],
           "correct": "任何事情的发生都是有原因的。",
           "explanation": "定中短语主语（任何事情的发生）+ 强调谓语动词（都是）+ 动宾结构（有原因的）。"
@@ -2085,10 +2098,10 @@ const MASTER_DATA = {
           "id": "W47",
           "num": 47,
           "words": [
-            "她们俩",
-            "聊得",
+            "愉快",
             "非常",
-            "愉快"
+            "聊得",
+            "她们俩"
           ],
           "correct": "她们俩聊得非常愉快。",
           "explanation": "状态补语句：主语（她们俩）+ 动词（聊）+ 得 + 程度补语（非常愉快）。"
@@ -2097,10 +2110,10 @@ const MASTER_DATA = {
           "id": "W48",
           "num": 48,
           "words": [
-            "她",
-            "听到这个消息后",
+            "哭了",
             "伤心地",
-            "哭了"
+            "听到这个消息后",
+            "她"
           ],
           "correct": "她听到这个消息后伤心地哭了。",
           "explanation": "主语（她）+ 时间状语（听到这个消息后）+ 状语（伤心地）+ 动词谓语（哭了）。"
@@ -2553,12 +2566,37 @@ function renderExam() {
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
     qDiv.id = `qbox-${q.id}`;
+
+    let promptHtml = q.prompt;
+    let lines = promptHtml.split(/
+|\n/);
+    if (lines.length < 2 && (promptHtml.includes("B:") || promptHtml.includes("B："))) {
+      lines = promptHtml.split(/(?=B[:：])/);
+    }
+    let formattedDialogue = "";
+    if (lines.length >= 2) {
+      const lineA = lines[0].replace(/^A[:：]\s*/, '').trim();
+      const lineB = lines[1].replace(/^B[:：]\s*/, '').trim();
+      formattedDialogue = `
+        <div class="dialogue-row" style="margin-bottom:8px;display:flex;align-items:flex-start;">
+          <span class="speaker-tag">A:</span>
+          <span style="flex:1;">${lineA}</span>
+        </div>
+        <div class="dialogue-row" style="display:flex;align-items:flex-start;">
+          <span class="speaker-tag">B:</span>
+          <span style="flex:1;">${lineB}</span>
+        </div>
+      `;
+    } else {
+      formattedDialogue = `<div class="dialogue-row">${promptHtml}</div>`;
+    }
+
     qDiv.innerHTML = `
       <div class="q-header">
         <span class="q-number">Câu ${q.num}</span>
       </div>
       <div class="q-body">
-        <div class="chinese" style="font-size:17px;margin-bottom:10px;">${q.prompt.replace(/\n/g, '<br>')}</div>
+        <div class="chinese" style="font-size:17px;margin-bottom:12px;">${formattedDialogue}</div>
         <div class="bank-options-row">
           ${activeData.reading.part1.group2.options.map(opt => `
             <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankWord('${q.id}', '${opt.id}', this)">
@@ -2675,13 +2713,24 @@ function renderExam() {
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
     qDiv.id = `qbox-${q.id}`;
+
+    // Ensure word chips are scrambled and NEVER displayed in answer order
+    let displayWords = [...q.words];
+    const cleanAnswer = q.correct.replace(/[。？！，\s]/g, '');
+    if (displayWords.join('') === cleanAnswer && displayWords.length > 1) {
+      displayWords.reverse();
+      if (displayWords.join('') === cleanAnswer && displayWords.length > 2) {
+        displayWords = [displayWords[1], displayWords[0], ...displayWords.slice(2)];
+      }
+    }
+
     qDiv.innerHTML = `
       <div class="q-header">
         <span class="q-number">Câu ${q.num}</span>
       </div>
       <div class="q-body">
         <div class="word-chips-container">
-          ${q.words.map(w => `
+          ${displayWords.map(w => `
             <span class="word-chip chinese" onclick="handleChipClick('${q.id}', '${escapeJsStr(w)}', this)">${w}</span>
           `).join('')}
         </div>
@@ -2771,19 +2820,69 @@ function startTimers() {
   }, 1000);
 }
 
+function checkAutoStudentSession() {
+  const savedName = localStorage.getItem("hsk4_student_name") || localStorage.getItem("hsk3_student_name");
+  const savedClass = localStorage.getItem("hsk4_student_class") || localStorage.getItem("hsk3_student_class") || "HSK4-Online";
+  const modal = document.getElementById("welcomeModal");
+
+  if (savedName && savedName.trim()) {
+    studentName = savedName.trim();
+    studentClass = savedClass.trim();
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) {
+      badge.innerHTML = `👤 ${studentName} (${studentClass}) <button onclick="changeStudentAccount()" style="background:none;border:none;color:#fbbf24;cursor:pointer;font-size:0.75rem;text-decoration:underline;margin-left:4px;">[Đổi]</button>`;
+    }
+    if (modal) modal.style.display = "none";
+    switchAudioTrack(1);
+    startTimers();
+  } else {
+    if (modal) modal.style.display = "flex";
+  }
+}
+
+function changeStudentAccount() {
+  if (confirm("Bạn có muốn đổi sang thông tin học viên khác?")) {
+    localStorage.removeItem("hsk4_student_name");
+    localStorage.removeItem("hsk3_student_name");
+    const modal = document.getElementById("welcomeModal");
+    if (modal) {
+      const nIn = document.getElementById("inputStudentName");
+      const cIn = document.getElementById("inputStudentClass");
+      if (nIn) nIn.value = "";
+      if (cIn) cIn.value = "";
+      modal.style.display = "flex";
+    }
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) badge.textContent = "👤 Thí sinh";
+  }
+}
+
 function startExamSession() {
   const nameInput = document.getElementById("inputStudentName");
   const classInput = document.getElementById("inputStudentClass");
   if (nameInput && nameInput.value.trim()) {
     studentName = nameInput.value.trim();
-    localStorage.setItem("hsk3_student_name", studentName);
+  } else {
+    alert("Vui lòng nhập Họ và Tên của bạn!");
+    if (nameInput) nameInput.focus();
+    return;
   }
   if (classInput && classInput.value.trim()) {
     studentClass = classInput.value.trim();
-    localStorage.setItem("hsk3_student_class", studentClass);
+  } else {
+    studentClass = "HSK4-Online";
   }
+
+  // Save persistently for ALL exams across the platform
+  localStorage.setItem("hsk4_student_name", studentName);
+  localStorage.setItem("hsk4_student_class", studentClass);
+  localStorage.setItem("hsk3_student_name", studentName);
+  localStorage.setItem("hsk3_student_class", studentClass);
+
   const badge = document.getElementById("studentInfoBadge");
-  if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+  if (badge) {
+    badge.innerHTML = `👤 ${studentName} (${studentClass}) <button onclick="changeStudentAccount()" style="background:none;border:none;color:#fbbf24;cursor:pointer;font-size:0.75rem;text-decoration:underline;margin-left:4px;">[Đổi]</button>`;
+  }
 
   const modal = document.getElementById("welcomeModal");
   if (modal) modal.style.display = "none";
@@ -3188,6 +3287,7 @@ window.addEventListener("DOMContentLoaded", () => {
   renderExam();
   renderDrawerGrid();
   updateProgress();
+  checkAutoStudentSession();
 });
 </script>
 </body>

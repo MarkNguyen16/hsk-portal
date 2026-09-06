@@ -951,6 +951,19 @@ aside.persistent-drawer.open {
   font-weight: 700;
 }
 
+
+.dialogue-row {
+  line-height: 1.65;
+  font-size: 1.1rem;
+}
+.speaker-tag {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--primary);
+  margin-right: 8px;
+  min-width: 24px;
+}
+
 </style>
 </head>
 <body>
@@ -2050,11 +2063,11 @@ const MASTER_DATA = {
           "id": "W44",
           "num": 44,
           "words": [
-            "我",
-            "还不太",
-            "适应",
+            "气候",
             "这里的",
-            "气候"
+            "适应",
+            "还不太",
+            "我"
           ],
           "correct": "我还不太适应这里的气候。",
           "explanation": "主语（我）+ 状语（还不太）+ 动词谓语（适应）+ 定中宾语（这里的气候）。"
@@ -2063,10 +2076,10 @@ const MASTER_DATA = {
           "id": "W45",
           "num": 45,
           "words": [
-            "那位病人的",
-            "情况",
+            "吗",
             "严重",
-            "吗"
+            "情况",
+            "那位病人的"
           ],
           "correct": "那位病人的情况严重吗？",
           "explanation": "主谓谓语句/定中主语（那位病人的情况）+ 形容词谓语（严重）+ 疑问语气词（吗）。"
@@ -2075,10 +2088,10 @@ const MASTER_DATA = {
           "id": "W46",
           "num": 46,
           "words": [
-            "你",
-            "把窗户",
+            "吗",
             "关了",
-            "吗"
+            "把窗户",
+            "你"
           ],
           "correct": "你把窗户关了吗？",
           "explanation": "“把”字句疑问句：主语（你）+ 介词短语（把窗户）+ 动词加动态助词（关了）+ 疑问词（吗）。"
@@ -2099,9 +2112,9 @@ const MASTER_DATA = {
           "id": "W48",
           "num": 48,
           "words": [
-            "差不多有",
+            "反对这样做",
             "三分之二的人",
-            "反对这样做"
+            "差不多有"
           ],
           "correct": "差不多有三分之二的人反对这样做。",
           "explanation": "状语/存现谓语（差不多有）+ 兼语/主语（三分之二的人）+ 谓宾结构（反对这样做）。"
@@ -2554,12 +2567,37 @@ function renderExam() {
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
     qDiv.id = `qbox-${q.id}`;
+
+    let promptHtml = q.prompt;
+    let lines = promptHtml.split(/
+|\n/);
+    if (lines.length < 2 && (promptHtml.includes("B:") || promptHtml.includes("B："))) {
+      lines = promptHtml.split(/(?=B[:：])/);
+    }
+    let formattedDialogue = "";
+    if (lines.length >= 2) {
+      const lineA = lines[0].replace(/^A[:：]\s*/, '').trim();
+      const lineB = lines[1].replace(/^B[:：]\s*/, '').trim();
+      formattedDialogue = `
+        <div class="dialogue-row" style="margin-bottom:8px;display:flex;align-items:flex-start;">
+          <span class="speaker-tag">A:</span>
+          <span style="flex:1;">${lineA}</span>
+        </div>
+        <div class="dialogue-row" style="display:flex;align-items:flex-start;">
+          <span class="speaker-tag">B:</span>
+          <span style="flex:1;">${lineB}</span>
+        </div>
+      `;
+    } else {
+      formattedDialogue = `<div class="dialogue-row">${promptHtml}</div>`;
+    }
+
     qDiv.innerHTML = `
       <div class="q-header">
         <span class="q-number">Câu ${q.num}</span>
       </div>
       <div class="q-body">
-        <div class="chinese" style="font-size:17px;margin-bottom:10px;">${q.prompt.replace(/\n/g, '<br>')}</div>
+        <div class="chinese" style="font-size:17px;margin-bottom:12px;">${formattedDialogue}</div>
         <div class="bank-options-row">
           ${activeData.reading.part1.group2.options.map(opt => `
             <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankWord('${q.id}', '${opt.id}', this)">
@@ -2676,13 +2714,24 @@ function renderExam() {
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
     qDiv.id = `qbox-${q.id}`;
+
+    // Ensure word chips are scrambled and NEVER displayed in answer order
+    let displayWords = [...q.words];
+    const cleanAnswer = q.correct.replace(/[。？！，\s]/g, '');
+    if (displayWords.join('') === cleanAnswer && displayWords.length > 1) {
+      displayWords.reverse();
+      if (displayWords.join('') === cleanAnswer && displayWords.length > 2) {
+        displayWords = [displayWords[1], displayWords[0], ...displayWords.slice(2)];
+      }
+    }
+
     qDiv.innerHTML = `
       <div class="q-header">
         <span class="q-number">Câu ${q.num}</span>
       </div>
       <div class="q-body">
         <div class="word-chips-container">
-          ${q.words.map(w => `
+          ${displayWords.map(w => `
             <span class="word-chip chinese" onclick="handleChipClick('${q.id}', '${escapeJsStr(w)}', this)">${w}</span>
           `).join('')}
         </div>
@@ -2772,19 +2821,69 @@ function startTimers() {
   }, 1000);
 }
 
+function checkAutoStudentSession() {
+  const savedName = localStorage.getItem("hsk4_student_name") || localStorage.getItem("hsk3_student_name");
+  const savedClass = localStorage.getItem("hsk4_student_class") || localStorage.getItem("hsk3_student_class") || "HSK4-Online";
+  const modal = document.getElementById("welcomeModal");
+
+  if (savedName && savedName.trim()) {
+    studentName = savedName.trim();
+    studentClass = savedClass.trim();
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) {
+      badge.innerHTML = `👤 ${studentName} (${studentClass}) <button onclick="changeStudentAccount()" style="background:none;border:none;color:#fbbf24;cursor:pointer;font-size:0.75rem;text-decoration:underline;margin-left:4px;">[Đổi]</button>`;
+    }
+    if (modal) modal.style.display = "none";
+    switchAudioTrack(1);
+    startTimers();
+  } else {
+    if (modal) modal.style.display = "flex";
+  }
+}
+
+function changeStudentAccount() {
+  if (confirm("Bạn có muốn đổi sang thông tin học viên khác?")) {
+    localStorage.removeItem("hsk4_student_name");
+    localStorage.removeItem("hsk3_student_name");
+    const modal = document.getElementById("welcomeModal");
+    if (modal) {
+      const nIn = document.getElementById("inputStudentName");
+      const cIn = document.getElementById("inputStudentClass");
+      if (nIn) nIn.value = "";
+      if (cIn) cIn.value = "";
+      modal.style.display = "flex";
+    }
+    const badge = document.getElementById("studentInfoBadge");
+    if (badge) badge.textContent = "👤 Thí sinh";
+  }
+}
+
 function startExamSession() {
   const nameInput = document.getElementById("inputStudentName");
   const classInput = document.getElementById("inputStudentClass");
   if (nameInput && nameInput.value.trim()) {
     studentName = nameInput.value.trim();
-    localStorage.setItem("hsk3_student_name", studentName);
+  } else {
+    alert("Vui lòng nhập Họ và Tên của bạn!");
+    if (nameInput) nameInput.focus();
+    return;
   }
   if (classInput && classInput.value.trim()) {
     studentClass = classInput.value.trim();
-    localStorage.setItem("hsk3_student_class", studentClass);
+  } else {
+    studentClass = "HSK4-Online";
   }
+
+  // Save persistently for ALL exams across the platform
+  localStorage.setItem("hsk4_student_name", studentName);
+  localStorage.setItem("hsk4_student_class", studentClass);
+  localStorage.setItem("hsk3_student_name", studentName);
+  localStorage.setItem("hsk3_student_class", studentClass);
+
   const badge = document.getElementById("studentInfoBadge");
-  if (badge) badge.textContent = `👤 ${studentName} (${studentClass})`;
+  if (badge) {
+    badge.innerHTML = `👤 ${studentName} (${studentClass}) <button onclick="changeStudentAccount()" style="background:none;border:none;color:#fbbf24;cursor:pointer;font-size:0.75rem;text-decoration:underline;margin-left:4px;">[Đổi]</button>`;
+  }
 
   const modal = document.getElementById("welcomeModal");
   if (modal) modal.style.display = "none";
@@ -3189,6 +3288,7 @@ window.addEventListener("DOMContentLoaded", () => {
   renderExam();
   renderDrawerGrid();
   updateProgress();
+  checkAutoStudentSession();
 });
 </script>
 </body>
