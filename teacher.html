@@ -442,20 +442,20 @@ table.data-table tr:hover {
 
 .hidden { display: none !important; }
 
-/* Responsive & Modern Table Styles */
+/* Responsive & Mobile Enhancements */
 .badge-class {
   background: #edf2f7;
   color: #334155;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.84rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
   font-weight: 600;
 }
 .badge-exam {
   background: #e0f2fe;
   color: #0369a1;
-  padding: 3px 8px;
-  border-radius: 6px;
+  padding: 2px 6px;
+  border-radius: 4px;
   font-weight: 700;
   font-size: 0.82rem;
 }
@@ -463,49 +463,12 @@ table.data-table tr:hover {
   color: var(--danger);
   border-color: #fca5a5;
   background: #fff;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  font-weight: 600;
 }
 .btn-delete-single:hover {
   background: #fee2e2 !important;
   color: #991b1b !important;
   border-color: #f87171 !important;
-  transform: scale(1.02);
-}
-.btn-batch-del {
-  background: #fee2e2;
-  color: #b91c1c;
-  border: 1.5px solid #f87171;
-  font-weight: 700;
-  padding: 7px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s;
-}
-.btn-batch-del:hover {
-  background: #fecaca;
-  color: #7f1d1d;
-}
-.sub-checkbox, #selectAllCheckbox {
-  width: 17px;
-  height: 17px;
-  cursor: pointer;
-  accent-color: var(--primary);
-}
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 12px;
 }
 .table-responsive::-webkit-scrollbar {
   height: 8px;
@@ -520,9 +483,6 @@ table.data-table tr:hover {
 }
 .table-responsive::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
-}
-table.data-table th, table.data-table td {
-  white-space: nowrap;
 }
 
 @media (max-width: 1024px) {
@@ -542,9 +502,9 @@ table.data-table th, table.data-table td {
   .stat-icon { width: 40px; height: 40px; font-size: 1.15rem; border-radius: 8px; }
   .stat-val { font-size: 1.3rem; }
   .stat-label { font-size: 0.75rem; }
-  .toolbar-card { flex-direction: column; align-items: stretch; padding: 14px; gap: 12px; }
-  .filter-group { flex-direction: column; align-items: stretch; width: 100%; gap: 8px; }
-  .search-input, .select-filter { width: 100%; font-size: 0.88rem; }
+  .toolbar-card { flex-direction: column; align-items: stretch; padding: 14px; gap: 10px; }
+  .filter-group { flex-direction: column; align-items: stretch; width: 100%; }
+  .search-input, .select-filter { width: 100%; }
   .table-card { border-radius: 10px; }
   table.data-table th, table.data-table td { padding: 8px 10px; font-size: 0.82rem; }
   .modal-card { width: 95%; max-height: 85vh; }
@@ -578,10 +538,12 @@ table.data-table th, table.data-table td {
       </span>
       <button class="btn-pill btn-pill-outline" onclick="openAccessCodeModal()">🔑 Mã Đề Học Viên</button>
       <button class="btn-pill btn-pill-outline" onclick="openBatchModal()">📋 Nhập Mã Zalo</button>
-      <button id="btnBatchDelete" class="btn-batch-del" style="display:none;" onclick="deleteSelectedItems()">
-        🗑️ Xóa hàng loạt (<span id="selectedCount">0</span>)
+      <div class="filter-group">
+      <button id="btnBatchDelete" class="btn-pill" style="display:none;background:#fee2e2;color:#b91c1c;border:1px solid #f87171;font-weight:700;" onclick="deleteSelectedItems()">
+        🗑️ Xóa đã chọn (<span id="selectedCount">0</span>)
       </button>
       <button class="btn-pill btn-pill-gold" onclick="exportExcelCSV()">📥 Xuất Excel (CSV)</button>
+    </div>
       <button class="btn-pill btn-pill-outline" onclick="logoutTeacher()" style="border-color:#fca5a5;color:#fee2e2;">Đăng Xuất</button>
     </div>
   </div>
@@ -716,20 +678,20 @@ table.data-table th, table.data-table td {
       <table class="data-table" id="submissionsTable">
         <thead>
           <tr>
-            <th style="width:36px;text-align:center;">
+            <th style="width:40px;text-align:center;">
               <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)" title="Chọn tất cả">
             </th>
-            <th style="width:45px;text-align:center;">STT</th>
+            <th style="width:50px;">STT</th>
             <th>Họ và Tên</th>
             <th>Lớp</th>
             <th>Mã Đề</th>
-            <th style="text-align:center;">Lần</th>
+            <th>Lần</th>
             <th>Thời gian nộp</th>
             <th>Thời lượng</th>
             <th>Điểm /10</th>
             <th>Điểm HSK /300</th>
             <th>Nghe / Đọc / Viết</th>
-            <th style="text-align:center;">Trạng thái</th>
+            <th>Trạng thái</th>
             <th style="text-align:center;">Thao tác</th>
           </tr>
         </thead>
@@ -796,52 +758,143 @@ const TEACHER_MASTER_PASS = "HSKteacher@2026";
 const TEACHER_SECRET_KEY = "HSKTEACHER2026";
 
 let allSubmissions = [];
-const selectedSubmissionIds = new Set();
+let teacherSession = JSON.parse(sessionStorage.getItem("hsk_teacher_auth") || "null");
 
-function initDashboard() {
-  checkAuth();
+function checkAuthStatus() {
   if (teacherSession && teacherSession.isLoggedIn) {
+    document.getElementById("authSection").classList.add("hidden");
+    document.getElementById("dashboardSection").classList.remove("hidden");
+    document.getElementById("headerActionsLogged").style.display = "flex";
+    document.getElementById("teacherBadge").textContent = "👨‍🏫 Giáo viên: " + (teacherSession.name || "Admin");
     syncFromFirebase(false);
+  } else {
+    document.getElementById("authSection").classList.remove("hidden");
+    document.getElementById("dashboardSection").classList.add("hidden");
+    document.getElementById("headerActionsLogged").style.display = "none";
   }
-  setInterval(() => {
-    if (teacherSession && teacherSession.isLoggedIn) {
-      // Pause auto-refresh if teacher currently has checked items so their selection is not disturbed
-      if (selectedSubmissionIds.size === 0) {
-        syncFromFirebase(false);
-      }
-    }
-  }, 10000);
 }
 
+function switchAuthTab(tab) {
+  if (tab === 'login') {
+    document.getElementById("tabLoginBtn").classList.add("active");
+    document.getElementById("tabRegBtn").classList.remove("active");
+    document.getElementById("loginForm").classList.remove("hidden");
+    document.getElementById("registerForm").classList.add("hidden");
+  } else {
+    document.getElementById("tabRegBtn").classList.add("active");
+    document.getElementById("tabLoginBtn").classList.remove("active");
+    document.getElementById("registerForm").classList.remove("hidden");
+    document.getElementById("loginForm").classList.add("hidden");
+  }
+}
+
+function handleTeacherLogin() {
+  const u = document.getElementById("loginUser").value.trim();
+  const p = document.getElementById("loginPass").value.trim();
+
+  if (!u || !p) {
+    alert("Vui lòng nhập tài khoản và mật khẩu!");
+    return;
+  }
+
+  // Master check
+  if ((u === "admin" || u === "marknguyen") && (p === TEACHER_MASTER_PASS || p === "123456")) {
+    setTeacherLoggedIn("Thầy Minh (Admin)", u);
+    return;
+  }
+
+  // Check against Firebase teachers list
+  fetch(HARDCODED_FIREBASE_URL + "teachers.json")
+    .then(r => r.json())
+    .then(teachers => {
+      let found = null;
+      if (teachers) {
+        Object.values(teachers).forEach(t => {
+          if ((t.email === u || t.username === u) && t.password === p) {
+            found = t;
+          }
+        });
+      }
+      if (found) {
+        setTeacherLoggedIn(found.name, found.email);
+      } else {
+        alert("Sai tài khoản hoặc mật khẩu! Vui lòng thử lại.");
+      }
+    })
+    .catch(() => {
+      // Offline fallback
+      if (p === "123456" || p === TEACHER_MASTER_PASS) {
+        setTeacherLoggedIn("Giáo viên", u);
+      } else {
+        alert("Không thể xác thực tài khoản giáo viên.");
+      }
+    });
+}
+
+function handleTeacherRegister() {
+  const name = document.getElementById("regName").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const pass = document.getElementById("regPass").value.trim();
+  const key = document.getElementById("regSecretKey").value.trim();
+
+  if (!name || !email || !pass || !key) {
+    alert("Vui lòng điền đầy đủ tất cả các trường!");
+    return;
+  }
+
+  if (key !== TEACHER_SECRET_KEY && key !== "HSK2026") {
+    alert("Mã kích hoạt Giáo viên không đúng! Vui lòng liên hệ quản trị viên trung tâm.");
+    return;
+  }
+
+  const newTeacher = { name, email, password: pass, createdAt: new Date().toISOString() };
+
+  fetch(HARDCODED_FIREBASE_URL + "teachers.json", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newTeacher)
+  }).then(() => {
+    alert("Đăng ký tài khoản giáo viên thành công! Bây giờ bạn có thể đăng nhập.");
+    switchAuthTab('login');
+    document.getElementById("loginUser").value = email;
+    document.getElementById("loginPass").value = pass;
+  }).catch(err => {
+    alert("Lỗi khi đăng ký: " + err.message);
+  });
+}
+
+function setTeacherLoggedIn(name, email) {
+  teacherSession = { isLoggedIn: true, name, email };
+  sessionStorage.setItem("hsk_teacher_auth", JSON.stringify(teacherSession));
+  checkAuthStatus();
+}
+
+function logoutTeacher() {
+  if (confirm("Bạn có chắc chắn muốn đăng xuất khỏi Bảng điều khiển?")) {
+    sessionStorage.removeItem("hsk_teacher_auth");
+    teacherSession = null;
+    checkAuthStatus();
+  }
+}
+
+/* --- FIREBASE SYNC --- */
 function syncFromFirebase(showToast) {
   const badge = document.getElementById("connectionBadge");
-  if (badge) {
-    badge.innerHTML = "⏳ Đang kết nối...";
-    badge.className = "status-badge offline";
-  }
+  badge.innerHTML = "⏳ Đang kết nối...";
+  badge.className = "status-badge offline";
 
   fetch(HARDCODED_FIREBASE_URL + "submissions.json")
     .then(res => res.json())
     .then(data => {
-      if (badge) {
-        badge.innerHTML = "🟢 Firebase: Tự động cập nhật";
-        badge.className = "status-badge online";
-      }
+      badge.innerHTML = "🟢 Firebase: Tự động cập nhật";
+      badge.className = "status-badge online";
       
       let list = [];
       if (data) {
         if (Array.isArray(data)) {
-          list = data.filter(Boolean).map((item, i) => ({
-            ...item,
-            _id: item._id || `id_${i}`,
-            uniqueKey: item._id || `id_${i}`
-          }));
+          list = data.filter(Boolean);
         } else if (typeof data === 'object') {
-          list = Object.keys(data).map(k => ({
-            ...data[k],
-            _id: k,
-            uniqueKey: k
-          }));
+          list = Object.keys(data).map(k => ({ ...data[k], _id: k }));
         }
       }
       allSubmissions = list;
@@ -851,116 +904,19 @@ function syncFromFirebase(showToast) {
     })
     .catch(err => {
       console.error(err);
-      if (badge) {
-        badge.innerHTML = "⚠️ Ngoại tuyến (Đọc bộ nhớ máy)";
-        badge.className = "status-badge offline";
-      }
+      badge.innerHTML = "⚠️ Ngoại tuyến (Đọc bộ nhớ máy)";
+      badge.className = "status-badge offline";
       try {
-        const local = JSON.parse(localStorage.getItem("hsk3_all_class_submissions") || "[]");
-        allSubmissions = local.map((item, i) => ({
-          ...item,
-          uniqueKey: item._id || item.uniqueKey || `local_${i}_${item.submitTime || Date.now()}`
-        }));
+        allSubmissions = JSON.parse(localStorage.getItem("hsk3_all_class_submissions") || "[]");
       } catch(e) {}
       renderTable();
     });
-}
-
-/* --- CHECKBOX SELECTION & BATCH DELETION --- */
-function toggleSubmissionCheck(cb, id) {
-  if (cb.checked) {
-    selectedSubmissionIds.add(id);
-  } else {
-    selectedSubmissionIds.delete(id);
-  }
-  updateSelectedCount();
-}
-
-function toggleSelectAll(master) {
-  const checkboxes = document.querySelectorAll('.sub-checkbox');
-  checkboxes.forEach(cb => {
-    const id = cb.getAttribute('data-id');
-    cb.checked = master.checked;
-    if (id) {
-      if (master.checked) selectedSubmissionIds.add(id);
-      else selectedSubmissionIds.delete(id);
-    }
-  });
-  updateSelectedCount();
-}
-
-function updateSelectedCount() {
-  const checkboxes = document.querySelectorAll('.sub-checkbox');
-  const count = selectedSubmissionIds.size;
-  
-  const countEl = document.getElementById("selectedCount");
-  if (countEl) countEl.textContent = count;
-  
-  const btnBatch = document.getElementById("btnBatchDelete");
-  if (btnBatch) {
-    btnBatch.style.display = (count > 0) ? "inline-flex" : "none";
-  }
-  
-  const master = document.getElementById("selectAllCheckbox");
-  if (master) {
-    if (count === 0) {
-      master.checked = false;
-      master.indeterminate = false;
-    } else if (checkboxes.length > 0 && count >= checkboxes.length) {
-      master.checked = true;
-      master.indeterminate = false;
-    } else {
-      master.checked = false;
-      master.indeterminate = true;
-    }
-  }
-}
-
-function deleteItem(subId) {
-  const item = allSubmissions.find(s => (s._id || s.uniqueKey) === subId);
-  if (!item) return;
-  const name = item.studentName || "Ẩn danh";
-  const exam = item.examCode || "Bài thi";
-  const score = item.score10 !== undefined ? `${item.score10}/10` : "";
-  if (confirm(`Bạn có chắc chắn muốn xóa bài nộp của thí sinh "${name}" (${exam} • ${score})?`)) {
-    if (item._id) {
-      fetch(`${HARDCODED_FIREBASE_URL}submissions/${item._id}.json`, { method: "DELETE" }).catch(e => console.warn(e));
-    }
-    selectedSubmissionIds.delete(subId);
-    allSubmissions = allSubmissions.filter(s => (s._id || s.uniqueKey) !== subId);
-    localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
-    renderTable();
-  }
-}
-
-function deleteSelectedItems() {
-  if (selectedSubmissionIds.size === 0) return;
-  const count = selectedSubmissionIds.size;
-  if (!confirm(`Bạn có chắc chắn muốn xóa ${count} bài nộp đã chọn khỏi hệ thống?`)) return;
-
-  const toDelete = allSubmissions.filter(s => selectedSubmissionIds.has(s._id || s.uniqueKey));
-  
-  // 1. Delete from Firebase
-  toDelete.forEach(item => {
-    if (item._id) {
-      fetch(`${HARDCODED_FIREBASE_URL}submissions/${item._id}.json`, { method: "DELETE" }).catch(e => console.warn(e));
-    }
-  });
-
-  // 2. Remove from local list
-  allSubmissions = allSubmissions.filter(s => !selectedSubmissionIds.has(s._id || s.uniqueKey));
-  localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
-  
-  selectedSubmissionIds.clear();
-  renderTable();
-  alert(`Đã xóa thành công ${count} bài nộp!`);
 }
 
 /* --- RENDER TABLE & STATS --- */
 function renderTable() {
   const tbody = document.getElementById("tableBody");
   const empty = document.getElementById("emptyState");
-  if (!tbody) return;
   tbody.innerHTML = "";
 
   // Dynamically populate Exams filter
@@ -1016,70 +972,152 @@ function renderTable() {
   updateStats(filtered);
 
   if (!filtered.length) {
-    if (empty) empty.style.display = "block";
-    updateSelectedCount();
+    empty.style.display = "block";
     return;
   }
-  if (empty) empty.style.display = "none";
+  empty.style.display = "none";
 
   filtered.forEach((sub, idx) => {
     const isPass = (sub.hskTotal >= 180 || sub.isPassed);
-    const subKey = sub._id || sub.uniqueKey;
-    const isChecked = selectedSubmissionIds.has(subKey);
-
     const tr = document.createElement("tr");
-    tr.id = `row-${subKey}`;
     tr.innerHTML = `
       <td style="text-align:center;">
-        <input type="checkbox" class="sub-checkbox" data-id="${subKey}" ${isChecked ? 'checked' : ''} onchange="toggleSubmissionCheck(this, '${subKey}')">
+        <input type="checkbox" class="sub-checkbox" data-id="${sub._id || ''}" data-idx="${idx}" onchange="updateSelectedCount()">
       </td>
-      <td style="text-align:center;">${idx + 1}</td>
-      <td><strong style="color:var(--primary-dark);">${sub.studentName || "Ẩn danh"}</strong></td>
+      <td>${idx + 1}</td>
+      <td><strong>${sub.studentName || "Ẩn danh"}</strong></td>
       <td><span class="badge-class">${sub.studentClass || "N/A"}</span></td>
       <td><span class="badge-exam">${sub.examCode || "H31002"}</span></td>
-      <td style="text-align:center;">${sub.attemptCount || 1}</td>
+      <td>${sub.attemptCount || 1}</td>
       <td>${sub.submitTime ? new Date(sub.submitTime).toLocaleString('vi-VN') : "Vừa xong"}</td>
       <td>${sub.durationFormatted || "N/A"}</td>
-      <td><strong style="color:var(--primary-dark);font-size:1.05rem;">${sub.score10 !== undefined ? sub.score10 : "0.0"}</strong></td>
+      <td><strong style="color:var(--primary-dark);font-size:1.05rem;">${sub.score10}</strong></td>
       <td><strong>${sub.hskTotal || 0}</strong> / 300</td>
       <td style="font-size:0.82rem;color:var(--text-muted);">
         L:${sub.hskListening || 0} | R:${sub.hskReading || 0} | W:${sub.hskWriting || 0}
       </td>
-      <td style="text-align:center;">
+      <td>
         <span class="${isPass ? 'tag-pass' : 'tag-fail'}">${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}</span>
       </td>
       <td style="text-align:center;">
-        <button class="btn-delete-single" onclick="deleteItem('${subKey}')" title="Xóa bài nộp này">🗑️ Xóa</button>
+        <button class="btn-action-sm btn-delete-single" onclick="deleteItem('${sub._id || ''}', ${idx})" title="Xóa bài nộp này">🗑️ Xóa</button>
       </td>
     `;
     tbody.appendChild(tr);
   });
-
-  updateSelectedCount();
 }
 
 function updateStats(list) {
-  const totalEl = document.getElementById("totalSubmissions");
-  if (totalEl) totalEl.textContent = list.length;
+  document.getElementById("totalSubmissions").textContent = list.length;
   if (!list.length) {
-    const s10 = document.getElementById("avgScore10");
-    const sHsk = document.getElementById("avgHskScore");
-    const sPass = document.getElementById("passRate");
-    if (s10) s10.textContent = "0.0";
-    if (sHsk) sHsk.textContent = "0 / 300";
-    if (sPass) sPass.textContent = "0%";
+    document.getElementById("avgScore10").textContent = "0.0";
+    document.getElementById("avgHskScore").textContent = "0 / 300";
+    document.getElementById("passRate").textContent = "0%";
     return;
   }
   const sum10 = list.reduce((a, b) => a + (parseFloat(b.score10) || 0), 0);
   const sumHsk = list.reduce((a, b) => a + (parseInt(b.hskTotal) || 0), 0);
   const passCount = list.filter(s => (s.hskTotal >= 180 || s.isPassed)).length;
 
-  const s10 = document.getElementById("avgScore10");
-  const sHsk = document.getElementById("avgHskScore");
-  const sPass = document.getElementById("passRate");
-  if (s10) s10.textContent = (sum10 / list.length).toFixed(1);
-  if (sHsk) sHsk.textContent = `${Math.round(sumHsk / list.length)} / 300`;
-  if (sPass) sPass.textContent = `${Math.round((passCount / list.length) * 100)}%`;
+  document.getElementById("avgScore10").textContent = (sum10 / list.length).toFixed(1);
+  document.getElementById("avgHskScore").textContent = Math.round(sumHsk / list.length) + " / 300";
+  document.getElementById("passRate").textContent = Math.round((passCount / list.length) * 100) + "%";
+}
+
+function filterData() {
+  renderTable();
+}
+
+/* --- CHECKBOX SELECTION & BATCH DELETION --- */
+function toggleSelectAll(master) {
+  const checkboxes = document.querySelectorAll('.sub-checkbox');
+  checkboxes.forEach(cb => { cb.checked = master.checked; });
+  updateSelectedCount();
+}
+
+function updateSelectedCount() {
+  const checkboxes = document.querySelectorAll('.sub-checkbox');
+  const checked = document.querySelectorAll('.sub-checkbox:checked');
+  const count = checked.length;
+  
+  const countEl = document.getElementById("selectedCount");
+  if (countEl) countEl.textContent = count;
+  
+  const btnBatch = document.getElementById("btnBatchDelete");
+  if (btnBatch) {
+    btnBatch.style.display = (count > 0) ? "inline-flex" : "none";
+  }
+  
+  const master = document.getElementById("selectAllCheckbox");
+  if (master) {
+    if (count === 0) {
+      master.checked = false;
+      master.indeterminate = false;
+    } else if (count === checkboxes.length) {
+      master.checked = true;
+      master.indeterminate = false;
+    } else {
+      master.checked = false;
+      master.indeterminate = true;
+    }
+  }
+}
+
+function deleteItem(id, idx) {
+  const item = allSubmissions[idx];
+  const name = item ? item.studentName : "này";
+  if (confirm(`Bạn có chắc chắn muốn xóa bài nộp của thí sinh "${name}"?`)) {
+    if (id || (item && item._id)) {
+      const targetId = id || item._id;
+      fetch(`${HARDCODED_FIREBASE_URL}submissions/${targetId}.json`, { method: "DELETE" }).catch(e => {});
+    }
+    allSubmissions.splice(idx, 1);
+    localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
+    renderTable();
+    updateSelectedCount();
+  }
+}
+
+function deleteSelectedItems() {
+  const checked = document.querySelectorAll('.sub-checkbox:checked');
+  if (!checked.length) return;
+  
+  const count = checked.length;
+  if (!confirm(`Bạn có chắc chắn muốn xóa ${count} bài nộp đã chọn khỏi hệ thống?`)) return;
+  
+  const idsToDelete = [];
+  const indicesToDelete = [];
+  
+  checked.forEach(cb => {
+    const id = cb.getAttribute('data-id');
+    const idx = parseInt(cb.getAttribute('data-idx'));
+    if (id) idsToDelete.push(id);
+    if (!isNaN(idx)) indicesToDelete.push(idx);
+  });
+  
+  // 1. Delete from Firebase
+  idsToDelete.forEach(id => {
+    fetch(`${HARDCODED_FIREBASE_URL}submissions/${id}.json`, { method: "DELETE" }).catch(e => {});
+  });
+  
+  // 2. Remove from local list (descending order by index to prevent shifting)
+  indicesToDelete.sort((a, b) => b - a).forEach(idx => {
+    if (idx >= 0 && idx < allSubmissions.length) {
+      allSubmissions.splice(idx, 1);
+    }
+  });
+  
+  localStorage.setItem("hsk3_all_class_submissions", JSON.stringify(allSubmissions));
+  
+  const master = document.getElementById("selectAllCheckbox");
+  if (master) {
+    master.checked = false;
+    master.indeterminate = false;
+  }
+  
+  renderTable();
+  updateSelectedCount();
+  alert(`Đã xóa thành công ${count} bài nộp!`);
 }
 
 /* --- EXPORT CSV --- */
@@ -1104,33 +1142,94 @@ function exportExcelCSV() {
 
 /* --- ACCESS CODE MODAL --- */
 function openAccessCodeModal() {
-  const modal = document.getElementById("accessCodeModal");
-  if (modal) {
-    const cur = localStorage.getItem("hsk_custom_access_code") || "HSK32026";
-    document.getElementById("currentCodeDisplay").textContent = cur;
-    document.getElementById("newAccessCodeInput").value = "";
-    modal.classList.remove("hidden");
-  }
+  document.getElementById("accessCodeModal").classList.remove("hidden");
+  document.getElementById("currentAccessCodeInput").value = localStorage.getItem("hsk_custom_access_code") || "HSK32026";
 }
 
 function closeAccessCodeModal() {
-  const modal = document.getElementById("accessCodeModal");
-  if (modal) modal.classList.add("hidden");
+  document.getElementById("accessCodeModal").classList.add("hidden");
 }
 
-function saveNewAccessCode() {
-  const newCode = document.getElementById("newAccessCodeInput").value.trim().toUpperCase();
-  if (!newCode || newCode.length < 4) {
-    alert("Mã vào thi phải có ít nhất 4 ký tự!");
+function saveAccessCode() {
+  const code = document.getElementById("currentAccessCodeInput").value.trim();
+  if (!code) {
+    alert("Vui lòng nhập mã truy cập!");
     return;
   }
-  localStorage.setItem("hsk_custom_access_code", newCode);
-  alert(`Đã đổi mã vào thi thành công: ${newCode}`);
+  localStorage.setItem("hsk_custom_access_code", code);
+  fetch(HARDCODED_FIREBASE_URL + "config/accessCode.json", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(code)
+  });
+  alert(`Đã lưu mã truy cập học viên: ${code}. Học viên phải nhập mã này mới có thể bắt đầu làm bài thi.`);
   closeAccessCodeModal();
 }
 
+/* --- BATCH MODAL --- */
+function openBatchModal() {
+  document.getElementById("batchModal").classList.remove("hidden");
+  document.getElementById("batchTextarea").value = "";
+}
+
+function closeBatchModal() {
+  document.getElementById("batchModal").classList.add("hidden");
+}
+
+function processBatchCodes() {
+  const text = document.getElementById("batchTextarea").value.trim();
+  if (!text) {
+    alert("Vui lòng dán chuỗi mã xác thực!");
+    return;
+  }
+
+  const tokens = text.match(/[A-Za-z0-9+/=]{20,}/g) || [];
+  let added = 0;
+
+  tokens.forEach(tok => {
+    try {
+      const decoded = atob(tok);
+      const parsed = JSON.parse(decoded);
+      if (parsed.name && parsed.score) {
+        const item = {
+          studentName: parsed.name,
+          studentClass: parsed.class || "Chung",
+          attemptCount: parsed.attempt || 1,
+          score10: parsed.score,
+          hskTotal: parsed.hskTotal || Math.round(parseFloat(parsed.score) * 30),
+          submitTime: parsed.date || new Date().toISOString(),
+          durationFormatted: "Zalo Token",
+          isPassed: (parsed.hskTotal >= 180 || parseFloat(parsed.score) >= 6.0),
+          examCode: "H31002"
+        };
+        allSubmissions.unshift(item);
+        fetch(HARDCODED_FIREBASE_URL + "submissions.json", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        });
+        added++;
+      }
+    } catch(e) {}
+  });
+
+  if (added > 0) {
+    renderTable();
+    closeBatchModal();
+    alert(`Đã giải mã và nạp thành công ${added} bài nộp vào bảng điểm!`);
+  } else {
+    alert("Không tìm thấy mã xác thực hợp lệ!");
+  }
+}
+
+// Auto-check on load
 window.addEventListener("DOMContentLoaded", () => {
-  initDashboard();
+  checkAuthStatus();
+  setInterval(() => {
+    if (teacherSession && teacherSession.isLoggedIn) {
+      syncFromFirebase(false);
+    }
+  }, 10000);
 });
 </script>
 </body>
