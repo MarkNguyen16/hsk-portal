@@ -2,42 +2,32 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>HSK 3 - Bài 10: 数学也并不难</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK 3 - Bài 10: 数学比历史难多了 - Bài Tập Chuẩn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #176B63;
-  --primary-dark: #0D423D;
-  --primary-light: #e0f2fe;
-  --gold: #D9B86C;
-  --gold-light: #fef08a;
-  --bg-page: #F7F3E8;
-  --bg-card: #FFFFFF;
-  --border-light: #e2e8f0;
-  --border-medium: #cbd5e1;
+  --primary: #166b63;
+  --primary-dark: #0f4943;
+  --primary-light: #e8f3f1;
+  --accent: #d97706;
   --text-main: #1e293b;
   --text-muted: #64748b;
-  --correct: #10b981;
-  --wrong: #ef4444;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --success: #16a34a;
+  --danger: #dc2626;
   --header-height: 48px;
 }
-
-html, body {
-  width: 100% !important;
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
-
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-page);
@@ -45,203 +35,145 @@ body {
   padding-top: var(--header-height);
   transition: padding-right 0.3s ease;
 }
-
-@media (min-width: 1025px) {
-  body.drawer-open {
-    padding-right: 320px;
-  }
+body.drawer-open {
+  padding-right: 320px;
 }
-
 .chinese {
   font-family: 'Noto Sans SC', sans-serif;
 }
 
-/* === HEADER 48px === */
-.app-header {
+/* Header 48px */
+.top-app-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  width: 100% !important;
-  max-width: 100vw !important;
   height: var(--header-height);
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  color: #FFFFFF;
-  padding: 0 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 16px;
   z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
-
-.header-left {
+.header-left, .header-center, .header-right {
   display: flex;
   align-items: center;
   gap: 10px;
-  overflow: hidden;
-  white-space: nowrap;
 }
-
 .btn-portal-back {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.header-title-badge {
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.header-center {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.timer-pill {
-  background: rgba(0,0,0,0.25);
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-.timer-pill.danger {
-  background: rgba(239,68,68,0.8);
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-header {
-  background: var(--gold);
-  color: #000;
-  border: none;
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.btn-header.btn-submit {
-  background: #10b981;
-  color: #fff;
-}
-
-/* === DEDICATED AUDIO BAR === */
-.audio-sticky-bar {
-  background: #ffffff;
-  border-bottom: 1px solid var(--border-light);
-  padding: 6px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  position: sticky;
-  top: var(--header-height);
-  z-index: 900;
-}
-.audio-controls-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-}
-.btn-audio-ctrl {
   background: var(--primary-light);
   color: var(--primary-dark);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(22, 107, 99, 0.2);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-portal-back:hover {
+  background: var(--primary);
+  color: #fff;
+}
+.school-header-logo {
+  height: 32px;
+  width: auto;
+  border-radius: 4px;
+}
+.exam-title-badge {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.student-info-tag {
+  font-size: 12px;
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+.timer-badge-item {
+  background: #f1f5f9;
   border: 1px solid var(--border-medium);
   padding: 4px 10px;
   border-radius: 6px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
+  color: var(--text-main);
+}
+.btn-nav-toggle {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border: 1px solid rgba(22, 107, 99, 0.2);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
   cursor: pointer;
 }
-.audio-progress-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-  max-width: 380px;
-}
-.audio-progress-bar {
-  flex: 1;
-  height: 6px;
-  background: #e2e8f0;
-  border-radius: 3px;
-  cursor: pointer;
-  position: relative;
-}
-.audio-progress-fill {
-  height: 100%;
+.btn-submit-exam {
   background: var(--primary);
-  border-radius: 3px;
-  width: 0%;
+  color: #fff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
-.audio-time-text {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-/* === MAIN CONTAINER === */
-.main-content {
-  max-width: 960px;
-  margin: 16px auto;
-  padding: 0 12px 60px;
+.btn-submit-exam:hover {
+  background: var(--primary-dark);
 }
 
-.section-card {
-  background: var(--bg-card);
-  border-radius: 12px;
-  border: 1px solid var(--border-light);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+/* Main Layout */
+.main-exam-layout {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px 80px;
+}
+.audio-sticky-bar {
+  position: sticky;
+  top: var(--header-height);
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 10px 16px;
   margin-bottom: 20px;
-  overflow: hidden;
-}
-
-.section-card-header {
-  background: #f8fafc;
-  border-bottom: 1px solid var(--border-light);
-  padding: 12px 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  z-index: 100;
 }
-
+.audio-sticky-bar audio {
+  flex: 1;
+  height: 36px;
+}
+.section-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.section-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--primary-light);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
 .section-title {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--primary-dark);
   display: flex;
@@ -249,467 +181,553 @@ body {
   gap: 8px;
 }
 .section-badge {
+  font-size: 12px;
   background: var(--primary-light);
-  color: var(--primary-dark);
-  font-size: 12px;
+  color: var(--primary);
   font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
 }
-
 .part-header {
-  background: #fdfbf7;
-  border-left: 4px solid var(--primary);
-  padding: 8px 12px;
-  margin: 12px 16px 8px;
-  font-size: 13px;
-  color: #334155;
-}
-
-/* Listening Part 1 SVGs Grid */
-.p1-images-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 12px 16px 16px;
-}
-@media (max-width: 680px) {
-  .p1-images-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-  }
-}
-.p1-img-item {
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-}
-.p1-img-label {
-  background: var(--primary-dark);
-  color: #fff;
-  font-weight: 700;
-  font-size: 13px;
-  padding: 3px 0;
-}
-.p1-img-item svg {
-  width: 100%;
-  height: auto;
-  max-height: 130px;
-  display: block;
-}
-.p1-img-desc {
-  padding: 5px 6px;
-  font-size: 12px;
-  color: #334155;
-  font-weight: 600;
   background: #f8fafc;
-  border-top: 1px solid #e2e8f0;
-  text-align: center;
-  line-height: 1.3;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #334155;
+  margin-bottom: 16px;
 }
 
 /* Question items */
 .question-item {
-  padding: 14px 16px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px 0;
 }
 .question-item:last-child {
   border-bottom: none;
 }
-.q-title-row {
+.q-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .q-number {
+  font-size: 14px;
   font-weight: 700;
-  color: var(--primary-dark);
-  margin-right: 4px;
+  color: var(--primary);
 }
-.btn-listen-again {
-  background: #f1f5f9;
+.btn-tts-replay {
+  background: none;
   border: 1px solid var(--border-medium);
-  padding: 3px 8px;
+  color: var(--text-muted);
   border-radius: 4px;
-  font-size: 11px;
-  font-weight: 600;
+  padding: 3px 8px;
+  font-size: 12px;
   cursor: pointer;
 }
-
-/* Options */
-.options-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-.opt-pill {
-  border: 1px solid var(--border-medium);
-  background: #ffffff;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 13px;
-  transition: all 0.15s ease;
-  user-select: none;
-}
-.opt-pill:hover {
+.btn-tts-replay:hover {
+  color: var(--primary);
   border-color: var(--primary);
-  background: var(--primary-light);
-}
-.opt-pill.selected {
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary-dark);
 }
 
-.radio-options {
+/* Images Bank */
+.image-bank-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.image-bank-item {
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  text-align: center;
+}
+.image-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 4px;
+  background: #f8fafc;
+}
+.bank-options-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.btn-bank-opt {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-medium);
+  background: #fff;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-bank-opt:hover {
+  border-color: var(--primary);
+}
+.btn-bank-opt.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* Choices */
+.choice-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 8px;
 }
-.radio-opt-label {
+.choice-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: #f8fafc;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  background: #fff;
+  transition: all 0.15s;
 }
-.radio-opt-label:hover {
-  background: var(--primary-light);
-}
-.radio-opt-label.selected {
-  background: #e0f2fe;
+.choice-item:hover {
   border-color: var(--primary);
-  font-weight: 600;
+  background: #fdfdfd;
+}
+.choice-item.selected {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+.choice-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.choice-item.selected .choice-badge {
+  background: var(--primary);
+  color: #fff;
 }
 
-/* Writing input */
-.writing-input {
-  width: 100%;
-  padding: 8px 12px;
+/* Judge */
+.judge-btn-group {
+  display: flex;
+  gap: 12px;
+}
+.btn-judge {
+  flex: 1;
+  padding: 10px;
   border: 1px solid var(--border-medium);
-  border-radius: 6px;
+  background: #fff;
+  border-radius: 8px;
   font-size: 15px;
-  margin-top: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-judge.selected-true {
+  background: #dcfce7;
+  border-color: var(--success);
+  color: #15803d;
+}
+.btn-judge.selected-false {
+  background: #fee2e2;
+  border-color: var(--danger);
+  color: #b91c1c;
 }
 
-/* Review Explanation box */
-.explanation-box {
-  display: none;
-  margin-top: 10px;
-  background: #f8fafc;
-  border-left: 4px solid var(--primary);
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 13px;
-  line-height: 1.5;
-}
-body.review-mode .explanation-box {
-  display: block !important;
-}
-body.review-mode .question-item.user-correct {
-  border-left: 4px solid var(--correct);
-  background: #f0fdf4;
-}
-body.review-mode .question-item.user-wrong {
-  border-left: 4px solid var(--wrong);
-  background: #fef2f2;
-}
-
-/* === PERSISTENT DRAWER === */
+/* Drawer */
 .persistent-drawer {
   position: fixed;
   top: var(--header-height);
-  right: 0;
+  right: -320px;
   width: 320px;
   height: calc(100vh - var(--header-height));
   background: #ffffff;
   border-left: 1px solid var(--border-light);
-  box-shadow: -2px 0 10px rgba(0,0,0,0.08);
+  box-shadow: -2px 0 8px rgba(0,0,0,0.05);
+  transition: right 0.3s ease;
+  z-index: 999;
   display: flex;
   flex-direction: column;
-  z-index: 950;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
 }
-@media (min-width: 1025px) {
-  body.drawer-open .persistent-drawer {
-    transform: translateX(0);
-  }
+.persistent-drawer.open {
+  right: 0;
 }
-@media (max-width: 1024px) {
-  .persistent-drawer.open-mobile {
-    transform: translateX(0);
-  }
-}
-
 .drawer-header {
-  padding: 12px 16px;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--border-light);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--primary-dark);
+  align-items: center;
 }
 .drawer-body {
   flex: 1;
   overflow-y: auto;
-  padding: 12px 16px;
+  padding: 16px;
 }
-.drawer-grid {
+.drawer-section-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--primary-dark);
+  margin: 14px 0 8px 0;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 4px;
+}
+.drawer-subgrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 6px;
+  margin-bottom: 10px;
 }
-.drawer-btn {
-  padding: 6px 0;
-  font-size: 12px;
-  font-weight: 600;
+.drawer-q-btn {
+  height: 36px;
   border: 1px solid var(--border-medium);
   background: #fff;
   border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
   cursor: pointer;
-  text-align: center;
 }
-.drawer-btn.answered {
+.drawer-q-btn.answered {
   background: var(--primary);
   color: #fff;
-  border-color: var(--primary-dark);
+  border-color: var(--primary);
 }
-.drawer-btn.correct {
-  background: var(--correct) !important;
+.drawer-q-btn.correct-rev {
+  background: var(--success) !important;
   color: #fff !important;
 }
-.drawer-btn.wrong {
-  background: var(--wrong) !important;
+.drawer-q-btn.wrong-rev {
+  background: var(--danger) !important;
   color: #fff !important;
 }
 
-/* Modals */
-.modal-backdrop {
+/* Writing elements */
+.word-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.word-chip {
+  background: #f1f5f9;
+  border: 1px solid var(--border-medium);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.word-chip.used {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.writing-input-sentence {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  font-size: 16px;
+}
+.btn-clear-chips {
+  background: #f1f5f9;
+  border: 1px solid var(--border-medium);
+  padding: 0 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.char-fill-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  margin: 12px 0;
+}
+.char-input-box {
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  border: 2px solid var(--border-medium);
+  border-radius: 8px;
+  outline: none;
+  color: var(--primary-dark);
+  background: #fff;
+}
+.char-input-box:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(22, 107, 99, 0.15);
+}
+.pinyin-highlight {
+  font-weight: bold;
+  color: var(--primary);
+  background: rgba(22, 107, 99, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.options-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0 16px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+.options-box-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+.opt-letter {
+  background: var(--primary);
+  color: #fff;
+  font-weight: bold;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+.reading-passage {
+  background: #fdfbf7;
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  font-size: 17px;
+  line-height: 1.7;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 12px;
+}
+.reading-question {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #1e293b;
+}
+.dialogue-transcript {
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.example-box {
+  background: #f1f5f9;
+  border: 1px dashed #94a3b8;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0 18px 0;
+  font-size: 15px;
+}
+.example-title {
+  font-weight: bold;
+  color: #475569;
+  display: block;
+  margin-bottom: 6px;
+}
+.example-answer {
+  font-weight: bold;
+  color: var(--primary);
+}
+.explanation-box {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: #fefce8;
+  border: 1px solid #fef08a;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #854d0e;
+}
+body.review-mode .explanation-box {
+  display: block !important;
+}
+
+/* Welcome Modal */
+.welcome-modal-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  padding: 16px;
 }
-.modal-backdrop.hidden {
-  display: none !important;
-}
-.modal-card {
-  background: #ffffff;
+.welcome-modal-card {
+  background: #fff;
   border-radius: 12px;
   max-width: 480px;
-  width: 100%;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  width: 90%;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-.modal-header {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  color: #fff;
-  padding: 16px 20px;
-}
-.modal-header h2 {
-  margin: 0 0 4px;
+.modal-title {
   font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 12px;
 }
-.modal-header p {
-  margin: 0;
-  font-size: 12px;
-  opacity: 0.9;
+.modal-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 16px;
 }
-.modal-body {
-  padding: 20px;
-}
-.modal-footer {
-  padding: 12px 20px;
-  background: #f8fafc;
-  border-top: 1px solid var(--border-light);
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-}
-.btn-primary {
+.btn-modal-start {
+  width: 100%;
+  padding: 12px;
   background: var(--primary);
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.btn-secondary {
-  background: #e2e8f0;
-  color: #334155;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.btn-gold {
-  background: var(--gold);
-  color: #000;
-  border: none;
-  padding: 8px 16px;
   border-radius: 6px;
   font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
 }
+
+.p1-img-hint {
+  font-size: 0.76rem;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 3px 6px;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+
+.p1-img-hint, .image-desc {
+  font-size: 0.76rem !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
+
+/* Subtle 2-4 word Vietnamese Image Tag */
+.subtle-img-tag {
+  display: block !important;
+  font-size: 11.5px !important;
+  color: #475569 !important;
+  background: #f1f5f9 !important;
+  border-top: 1px solid #e2e8f0 !important;
+  padding: 3px 6px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.3 !important;
+}
+.image-desc, .p1-img-desc {
+  display: none !important;
+}
+
+/* Explanation Box Styling */
+.explanation-box, .answer-explanation {
+  margin-top: 12px !important;
+  padding: 12px 16px !important;
+  background: #f0fdf4 !important;
+  border: 1.5px solid #86efac !important;
+  border-left: 5px solid var(--primary) !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  display: none;
+}
+body.review-mode .explanation-box,
+body.review-mode .answer-explanation,
+.review-mode .explanation-box,
+.review-mode .answer-explanation {
+  display: block !important;
+}
+
 </style>
 </head>
-<body class="drawer-open">
-
-<!-- Audio Element -->
-<audio id="globalAudioPlayer" preload="auto">
-  <source src="audio/10.mp3" type="audio/mpeg">
-  <source src="10.mp3" type="audio/mpeg">
-  <source src="audio/10.mp3" type="audio/mpeg">
-  <source src="audio/10.mp3" type="audio/mpeg">
-</audio>
+<body>
 
 <!-- Header -->
-<header class="app-header">
+<header class="top-app-header">
   <div class="header-left">
-    <a href="index.html" class="btn-portal-back">⬅ Cổng Bài Tập</a>
-    <div class="header-title-badge">Bài 10: 数学也并不难</div>
+    <a href="index.html#WORKBOOK" class="btn-portal-back">⬅ Bài Tập HSK Chuẩn</a>
+    <img src="images/logoHSKNHATRANG.jpg" alt="Logo" class="school-header-logo" onerror="this.src='logoHSKNHATRANG.jpg';">
+    <span class="exam-title-badge">Bài 10: 数学比历史难多了</span>
+    <span class="student-info-tag" id="studentInfoBadge">👤 Thí sinh</span>
   </div>
   <div class="header-center">
-    <div class="timer-pill" id="totalTimerBadge" title="Thời gian làm bài">
-      <span>⏱</span> <span id="totalTimerText">45:00</span>
-    </div>
+    <div class="timer-badge-item" id="totalTimerBadge">⏳ Tổng: <span id="totalTimerText">45:00</span></div>
+    <div class="timer-badge-item" id="listeningTimerBadge">🎧 Nghe: <span id="listeningTimerText">15:00</span></div>
   </div>
   <div class="header-right">
-    <span style="font-size:12px;display:none;" id="studentInfoBadge"></span>
-    <button class="btn-header btn-submit" id="btnSubmitExam" onclick="confirmSubmitExam()">Nộp Bài</button>
-    <button class="btn-header" onclick="toggleExamDrawer()" title="Mở bảng câu hỏi">📋 <span id="drawerProgress">0/45</span></button>
+    <button class="btn-nav-toggle" onclick="toggleExamDrawer()">📋 Bảng câu (<span id="navAnsweredCount">0</span>/45)</button>
+    <button class="btn-submit-exam" onclick="confirmSubmitExam()">Nộp Bài</button>
   </div>
 </header>
 
-<!-- Sticky Audio Bar -->
-<div class="audio-sticky-bar">
-  <div class="audio-controls-group">
-    <button class="btn-audio-ctrl" id="btnPlayPause" onclick="toggleAudioPlayback()">▶ Phát Audio</button>
-    <button class="btn-audio-ctrl" onclick="adjustAudioSpeed()">⚡ <span id="speedText">1.0x</span></button>
-    <button class="btn-audio-ctrl" onclick="replay10s()">⏪ 10s</button>
-    <button class="btn-audio-ctrl" onclick="forward10s()">10s ⏩</button>
+<!-- Main Container -->
+<main class="main-exam-layout">
+  <div class="audio-sticky-bar">
+    <span>🎧 File nghe:</span>
+    <audio id="mainAudioPlayer" controls src="audio/10.mp3" preload="metadata"></audio>
   </div>
-  <div class="audio-progress-wrap">
-    <span class="audio-time-text" id="audioCurrentTime">00:00</span>
-    <div class="audio-progress-bar" id="audioProgressBar" onclick="seekAudio(event)">
-      <div class="audio-progress-fill" id="audioProgressFill"></div>
-    </div>
-    <span class="audio-time-text" id="audioTotalDuration">--:--</span>
-  </div>
-</div>
-
-<!-- Main Questions Content -->
-<main class="main-content">
   <div id="examContainer"></div>
-
-  <!-- Bottom Bar for Review Mode -->
-  <div id="reviewBottomBar" style="display:none;margin-top:24px;padding:16px;background:#fff;border-radius:8px;border:1px solid var(--border-light);text-align:center;">
-    <button class="btn-gold" style="margin-right:8px;" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Đảo đề mới)</button>
-    <a href="index.html" class="btn-secondary" style="display:inline-block;padding:8px 16px;text-decoration:none;">Về Cổng Bài Tập</a>
-  </div>
 </main>
 
-<!-- Right Drawer -->
+<!-- Drawer -->
 <aside class="persistent-drawer" id="examDrawer">
   <div class="drawer-header">
     <strong>Bảng Trạng Thái (45 Câu)</strong>
     <button onclick="toggleExamDrawer()" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button>
   </div>
-  <div class="drawer-body">
-    <div class="drawer-grid" id="drawerGrid"></div>
-    <div style="margin-top:16px;">
-      <button class="btn-gold" style="width:100%;padding:8px;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;" onclick="retryExamWithShuffle()">🔄 Làm lại bài (Đảo đề mới)</button>
-    </div>
-  </div>
+  <div class="drawer-body" id="drawerGrid"></div>
 </aside>
 
 <!-- Welcome Modal -->
-<div class="modal-backdrop" id="welcomeModal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h2>HSK 3 - Bài 10: 数学也并不难</h2>
-      <p>Giáo trình chuẩn HSK 3 • 45 câu hỏi tương tác</p>
-    </div>
-    <div class="modal-body">
-      <label style="display:block;font-size:13px;font-weight:600;margin-bottom:4px;">Họ và tên thí sinh (*):</label>
-      <input type="text" id="inputStudentName" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;margin-bottom:12px;" placeholder="Ví dụ: Nguyễn Văn A">
-      <label style="display:block;font-size:13px;font-weight:600;margin-bottom:4px;">Lớp / Khóa học (*):</label>
-      <input type="text" id="inputStudentClass" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;margin-bottom:12px;" placeholder="Ví dụ: HSK3-T246">
-      <div style="background:#f8fafc;padding:10px;border-radius:6px;font-size:12px;color:#64748b;line-height:1.5;">
-        • Cấu trúc: 45 câu (Nghe 20 câu, Đọc 15 câu, Viết 10 câu)<br>
-        • Thời gian: 45 phút toàn bài (Đồng hồ đếm ngược tự động)<br>
-        • Điểm đỗ: 60/100 (tương đương 180/300 chuẩn quốc tế)
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-primary" style="width:100%;" onclick="startExamSession()">Bắt đầu làm bài</button>
-    </div>
-  </div>
-</div>
-
-<!-- Result Modal -->
-<div class="modal-backdrop hidden" id="resultModal">
-  <div class="modal-card" style="max-width:540px;">
-    <div class="modal-header" style="text-align:center;">
-      <h2 id="resTitle">Kết Quả Bài Làm</h2>
-      <p id="resStudent"></p>
-    </div>
-    <div class="modal-body">
-      <div style="display:flex;justify-content:space-around;text-align:center;margin-bottom:16px;">
-        <div style="background:#f8fafc;padding:10px 16px;border-radius:8px;border:1px solid #e2e8f0;flex:1;margin:0 4px;">
-          <div style="font-size:12px;color:#64748b;">Điểm Số (Thang 100)</div>
-          <div style="font-size:24px;font-weight:800;color:var(--primary);" id="resScore100">--</div>
-        </div>
-        <div style="background:#f8fafc;padding:10px 16px;border-radius:8px;border:1px solid #e2e8f0;flex:1;margin:0 4px;">
-          <div style="font-size:12px;color:#64748b;">Số Câu Đúng</div>
-          <div style="font-size:24px;font-weight:800;color:var(--primary);" id="resCorrect">--/45</div>
-        </div>
-        <div style="background:#f8fafc;padding:10px 16px;border-radius:8px;border:1px solid #e2e8f0;flex:1;margin:0 4px;">
-          <div style="font-size:12px;color:#64748b;">Kết Quả</div>
-          <div style="font-size:18px;font-weight:800;" id="resStatus">--</div>
-        </div>
-      </div>
-      <div style="font-size:13px;color:#475569;margin-bottom:8px;line-height:1.6;" id="resBreakdown"></div>
-      <div style="font-size:12px;color:#64748b;text-align:center;" id="firebaseSyncStatus"></div>
-    </div>
-    <div class="modal-footer" style="justify-content:center;gap:12px;">
-      <button class="btn-primary" onclick="closeResultModal()">Xem Lại Bài Làm</button>
-      <button class="btn-gold" onclick="retryExamWithShuffle()">🔄 Làm lại bài</button>
-      <a href="index.html" class="btn-secondary" style="text-decoration:none;">Về Cổng Đề</a>
-    </div>
+<div class="welcome-modal-overlay" id="welcomeModal">
+  <div class="welcome-modal-card">
+    <h2 class="modal-title">HSK 3 - Bài 10: 数学比历史难多了</h2>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Hệ thống bài tập giáo trình chuẩn gồm 45 câu (Nghe 20, Đọc 15, Viết 10). Vui lòng nhập thông tin để bắt đầu.</p>
+    <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;">Họ và tên:</label>
+    <input type="text" id="inputStudentName" class="modal-input" placeholder="Ví dụ: Nguyễn Văn A">
+    <button class="btn-modal-start" onclick="startExamSession()">Bắt Đầu Làm Bài ➔</button>
   </div>
 </div>
 
 <script>
-const EXAM_CONFIG = {
-  examCode: "SC3-B10",
-  examTitle: "HSK 3 - Bài 10: 数学也并不难",
-  totalQuestions: 45,
-  durationMinutes: 45
-};
-
 const MASTER_DATA = {
   "listening": {
     "part1": {
@@ -722,38 +740,38 @@ const MASTER_DATA = {
         {
           "id": "img_a",
           "label": "A",
-          "desc": "Đá bóng thể dục",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">📝</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">Tiết thể dục đá bóng (上体育课)</text></svg>"
+          "desc": "Tiết thể dục đá bóng",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><text x=\"120\" y=\"95\" font-size=\"18\" font-weight=\"bold\" fill=\"#334155\" text-anchor=\"middle\" font-family=\"sans-serif\">上体育课踢足球 (A)</text></svg>"
         },
         {
           "id": "img_b",
           "label": "B",
           "desc": "Bàn tiệc nhà hàng",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">📝</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">Bàn tiệc nhà hàng sang trọng (饭馆环境真好)</text></svg>"
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><text x=\"120\" y=\"95\" font-size=\"18\" font-weight=\"bold\" fill=\"#334155\" text-anchor=\"middle\" font-family=\"sans-serif\">聚餐吃主菜 (B)</text></svg>"
         },
         {
           "id": "img_c",
           "label": "C",
-          "desc": "Cô giáo dạy toán",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">📝</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">Cô giáo dạy toán giảng bài (数学老师讲题)</text></svg>"
+          "desc": "Cô giáo dạy toán giảng bài",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><text x=\"120\" y=\"95\" font-size=\"18\" font-weight=\"bold\" fill=\"#334155\" text-anchor=\"middle\" font-family=\"sans-serif\">数学老师讲题 (C)</text></svg>"
         },
         {
           "id": "img_d",
           "label": "D",
-          "desc": "Nghe điện thoại",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">📝</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">Ví dụ (D)</text></svg>"
+          "desc": "",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f1f5f9\" rx=\"10\"/><text x=\"120\" y=\"95\" font-size=\"18\" font-weight=\"bold\" fill=\"#334155\" text-anchor=\"middle\" font-family=\"sans-serif\">Ví dụ (D)</text></svg>"
         },
         {
           "id": "img_e",
           "label": "E",
-          "desc": "Nghe điện thoại nơi ồn ào",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">📝</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">Nghe điện thoại chỗ ồn ào (找安静地方)</text></svg>"
+          "desc": "Nghe điện thoại chỗ ồn ào",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><text x=\"120\" y=\"95\" font-size=\"18\" font-weight=\"bold\" fill=\"#334155\" text-anchor=\"middle\" font-family=\"sans-serif\">找安静地方 (E)</text></svg>"
         },
         {
           "id": "img_f",
           "label": "F",
-          "desc": "Cửa hàng xe đạp",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">📝</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">Cửa hàng đổi xe đạp cũ lấy mới (旧车换新车)</text></svg>"
+          "desc": "Cửa hàng đổi xe đạp cũ lấ...",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><text x=\"120\" y=\"95\" font-size=\"18\" font-weight=\"bold\" fill=\"#334155\" text-anchor=\"middle\" font-family=\"sans-serif\">旧车换新车 (F)</text></svg>"
         }
       ],
       "questions": [
@@ -1079,6 +1097,11 @@ const MASTER_DATA = {
   },
   "reading": {
     "part1": {
+      "example": {
+        "prompt": "你知道怎么去那儿吗？",
+        "correctId": "e",
+        "letter": "E"
+      },
       "options": [
         {
           "id": "a",
@@ -1144,6 +1167,11 @@ const MASTER_DATA = {
       ]
     },
     "part2": {
+      "example": {
+        "prompt": "她说话的（ E ）多好听啊！",
+        "word": "声音",
+        "letter": "E"
+      },
       "options": [
         {
           "id": "a",
@@ -1395,40 +1423,45 @@ const MASTER_DATA = {
         {
           "id": "W41",
           "num": 41,
-          "prompt": "我们坐公共汽车去吧，我不会（ （ qí ） ）自行车。",
+          "before": "我们坐公共汽车去吧，我不会（ ",
           "pinyin": "qí",
+          "after": " ）自行车。",
           "correct": "骑",
           "explanation": "骑自行车 -> 骑"
         },
         {
           "id": "W42",
           "num": 42,
-          "prompt": "这条裙子有点儿瘦，我可以（ （ huàn ） ）一条吗？",
+          "before": "这条裙子有点儿瘦，我可以（ ",
           "pinyin": "huàn",
+          "after": " ）一条吗？",
           "correct": "换",
           "explanation": "换一条 -> 换"
         },
         {
           "id": "W43",
           "num": 43,
-          "prompt": "我喜欢住在这个地方，因为（ （ huán ） ）境特别好，最重要的是有很多商店。",
+          "before": "我喜欢住在这个地方，因为（ ",
           "pinyin": "huán",
+          "after": " ）境特别好，最重要的是有很多商店。",
           "correct": "环",
           "explanation": "环境 -> 环"
         },
         {
           "id": "W44",
           "num": 44,
-          "prompt": "这儿（ （ fù ） ）近有个学校，每天下午都有很多爸爸妈妈接孩子。",
+          "before": "这儿（ ",
           "pinyin": "fù",
+          "after": " ）近有个学校，每天下午都有很多爸爸妈妈接孩子。",
           "correct": "附",
           "explanation": "附近 -> 附"
         },
         {
           "id": "W45",
           "num": 45,
-          "prompt": "在这个学校，我的工作（ （ zhǔ ） ）要是给学生上历史课。",
+          "before": "在这个学校，我的工作（ ",
           "pinyin": "zhǔ",
+          "after": " ）要是给学生上历史课。",
           "correct": "主",
           "explanation": "主要 -> 主"
         }
@@ -1436,112 +1469,95 @@ const MASTER_DATA = {
     }
   }
 };
+const EXAM_CONFIG = {
+  examCode: "SC3-B10",
+  examTitle: "HSK 3 - Bài 10: 数学比历史难多了"
+};
 
 let activeData = null;
-let userAnswers = {};
-let studentName = "";
-let studentClass = "";
+const userAnswers = {};
+let studentName = "Thí sinh";
 let totalSeconds = 45 * 60;
+let listeningSeconds = 15 * 60;
 let timerInterval = null;
 let isExamSubmitted = false;
-let attemptCount = 1;
-
-// Shuffle helper
-function shuffleArray(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function escapeJsStr(str) {
-  if (!str) return '';
-  return String(str)
-    .replace(/\\/g, '\\\\')
-    .replace(/'/g, "\\'")
-    .replace(/"/g, '&quot;')
-    .replace(/\r?\n/g, ' ');
-}
-
-function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
-  if (!origExp && !newLetter) return '';
-  let exp = origExp || '';
-  let rationale = exp
-    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f]\b[^.]*/gi, '')
-    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
-    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
-    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]\b/gi, '')
-    .trim();
-  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
-
-  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
-  if (correctText) {
-    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
-  }
-  if (rationale) {
-    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
-  }
-  return res;
-}
 
 function randomizeExamData() {
   activeData = JSON.parse(JSON.stringify(MASTER_DATA));
 
-  // 1. Shuffle Listening Part 1 images
-  if (activeData.listening && activeData.listening.part1 && activeData.listening.part1.images) {
+  // Listening Part 1
+  if (activeData.listening && activeData.listening.part1) {
     const p1 = activeData.listening.part1;
-    const shuffled = shuffleArray(p1.images);
-    const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
-    p1.images = shuffled.map((img, idx) => ({
-      ...img,
-      label: letters[idx] || img.label
-    }));
+    const letters = ['A','B','C','D','E','F'];
+    p1.images.forEach((img, idx) => {
+      img.currentLetter = letters[idx];
+    });
+    p1.questions.forEach(q => {
+      const matched = p1.images.find(im => im.id === q.correctId);
+      q.correctLetter = matched ? matched.currentLetter : '';
+    });
+    if (p1.example) {
+      const exImg = p1.images.find(im => im.id === p1.example.correctId);
+      p1.example.currentLetter = exImg ? exImg.currentLetter : 'D';
+    }
   }
 
-  // 2. Shuffle Listening Part 3 & 4 multiple-choice options
+  // Listening Part 3 & 4
   ['part3', 'part4'].forEach(partKey => {
-    if (activeData.listening && activeData.listening[partKey] && activeData.listening[partKey].questions) {
+    if (activeData.listening && activeData.listening[partKey]) {
       activeData.listening[partKey].questions.forEach(q => {
-        if (q.options) {
-          const shuffledOpts = shuffleArray(q.options);
-          const letters = ['A', 'B', 'C'];
-          q.options = shuffledOpts.map((opt, idx) => ({
-            ...opt,
-            renderLetter: letters[idx]
-          }));
-        }
+        const letters = ['A','B','C'];
+        q.options.forEach((opt, idx) => {
+          opt.currentLetter = letters[idx];
+        });
+        const matched = q.options.find(o => o.id === q.correctId);
+        q.correctLetter = matched ? matched.currentLetter : '';
       });
     }
   });
 
-  // 3. Shuffle Reading Part 1 & 2 options
+  // Reading Part 1 & 2
   ['part1', 'part2'].forEach(partKey => {
-    if (activeData.reading && activeData.reading[partKey] && activeData.reading[partKey].options) {
+    if (activeData.reading && activeData.reading[partKey]) {
       const p = activeData.reading[partKey];
-      const shuffled = shuffleArray(p.options);
-      const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
-      p.options = shuffled.map((opt, idx) => ({
-        ...opt,
-        renderLetter: letters[idx] || opt.renderLetter
-      }));
+      const letters = ['A','B','C','D','E','F'];
+      p.options.forEach((opt, idx) => {
+        opt.currentLetter = letters[idx];
+      });
+      p.questions.forEach(q => {
+        const matched = p.options.find(o => o.id === q.correctId);
+        q.correctLetter = matched ? matched.currentLetter : '';
+      });
     }
   });
 
-  // 4. Shuffle Reading Part 3 options
-  if (activeData.reading && activeData.reading.part3 && activeData.reading.part3.questions) {
+  // Reading Part 3
+  if (activeData.reading && activeData.reading.part3) {
     activeData.reading.part3.questions.forEach(q => {
-      if (q.options) {
-        const shuffled = shuffleArray(q.options);
-        const letters = ['A', 'B', 'C'];
-        q.options = shuffled.map((opt, idx) => ({
-          ...opt,
-          renderLetter: letters[idx]
-        }));
-      }
+      const letters = ['A','B','C'];
+      q.options.forEach((opt, idx) => {
+        opt.currentLetter = letters[idx];
+      });
+      const matched = q.options.find(o => o.id === q.correctId);
+      q.correctLetter = matched ? matched.currentLetter : '';
     });
   }
+
+  // Writing Part 1
+  if (activeData.writing && activeData.writing.part1) {
+    activeData.writing.part1.questions.forEach(q => {
+      q.shuffledWords = [...q.words];
+    });
+  }
+}
+
+function escapeJsStr(str) {
+  if (!str) return '';
+  return str.split('\\\\').join('\\\\\\\\').split("'").join("\\\\'").split('\\n').join(' ');
+}
+
+function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
+  return cleanAndFormatExplanation(origExp, newLetter, correctText);
 }
 
 function renderExam() {
@@ -1549,496 +1565,589 @@ function renderExam() {
   if (!container) return;
   container.innerHTML = "";
 
-  // ================= PHẦN 1: NGHE HIỂU (1 - 20) =================
-  const secL = document.createElement("section");
-  secL.className = "section-card";
-  secL.id = "sec-listening";
-  secL.innerHTML = `
+  // SECTION 1: LISTENING (1 - 20)
+  const secListening = document.createElement("section");
+  secListening.id = "sec-listening";
+  secListening.className = "section-card";
+  secListening.innerHTML = `
     <div class="section-card-header">
-      <div class="section-title"><span>🎧</span> PHẦN 1: KỸ NĂNG NGHE (听力)</div>
-      <div class="section-badge">20 Câu hỏi (1 - 20)</div>
-    </div>
-    <div class="part-header">
-      <strong>第 1 - 5 题：</strong>听对话，选择与对话内容一致的图片 (Nghe hội thoại, chọn tranh tương ứng)
+      <div class="section-title">
+        <span>🎧</span> Phần 1: Nghe hiểu (一、听力)
+      </div>
+      <div class="section-badge">20 Câu (约 15 分钟)</div>
     </div>
   `;
 
-  // Images Grid (1 - 5)
-  const imgGrid = document.createElement("div");
-  imgGrid.className = "p1-images-grid";
+  // --- Listening Part 1 (1 - 5) ---
+  const lp1 = document.createElement("div");
+  lp1.innerHTML = `
+    <div class="part-header">
+      <strong>第一部分 (Phần 1):</strong> Câu 1-5. Nghe đoạn đối thoại và chọn hình ảnh phù hợp. Mỗi câu nghe 2 lần.
+    </div>
+  `;
+
+  const imgGrid1 = document.createElement("div");
+  imgGrid1.className = "image-bank-grid";
   activeData.listening.part1.images.forEach(img => {
     const card = document.createElement("div");
-    card.className = "p1-img-item";
-    card.id = `p1-img-${img.id}`;
+    card.className = "image-bank-item";
     card.innerHTML = `
-      <div class="p1-img-label">${img.label}</div>
-      ${img.svg || ''}
-      <div class="p1-img-desc">${img.desc || ''}</div>
+      <div style="position:relative;border-radius:8px;overflow:hidden;">
+        <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
+        ${img.svg || ''}
+      </div>
+      <div class="image-desc">${img.desc}</div>
     `;
-    imgGrid.appendChild(card);
+    imgGrid1.appendChild(card);
   });
-  secL.appendChild(imgGrid);
+  lp1.appendChild(imgGrid1);
 
-  // Example (1 - 5)
   const ex1 = activeData.listening.part1.example;
   if (ex1) {
-    const curImg = activeData.listening.part1.images.find(img => img.id === ex1.correctId);
-    const exLetter = curImg ? curImg.label : 'D';
-    const exBox = document.createElement("div");
-    exBox.className = "question-item";
-    exBox.style.background = "#f8fafc";
-    exBox.style.borderLeft = "4px solid #64748b";
-    exBox.innerHTML = `
-      <div class="q-title-row">
-        <span><strong>例如 (Ví dụ mẫu):</strong></span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(24, 'Ví dụ mẫu')">▶ 00:24</button>
-      </div>
-      <div class="chinese" style="margin-bottom:6px;">${ex1.dialogue ? ex1.dialogue.replace(/\n/g, '<br>') : ''}</div>
-      <div style="font-size:13px;color:#475569;">Đáp án mẫu: <strong>${exLetter}</strong> (${ex1.explanation || ''})</div>
+    const ex1Box = document.createElement("div");
+    ex1Box.className = "example-box";
+    ex1Box.innerHTML = `
+      <span class="example-title">Ví dụ mẫu (例如) - Không tính điểm</span>
+      <div class="example-dialogue chinese">${ex1.dialogue.replace(/\\n/g, '<br>')}</div>
+      <div>Đáp án mẫu: <span class="example-answer">${ex1.currentLetter || 'D'}</span> (${ex1.explanation})</div>
     `;
-    secL.appendChild(exBox);
+    lp1.appendChild(ex1Box);
   }
 
-  // Questions 1 - 5
   activeData.listening.part1.questions.forEach(q => {
-    const curImg = activeData.listening.part1.images.find(img => img.id === q.correctId);
-    const correctLetter = curImg ? curImg.label : 'D';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1', curImg ? (curImg.label ? 'Hình ' + curImg.label : '') : '');
-
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
+    qDiv.id = `qbox-${q.id}`;
     qDiv.innerHTML = `
-      <div class="q-title-row">
-        <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+        <button class="btn-tts-replay" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">🔊 Nghe câu này</button>
       </div>
-      <div class="options-pills" id="opts-${q.id}">
-        ${activeData.listening.part1.images.map(img => `
-          <div class="opt-pill" onclick="selectOptionPill('${q.id}', '${img.id}', this)">
-            <strong>${img.label}</strong>
-          </div>
-        `).join("")}
+      <div class="q-body">
+        <div class="dialogue-transcript chinese" id="transcript-${q.id}">${q.dialogue.replace(/\\n/g, '<br>')}</div>
+        <div class="bank-options-row">
+          ${activeData.listening.part1.images.map(img => `
+            <button class="btn-bank-opt" id="btn-opt-${q.id}-${img.id}" onclick="selectBankOption('${q.id}', '${img.id}', this)">
+              ${img.currentLetter}
+            </button>
+          `).join('')}
+        </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue ? q.dialogue.replace(/\n/g, '<br>') : ''}</span></div>
-        ${dynExp}
+        <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
-    secL.appendChild(qDiv);
+    lp1.appendChild(qDiv);
   });
+  secListening.appendChild(lp1);
 
-  // Part 2: True/False (6 - 10)
-  const p2Header = document.createElement("div");
-  p2Header.className = "part-header";
-  p2Header.style.marginTop = "24px";
-  p2Header.innerHTML = `<strong>第 6 - 10 题：</strong>听句子，判断对错 (Nghe câu ngắn, phán đoán Đúng/Sai)`;
-  secL.appendChild(p2Header);
-
+  // --- Listening Part 2 (6 - 10) ---
+  const lp2 = document.createElement("div");
+  lp2.innerHTML = `
+    <div class="part-header" style="margin-top:24px;">
+      <strong>第二部分 (Phần 2):</strong> Câu 6-10. Nghe một đoạn văn/câu ngắn và phán đoán câu nhận định là Đúng (√) hay Sai (×).
+    </div>
+  `;
   activeData.listening.part2.questions.forEach(q => {
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
+    qDiv.id = `qbox-${q.id}`;
     qDiv.innerHTML = `
-      <div class="q-title-row">
-        <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.passage)}')">▶ Nghe câu ${q.num}</button>
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+        <button class="btn-tts-replay" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.passage + ' ' + q.statement)}')">🔊 Nghe câu này</button>
       </div>
-      <div class="chinese" style="font-size:15px;margin-bottom:8px;">★ ${q.statement}</div>
-      <div class="options-pills" id="opts-${q.id}">
-        <div class="opt-pill" onclick="selectJudgeOption('${q.id}', true, this)"><strong>✓ Đúng</strong></div>
-        <div class="opt-pill" onclick="selectJudgeOption('${q.id}', false, this)"><strong>✗ Sai</strong></div>
+      <div class="q-body">
+        <div class="dialogue-transcript chinese" id="transcript-${q.id}">${q.passage}</div>
+        <div class="judge-statement-box chinese" style="font-size:17px;font-weight:600;margin-bottom:12px;">★ ${q.statement}</div>
+        <div class="judge-btn-group">
+          <button class="btn-judge" id="btn-judge-${q.id}-true" onclick="selectJudgeOption('${q.id}', true, this)">
+            <span style="color:var(--success);font-weight:bold;font-size:18px;">✓</span> Đúng (正确)
+          </button>
+          <button class="btn-judge" id="btn-judge-${q.id}-false" onclick="selectJudgeOption('${q.id}', false, this)">
+            <span style="color:var(--danger);font-weight:bold;font-size:18px;">✕</span> Sai (错误)
+          </button>
+        </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Đoạn nghe:</strong><br><span class="chinese">${q.passage}</span></div>
-        <span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${q.correct ? '✓ Đúng' : '✗ Sai'}</span>
-        <div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;">💡 <strong>Giải thích:</strong> ${q.explanation || ''}</div>
+        <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
-    secL.appendChild(qDiv);
+    lp2.appendChild(qDiv);
   });
+  secListening.appendChild(lp2);
 
-  // Part 3: Short Dialogue (11 - 15)
-  const p3Header = document.createElement("div");
-  p3Header.className = "part-header";
-  p3Header.style.marginTop = "24px";
-  p3Header.innerHTML = `<strong>第 11 - 15 题：</strong>听短对话，选择正确答案 (Nghe hội thoại ngắn, chọn đáp án đúng)`;
-  secL.appendChild(p3Header);
-
+  // --- Listening Part 3 (11 - 15) ---
+  const lp3 = document.createElement("div");
+  lp3.innerHTML = `
+    <div class="part-header" style="margin-top:24px;">
+      <strong>第三部分 (Phần 3):</strong> Câu 11-15. Nghe đối thoại ngắn 2 câu và câu hỏi, chọn 1 trong 3 đáp án A, B, C.
+    </div>
+  `;
   activeData.listening.part3.questions.forEach(q => {
-    const curOpt = q.options.find(o => o.id === q.correctId);
-    const correctLetter = curOpt ? curOpt.renderLetter : 'A';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3', curOpt ? curOpt.text : '');
-
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
+    qDiv.id = `qbox-${q.id}`;
     qDiv.innerHTML = `
-      <div class="q-title-row">
-        <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+        <button class="btn-tts-replay" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">🔊 Nghe câu này</button>
       </div>
-      <div class="radio-options" id="opts-${q.id}">
-        ${q.options.map(opt => `
-          <label class="radio-opt-label" onclick="selectRadioOption('${q.id}', '${opt.id}', this)">
-            <input type="radio" name="opt_${q.id}" value="${opt.id}" style="display:none;">
-            <strong>${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span>
-          </label>
-        `).join("")}
+      <div class="q-body">
+        <div class="dialogue-transcript chinese" id="transcript-${q.id}">${q.dialogue.replace(/\\n/g, '<br>')}</div>
+        <div class="choice-list">
+          ${q.options.map(opt => `
+            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
+              <span class="choice-badge">${opt.currentLetter}</span>
+              <span class="choice-text chinese">${opt.text}</span>
+            </div>
+          `).join('')}
+        </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue ? q.dialogue.replace(/\n/g, '<br>') : ''}</span></div>
-        ${dynExp}
+        <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
-    secL.appendChild(qDiv);
+    lp3.appendChild(qDiv);
   });
+  secListening.appendChild(lp3);
 
-  // Part 4: Long Dialogue (16 - 20)
-  const p4Header = document.createElement("div");
-  p4Header.className = "part-header";
-  p4Header.style.marginTop = "24px";
-  p4Header.innerHTML = `<strong>第 16 - 20 题：</strong>听长对话，选择正确答案 (Nghe hội thoại dài, chọn đáp án đúng)`;
-  secL.appendChild(p4Header);
-
+  // --- Listening Part 4 (16 - 20) ---
+  const lp4 = document.createElement("div");
+  lp4.innerHTML = `
+    <div class="part-header" style="margin-top:24px;">
+      <strong>第四部分 (Phần 4):</strong> Câu 16-20. Nghe đối thoại dài 4-5 câu và câu hỏi, chọn 1 trong 3 đáp án A, B, C.
+    </div>
+  `;
   activeData.listening.part4.questions.forEach(q => {
-    const curOpt = q.options.find(o => o.id === q.correctId);
-    const correctLetter = curOpt ? curOpt.renderLetter : 'A';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4', curOpt ? curOpt.text : '');
-
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
+    qDiv.id = `qbox-${q.id}`;
     qDiv.innerHTML = `
-      <div class="q-title-row">
-        <span><span class="q-number">${q.num}.</span> [Câu ${q.num}]</span>
-        <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
+      <div class="q-header">
+        <span class="q-number">Câu ${q.num}</span>
+        <button class="btn-tts-replay" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">🔊 Nghe câu này</button>
       </div>
-      <div class="radio-options" id="opts-${q.id}">
-        ${q.options.map(opt => `
-          <label class="radio-opt-label" onclick="selectRadioOption('${q.id}', '${opt.id}', this)">
-            <input type="radio" name="opt_${q.id}" value="${opt.id}" style="display:none;">
-            <strong>${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span>
-          </label>
-        `).join("")}
+      <div class="q-body">
+        <div class="dialogue-transcript chinese" id="transcript-${q.id}">${q.dialogue.replace(/\\n/g, '<br>')}</div>
+        <div class="choice-list">
+          ${q.options.map(opt => `
+            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
+              <span class="choice-badge">${opt.currentLetter}</span>
+              <span class="choice-text chinese">${opt.text}</span>
+            </div>
+          `).join('')}
+        </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue ? q.dialogue.replace(/\n/g, '<br>') : ''}</span></div>
-        ${dynExp}
+        <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
-    secL.appendChild(qDiv);
+    lp4.appendChild(qDiv);
   });
+  secListening.appendChild(lp4);
+  container.appendChild(secListening);
 
-  container.appendChild(secL);
-
-  // ================= PHẦN 2: ĐỌC HIỂU (21 - 35) =================
-  const secR = document.createElement("section");
-  secR.className = "section-card";
-  secR.id = "sec-reading";
-  secR.innerHTML = `
+  // SECTION 2: READING (21 - 35)
+  const secReading = document.createElement("section");
+  secReading.id = "sec-reading";
+  secReading.className = "section-card";
+  secReading.innerHTML = `
     <div class="section-card-header">
-      <div class="section-title"><span>📖</span> PHẦN 2: KỸ NĂNG ĐỌC (阅读)</div>
-      <div class="section-badge">15 Câu hỏi (21 - 35)</div>
-    </div>
-    <div class="part-header">
-      <strong>第 21 - 25 题：</strong>选句配对 (Chọn câu đáp ứng tương ứng)
+      <div class="section-title">
+        <span>📖</span> Phần 2: Đọc hiểu (二、阅读)
+      </div>
+      <div class="section-badge">15 Câu (约 20 分钟)</div>
     </div>
   `;
 
-  // Reading Part 1 Options Bank
-  const r1Bank = document.createElement("div");
-  r1Bank.style.background = "#f8fafc";
-  r1Bank.style.padding = "10px 16px";
-  r1Bank.style.margin = "0 16px 12px";
-  r1Bank.style.borderRadius = "8px";
-  r1Bank.style.border = "1px solid #e2e8f0";
+  // --- Reading Part 1 (21 - 25) ---
+  const rp1 = document.createElement("div");
+  rp1.innerHTML = `
+    <div class="part-header">
+      <strong>第一部分 (Phần 1):</strong> Câu 21-25. Chọn câu đối ứng phù hợp trong khung chữ cái (A-F) để tạo thành đoạn hội thoại logic.
+    </div>
+  `;
+  const optBox1 = document.createElement("div");
+  optBox1.className = "options-box";
   activeData.reading.part1.options.forEach(opt => {
-    r1Bank.innerHTML += `<div style="margin-bottom:6px;font-size:14px;"><strong style="color:var(--primary);">${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span></div>`;
+    const item = document.createElement("div");
+    item.className = "options-box-item";
+    item.innerHTML = `<span class="opt-letter">${opt.currentLetter}</span> <span class="chinese">${opt.text}</span>`;
+    optBox1.appendChild(item);
   });
-  secR.appendChild(r1Bank);
+  rp1.appendChild(optBox1);
 
-  // Reading Part 1 Questions
+  const rex1 = activeData.reading.part1.example;
+  if (rex1) {
+    const rex1Div = document.createElement("div");
+    rex1Div.className = "example-box";
+    rex1Div.innerHTML = `
+      <span class="example-title">Ví dụ mẫu (例如) - Không tính điểm</span>
+      <div class="chinese">${rex1.prompt}</div>
+      <div>Đáp án mẫu: <span class="example-answer">${rex1.letter || 'E'}</span></div>
+    `;
+    rp1.appendChild(rex1Div);
+  }
+
   activeData.reading.part1.questions.forEach(q => {
-    const curOpt = activeData.reading.part1.options.find(o => o.id === q.correctId);
-    const correctLetter = curOpt ? curOpt.renderLetter : 'A';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1', curOpt ? curOpt.text : '');
-
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
+    qDiv.id = `qbox-${q.id}`;
     qDiv.innerHTML = `
-      <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
-        <span class="q-number">${q.num}.</span> <span class="chinese">${q.prompt}</span>
-      </div>
-      <div class="options-pills" id="opts-${q.id}">
-        ${activeData.reading.part1.options.map(opt => `
-          <div class="opt-pill" onclick="selectOptionPill('${q.id}', '${opt.id}', this)">
-            <strong>${opt.renderLetter}</strong>
-          </div>
-        `).join("")}
+      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
+      <div class="q-body">
+        <div class="chinese" style="font-size:17px;margin-bottom:12px;">${q.prompt.replace(/\\n/g, '<br>')}</div>
+        <div class="bank-options-row">
+          ${activeData.reading.part1.options.map(opt => `
+            <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
+              ${opt.currentLetter}
+            </button>
+          `).join('')}
+        </div>
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        ${dynExp}
+        <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
-    secR.appendChild(qDiv);
+    rp1.appendChild(qDiv);
   });
+  secReading.appendChild(rp1);
 
-  // Part 2: Fill in the blank (26 - 30)
-  const r2Header = document.createElement("div");
-  r2Header.className = "part-header";
-  r2Header.style.marginTop = "24px";
-  r2Header.innerHTML = `<strong>第 26 - 30 题：</strong>选词填空 (Chọn từ thích hợp điền vào chỗ trống)`;
-  secR.appendChild(r2Header);
-
-  // Reading Part 2 Options Bank
-  const r2Bank = document.createElement("div");
-  r2Bank.style.background = "#f8fafc";
-  r2Bank.style.padding = "10px 16px";
-  r2Bank.style.margin = "0 16px 12px";
-  r2Bank.style.borderRadius = "8px";
-  r2Bank.style.border = "1px solid #e2e8f0";
-  r2Bank.style.display = "flex";
-  r2Bank.style.flexWrap = "wrap";
-  r2Bank.style.gap = "12px";
-  activeData.reading.part2.options.forEach(opt => {
-    r2Bank.innerHTML += `<div style="font-size:14px;"><strong style="color:var(--primary);">${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span></div>`;
-  });
-  secR.appendChild(r2Bank);
-
-  // Reading Part 2 Questions
-  activeData.reading.part2.questions.forEach(q => {
-    const curOpt = activeData.reading.part2.options.find(o => o.id === q.correctId);
-    const correctLetter = curOpt ? curOpt.renderLetter : 'A';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2', curOpt ? curOpt.text : '');
-
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
-    qDiv.innerHTML = `
-      <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
-        <span class="q-number">${q.num}.</span> <span class="chinese">${q.prompt ? q.prompt.replace(/\n/g, '<br>') : ''}</span>
-      </div>
-      <div class="options-pills" id="opts-${q.id}">
-        ${activeData.reading.part2.options.map(opt => `
-          <div class="opt-pill" onclick="selectOptionPill('${q.id}', '${opt.id}', this)">
-            <strong>${opt.renderLetter}</strong>
-          </div>
-        `).join("")}
-      </div>
-      <div class="explanation-box" id="exp-${q.id}">
-        ${dynExp}
-      </div>
-    `;
-    secR.appendChild(qDiv);
-  });
-
-  // Part 3: Reading Comprehension (31 - 35)
-  const r3Header = document.createElement("div");
-  r3Header.className = "part-header";
-  r3Header.style.marginTop = "24px";
-  r3Header.innerHTML = `<strong>第 31 - 35 题：</strong>阅读理解 (Đọc đoạn văn và chọn đáp án đúng)`;
-  secR.appendChild(r3Header);
-
-  activeData.reading.part3.questions.forEach(q => {
-    const curOpt = q.options.find(o => o.id === q.correctId);
-    const correctLetter = curOpt ? curOpt.renderLetter : 'A';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3', curOpt ? curOpt.text : '');
-
-    const qDiv = document.createElement("div");
-    qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
-    qDiv.innerHTML = `
-      <div class="chinese" style="background:#fdfbf7;padding:12px;border-radius:6px;margin-bottom:10px;font-size:15px;line-height:1.7;">
-        ${q.passage}
-      </div>
-      <div class="chinese" style="font-size:15px;margin-bottom:8px;font-weight:600;">
-        <span class="q-number">${q.num}.</span> ★ ${q.question}
-      </div>
-      <div class="radio-options" id="opts-${q.id}">
-        ${q.options.map(opt => `
-          <label class="radio-opt-label" onclick="selectRadioOption('${q.id}', '${opt.id}', this)">
-            <input type="radio" name="opt_${q.id}" value="${opt.id}" style="display:none;">
-            <strong>${opt.renderLetter}.</strong> <span class="chinese">${opt.text}</span>
-          </label>
-        `).join("")}
-      </div>
-      <div class="explanation-box" id="exp-${q.id}">
-        ${dynExp}
-      </div>
-    `;
-    secR.appendChild(qDiv);
-  });
-
-  container.appendChild(secR);
-
-  // ================= PHẦN 3: KỸ NĂNG VIẾT (36 - 45) =================
-  const secW = document.createElement("section");
-  secW.className = "section-card";
-  secW.id = "sec-writing";
-  secW.innerHTML = `
-    <div class="section-card-header">
-      <div class="section-title"><span>✍️</span> PHẦN 3: KỸ NĂNG VIẾT (书写)</div>
-      <div class="section-badge">10 Câu hỏi (36 - 45)</div>
+  // --- Reading Part 2 (26 - 30) ---
+  const rp2 = document.createElement("div");
+  rp2.innerHTML = `
+    <div class="part-header" style="margin-top:24px;">
+      <strong>第二部分 (Phần 2):</strong> Câu 26-30. Chọn từ thích hợp trong khung điền vào chỗ trống.
     </div>
-    <div class="part-header">
-      <strong>第 36 - 40 题：</strong>连词成句 (Sắp xếp các từ thành câu hoàn chỉnh)
+  `;
+  const optBox2 = document.createElement("div");
+  optBox2.className = "options-box";
+  activeData.reading.part2.options.forEach(opt => {
+    const item = document.createElement("div");
+    item.className = "options-box-item";
+    item.innerHTML = `<span class="opt-letter">${opt.currentLetter}</span> <span class="chinese">${opt.text}</span>`;
+    optBox2.appendChild(item);
+  });
+  rp2.appendChild(optBox2);
+
+  const rex2 = activeData.reading.part2.example;
+  if (rex2) {
+    const rex2Div = document.createElement("div");
+    rex2Div.className = "example-box";
+    rex2Div.innerHTML = `
+      <span class="example-title">Ví dụ mẫu (例如) - Không tính điểm</span>
+      <div class="chinese">${rex2.prompt}</div>
+      <div>Đáp án mẫu: <span class="example-answer">${rex2.letter || 'E'}</span> (${rex2.word})</div>
+    `;
+    rp2.appendChild(rex2Div);
+  }
+
+  activeData.reading.part2.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    qDiv.innerHTML = `
+      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
+      <div class="q-body">
+        <div class="chinese" style="font-size:17px;margin-bottom:12px;">${q.prompt.replace(/\\n/g, '<br>')}</div>
+        <div class="bank-options-row">
+          ${activeData.reading.part2.options.map(opt => `
+            <button class="btn-bank-opt" id="btn-opt-${q.id}-${opt.id}" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
+              ${opt.currentLetter}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <strong>💡 Giải thích:</strong> ${q.explanation}
+      </div>
+    `;
+    rp2.appendChild(qDiv);
+  });
+  secReading.appendChild(rp2);
+
+  // --- Reading Part 3 (31 - 35) ---
+  const rp3 = document.createElement("div");
+  rp3.innerHTML = `
+    <div class="part-header" style="margin-top:24px;">
+      <strong>第三部分 (Phần 3):</strong> Câu 31-35. Đọc đoạn văn ngắn và chọn 1 trong 3 đáp án chính xác nhất.
+    </div>
+  `;
+  activeData.reading.part3.questions.forEach(q => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-item";
+    qDiv.id = `qbox-${q.id}`;
+    qDiv.innerHTML = `
+      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
+      <div class="q-body">
+        <div class="reading-passage chinese">${q.passage}</div>
+        <div class="reading-question chinese">★ ${q.question}</div>
+        <div class="choice-list">
+          ${q.options.map(opt => `
+            <div class="choice-item" id="opt-${q.id}-${opt.id}" onclick="selectChoiceOption('${q.id}', '${opt.id}', this)">
+              <span class="choice-badge">${opt.currentLetter}</span>
+              <span class="choice-text chinese">${opt.text}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="explanation-box" id="exp-${q.id}">
+        <strong>💡 Giải thích:</strong> ${q.explanation}
+      </div>
+    `;
+    rp3.appendChild(qDiv);
+  });
+  secReading.appendChild(rp3);
+  container.appendChild(secReading);
+
+  // SECTION 3: WRITING (36 - 45)
+  const secWriting = document.createElement("section");
+  secWriting.id = "sec-writing";
+  secWriting.className = "section-card";
+  secWriting.innerHTML = `
+    <div class="section-card-header">
+      <div class="section-title">
+        <span>✍️</span> Phần 3: Viết (三、书写)
+      </div>
+      <div class="section-badge">10 Câu (约 15 分钟)</div>
     </div>
   `;
 
-  // Writing Part 1 Questions
+  // --- Writing Part 1 (36 - 40) ---
+  const wp1 = document.createElement("div");
+  wp1.innerHTML = `
+    <div class="part-header">
+      <strong>第一部分 (Phần 1):</strong> Câu 36-40. Sắp xếp các từ/cụm từ xáo trộn thành câu hoàn chỉnh. Nhấp vào các thẻ từ hoặc gõ trực tiếp câu trả lời vào ô trống.
+    </div>
+  `;
   activeData.writing.part1.questions.forEach(q => {
-    const shuffledWords = shuffleArray(q.words);
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
+    qDiv.id = `qbox-${q.id}`;
     qDiv.innerHTML = `
-      <div style="font-size:15px;margin-bottom:6px;">
-        <span class="q-number">${q.num}.</span>
-        <span class="chinese" style="background:#f1f5f9;padding:4px 8px;border-radius:4px;display:inline-block;margin-bottom:6px;">
-          ${shuffledWords.join(" / ")}
-        </span>
+      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
+      <div class="q-body">
+        <div class="word-chips-container" id="chips-${q.id}">
+          ${q.shuffledWords.map((w, idx) => `
+            <button class="word-chip chinese" id="chip-${q.id}-${idx}" onclick="clickWordChip('${q.id}', ${idx}, '${escapeJsStr(w)}')">
+              ${w}
+            </button>
+          `).join('')}
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <input type="text" class="writing-input-sentence chinese" id="input-${q.id}" placeholder="Bấm các thẻ từ ở trên hoặc nhập câu vào đây..." oninput="onSentenceInputChange('${q.id}', this.value)">
+          <button class="btn-clear-chips" onclick="clearWordOrder('${q.id}')">Xóa làm lại</button>
+        </div>
       </div>
-      <input type="text" class="writing-input chinese" id="input-${q.id}" placeholder="Nhập câu hoàn chỉnh vào đây..." oninput="handleWritingInput('${q.id}', this.value)">
       <div class="explanation-box" id="exp-${q.id}">
         <strong>💡 Đáp án đúng:</strong> <span class="chinese" style="font-weight:bold;color:var(--primary);">${q.correct}</span><br>
-        <div style="color:var(--text-muted);font-size:0.86rem;margin-top:4px;">💡 <strong>Giải thích:</strong> ${q.explanation || ''}</div>
+        <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
-    secW.appendChild(qDiv);
+    wp1.appendChild(qDiv);
   });
+  secWriting.appendChild(wp1);
 
-  // Writing Part 2 (41 - 45)
-  const w2Header = document.createElement("div");
-  w2Header.className = "part-header";
-  w2Header.style.marginTop = "24px";
-  w2Header.innerHTML = `<strong>第 41 - 45 题：</strong>读拼音，写汉字 (Xem phiên âm pinyin, gõ chữ Hán vào chỗ trống)`;
-  secW.appendChild(w2Header);
-
+  // --- Writing Part 2 (41 - 45) ---
+  const wp2 = document.createElement("div");
+  wp2.innerHTML = `
+    <div class="part-header" style="margin-top:24px;">
+      <strong>第二部分 (Phần 2):</strong> Câu 41-45. Viết chữ Hán chính xác tương ứng với phiên âm Pinyin trong ngoặc đơn.
+    </div>
+  `;
   activeData.writing.part2.questions.forEach(q => {
     const qDiv = document.createElement("div");
     qDiv.className = "question-item";
-    qDiv.id = `q-box-${q.id}`;
+    qDiv.id = `qbox-${q.id}`;
     qDiv.innerHTML = `
-      <div style="font-size:15px;margin-bottom:6px;line-height:1.6;">
-        <span class="q-number">${q.num}.</span>
-        <span class="chinese">${q.prompt}</span>
-        <span style="color:var(--primary);font-weight:bold;margin-left:6px;">[ ${q.pinyin} ]</span>
+      <div class="q-header"><span class="q-number">Câu ${q.num}</span></div>
+      <div class="q-body">
+        <div class="char-fill-row chinese">
+          <span>${q.before}</span>
+          <span class="pinyin-highlight">${q.pinyin}</span>
+          <span>${q.after}</span>
+          <input type="text" maxlength="1" class="char-input-box chinese" id="input-${q.id}" oninput="onCharInputChange('${q.id}', this.value)">
+        </div>
       </div>
-      <input type="text" class="writing-input chinese" id="input-${q.id}" placeholder="Gõ chữ Hán vào đây..." style="max-width:200px;" oninput="handleWritingInput('${q.id}', this.value)">
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Chữ Hán đúng:</strong> <span class="chinese" style="font-weight:bold;font-size:18px;color:var(--primary);">${q.correct}</span> (${q.pinyin})<br>
-        <div style="color:var(--text-muted);font-size:0.86rem;margin-top:4px;">💡 <strong>Giải thích:</strong> ${q.explanation || ''}</div>
+        <strong>💡 Chữ Hán đúng:</strong> <span class="chinese" style="font-size:20px;font-weight:bold;color:var(--primary);">${q.correct}</span> (${q.pinyin})<br>
+        <strong>💡 Giải thích:</strong> ${q.explanation}
       </div>
     `;
-    secW.appendChild(qDiv);
+    wp2.appendChild(qDiv);
   });
+  secWriting.appendChild(wp2);
+  container.appendChild(secWriting);
 
-  container.appendChild(secW);
+  renderDrawerGrid();
 }
 
-function selectOptionPill(qId, optId, btn) {
+function renderDrawerGrid() {
+  const grid = document.getElementById("drawerGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  
+  const sections = [
+    { name: "Phần 1: Nghe hiểu (1 - 20)", start: 1, end: 20 },
+    { name: "Phần 2: Đọc hiểu (21 - 35)", start: 21, end: 35 },
+    { name: "Phần 3: Viết (36 - 45)", start: 36, end: 45 }
+  ];
+
+  sections.forEach(sec => {
+    const header = document.createElement("div");
+    header.className = "drawer-section-title";
+    header.textContent = sec.name;
+    grid.appendChild(header);
+
+    const subGrid = document.createElement("div");
+    subGrid.className = "drawer-subgrid";
+    for (let i = sec.start; i <= sec.end; i++) {
+      const btn = document.createElement("button");
+      btn.className = "drawer-q-btn";
+      btn.id = `drawer-btn-${i}`;
+      btn.textContent = i;
+      btn.onclick = () => scrollToQuestion(i);
+      subGrid.appendChild(btn);
+    }
+    grid.appendChild(subGrid);
+  });
+}
+
+function scrollToQuestion(num) {
+  let qId = '';
+  if (num <= 20) qId = `L${num}`;
+  else if (num <= 35) qId = `R${num}`;
+  else qId = `W${num}`;
+
+  const el = document.getElementById(`qbox-${qId}`);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function selectBankOption(qId, optId, btnEl) {
   if (isExamSubmitted) return;
+  const parent = btnEl.parentElement;
+  parent.querySelectorAll('.btn-bank-opt').forEach(b => b.classList.remove('selected'));
+  btnEl.classList.add('selected');
   userAnswers[qId] = optId;
-  const parent = document.getElementById(`opts-${qId}`);
-  if (parent) {
-    parent.querySelectorAll(".opt-pill").forEach(p => p.classList.remove("selected"));
-  }
-  btn.classList.add("selected");
-  const qBox = document.getElementById(`q-box-${qId}`);
-  if (qBox) qBox.classList.add("answered");
   updateProgress();
 }
 
-function selectJudgeOption(qId, val, btn) {
+function selectJudgeOption(qId, boolVal, btnEl) {
   if (isExamSubmitted) return;
-  userAnswers[qId] = val;
-  const parent = document.getElementById(`opts-${qId}`);
-  if (parent) {
-    parent.querySelectorAll(".opt-pill").forEach(p => p.classList.remove("selected"));
-  }
-  btn.classList.add("selected");
-  const qBox = document.getElementById(`q-box-${qId}`);
-  if (qBox) qBox.classList.add("answered");
+  const parent = btnEl.parentElement;
+  parent.querySelectorAll('.btn-judge').forEach(b => {
+    b.classList.remove('selected-true', 'selected-false');
+  });
+  btnEl.classList.add(boolVal ? 'selected-true' : 'selected-false');
+  userAnswers[qId] = boolVal;
   updateProgress();
 }
 
-function selectRadioOption(qId, optId, labelEl) {
+function selectChoiceOption(qId, optId, itemEl) {
   if (isExamSubmitted) return;
+  const parent = itemEl.parentElement;
+  parent.querySelectorAll('.choice-item').forEach(c => c.classList.remove('selected'));
+  itemEl.classList.add('selected');
   userAnswers[qId] = optId;
-  const parent = document.getElementById(`opts-${qId}`);
-  if (parent) {
-    parent.querySelectorAll(".radio-opt-label").forEach(l => l.classList.remove("selected"));
-  }
-  labelEl.classList.add("selected");
-  const qBox = document.getElementById(`q-box-${qId}`);
-  if (qBox) qBox.classList.add("answered");
   updateProgress();
 }
 
-function handleWritingInput(qId, val) {
+function clickWordChip(qId, idx, word) {
   if (isExamSubmitted) return;
-  const trimmed = val.trim();
-  if (trimmed) {
-    userAnswers[qId] = trimmed;
-    const qBox = document.getElementById(`q-box-${qId}`);
-    if (qBox) qBox.classList.add("answered");
+  const chip = document.getElementById(`chip-${qId}-${idx}`);
+  if (!chip || chip.classList.contains('used')) return;
+  chip.classList.add('used');
+
+  const input = document.getElementById(`input-${qId}`);
+  let currentVal = input.value.trim();
+  if (currentVal.endsWith('。') || currentVal.endsWith('？') || currentVal.endsWith('！')) {
+    currentVal = currentVal.slice(0, -1);
+  }
+  input.value = currentVal + word;
+  userAnswers[qId] = input.value;
+  updateProgress();
+}
+
+function clearWordOrder(qId) {
+  if (isExamSubmitted) return;
+  const container = document.getElementById(`chips-${qId}`);
+  if (container) {
+    container.querySelectorAll('.word-chip').forEach(c => c.classList.remove('used'));
+  }
+  const input = document.getElementById(`input-${qId}`);
+  if (input) {
+    input.value = '';
+  }
+  delete userAnswers[qId];
+  updateProgress();
+}
+
+function onSentenceInputChange(qId, val) {
+  if (isExamSubmitted) return;
+  if (val.trim()) {
+    userAnswers[qId] = val.trim();
   } else {
     delete userAnswers[qId];
-    const qBox = document.getElementById(`q-box-${qId}`);
-    if (qBox) qBox.classList.remove("answered");
+  }
+  updateProgress();
+}
+
+function onCharInputChange(qId, val) {
+  if (isExamSubmitted) return;
+  if (val.trim()) {
+    userAnswers[qId] = val.trim();
+  } else {
+    delete userAnswers[qId];
   }
   updateProgress();
 }
 
 function updateProgress() {
   const answeredCount = Object.keys(userAnswers).length;
-  const badge = document.getElementById("drawerProgress");
-  if (badge) badge.textContent = `${answeredCount}/45`;
+  const navCountEl = document.getElementById("navAnsweredCount");
+  if (navCountEl) navCountEl.textContent = answeredCount;
 
   for (let i = 1; i <= 45; i++) {
-    let qId = (i <= 20) ? `L${i}` : (i <= 35) ? `R${i}` : `W${i}`;
+    let qId = '';
+    if (i <= 20) qId = `L${i}`;
+    else if (i <= 35) qId = `R${i}`;
+    else qId = `W${i}`;
+
     const btn = document.getElementById(`drawer-btn-${i}`);
     if (btn) {
-      if (userAnswers[qId] !== undefined) {
-        btn.classList.add("answered");
+      if (userAnswers[qId] !== undefined && userAnswers[qId] !== '') {
+        btn.classList.add('answered');
       } else {
-        btn.classList.remove("answered");
+        btn.classList.remove('answered');
       }
     }
   }
 }
 
-function buildExamDrawer() {
-  const grid = document.getElementById("drawerGrid");
-  if (!grid) return;
-  grid.innerHTML = "";
-
-  for (let i = 1; i <= 45; i++) {
-    const btn = document.createElement("button");
-    btn.className = "drawer-btn";
-    btn.id = `drawer-btn-${i}`;
-    btn.textContent = i;
-    btn.onclick = () => scrollToQuestion(i);
-    grid.appendChild(btn);
-  }
-}
-
-function scrollToQuestion(num) {
-  let qId = (num <= 20) ? `L${num}` : (num <= 35) ? `R${num}` : `W${num}`;
-  const el = document.getElementById(`q-box-${qId}`);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
-    el.style.boxShadow = "0 0 0 3px var(--gold)";
-    setTimeout(() => { el.style.boxShadow = ""; }, 1500);
-  }
-}
-
 function toggleExamDrawer() {
-  document.body.classList.toggle("drawer-open");
   const drawer = document.getElementById("examDrawer");
-  if (drawer) drawer.classList.toggle("open-mobile");
+  if (!drawer) return;
+  drawer.classList.toggle("open");
+  document.body.classList.toggle("drawer-open");
+}
+
+function startExamSession() {
+  const nameInput = document.getElementById("inputStudentName");
+  if (nameInput && nameInput.value.trim()) {
+    studentName = nameInput.value.trim();
+  }
+  const badge = document.getElementById("studentInfoBadge");
+  if (badge) badge.textContent = `👤 ${studentName}`;
+
+  const modal = document.getElementById("welcomeModal");
+  if (modal) modal.style.display = "none";
+
+  randomizeExamData();
+  renderExam();
+  startTimers();
 }
 
 function startTimers() {
@@ -2048,25 +2157,53 @@ function startTimers() {
       totalSeconds--;
       const m = Math.floor(totalSeconds / 60);
       const s = totalSeconds % 60;
-      const textEl = document.getElementById("totalTimerText");
-      if (textEl) textEl.textContent = `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
-      const badge = document.getElementById("totalTimerBadge");
-      if (badge && totalSeconds <= 300) badge.classList.add("danger");
-    } else {
+      const el = document.getElementById("totalTimerText");
+      if (el) el.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    if (listeningSeconds > 0) {
+      listeningSeconds--;
+      const lm = Math.floor(listeningSeconds / 60);
+      const ls = listeningSeconds % 60;
+      const lel = document.getElementById("listeningTimerText");
+      if (lel) lel.textContent = `${String(lm).padStart(2, '0')}:${String(ls).padStart(2, '0')}`;
+    }
+
+    if (totalSeconds <= 0) {
       clearInterval(timerInterval);
-      alert("Hết giờ làm bài! Hệ thống tự động nộp bài.");
+      alert("Đã hết thời gian làm bài! Hệ thống sẽ tự động nộp bài.");
       submitExam();
     }
   }, 1000);
 }
 
+function playQuestionSnippet(timestamp, text) {
+  const audio = document.getElementById("mainAudioPlayer");
+  if (audio && audio.src && !audio.error) {
+    audio.currentTime = timestamp;
+    audio.play();
+  } else {
+    speakChineseText(text);
+  }
+}
+
+function speakChineseText(text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'zh-CN';
+  utt.rate = 0.9;
+  window.speechSynthesis.speak(utt);
+}
+
 function confirmSubmitExam() {
-  if (isExamSubmitted) return;
-  const answeredCount = Object.keys(userAnswers).length;
-  const unanswered = 45 - answeredCount;
-  let msg = "Bạn có chắc chắn muốn nộp bài thi không?";
+  const answered = Object.keys(userAnswers).length;
+  const unanswered = 45 - answered;
+  let msg = `Bạn đã hoàn thành ${answered}/45 câu.`;
   if (unanswered > 0) {
-    msg = `Bạn còn ${unanswered} câu chưa làm. Bạn có chắc chắn muốn nộp bài ngay không?`;
+    msg += ` Còn ${unanswered} câu chưa trả lời. Bạn có chắc chắn muốn nộp bài?`;
+  } else {
+    msg += ` Bạn có chắc chắn muốn nộp bài để xem kết quả?`;
   }
   if (confirm(msg)) {
     submitExam();
@@ -2079,14 +2216,13 @@ function submitExam() {
   if (timerInterval) clearInterval(timerInterval);
 
   let correctCount = 0;
-  let correctL = 0, correctR = 0, correctW = 0;
   const results = {};
 
   // 1. Listening Part 1 (1-5)
   activeData.listening.part1.questions.forEach(q => {
     const user = userAnswers[q.id];
     const isCor = user === q.correctId;
-    if (isCor) { correctCount++; correctL++; }
+    if (isCor) correctCount++;
     results[q.id] = { num: q.num, user, correct: q.correctId, isCor };
   });
 
@@ -2094,7 +2230,7 @@ function submitExam() {
   activeData.listening.part2.questions.forEach(q => {
     const user = userAnswers[q.id];
     const isCor = user === q.correct;
-    if (isCor) { correctCount++; correctL++; }
+    if (isCor) correctCount++;
     results[q.id] = { num: q.num, user, correct: q.correct, isCor };
   });
 
@@ -2102,7 +2238,7 @@ function submitExam() {
   activeData.listening.part3.questions.forEach(q => {
     const user = userAnswers[q.id];
     const isCor = user === q.correctId;
-    if (isCor) { correctCount++; correctL++; }
+    if (isCor) correctCount++;
     results[q.id] = { num: q.num, user, correct: q.correctId, isCor };
   });
 
@@ -2110,7 +2246,7 @@ function submitExam() {
   activeData.listening.part4.questions.forEach(q => {
     const user = userAnswers[q.id];
     const isCor = user === q.correctId;
-    if (isCor) { correctCount++; correctL++; }
+    if (isCor) correctCount++;
     results[q.id] = { num: q.num, user, correct: q.correctId, isCor };
   });
 
@@ -2118,7 +2254,7 @@ function submitExam() {
   activeData.reading.part1.questions.forEach(q => {
     const user = userAnswers[q.id];
     const isCor = user === q.correctId;
-    if (isCor) { correctCount++; correctR++; }
+    if (isCor) correctCount++;
     results[q.id] = { num: q.num, user, correct: q.correctId, isCor };
   });
 
@@ -2126,7 +2262,7 @@ function submitExam() {
   activeData.reading.part2.questions.forEach(q => {
     const user = userAnswers[q.id];
     const isCor = user === q.correctId;
-    if (isCor) { correctCount++; correctR++; }
+    if (isCor) correctCount++;
     results[q.id] = { num: q.num, user, correct: q.correctId, isCor };
   });
 
@@ -2134,252 +2270,80 @@ function submitExam() {
   activeData.reading.part3.questions.forEach(q => {
     const user = userAnswers[q.id];
     const isCor = user === q.correctId;
-    if (isCor) { correctCount++; correctR++; }
+    if (isCor) correctCount++;
     results[q.id] = { num: q.num, user, correct: q.correctId, isCor };
   });
 
   // 8. Writing Part 1 (36-40)
   activeData.writing.part1.questions.forEach(q => {
-    const user = (userAnswers[q.id] || '').replace(/[。？！?!\s]/g, '');
-    const cor = q.correct.replace(/[。？！?!\s]/g, '');
+    const user = (userAnswers[q.id] || '').replace(/[。？！?!\\s]/g, '');
+    const cor = q.correct.replace(/[。？！?!\\s]/g, '');
     const isCor = user === cor;
-    if (isCor) { correctCount++; correctW++; }
-    results[q.id] = { num: q.num, user: userAnswers[q.id] || '', correct: q.correct, isCor };
+    if (isCor) correctCount++;
+    results[q.id] = { num: q.num, user: userAnswers[q.id], correct: q.correct, isCor };
   });
 
   // 9. Writing Part 2 (41-45)
   activeData.writing.part2.questions.forEach(q => {
     const user = (userAnswers[q.id] || '').trim();
-    const isCor = user === q.correct.trim();
-    if (isCor) { correctCount++; correctW++; }
+    const isCor = user === q.correct;
+    if (isCor) correctCount++;
     results[q.id] = { num: q.num, user, correct: q.correct, isCor };
   });
 
-  // Scores
-  const score100 = Math.round((correctCount / 45) * 100);
-  const score10 = ((correctCount / 45) * 10).toFixed(1);
-  const isPassed = score100 >= 60;
-
-  // Review mode
-  document.body.classList.add("review-mode");
-  const container = document.getElementById("examContainer");
-  if (container) container.classList.add("review-mode");
-
-  for (let i = 1; i <= 45; i++) {
-    let qId = (i <= 20) ? `L${i}` : (i <= 35) ? `R${i}` : `W${i}`;
-    const res = results[qId];
-    const qBox = document.getElementById(`q-box-${qId}`);
-    const btn = document.getElementById(`drawer-btn-${i}`);
-    if (res && res.isCor) {
-      if (qBox) qBox.classList.add("user-correct");
-      if (btn) btn.classList.add("correct");
-    } else {
-      if (qBox) qBox.classList.add("user-wrong");
-      if (btn) btn.classList.add("wrong");
-    }
-  }
-
-  // Show bottom review bar
-  const bottomBar = document.getElementById("reviewBottomBar");
-  if (bottomBar) bottomBar.style.display = "block";
-
-  // Show result modal
-  const modal = document.getElementById("resultModal");
-  if (modal) {
-    document.getElementById("resStudent").textContent = `Thí sinh: ${studentName} (${studentClass})`;
-    document.getElementById("resScore100").textContent = `${score100}/100`;
-    document.getElementById("resCorrect").textContent = `${correctCount}/45`;
-    const stEl = document.getElementById("resStatus");
-    if (isPassed) {
-      stEl.textContent = "ĐẠT (CHÚC MỪNG)";
-      stEl.style.color = "var(--correct)";
-    } else {
-      stEl.textContent = "CHƯA ĐẠT";
-      stEl.style.color = "var(--wrong)";
-    }
-    document.getElementById("resBreakdown").innerHTML = `
-      • Nghe hiểu: <strong>${correctL}/20</strong> câu<br>
-      • Đọc hiểu: <strong>${correctR}/15</strong> câu<br>
-      • Viết: <strong>${correctW}/10</strong> câu<br>
-      • Điểm hệ 10: <strong>${score10}/10</strong>
-    `;
-    modal.classList.remove("hidden");
-    modal.style.display = "flex";
-  }
+  const finalScore10 = ((correctCount / 45) * 10).toFixed(1);
 
   // Send to Firebase
   const payload = {
     examCode: EXAM_CONFIG.examCode,
     examTitle: EXAM_CONFIG.examTitle,
-    studentName,
-    studentClass,
-    score10: parseFloat(score10),
-    score100,
-    correctCount,
+    studentName: studentName,
+    correctCount: correctCount,
     totalQuestions: 45,
-    isPassed,
-    submitTime: new Date().toISOString()
+    score10: parseFloat(finalScore10),
+    timestamp: new Date().toISOString()
   };
-  fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/submissions.json", {
+
+  fetch("https://diemthihsk-marknguyen-default-rtdb.firebaseio.com/scores.json", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
-  }).then(r => r.json()).then(() => {
-    const s = document.getElementById("firebaseSyncStatus");
-    if (s) s.textContent = "🟢 Đã đồng bộ kết quả lên hệ thống giáo viên.";
-  }).catch(() => {
-    const s = document.getElementById("firebaseSyncStatus");
-    if (s) s.textContent = "🟡 Lưu cục bộ (Không thể gửi tới máy chủ giáo viên).";
-  });
-}
+  }).catch(err => console.log("Firebase sync note:", err));
 
-function closeResultModal() {
-  const modal = document.getElementById("resultModal");
-  if (modal) {
-    modal.classList.add("hidden");
-    modal.style.display = "none";
-  }
-}
+  // Enter review mode
+  document.body.classList.add("review-mode");
+  
+  // Highlight drawer buttons
+  for (let i = 1; i <= 45; i++) {
+    let qId = '';
+    if (i <= 20) qId = `L${i}`;
+    else if (i <= 35) qId = `R${i}`;
+    else qId = `W${i}`;
 
-function retryExamWithShuffle() {
-  isExamSubmitted = false;
-  userAnswers = {};
-  totalSeconds = 45 * 60;
-
-  document.body.classList.remove("review-mode");
-  const container = document.getElementById("examContainer");
-  if (container) container.classList.remove("review-mode");
-
-  closeResultModal();
-  const bottomBar = document.getElementById("reviewBottomBar");
-  if (bottomBar) bottomBar.style.display = "none";
-
-  randomizeExamData();
-  renderExam();
-  buildExamDrawer();
-  updateProgress();
-  startTimers();
-
-  const textEl = document.getElementById("totalTimerText");
-  if (textEl) textEl.textContent = "45:00";
-  const badge = document.getElementById("totalTimerBadge");
-  if (badge) badge.classList.remove("danger");
-}
-
-function startExamSession() {
-  const nameIn = document.getElementById("inputStudentName");
-  const classIn = document.getElementById("inputStudentClass");
-  const nameVal = nameIn ? nameIn.value.trim() : "";
-  const classVal = classIn ? classIn.value.trim() : "";
-
-  studentName = nameVal || localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "Thí sinh";
-  studentClass = classVal || localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "Tự do";
-
-  localStorage.setItem("hsk3_student_name", studentName);
-  localStorage.setItem("hsk3_student_class", studentClass);
-
-  const badge = document.getElementById("studentInfoBadge");
-  if (badge) {
-    badge.textContent = `👤 ${studentName} (${studentClass})`;
-    badge.style.display = "inline-block";
-  }
-
-  const modal = document.getElementById("welcomeModal");
-  if (modal) {
-    modal.classList.add("hidden");
-    modal.style.display = "none";
-  }
-
-  randomizeExamData();
-  renderExam();
-  buildExamDrawer();
-  startTimers();
-}
-
-// Audio control functions
-const audioEl = document.getElementById("globalAudioPlayer");
-
-function toggleAudioPlayback() {
-  if (!audioEl) return;
-  const btn = document.getElementById("btnPlayPause");
-  if (audioEl.paused) {
-    audioEl.play().then(() => {
-      if (btn) btn.textContent = "⏸ Tạm Dừng";
-    }).catch(e => console.log(e));
-  } else {
-    audioEl.pause();
-    if (btn) btn.textContent = "▶ Phát Audio";
-  }
-}
-
-function adjustAudioSpeed() {
-  if (!audioEl) return;
-  const speeds = [1.0, 1.25, 0.8];
-  let cur = audioEl.playbackRate || 1.0;
-  let idx = speeds.indexOf(cur);
-  let next = speeds[(idx + 1) % speeds.length];
-  audioEl.playbackRate = next;
-  const spText = document.getElementById("speedText");
-  if (spText) spText.textContent = `${next}x`;
-}
-
-function replay10s() {
-  if (audioEl) audioEl.currentTime = Math.max(0, audioEl.currentTime - 10);
-}
-
-function forward10s() {
-  if (audioEl) audioEl.currentTime = Math.min(audioEl.duration || 9999, audioEl.currentTime + 10);
-}
-
-function seekAudio(e) {
-  if (!audioEl || !audioEl.duration) return;
-  const bar = document.getElementById("audioProgressBar");
-  const rect = bar.getBoundingClientRect();
-  const clickX = e.clientX - rect.left;
-  const pct = Math.max(0, Math.min(1, clickX / rect.width));
-  audioEl.currentTime = pct * audioEl.duration;
-}
-
-function playQuestionSnippet(timestamp, dialogue) {
-  if (!audioEl) return;
-  audioEl.currentTime = timestamp;
-  audioEl.play().catch(() => {});
-  const btn = document.getElementById("btnPlayPause");
-  if (btn) btn.textContent = "⏸ Tạm Dừng";
-}
-
-if (audioEl && audioEl.addEventListener) {
-  audioEl.addEventListener("timeupdate", () => {
-    const cur = audioEl.currentTime;
-    const dur = audioEl.duration || 0;
-    const curEl = document.getElementById("audioCurrentTime");
-    const durEl = document.getElementById("audioTotalDuration");
-    const fillEl = document.getElementById("audioProgressFill");
-
-    const cm = Math.floor(cur / 60);
-    const cs = Math.floor(cur % 60);
-    if (curEl) curEl.textContent = `${cm < 10 ? '0' + cm : cm}:${cs < 10 ? '0' + cs : cs}`;
-
-    if (dur > 0) {
-      const dm = Math.floor(dur / 60);
-      const ds = Math.floor(dur % 60);
-      if (durEl) durEl.textContent = `${dm < 10 ? '0' + dm : dm}:${ds < 10 ? '0' + ds : ds}`;
-      if (fillEl) fillEl.style.width = `${(cur / dur) * 100}%`;
+    const res = results[qId];
+    const btn = document.getElementById(`drawer-btn-${i}`);
+    if (btn && res) {
+      if (res.isCor) {
+        btn.classList.add('correct-rev');
+      } else {
+        btn.classList.add('wrong-rev');
+      }
     }
-  });
-  audioEl.addEventListener("ended", () => {
-    const btn = document.getElementById("btnPlayPause");
-    if (btn) btn.textContent = "▶ Phát Audio";
-  });
+  }
+
+  // Open drawer to see review
+  const drawer = document.getElementById("examDrawer");
+  if (drawer && !drawer.classList.contains("open")) {
+    toggleExamDrawer();
+  }
+
+  alert(`KẾT QUẢ BÀI LÀM:\\n\\nThí sinh: ${studentName}\\nĐúng: ${correctCount}/45 câu\\nĐiểm số: ${finalScore10}/10\\n\\nBài làm đã được chuyển sang chế độ Xem Lại với đầy đủ đáp án và giải thích chi tiết.`);
 }
 
+// Initialize: Render exam immediately on DOM ready
 window.addEventListener("DOMContentLoaded", () => {
-  const savedName = localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "";
-  const savedClass = localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "";
-  const nameIn = document.getElementById("inputStudentName");
-  const classIn = document.getElementById("inputStudentClass");
-  if (nameIn && savedName) nameIn.value = savedName;
-  if (classIn && savedClass) classIn.value = savedClass;
+  randomizeExamData();
+  renderExam();
 });
 </script>
 </body>
