@@ -1016,7 +1016,7 @@ function handleTeacherLogin() {
     return;
   }
 
-  // Master check: allow admin / marknguyen / giaovien with master pass or 123456
+  // 1. Master check: allow admin / marknguyen / giaovien with master pass or 123456
   const uLower = u.toLowerCase();
   if ((uLower === "admin" || uLower === "marknguyen" || uLower === "giaovien") && 
       (p === TEACHER_MASTER_PASS || p === "123456" || p === "admin123" || p === "HSK3NhaTrang2026")) {
@@ -1024,13 +1024,7 @@ function handleTeacherLogin() {
     return;
   }
 
-  // Allow direct master password for any login name
-  if (p === TEACHER_MASTER_PASS || p === "123456" || p === "HSK3NhaTrang2026") {
-    setTeacherLoggedIn(u, u);
-    return;
-  }
-
-  // Check locally registered teachers
+  // 2. Check locally registered teachers first
   try {
     const localTeachers = JSON.parse(localStorage.getItem("hsk_registered_teachers") || "[]");
     const foundLocal = localTeachers.find(t => (t.email === u || t.username === u) && t.password === p);
@@ -1040,7 +1034,13 @@ function handleTeacherLogin() {
     }
   } catch(e) {}
 
-  // Check against Firebase teachers list
+  // 3. Allow direct master password
+  if (p === TEACHER_MASTER_PASS || p === "123456" || p === "HSK3NhaTrang2026") {
+    setTeacherLoggedIn(u, u);
+    return;
+  }
+
+  // 4. Check against Firebase teachers list
   fetch(HARDCODED_FIREBASE_URL + "teachers.json")
     .then(r => r.json())
     .then(teachers => {
@@ -1059,12 +1059,7 @@ function handleTeacherLogin() {
       }
     })
     .catch(() => {
-      // Offline fallback
-      if (p === "123456" || p === TEACHER_MASTER_PASS) {
-        setTeacherLoggedIn("Giáo viên", u);
-      } else {
-        alert("Không thể kết nối đến cơ sở dữ liệu. Mật khẩu không đúng.");
-      }
+      alert("Không thể kết nối đến cơ sở dữ liệu. Mật khẩu không đúng.");
     });
 }
 
@@ -1512,8 +1507,7 @@ function exportExcelCSV() {
     alert("Không có dữ liệu bài nộp để xuất!");
     return;
   }
-  let csv = "﻿STT,Họ và tên,Lớp,Mã đề,Lần làm,Thời gian nộp,Thời lượng,Điểm /10,Tổng HSK /300,Điểm Nghe,Điểm Đọc,Điểm Viết,Kết quả
-";
+  let csv = `\uFEFFSTT,Họ và tên,Lớp,Mã đề,Lần làm,Thời gian nộp,Thời lượng,Điểm /10,Tổng HSK /300,Điểm Nghe,Điểm Đọc,Điểm Viết,Kết quả\n`;
   allSubmissions.forEach((s, i) => {
     const isPass = (s.hskTotal >= 180 || s.isPassed);
     csv += `"${i+1}","${s.studentName || ''}","${s.studentClass || ''}","${s.examCode || 'H31002'}","${s.attemptCount || 1}","${new Date(s.submitTime).toLocaleString('vi-VN')}","${s.durationFormatted || ''}","${s.score10 || 0}","${s.hskTotal || 0}","${s.hskListening || 0}","${s.hskReading || 0}","${s.hskWriting || 0}","${isPass ? 'ĐẠT' : 'CHƯA ĐẠT'}"
