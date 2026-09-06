@@ -445,112 +445,6 @@ footer.portal-footer {
   color: var(--text-muted);
   font-size: 0.9rem;
 }
-
-/* Student Portal Profile Card */
-.student-portal-card {
-  max-width: 1200px;
-  margin: 0 auto 24px auto;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  border: 1px solid #e2e8f0;
-  padding: 16px 20px;
-}
-.student-portal-card .box-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.student-portal-card .box-header .icon {
-  font-size: 1.8rem;
-}
-.student-portal-card .box-header h4 {
-  margin: 0;
-  color: var(--primary-dark);
-  font-size: 1.15rem;
-}
-.student-portal-card .box-header p {
-  margin: 2px 0 0 0;
-  color: var(--text-muted);
-  font-size: 0.88rem;
-}
-.student-portal-card .form-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.student-portal-card input {
-  flex: 1;
-  min-width: 220px;
-  padding: 10px 14px;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  outline: none;
-  transition: all 0.2s;
-}
-.student-portal-card input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(30,58,138,0.1);
-}
-.btn-save-student {
-  background: var(--primary);
-  color: #fff;
-  font-weight: 700;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-save-student:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-}
-.student-logged-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px;
-  background: #f0fdf4;
-  border: 1px solid #86efac;
-  border-radius: 10px;
-  padding: 12px 18px;
-}
-.logged-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.logged-avatar {
-  font-size: 2rem;
-}
-.logged-name {
-  font-size: 1.05rem;
-  color: #14532d;
-}
-.logged-sub {
-  font-size: 0.86rem;
-  color: #166534;
-  margin-top: 2px;
-}
-.btn-switch-student {
-  background: #fff;
-  color: #b91c1c;
-  border: 1px solid #fca5a5;
-  padding: 7px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.15s;
-}
-.btn-switch-student:hover {
-  background: #fee2e2;
-}
-
 </style>
 </head>
 <body>
@@ -599,33 +493,6 @@ footer.portal-footer {
 </div>
 
 <main class="portal-main">
-  <section class="student-portal-card" id="studentPortalSection">
-    <div id="studentLoginBox" class="student-login-box">
-      <div class="box-header">
-        <span class="icon">👤</span>
-        <div>
-          <h4>Khu Vực Đăng Nhập / Lưu Thông Tin Học Viên</h4>
-          <p>Đăng nhập 1 lần duy nhất - Hệ thống tự động ghi nhớ để khi vào làm bài không phải điền lại:</p>
-        </div>
-      </div>
-      <div class="form-row">
-        <input type="text" id="portalStudentName" placeholder="Họ và tên học viên (*)">
-        <input type="text" id="portalStudentClass" placeholder="Lớp / Khóa học (*, ví dụ: HSK4-K12)">
-        <button class="btn-save-student" onclick="savePortalStudent()">💾 Ghi Nhớ & Đăng Nhập</button>
-      </div>
-    </div>
-    <div id="studentLoggedBox" class="student-logged-box" style="display:none;">
-      <div class="logged-info">
-        <span class="logged-avatar">🎓</span>
-        <div>
-          <div class="logged-name">Học viên: <strong id="portalLoggedName">...</strong></div>
-          <div class="logged-sub">Lớp: <span id="portalLoggedClass">...</span> • Trạng thái: <strong style="color:#15803d;">🟢 Đã ghi nhớ - Vào làm bài ngay không cần nhập lại</strong></div>
-        </div>
-      </div>
-      <button class="btn-switch-student" onclick="logoutPortalStudent()">🔄 Đổi học viên</button>
-    </div>
-  </section>
-
   <div id="levelContainer">
     <!-- Rendered via JS -->
   </div>
@@ -749,8 +616,8 @@ const PORTAL_DATABASE = {
       { num: 8, code: "SC4-B08", file: "sc4-bai-8.html", status: "active", title: "Bài tập HSK 4: Bài 8", desc: "Bài 8: 生活中不缺少美 (Đã hoàn thiện 50 câu)", link: "sc4-bai-8.html" },
       { num: 9, code: "SC4-B09", file: "sc4-bai-9.html", status: "active", title: "Bài tập HSK 4: Bài 9", desc: "Bài 9: 阳光总在风雨后 (Đã hoàn thiện 50 câu)", link: "sc4-bai-9.html" },
       { num: 10, code: "SC4-B10", file: "sc4-bai-10.html", status: "active", title: "Bài tập HSK 4: Bài 10", desc: "Bài 10: 幸福的标准 (Đã hoàn thiện 50 câu)", link: "sc4-bai-10.html" },
-      { num: 11, code: "SC4-B11", file: "sc4-bai-11.html", status: "active", title: "Bài tập HSK 4: Bài 11", desc: "Bài 11: 读书好，读好书，好读书 (Đã hoàn thiện 50 câu)", link: "sc4-bai-11.html" },
-      { num: 12, code: "SC4-B12", file: "sc4-bai-12.html", status: "active", title: "Bài tập HSK 4: Bài 12", desc: "Bài 12: 用心发现世界 (Đã hoàn thiện 50 câu)", link: "sc4-bai-12.html" },
+      { num: 11, code: "SC4-B11", file: "sc4-bai-11.html", status: "active", title: "Bài tập HSK 4: Bài 11", desc: "Bài 11: 读书好，读好书，好读书 (50 câu • 50 phút • 3 file nghe)", link: "sc4-bai-11.html" },
+      { num: 12, code: "SC4-B12", file: "sc4-bai-12.html", status: "pending", title: "Bài tập HSK 4: Bài 12", desc: "Bài 12: 用心发现世界 (Đang cập nhật)", link: "sc4-bai-12.html" },
       { num: 13, code: "SC4-B13", file: "sc4-bai-13.html", status: "pending", title: "Bài tập HSK 4: Bài 13", desc: "Bài 13: 喝着茶看京剧 (Đang cập nhật)", link: "sc4-bai-13.html" },
       { num: 14, code: "SC4-B14", file: "sc4-bai-14.html", status: "pending", title: "Bài tập HSK 4: Bài 14", desc: "Bài 14: 保护地球母亲 (Đang cập nhật)", link: "sc4-bai-14.html" },
       { num: 15, code: "SC4-B15", file: "sc4-bai-15.html", status: "pending", title: "Bài tập HSK 4: Bài 15", desc: "Bài 15: 教育孩子的艺术 (Đang cập nhật)", link: "sc4-bai-15.html" },
@@ -1039,63 +906,7 @@ function prepareEnterExam() {
   if (code) localStorage.setItem("hsk_custom_access_code", code);
 }
 
-
-function checkPortalStudent() {
-  const name = localStorage.getItem("hsk4_student_name") || localStorage.getItem("hsk3_student_name");
-  const sClass = localStorage.getItem("hsk4_student_class") || localStorage.getItem("hsk3_student_class") || "HSK4-Online";
-  const loginBox = document.getElementById("studentLoginBox");
-  const loggedBox = document.getElementById("studentLoggedBox");
-  
-  if (name && name.trim()) {
-    if (loginBox) loginBox.style.display = "none";
-    if (loggedBox) loggedBox.style.display = "flex";
-    const nameEl = document.getElementById("portalLoggedName");
-    const classEl = document.getElementById("portalLoggedClass");
-    if (nameEl) nameEl.textContent = name;
-    if (classEl) classEl.textContent = sClass;
-  } else {
-    if (loginBox) loginBox.style.display = "block";
-    if (loggedBox) loggedBox.style.display = "none";
-  }
-}
-
-function savePortalStudent() {
-  const nameInput = document.getElementById("portalStudentName");
-  const classInput = document.getElementById("portalStudentClass");
-  const name = (nameInput ? nameInput.value : "").trim();
-  const sClass = (classInput ? classInput.value : "").trim() || "HSK4-Online";
-
-  if (!name) {
-    alert("Vui lòng nhập Họ và Tên của bạn!");
-    if (nameInput) nameInput.focus();
-    return;
-  }
-
-  localStorage.setItem("hsk4_student_name", name);
-  localStorage.setItem("hsk4_student_class", sClass);
-  localStorage.setItem("hsk3_student_name", name);
-  localStorage.setItem("hsk3_student_class", sClass);
-
-  checkPortalStudent();
-  alert(`Đã lưu thông tin học viên "${name}" thành công! Bây giờ bạn có thể bấm vào bất kỳ bài nào để vào thi ngay mà không cần điền lại.`);
-}
-
-function logoutPortalStudent() {
-  if (confirm("Bạn có muốn đổi thông tin sang học viên khác?")) {
-    localStorage.removeItem("hsk4_student_name");
-    localStorage.removeItem("hsk3_student_name");
-    const nameInput = document.getElementById("portalStudentName");
-    const classInput = document.getElementById("portalStudentClass");
-    if (nameInput) nameInput.value = "";
-    if (classInput) classInput.value = "";
-    checkPortalStudent();
-  }
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  initPortal();
-  checkPortalStudent();
-});
+window.addEventListener("DOMContentLoaded", initPortal);
 </script>
 </body>
 </html>
