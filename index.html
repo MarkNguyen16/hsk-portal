@@ -6,849 +6,934 @@
 <title>Cổng Khảo Thí & Luyện Thi HSK Đa Cấp Độ - Tiếng Trung HSK Nha Trang</title>
 <style>
 :root {
---primary: #176B63;
---primary-dark: #0D423D;
---primary-light: #208b81;
---primary-subtle: #e6f3f1;
---gold: #D9B86C;
---gold-dark: #b59447;
---gold-light: #faecd0;
---bg-cream: #F7F3E8;
---card-bg: #FFFFFF;
---text-main: #2D3748;
---text-muted: #718096;
---border-color: #E2DAC7;
+  --primary: #176B63;
+  --primary-dark: #0D423D;
+  --primary-light: #208b81;
+  --primary-subtle: #e6f3f1;
+  --gold: #D9B86C;
+  --gold-dark: #b59447;
+  --gold-light: #faecd0;
+  --bg-cream: #F7F3E8;
+  --card-bg: #FFFFFF;
+  --text-main: #2D3748;
+  --text-muted: #718096;
+  --border-color: #E2DAC7;
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-background-color: var(--bg-cream);
-color: var(--text-main);
-line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  line-height: 1.6;
 }
+
 /* Header */
 header.portal-header {
-background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-color: #fff;
-padding: 16px 24px;
-box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-position: sticky;
-top: 0;
-z-index: 100;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  padding: 16px 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
+
 .header-inner {
-max-width: 1240px;
-margin: 0 auto;
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 16px;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
+
 .brand {
-display: flex;
-align-items: center;
-gap: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
+
 .brand img.center-logo {
-width: 48px;
-height: 48px;
-border-radius: 12px;
-object-fit: contain;
-background: #fff;
-padding: 2px;
-box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: #fff;
+  padding: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
+
 .brand-title h1 {
-font-size: 1.25rem;
-font-weight: 700;
-letter-spacing: 0.5px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
+
 .brand-title p {
-font-size: 0.82rem;
-color: var(--gold-light);
+  font-size: 0.82rem;
+  color: var(--gold-light);
 }
+
 .btn-nav-teacher {
-background: var(--gold);
-color: var(--primary-dark);
-padding: 8px 18px;
-border-radius: 20px;
-font-weight: 700;
-font-size: 0.88rem;
-text-decoration: none;
-transition: all 0.2s;
-display: inline-flex;
-align-items: center;
-gap: 6px;
+  background: var(--gold);
+  color: var(--primary-dark);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
+
 .btn-nav-teacher:hover {
-background: #ecd395;
-transform: translateY(-1px);
+  background: #ecd395;
+  transform: translateY(-1px);
 }
+
 /* Hero */
 .hero-section {
-background: #fff;
-border-bottom: 1px solid var(--border-color);
-padding: 28px 20px;
-text-align: center;
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 28px 20px;
+  text-align: center;
 }
+
 .hero-inner {
-max-width: 920px;
-margin: 0 auto;
+  max-width: 920px;
+  margin: 0 auto;
 }
+
 .hero-inner h2 {
-font-size: 1.85rem;
-color: var(--primary-dark);
-font-weight: 800;
-margin-bottom: 6px;
+  font-size: 1.85rem;
+  color: var(--primary-dark);
+  font-weight: 800;
+  margin-bottom: 6px;
 }
+
 .hero-inner p {
-font-size: 0.95rem;
-color: var(--text-muted);
-margin-bottom: 16px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
 }
+
 .student-quick-bar {
-background: var(--primary-subtle);
-border: 1px solid #cce5e1;
-border-radius: 12px;
-padding: 12px 18px;
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: center;
-gap: 10px;
+  background: var(--primary-subtle);
+  border: 1px solid #cce5e1;
+  border-radius: 12px;
+  padding: 12px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
+
 .student-quick-bar input {
-padding: 8px 14px;
-border: 1.5px solid var(--border-color);
-border-radius: 8px;
-font-size: 0.9rem;
-outline: none;
+  padding: 8px 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
 }
+
 .student-quick-bar input:focus {
-border-color: var(--primary);
+  border-color: var(--primary);
 }
+
 .btn-save-profile {
-background: var(--primary);
-color: #fff;
-border: none;
-padding: 8px 18px;
-border-radius: 8px;
-font-weight: 600;
-font-size: 0.9rem;
-cursor: pointer;
-transition: background 0.2s;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
 }
+
 .btn-save-profile:hover {
-background: var(--primary-dark);
+  background: var(--primary-dark);
 }
+
 /* Level Tabs */
 .level-tabs-bar {
-background: #fff;
-border-bottom: 2px solid var(--border-color);
-position: sticky;
-top: 80px;
-z-index: 90;
-box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  background: #fff;
+  border-bottom: 2px solid var(--border-color);
+  position: sticky;
+  top: 80px;
+  z-index: 90;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
+
 .level-tabs-inner {
-max-width: 1240px;
-margin: 0 auto;
-display: flex;
-gap: 6px;
-padding: 0 16px;
-overflow-x: auto;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  gap: 6px;
+  padding: 0 16px;
+  overflow-x: auto;
 }
+
 .level-tab-btn {
-padding: 13px 18px;
-font-size: 0.95rem;
-font-weight: 700;
-color: var(--text-muted);
-border: none;
-background: none;
-border-bottom: 3px solid transparent;
-cursor: pointer;
-white-space: nowrap;
-transition: all 0.2s;
+  padding: 13px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
 }
+
 .level-tab-btn:hover {
-color: var(--primary);
+  color: var(--primary);
 }
+
 .level-tab-btn.active {
-color: var(--primary);
-border-bottom-color: var(--primary);
+  color: var(--primary);
+  border-bottom-color: var(--primary);
 }
+
 .level-tab-btn.highlight-tab {
-color: #b45309;
+  color: #b45309;
 }
 .level-tab-btn.highlight-tab.active {
-color: var(--primary);
-border-bottom-color: var(--primary);
+  color: var(--primary);
+  border-bottom-color: var(--primary);
 }
+
 /* Main Content */
 main.portal-main {
-max-width: 1240px;
-margin: 24px auto;
-padding: 0 16px;
+  max-width: 1240px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
+
 .level-banner {
-background: #fff;
-border: 1px solid var(--border-color);
-border-radius: 12px;
-padding: 18px 24px;
-margin-bottom: 20px;
-box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
+
 .level-banner h3 {
-font-size: 1.35rem;
-color: var(--primary-dark);
-font-weight: 800;
-margin-bottom: 4px;
+  font-size: 1.35rem;
+  color: var(--primary-dark);
+  font-weight: 800;
+  margin-bottom: 4px;
 }
+
 .level-banner p {
-color: var(--text-muted);
-font-size: 0.92rem;
-margin-bottom: 8px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 8px;
 }
+
 .level-banner .badge-specs {
-display: inline-block;
-background: var(--gold-light);
-color: #78350f;
-font-weight: 600;
-font-size: 0.82rem;
-padding: 3px 12px;
-border-radius: 20px;
+  display: inline-block;
+  background: var(--gold-light);
+  color: #78350f;
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 3px 12px;
+  border-radius: 20px;
 }
+
 /* Sub Category Filter */
 .sub-filter-bar {
-display: flex;
-gap: 10px;
-margin-bottom: 20px;
-flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
+
 .sub-filter-btn {
-background: #fff;
-border: 1.5px solid var(--border-color);
-padding: 8px 18px;
-border-radius: 20px;
-font-weight: 600;
-font-size: 0.88rem;
-color: var(--text-main);
-cursor: pointer;
-transition: all 0.2s;
-display: inline-flex;
-align-items: center;
-gap: 6px;
+  background: #fff;
+  border: 1.5px solid var(--border-color);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
+
 .sub-filter-btn:hover {
-border-color: var(--primary);
-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary);
 }
+
 .sub-filter-btn.active {
-background: var(--primary);
-border-color: var(--primary);
-color: #fff;
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }
+
 .section-title-wrap {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin: 28px 0 14px 0;
-padding-bottom: 6px;
-border-bottom: 2px solid #e2dac7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 28px 0 14px 0;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e2dac7;
 }
+
 .section-title {
-font-size: 1.18rem;
-font-weight: 800;
-color: var(--primary-dark);
-display: flex;
-align-items: center;
-gap: 8px;
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
+
 .section-count {
-font-size: 0.82rem;
-color: var(--text-muted);
-background: #fff;
-border: 1px solid var(--border-color);
-padding: 2px 10px;
-border-radius: 12px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: #fff;
+  border: 1px solid var(--border-color);
+  padding: 2px 10px;
+  border-radius: 12px;
 }
+
 .exam-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-gap: 18px;
-margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
 }
+
 .exam-card {
-background: #fff;
-border: 1px solid var(--border-color);
-border-radius: 12px;
-box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-padding: 18px;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-transition: all 0.2s;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s;
 }
+
 .exam-card:hover {
-transform: translateY(-2px);
-box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
+
 .exam-card.active-exam {
-border-top: 4px solid var(--primary);
-border-color: #bcdad5;
+  border-top: 4px solid var(--primary);
+  border-color: #bcdad5;
 }
+
 .exam-card.active-workbook {
-border-top: 4px solid #b45309;
-border-color: #fed7aa;
+  border-top: 4px solid #b45309;
+  border-color: #fed7aa;
 }
+
 .exam-card-top {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
+
 .badge-status {
-font-size: 0.78rem;
-font-weight: 700;
-padding: 2px 8px;
-border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
 }
+
 .badge-status.active {
-background: #dcfce7;
-color: #15803d;
+  background: #dcfce7;
+  color: #15803d;
 }
+
 .badge-status.pending {
-background: #f1f5f9;
-color: #64748b;
+  background: #f1f5f9;
+  color: #64748b;
 }
+
 .exam-code {
-font-family: monospace;
-font-size: 0.82rem;
-color: var(--text-muted);
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: var(--text-muted);
 }
+
 .exam-name {
-font-size: 1.05rem;
-font-weight: 700;
-color: #1a202c;
-margin-bottom: 6px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 6px;
 }
+
 .exam-short-desc {
-font-size: 0.85rem;
-color: var(--text-muted);
-margin-bottom: 16px;
-line-height: 1.5;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
 }
+
 .btn-launch {
-display: block;
-text-align: center;
-background: var(--primary);
-color: #fff;
-text-decoration: none;
-font-weight: 700;
-padding: 8px 14px;
-border-radius: 6px;
-font-size: 0.9rem;
-transition: background 0.2s;
+  display: block;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background 0.2s;
 }
+
 .btn-launch:hover {
-background: var(--primary-dark);
+  background: var(--primary-dark);
 }
+
 .btn-launch-workbook {
-display: block;
-text-align: center;
-background: #b45309;
-color: #fff;
-text-decoration: none;
-font-weight: 700;
-padding: 8px 14px;
-border-radius: 6px;
-font-size: 0.9rem;
-transition: background 0.2s;
+  display: block;
+  text-align: center;
+  background: #b45309;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background 0.2s;
 }
+
 .btn-launch-workbook:hover {
-background: #92400e;
+  background: #92400e;
 }
+
 .btn-disabled {
-display: block;
-text-align: center;
-background: #f1f5f9;
-color: #94a3b8;
-font-weight: 600;
-padding: 8px 14px;
-border-radius: 6px;
-font-size: 0.85rem;
-cursor: not-allowed;
+  display: block;
+  text-align: center;
+  background: #f1f5f9;
+  color: #94a3b8;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: not-allowed;
 }
+
 /* Footer */
 footer.portal-footer {
-background: #fff;
-border-top: 1px solid var(--border-color);
-padding: 26px 20px;
-text-align: center;
-margin-top: 45px;
-color: var(--text-muted);
-font-size: 0.9rem;
+  background: #fff;
+  border-top: 1px solid var(--border-color);
+  padding: 26px 20px;
+  text-align: center;
+  margin-top: 45px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 </style>
 </head>
 <body>
+
 <header class="portal-header">
-<div class="header-inner">
-<div class="brand">
-<img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo Tiếng Trung HSK Nha Trang" class="center-logo">
-<div class="brand-title">
-<h1>TRUNG TÂM TIẾNG TRUNG HSK NHA TRANG</h1>
-<p>Hệ thống Khảo thí & Luyện thi Tiếng Trung Trực tuyến (HSK, HSK 3.0 & Giáo Trình Chuẩn)</p>
-</div>
-</div>
-<div>
-<a href="teacher.html" class="btn-nav-teacher">🔒 Bảng Điều Khiển Giáo Viên</a>
-</div>
-</div>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="images/logoHSKNHATRANG.jpg" onerror="this.onerror=null; this.src='logoHSKNHATRANG.jpg'; this.onerror=function(){this.src='images/logo.png';};" alt="Logo Tiếng Trung HSK Nha Trang" class="center-logo">
+      <div class="brand-title">
+        <h1>TRUNG TÂM TIẾNG TRUNG HSK NHA TRANG</h1>
+        <p>Hệ thống Khảo thí & Luyện thi Tiếng Trung Trực tuyến (HSK, HSK 3.0 & Giáo Trình Chuẩn)</p>
+      </div>
+    </div>
+    <div>
+      <a href="teacher.html" class="btn-nav-teacher">🔒 Bảng Điều Khiển Giáo Viên</a>
+    </div>
+  </div>
 </header>
+
 <section class="hero-section">
-<div class="hero-inner">
-<h2>Cổng Khảo Thí & Luyện Đề HSK Đa Cấp Độ</h2>
-<p>Hệ thống khảo thí tích hợp: Mỗi cấp độ đều gồm trọn bộ <strong>Bộ đề thi HSK mô phỏng</strong> và <strong>Bài tập Sách bài tập chuẩn HSK Standard Course</strong></p>
-<div class="student-quick-bar">
-<span>👤 Thông tin học viên:</span>
-<input type="text" id="inputName" placeholder="Họ và tên thí sinh...">
-<input type="text" id="inputClass" placeholder="Lớp (vd: HSK4-K24)...">
-<input type="password" id="inputCode" placeholder="Mã truy cập lớp (HSK32026)..." value="HSK32026">
-<button class="btn-save-profile" onclick="saveStudentProfile()">Lưu Thông Tin</button>
-</div>
-</div>
+  <div class="hero-inner">
+    <h2>Cổng Khảo Thí & Luyện Đề HSK Đa Cấp Độ</h2>
+    <p>Hệ thống khảo thí tích hợp: Mỗi cấp độ đều gồm trọn bộ <strong>Bộ đề thi HSK mô phỏng</strong> và <strong>Bài tập Sách bài tập chuẩn HSK Standard Course</strong></p>
+    
+    <div class="student-quick-bar">
+      <span>👤 Thông tin học viên:</span>
+      <input type="text" id="inputName" placeholder="Họ và tên thí sinh...">
+      <input type="text" id="inputClass" placeholder="Lớp (vd: HSK4-K24)...">
+      <input type="password" id="inputCode" placeholder="Mã truy cập lớp (HSK32026)..." value="HSK32026">
+      <button class="btn-save-profile" onclick="saveStudentProfile()">Lưu Thông Tin</button>
+    </div>
+  </div>
 </section>
+
 <!-- Level Tabs Bar -->
 <div class="level-tabs-bar">
-<div class="level-tabs-inner">
-<button class="level-tab-btn" onclick="switchLevel('HSK1', this)">HSK 1</button>
-<button class="level-tab-btn" onclick="switchLevel('HSK2', this)">HSK 2</button>
-<button class="level-tab-btn highlight-tab" id="tab-btn-HSK3" onclick="switchLevel(\'HSK3\', this)">⭐ HSK 3 (10 Đề & 20 Bài Tập)</button>
-<button class="level-tab-btn active highlight-tab" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (13 Đề & 20 Bài Tập)</button>
-<button class="level-tab-btn" onclick="switchLevel('HSK5', this)">HSK 5</button>
-<button class="level-tab-btn" onclick="switchLevel('HSK6', this)">HSK 6</button>
-<button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK30', this)">✨ HSK 3.0 (Chuẩn Mới)</button>
+  <div class="level-tabs-inner">
+    <button class="level-tab-btn" onclick="switchLevel('HSK1', this)">HSK 1</button>
+    <button class="level-tab-btn" onclick="switchLevel('HSK2', this)">HSK 2</button>
+    <button class="level-tab-btn highlight-tab" id="tab-btn-HSK3" onclick="switchLevel(\'HSK3\', this)">⭐ HSK 3 (10 Đề & 20 Bài Tập)</button>
+    <button class="level-tab-btn active highlight-tab" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (13 Đề & 20 Bài Tập)</button>
+    <button class="level-tab-btn" onclick="switchLevel('HSK5', this)">HSK 5</button>
+    <button class="level-tab-btn" onclick="switchLevel('HSK6', this)">HSK 6</button>
+    <button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK30', this)">✨ HSK 3.0 (Chuẩn Mới)</button>
+  </div>
 </div>
-</div>
+
 <main class="portal-main">
-<div id="levelContainer">
-<!-- Rendered via JS -->
-</div>
+  <div id="levelContainer">
+    <!-- Rendered via JS -->
+  </div>
 </main>
+
 <footer class="portal-footer">
-<p><strong>Trung tâm Tiếng Trung HSK Nha Trang</strong> • Công ty TNHH Giáo dục Ngoại ngữ Triều Dương</p>
-<p style="margin-top:4px;">Cổng khảo thí đa cấp độ chuẩn Vercel • Tự động chấm điểm & Lưu trữ điểm số Giáo viên</p>
-<p style="margin-top:8px;"><a href="teacher.html" style="color:var(--primary);font-weight:600;text-decoration:none;">🔒 Đăng nhập Bảng Điều Khiển Dành Cho Giáo Viên</a></p>
+  <p><strong>Trung tâm Tiếng Trung HSK Nha Trang</strong> • Công ty TNHH Giáo dục Ngoại ngữ Triều Dương</p>
+  <p style="margin-top:4px;">Cổng khảo thí đa cấp độ chuẩn Vercel • Tự động chấm điểm & Lưu trữ điểm số Giáo viên</p>
+  <p style="margin-top:8px;"><a href="teacher.html" style="color:var(--primary);font-weight:600;text-decoration:none;">🔒 Đăng nhập Bảng Điều Khiển Dành Cho Giáo Viên</a></p>
 </footer>
+
 <script>
 // EXAM & WORKBOOK DATABASE FOR ALL LEVELS
 const PORTAL_DATABASE = {
-"HSK1": {
-"title": "HSK Cấp 1 (Học từ vựng 150 từ • Sơ cấp nhập môn)",
-"desc": "Bao gồm Bộ đề thi mô phỏng HSK 1 và Sách bài tập chuẩn HSK 1 Standard Course.",
-"specs": "Nghe 20 câu • Đọc 20 câu • Thời gian: 40 phút • Điểm tối đa: 200 điểm",
-"exams": Array.from({length: 10}, (_, i) => ({
-num: i + 1,
-code: `H1100${i+1}`.replace("0010", "010"),
-file: `hsk1-de-${i+1}.html`,
-status: "pending",
-title: `HSK 1 - Đề thi số 0${i+1}`.replace("010", "10"),
-desc: `Đề thi mô phỏng HSK 1 chuẩn quốc tế số ${i+1}`,
-link: `hsk1-de-${i+1}.html`
-})),
-"workbooks": Array.from({length: 15}, (_, i) => ({
-num: i + 1,
-code: `SC1-B${(i+1)<10?'0'+(i+1):(i+1)}`,
-file: `sc1-bai-${i+1}.html`,
-status: "pending",
-title: `Bài tập HSK 1: Bài ${(i+1)}`,
-desc: `Bài tập củng cố Giáo trình Chuẩn HSK 1 bài số ${i+1}`,
-link: `sc1-bai-${i+1}.html`
-}))
-},
-"HSK2": {
-"title": "HSK Cấp 2 (Học từ vựng 300 từ • Giao tiếp cơ bản)",
-"desc": "Bao gồm Bộ đề thi mô phỏng HSK 2 và Sách bài tập chuẩn HSK 2 Standard Course.",
-"specs": "Nghe 35 câu • Đọc 25 câu • Thời gian: 55 phút • Điểm tối đa: 200 điểm",
-"exams": Array.from({length: 10}, (_, i) => ({
-num: i + 1,
-code: `H2100${i+1}`.replace("0010", "010"),
-file: `hsk2-de-${i+1}.html`,
-status: "pending",
-title: `HSK 2 - Đề thi số 0${i+1}`.replace("010", "10"),
-desc: `Đề thi mô phỏng HSK 2 chuẩn quốc tế số ${i+1}`,
-link: `hsk2-de-${i+1}.html`
-})),
-"workbooks": Array.from({length: 15}, (_, i) => ({
-num: i + 1,
-code: `SC2-B${(i+1)<10?'0'+(i+1):(i+1)}`,
-file: `sc2-bai-${i+1}.html`,
-status: "pending",
-title: `Bài tập HSK 2: Bài ${(i+1)}`,
-desc: `Bài tập củng cố Giáo trình Chuẩn HSK 2 bài số ${i+1}`,
-link: `sc2-bai-${i+1}.html`
-}))
-},
-"HSK3": {
-"title": "HSK Cấp 3 (Học từ vựng 600 từ • Nghe, Đọc, Viết hoàn chỉnh)",
-"desc": "Hệ thống trọn bộ các đề thi chuẩn HSK 3 chính thức (Đề 01 đến 10+) cùng trọn bộ 20 bài học Sách bài tập Chuẩn HSK 3 Standard Course.",
-"specs": "Nghe 40 câu • Đọc 30 câu • Viết 10 câu • Thời gian: 90 phút • Điểm tối đa: 300 điểm",
-"exams": [
-{ num: 1, code: "H31001", file: "de-1.html", status: "active", title: "HSK 3 - Đề thi số 01", desc: "Đề thi chuẩn H31001 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-1.html" },
-{ num: 2, code: "H31002", file: "de-2.html", status: "active", title: "HSK 3 - Đề thi số 02", desc: "Đề thi chuẩn H31002 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-2.html" },
-{ num: 3, code: "H31003", file: "de-3.html", status: "active", title: "HSK 3 - Đề thi số 03", desc: "Đề thi chuẩn H31003 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-3.html" },
-{ num: 4, code: "H31004", file: "de-4.html", status: "active", title: "HSK 3 - Đề thi số 04", desc: "Đề thi chuẩn H31004 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-4.html" },
-{ num: 5, code: "H31005", file: "de-5.html", status: "active", title: "HSK 3 - Đề thi số 05", desc: "Đề thi chuẩn H31005 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-5.html" },
-{ num: 6, code: "H31006", file: "de-6.html", status: "active", title: "HSK 3 - Đề thi số 06", desc: "Đề thi chuẩn H31006 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-6.html" },
-{ num: 7, code: "H31007", file: "de-7.html", status: "active", title: "HSK 3 - Đề thi số 07", desc: "Đề thi chuẩn H31007 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-7.html" },
-{ num: 8, code: "H31008", file: "de-8.html", status: "active", title: "HSK 3 - Đề thi số 08", desc: "Đề thi chuẩn H31008 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-8.html" },
-{ num: 9, code: "H31009", file: "de-9.html", status: "active", title: "HSK 3 - Đề thi số 09", desc: "Đề thi chuẩn H31009 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-9.html" },
-{ num: 10, code: "H31010", file: "de-10.html", status: "active", title: "HSK 3 - Đề thi số 10", desc: "Đề thi chuẩn H31010 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-10.html" },
-{ num: 11, code: "H31011", file: "de-11.html", status: "pending", title: "HSK 3 - Đề thi số 11", desc: "Đề thi chuẩn H31011 (Tự động mở khi có file de-11.html)", link: "de-11.html" },
-{ num: 12, code: "H31012", file: "de-12.html", status: "pending", title: "HSK 3 - Đề thi số 12", desc: "Đề thi chuẩn H31012 (Tự động mở khi có file de-12.html)", link: "de-12.html" },
-{ num: 13, code: "H31013", file: "de-13.html", status: "pending", title: "HSK 3 - Đề thi số 13", desc: "Đề thi chuẩn H31013 (Tự động mở khi có file de-13.html)", link: "de-13.html" },
-{ num: 14, code: "H31014", file: "de-14.html", status: "pending", title: "HSK 3 - Đề thi số 14", desc: "Đề thi chuẩn H31014 (Tự động mở khi có file de-14.html)", link: "de-14.html" },
-{ num: 15, code: "H31015", file: "de-15.html", status: "pending", title: "HSK 3 - Đề thi số 15", desc: "Đề thi chuẩn H31015 (Tự động mở khi có file de-15.html)", link: "de-15.html" }
-],
-"workbooks": [
-{ num: 1, code: "SC3-B01", file: "sc3-bai-1.html", status: "active", title: "Bài 1: 周末你有什么打算", desc: "Sách bài tập chuẩn HSK 3 - Bài 1: Cuối tuần bạn có dự định gì?", link: "sc3-bai-1.html" },
-{ num: 2, code: "SC3-B02", file: "sc3-bai-2.html", status: "active", title: "Bài 2: 他什么时候回来", desc: "Sách bài tập chuẩn HSK 3 - Bài 2: Khi nào anh ấy về?", link: "sc3-bai-2.html" },
-{ num: 3, code: "SC3-B03", file: "sc3-bai-3.html", status: "active", title: "Bài 3: 桌子上放着很多饮料", desc: "Sách bài tập chuẩn HSK 3 - Bài 3: Trên bàn để rất nhiều đồ uống", link: "sc3-bai-3.html" },
-{ num: 4, code: "SC3-B04", file: "sc3-bai-4.html", status: "active", title: "Bài 4: 她总是笑着跟客人说话", desc: "Sách bài tập chuẩn HSK 3 - Bài 4: Cô ấy luôn mỉm cười nói chuyện với khách", link: "sc3-bai-4.html" },
-{ num: 5, code: "SC3-B05", file: "sc3-bai-5.html", status: "active", title: "Bài 5: 我最近越来越胖了", desc: "Sách bài tập chuẩn HSK 3 - Bài 5: Dạo này tôi ngày càng béo lên", link: "sc3-bai-5.html" },
-{ num: 6, code: "SC3-B06", file: "sc3-bai-6.html", status: "active", title: "Bài 6: 怎么突然找不到了", desc: "Sách bài tập chuẩn HSK 3 - Bài 6: Sao đột nhiên lại không tìm thấy", link: "sc3-bai-6.html" },
-{ num: 7, code: "SC3-B07", file: "sc3-bai-7.html", status: "active", title: "Bài 7: 我跟你一起去", desc: "Sách bài tập chuẩn HSK 3 - Bài 7: Tôi đi cùng với bạn", link: "sc3-bai-7.html" },
-{ num: 8, code: "SC3-B08", file: "sc3-bai-8.html", status: "active", title: "Bài 8: 你去哪儿我就去哪儿", desc: "Sách bài tập chuẩn HSK 3 - Bài 8: Bạn đi đâu tôi đi đấy", link: "sc3-bai-8.html" },
-{ num: 9, code: "SC3-B09", file: "sc3-bai-9.html", status: "active", title: "Bài 9: 她的汉语说得跟中国人一样好", desc: "Sách bài tập chuẩn HSK 3 - Bài 9: Tiếng Trung của cô ấy nói như người TQ", link: "sc3-bai-9.html" },
-{ num: 10, code: "SC3-B10", file: "sc3-bai-10.html", status: "active", title: "Bài 10: 数学比历史难多了", desc: "Sách bài tập chuẩn HSK 3 - Bài 10: Môn Toán khó hơn môn Lịch sử nhiều", link: "sc3-bai-10.html" },
-{ num: 11, code: "SC3-B11", file: "sc3-bai-11.html", status: "active", title: "Bài 11: 别忘了把空调关了", desc: "Sách bài tập chuẩn HSK 3 - Bài 11: Đừng quên tắt máy điều hòa", link: "sc3-bai-11.html" },
-{ num: 12, code: "SC3-B12", file: "sc3-bai-12.html", status: "active", title: "Bài 12: 把重要的东西放在我这儿吧", desc: "Sách bài tập chuẩn HSK 3 - Bài 12: Hãy để những thứ quan trọng ở chỗ tôi", link: "sc3-bai-12.html" },
-{ num: 13, code: "SC3-B13", file: "sc3-bai-13.html", status: "active", title: "Bài 13: 我是走回来的", desc: "Sách bài tập chuẩn HSK 3 - Bài 13: Tôi đi bộ về đấy", link: "sc3-bai-13.html" },
-{ num: 14, code: "SC3-B14", file: "sc3-bai-14.html", status: "active", title: "Bài 14: 你把水果拿过来", desc: "Sách bài tập chuẩn HSK 3 - Bài 14: Bạn mang hoa quả qua đây", link: "sc3-bai-14.html" },
-{ num: 15, code: "SC3-B15", file: "sc3-bai-15.html", status: "active", title: "Bài 15: 其他都没什么问题", desc: "Sách bài tập chuẩn HSK 3 - Bài 15: Những thứ khác đều không vấn đề gì", link: "sc3-bai-15.html" },
-{ num: 16, code: "SC3-B16", file: "sc3-bai-16.html", status: "active", title: "Bài 16: 我现在累得下了班就想睡觉", desc: "Sách bài tập chuẩn HSK 3 - Bài 16: Bây giờ tôi mệt đến mức tan làm chỉ muốn ngủ", link: "sc3-bai-16.html" },
-{ num: 17, code: "SC3-B17", file: "sc3-bai-17.html", status: "active", title: "Bài 17: 谁都有办法看好你的病", desc: "Sách bài tập chuẩn HSK 3 - Bài 17: Ai cũng có cách chữa khỏi bệnh cho bạn", link: "sc3-bai-17.html" },
-{ num: 18, code: "SC3-B18", file: "sc3-bai-18.html", status: "active", title: "Bài 18: 我相信他们会同意的", desc: "Sách bài tập chuẩn HSK 3 - Bài 18: Tôi tin rằng họ sẽ đồng ý", link: "sc3-bai-18.html" },
-{ num: 19, code: "SC3-B19", file: "sc3-bai-19.html", status: "active", title: "Bài 19: 你没看出来吗", desc: "Sách bài tập chuẩn HSK 3 - Bài 19: Bạn không nhận ra sao?", link: "sc3-bai-19.html" },
-{ num: 20, code: "SC3-B20", file: "sc3-bai-20.html", status: "active", title: "Bài 20: 我走的时候，你也走", desc: "Sách bài tập chuẩn HSK 3 - Bài 20: Khi tôi đi bạn cũng đi nhé", link: "sc3-bai-20.html" }
-]
-},
-"HSK4": {
-"title": "HSK Cấp 4 (Học từ vựng 1200 từ • Trung cấp vững vàng)",
-"desc": "Bộ 13 đề thi mô phỏng HSK 4 chuẩn quốc tế và Sách bài tập chuẩn HSK 4 Standard Course (20 bài).",
-"specs": "Nghe 45 câu • Đọc 40 câu • Viết 15 câu • Thời gian: 105 phút • Điểm tối đa: 300 điểm",
-"exams": Array.from({length: 13}, (_, i) => ({
-num: i + 1,
-code: (i + 1 < 10) ? `H4100${i+1}` : `H410${i+1}`,
-file: `hsk4-de-${i+1}.html`,
-status: "active",
-title: (i + 1 < 10) ? `HSK 4 - Đề thi số 0${i+1}` : `HSK 4 - Đề thi số ${i+1}`,
-desc:  (i + 1 < 10) ? `Đề thi mô phỏng HSK 4 chuẩn quốc tế số 0${i+1} (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)` : `Đề thi mô phỏng HSK 4 chuẩn quốc tế số ${i+1} (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)`,
-link: `hsk4-de-${i+1}.html`
-})),
-"workbooks": [
-{ num: 1, code: "SC4-B01", file: "sc4-bai-1.html", status: "active", title: "Bài tập HSK 4: Bài 1", desc: "Bài 1: 简单的爱情 (Đã hoàn thiện 50 câu)", link: "sc4-bai-1.html" },
-{ num: 2, code: "SC4-B02", file: "sc4-bai-2.html", status: "active", title: "Bài tập HSK 4: Bài 2", desc: "Bài 2: 真正的朋友 (Đã hoàn thiện 50 câu)", link: "sc4-bai-2.html" },
-{ num: 3, code: "SC4-B03", file: "sc4-bai-3.html", status: "active", title: "Bài tập HSK 4: Bài 3", desc: "Bài 3: 经理对我印象不错 (Đã hoàn thiện 50 câu)", link: "sc4-bai-3.html" },
-{ num: 4, code: "SC4-B04", file: "sc4-bai-4.html", status: "active", title: "Bài tập HSK 4: Bài 4", desc: "Bài 4: 不要太着急赚钱 (Đã hoàn thiện 50 câu)", link: "sc4-bai-4.html" },
-{ num: 5, code: "SC4-B05", file: "sc4-bai-5.html", status: "active", title: "Bài tập HSK 4: Bài 5", desc: "Bài 5: 只买对的，不买贵的 (Đã hoàn thiện 50 câu)", link: "sc4-bai-5.html" },
-{ num: 6, code: "SC4-B06", file: "sc4-bai-6.html", status: "active", title: "Bài tập HSK 4: Bài 6", desc: "Bài 6: 一分钱一分货 (Đã hoàn thiện 50 câu)", link: "sc4-bai-6.html" },
-{ num: 7, code: "SC4-B07", file: "sc4-bai-7.html", status: "active", title: "Bài tập HSK 4: Bài 7", desc: "Bài 7: 最好的医生是自己 (Đã hoàn thiện 50 câu)", link: "sc4-bai-7.html" },
-{ num: 8, code: "SC4-B08", file: "sc4-bai-8.html", status: "active", title: "Bài tập HSK 4: Bài 8", desc: "Bài 8: 生活中不缺少美 (Đã hoàn thiện 50 câu)", link: "sc4-bai-8.html" },
-{ num: 9, code: "SC4-B09", file: "sc4-bai-9.html", status: "active", title: "Bài tập HSK 4: Bài 9", desc: "Bài 9: 阳光总在风雨后 (Đã hoàn thiện 50 câu)", link: "sc4-bai-9.html" },
-{ num: 10, code: "SC4-B10", file: "sc4-bai-10.html", status: "active", title: "Bài tập HSK 4: Bài 10", desc: "Bài 10: 幸福的标准 (Đã hoàn thiện 50 câu)", link: "sc4-bai-10.html" },
-{ num: 11, code: "SC4-B11", file: "sc4-bai-11.html", status: "active", title: "Bài tập HSK 4: Bài 11", desc: "Bài 11: 读书好，读好书，好读书 (Đã hoàn thiện 50 câu)", link: "sc4-bai-11.html" },
-{ num: 12, code: "SC4-B12", file: "sc4-bai-12.html", status: "active", title: "Bài tập HSK 4: Bài 12", desc: "Bài 12: 用心发现世界 (Đã hoàn thiện 50 câu)", link: "sc4-bai-12.html" },
-{ num: 13, code: "SC4-B13", file: "sc4-bai-13.html", status: "active", title: "Bài tập HSK 4: Bài 13", desc: "Bài 13: 喝着茶看京剧 (Đã hoàn thiện 50 câu)", link: "sc4-bai-13.html" },
-{ num: 14, code: "SC4-B14", file: "sc4-bai-14.html", status: "active", title: "Bài tập HSK 4: Bài 14", desc: "Bài 14: 保护地球母亲 (Đã hoàn thiện 50 câu)", link: "sc4-bai-14.html" },
-{ num: 15, code: "SC4-B15", file: "sc4-bai-15.html", status: "active", title: "Bài tập HSK 4: Bài 15", desc: "Bài 15: 教育孩子的艺术 (Đã hoàn thiện 50 câu)", link: "sc4-bai-15.html" },
-{ num: 16, code: "SC4-B16", file: "sc4-bai-16.html", status: "active", title: "Bài tập HSK 4: Bài 16", desc: "Bài 16: 生活可以更美好 (Đã hoàn thiện 50 câu)", link: "sc4-bai-16.html" },
-{ num: 17, code: "SC4-B17", file: "sc4-bai-17.html", status: "active", title: "Bài tập HSK 4: Bài 17", desc: "Bài 17: 人与自然 (Đã hoàn thiện 50 câu)", link: "sc4-bai-17.html" },
-{ num: 18, code: "SC4-B18", file: "sc4-bai-18.html", status: "active", title: "Bài tập HSK 4: Bài 18", desc: "Bài 18: 科技与世界 (Đã hoàn thiện 50 câu)", link: "sc4-bai-18.html" },
-{ num: 19, code: "SC4-B19", file: "sc4-bai-19.html", status: "active", title: "Bài tập HSK 4: Bài 19", desc: "Bài 19: 生活的味道 (Đã hoàn thiện 50 câu)", link: "sc4-bai-19.html" },
-{ num: 20, code: "SC4-B20", file: "sc4-bai-20.html", status: "active", title: "Bài tập HSK 4: Bài 20", desc: "Bài 20: 路上的风景 (Đã hoàn thiện 50 câu)", link: "sc4-bai-20.html" },
-]
-},
-"HSK5": {
-"title": "HSK Cấp 5 (Học từ vựng 2500 từ • Đọc báo, xem phim, viết văn)",
-"desc": "Bộ đề thi mô phỏng HSK 5 và Sách bài tập chuẩn HSK 5 Standard Course.",
-"specs": "Nghe 45 câu • Đọc 45 câu • Viết 10 câu • Thời gian: 125 phút • Điểm tối đa: 300 điểm",
-"exams": Array.from({length: 10}, (_, i) => ({
-num: i + 1,
-code: `H5100${i+1}`.replace("0010", "010"),
-file: `hsk5-de-${i+1}.html`,
-status: "pending",
-title: `HSK 5 - Đề thi số 0${i+1}`.replace("010", "10"),
-desc: `Đề thi mô phỏng HSK 5 chuẩn quốc tế số ${i+1}`,
-link: `hsk5-de-${i+1}.html`
-})),
-"workbooks": Array.from({length: 20}, (_, i) => ({
-num: i + 1,
-code: `SC5-B${(i+1)<10?'0'+(i+1):(i+1)}`,
-file: `sc5-bai-${i+1}.html`,
-status: "pending",
-title: `Bài tập HSK 5: Bài ${(i+1)}`,
-desc: `Bài tập củng cố Giáo trình Chuẩn HSK 5 bài số ${i+1}`,
-link: `sc5-bai-${i+1}.html`
-}))
-},
-"HSK6": {
-"title": "HSK Cấp 6 (Học từ vựng 5000+ từ • Cao cấp thành thạo)",
-"desc": "Bộ đề thi mô phỏng HSK 6 và Sách bài tập chuẩn HSK 6 Standard Course.",
-"specs": "Nghe 50 câu • Đọc 50 câu • Viết 1 câu rút gọn • Thời gian: 140 phút • Điểm tối đa: 300 điểm",
-"exams": Array.from({length: 10}, (_, i) => ({
-num: i + 1,
-code: `H6100${i+1}`.replace("0010", "010"),
-file: `hsk6-de-${i+1}.html`,
-status: "pending",
-title: `HSK 6 - Đề thi số 0${i+1}`.replace("010", "10"),
-desc: `Đề thi mô phỏng HSK 6 chuẩn quốc tế số ${i+1}`,
-link: `hsk6-de-${i+1}.html`
-})),
-"workbooks": Array.from({length: 20}, (_, i) => ({
-num: i + 1,
-code: `SC6-B${(i+1)<10?'0'+(i+1):(i+1)}`,
-file: `sc6-bai-${i+1}.html`,
-status: "pending",
-title: `Bài tập HSK 6: Bài ${(i+1)}`,
-desc: `Bài tập củng cố Giáo trình Chuẩn HSK 6 bài số ${i+1}`,
-link: `sc6-bai-${i+1}.html`
-}))
-},
-"HSK30": {
-"title": "HSK 3.0 (Khung Tiêu Chuẩn Mới 9 Cấp Độ - 新HSK 3.0)",
-"desc": "Chương trình khảo thí theo Tiêu chuẩn Đánh giá Năng lực Giáo dục Tiếng Hán Quốc tế mới nhất (Cấp 1 đến Cấp 9).",
-"specs": "Sơ cấp (Cấp 1 - 3) • Trung cấp (Cấp 4 - 6) • Cao cấp (Cấp 7 - 9 • 11.092 từ)",
-"exams": [
-{ num: 1, code: "HSK3.0-L1", file: "hsk30-l1.html", status: "pending", title: "HSK 3.0 - Sơ cấp 1", desc: "Đề thi thử định dạng HSK 3.0 cấp 1 (500 từ)", link: "hsk30-l1.html" },
-{ num: 2, code: "HSK3.0-L2", file: "hsk30-l2.html", status: "pending", title: "HSK 3.0 - Sơ cấp 2", desc: "Đề thi thử định dạng HSK 3.0 cấp 2 (1272 từ)", link: "hsk30-l2.html" },
-{ num: 3, code: "HSK3.0-L3", file: "hsk30-l3.html", status: "pending", title: "HSK 3.0 - Sơ cấp 3", desc: "Đề thi thử định dạng HSK 3.0 cấp 3 (2245 từ)", link: "hsk30-l3.html" },
-{ num: 4, code: "HSK3.0-L4", file: "hsk30-l4.html", status: "pending", title: "HSK 3.0 - Trung cấp 4", desc: "Đề thi thử định dạng HSK 3.0 cấp 4 (3245 từ)", link: "hsk30-l4.html" },
-{ num: 5, code: "HSK3.0-L5", file: "hsk30-l5.html", status: "pending", title: "HSK 3.0 - Trung cấp 5", desc: "Đề thi thử định dạng HSK 3.0 cấp 5 (4316 từ)", link: "hsk30-l5.html" },
-{ num: 6, code: "HSK3.0-L6", file: "hsk30-l6.html", status: "pending", title: "HSK 3.0 - Trung cấp 6", desc: "Đề thi thử định dạng HSK 3.0 cấp 6 (5456 từ)", link: "hsk30-l6.html" },
-{ num: 7, code: "HSK3.0-L7-9", file: "hsk30-l79.html", status: "pending", title: "HSK 3.0 - Cao cấp (7-9)", desc: "Đề thi năng lực dịch thuật & khẩu ngữ cao cấp (11092 từ)", link: "hsk30-l79.html" }
-],
-"workbooks": []
-}
+  "HSK1": {
+    "title": "HSK Cấp 1 (Học từ vựng 150 từ • Sơ cấp nhập môn)",
+    "desc": "Bao gồm Bộ đề thi mô phỏng HSK 1 và Sách bài tập chuẩn HSK 1 Standard Course.",
+    "specs": "Nghe 20 câu • Đọc 20 câu • Thời gian: 40 phút • Điểm tối đa: 200 điểm",
+    "exams": Array.from({length: 10}, (_, i) => ({
+      num: i + 1,
+      code: `H1100${i+1}`.replace("0010", "010"),
+      file: `hsk1-de-${i+1}.html`,
+      status: "pending",
+      title: `HSK 1 - Đề thi số 0${i+1}`.replace("010", "10"),
+      desc: `Đề thi mô phỏng HSK 1 chuẩn quốc tế số ${i+1}`,
+      link: `hsk1-de-${i+1}.html`
+    })),
+    "workbooks": Array.from({length: 15}, (_, i) => ({
+      num: i + 1,
+      code: `SC1-B${(i+1)<10?'0'+(i+1):(i+1)}`,
+      file: `sc1-bai-${i+1}.html`,
+      status: "pending",
+      title: `Bài tập HSK 1: Bài ${(i+1)}`,
+      desc: `Bài tập củng cố Giáo trình Chuẩn HSK 1 bài số ${i+1}`,
+      link: `sc1-bai-${i+1}.html`
+    }))
+  },
+  "HSK2": {
+    "title": "HSK Cấp 2 (Học từ vựng 300 từ • Giao tiếp cơ bản)",
+    "desc": "Bao gồm Bộ đề thi mô phỏng HSK 2 và Sách bài tập chuẩn HSK 2 Standard Course.",
+    "specs": "Nghe 35 câu • Đọc 25 câu • Thời gian: 55 phút • Điểm tối đa: 200 điểm",
+    "exams": Array.from({length: 10}, (_, i) => ({
+      num: i + 1,
+      code: `H2100${i+1}`.replace("0010", "010"),
+      file: `hsk2-de-${i+1}.html`,
+      status: "pending",
+      title: `HSK 2 - Đề thi số 0${i+1}`.replace("010", "10"),
+      desc: `Đề thi mô phỏng HSK 2 chuẩn quốc tế số ${i+1}`,
+      link: `hsk2-de-${i+1}.html`
+    })),
+    "workbooks": Array.from({length: 15}, (_, i) => ({
+      num: i + 1,
+      code: `SC2-B${(i+1)<10?'0'+(i+1):(i+1)}`,
+      file: `sc2-bai-${i+1}.html`,
+      status: "pending",
+      title: `Bài tập HSK 2: Bài ${(i+1)}`,
+      desc: `Bài tập củng cố Giáo trình Chuẩn HSK 2 bài số ${i+1}`,
+      link: `sc2-bai-${i+1}.html`
+    }))
+  },
+  "HSK3": {
+    "title": "HSK Cấp 3 (Học từ vựng 600 từ • Nghe, Đọc, Viết hoàn chỉnh)",
+    "desc": "Hệ thống trọn bộ các đề thi chuẩn HSK 3 chính thức (Đề 01 đến 10+) cùng trọn bộ 20 bài học Sách bài tập Chuẩn HSK 3 Standard Course.",
+    "specs": "Nghe 40 câu • Đọc 30 câu • Viết 10 câu • Thời gian: 90 phút • Điểm tối đa: 300 điểm",
+        "exams": [
+      { num: 1, code: "H31001", file: "de-1.html", status: "active", title: "HSK 3 - Đề thi số 01", desc: "Đề thi chuẩn H31001 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-1.html" },
+      { num: 2, code: "H31002", file: "de-2.html", status: "active", title: "HSK 3 - Đề thi số 02", desc: "Đề thi chuẩn H31002 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-2.html" },
+      { num: 3, code: "H31003", file: "de-3.html", status: "active", title: "HSK 3 - Đề thi số 03", desc: "Đề thi chuẩn H31003 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-3.html" },
+      { num: 4, code: "H31004", file: "de-4.html", status: "active", title: "HSK 3 - Đề thi số 04", desc: "Đề thi chuẩn H31004 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-4.html" },
+      { num: 5, code: "H31005", file: "de-5.html", status: "active", title: "HSK 3 - Đề thi số 05", desc: "Đề thi chuẩn H31005 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-5.html" },
+      { num: 6, code: "H31006", file: "de-6.html", status: "active", title: "HSK 3 - Đề thi số 06", desc: "Đề thi chuẩn H31006 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-6.html" },
+      { num: 7, code: "H31007", file: "de-7.html", status: "active", title: "HSK 3 - Đề thi số 07", desc: "Đề thi chuẩn H31007 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-7.html" },
+      { num: 8, code: "H31008", file: "de-8.html", status: "active", title: "HSK 3 - Đề thi số 08", desc: "Đề thi chuẩn H31008 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-8.html" },
+      { num: 9, code: "H31009", file: "de-9.html", status: "active", title: "HSK 3 - Đề thi số 09", desc: "Đề thi chuẩn H31009 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-9.html" },
+      { num: 10, code: "H31010", file: "de-10.html", status: "active", title: "HSK 3 - Đề thi số 10", desc: "Đề thi chuẩn H31010 chính thức 80 câu (Nghe - Đọc - Viết)", link: "de-10.html" },
+      { num: 11, code: "H31011", file: "de-11.html", status: "active", title: "HSK 3 - Đề thi số 11", desc: "Đề thi chuẩn H31011 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-11.html" },
+      { num: 12, code: "H31012", file: "de-12.html", status: "active", title: "HSK 3 - Đề thi số 12", desc: "Đề thi chuẩn H31012 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-12.html" },
+      { num: 13, code: "H31013", file: "de-13.html", status: "active", title: "HSK 3 - Đề thi số 13", desc: "Đề thi chuẩn H31013 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-13.html" },
+      { num: 14, code: "H31014", file: "de-14.html", status: "active", title: "HSK 3 - Đề thi số 14", desc: "Đề thi chuẩn H31014 hoàn chỉnh 80 câu (Nghe - Đọc - Viết)", link: "de-14.html" },
+      { num: 15, code: "H31015", file: "de-15.html", status: "pending", title: "HSK 3 - Đề thi số 15", desc: "Đề thi chuẩn H31015 (Tự động mở khi có file de-15.html)", link: "de-15.html" }
+    ],
+    "workbooks": [
+      { num: 1, code: "SC3-B01", file: "sc3-bai-1.html", status: "active", title: "Bài 1: 周末你有什么打算", desc: "Sách bài tập chuẩn HSK 3 - Bài 1: Cuối tuần bạn có dự định gì?", link: "sc3-bai-1.html" },
+      { num: 2, code: "SC3-B02", file: "sc3-bai-2.html", status: "active", title: "Bài 2: 他什么时候回来", desc: "Sách bài tập chuẩn HSK 3 - Bài 2: Khi nào anh ấy về?", link: "sc3-bai-2.html" },
+      { num: 3, code: "SC3-B03", file: "sc3-bai-3.html", status: "active", title: "Bài 3: 桌子上放着很多饮料", desc: "Sách bài tập chuẩn HSK 3 - Bài 3: Trên bàn để rất nhiều đồ uống", link: "sc3-bai-3.html" },
+      { num: 4, code: "SC3-B04", file: "sc3-bai-4.html", status: "active", title: "Bài 4: 她总是笑着跟客人说话", desc: "Sách bài tập chuẩn HSK 3 - Bài 4: Cô ấy luôn mỉm cười nói chuyện với khách", link: "sc3-bai-4.html" },
+      { num: 5, code: "SC3-B05", file: "sc3-bai-5.html", status: "active", title: "Bài 5: 我最近越来越胖了", desc: "Sách bài tập chuẩn HSK 3 - Bài 5: Dạo này tôi ngày càng béo lên", link: "sc3-bai-5.html" },
+      { num: 6, code: "SC3-B06", file: "sc3-bai-6.html", status: "active", title: "Bài 6: 怎么突然找不到了", desc: "Sách bài tập chuẩn HSK 3 - Bài 6: Sao đột nhiên lại không tìm thấy", link: "sc3-bai-6.html" },
+      { num: 7, code: "SC3-B07", file: "sc3-bai-7.html", status: "active", title: "Bài 7: 我跟你一起去", desc: "Sách bài tập chuẩn HSK 3 - Bài 7: Tôi đi cùng với bạn", link: "sc3-bai-7.html" },
+      { num: 8, code: "SC3-B08", file: "sc3-bai-8.html", status: "active", title: "Bài 8: 你去哪儿我就去哪儿", desc: "Sách bài tập chuẩn HSK 3 - Bài 8: Bạn đi đâu tôi đi đấy", link: "sc3-bai-8.html" },
+      { num: 9, code: "SC3-B09", file: "sc3-bai-9.html", status: "active", title: "Bài 9: 她的汉语说得跟中国人一样好", desc: "Sách bài tập chuẩn HSK 3 - Bài 9: Tiếng Trung của cô ấy nói như người TQ", link: "sc3-bai-9.html" },
+      { num: 10, code: "SC3-B10", file: "sc3-bai-10.html", status: "active", title: "Bài 10: 数学比历史难多了", desc: "Sách bài tập chuẩn HSK 3 - Bài 10: Môn Toán khó hơn môn Lịch sử nhiều", link: "sc3-bai-10.html" },
+      { num: 11, code: "SC3-B11", file: "sc3-bai-11.html", status: "active", title: "Bài 11: 别忘了把空调关了", desc: "Sách bài tập chuẩn HSK 3 - Bài 11: Đừng quên tắt máy điều hòa", link: "sc3-bai-11.html" },
+      { num: 12, code: "SC3-B12", file: "sc3-bai-12.html", status: "active", title: "Bài 12: 把重要的东西放在我这儿吧", desc: "Sách bài tập chuẩn HSK 3 - Bài 12: Hãy để những thứ quan trọng ở chỗ tôi", link: "sc3-bai-12.html" },
+      { num: 13, code: "SC3-B13", file: "sc3-bai-13.html", status: "active", title: "Bài 13: 我是走回来的", desc: "Sách bài tập chuẩn HSK 3 - Bài 13: Tôi đi bộ về đấy", link: "sc3-bai-13.html" },
+      { num: 14, code: "SC3-B14", file: "sc3-bai-14.html", status: "active", title: "Bài 14: 你把水果拿过来", desc: "Sách bài tập chuẩn HSK 3 - Bài 14: Bạn mang hoa quả qua đây", link: "sc3-bai-14.html" },
+      { num: 15, code: "SC3-B15", file: "sc3-bai-15.html", status: "active", title: "Bài 15: 其他都没什么问题", desc: "Sách bài tập chuẩn HSK 3 - Bài 15: Những thứ khác đều không vấn đề gì", link: "sc3-bai-15.html" },
+      { num: 16, code: "SC3-B16", file: "sc3-bai-16.html", status: "active", title: "Bài 16: 我现在累得下了班就想睡觉", desc: "Sách bài tập chuẩn HSK 3 - Bài 16: Bây giờ tôi mệt đến mức tan làm chỉ muốn ngủ", link: "sc3-bai-16.html" },
+      { num: 17, code: "SC3-B17", file: "sc3-bai-17.html", status: "active", title: "Bài 17: 谁都有办法看好你的病", desc: "Sách bài tập chuẩn HSK 3 - Bài 17: Ai cũng có cách chữa khỏi bệnh cho bạn", link: "sc3-bai-17.html" },
+      { num: 18, code: "SC3-B18", file: "sc3-bai-18.html", status: "active", title: "Bài 18: 我相信他们会同意的", desc: "Sách bài tập chuẩn HSK 3 - Bài 18: Tôi tin rằng họ sẽ đồng ý", link: "sc3-bai-18.html" },
+      { num: 19, code: "SC3-B19", file: "sc3-bai-19.html", status: "active", title: "Bài 19: 你没看出来吗", desc: "Sách bài tập chuẩn HSK 3 - Bài 19: Bạn không nhận ra sao?", link: "sc3-bai-19.html" },
+      { num: 20, code: "SC3-B20", file: "sc3-bai-20.html", status: "active", title: "Bài 20: 我走的时候，你也走", desc: "Sách bài tập chuẩn HSK 3 - Bài 20: Khi tôi đi bạn cũng đi nhé", link: "sc3-bai-20.html" }
+    ]
+  },
+  "HSK4": {
+    "title": "HSK Cấp 4 (Học từ vựng 1200 từ • Trung cấp vững vàng)",
+    "desc": "Bộ 13 đề thi mô phỏng HSK 4 chuẩn quốc tế và Sách bài tập chuẩn HSK 4 Standard Course (20 bài).",
+    "specs": "Nghe 45 câu • Đọc 40 câu • Viết 15 câu • Thời gian: 105 phút • Điểm tối đa: 300 điểm",
+    "exams": Array.from({length: 13}, (_, i) => ({
+      num: i + 1,
+      code: (i + 1 < 10) ? `H4100${i+1}` : `H410${i+1}`,
+      file: `hsk4-de-${i+1}.html`,
+      status: "active",
+      title: (i + 1 < 10) ? `HSK 4 - Đề thi số 0${i+1}` : `HSK 4 - Đề thi số ${i+1}`,
+      desc:  (i + 1 < 10) ? `Đề thi mô phỏng HSK 4 chuẩn quốc tế số 0${i+1} (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)` : `Đề thi mô phỏng HSK 4 chuẩn quốc tế số ${i+1} (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)`,
+      link: `hsk4-de-${i+1}.html`
+    })),
+    "workbooks": [
+      { num: 1, code: "SC4-B01", file: "sc4-bai-1.html", status: "active", title: "Bài tập HSK 4: Bài 1", desc: "Bài 1: 简单的爱情 (Đã hoàn thiện 50 câu)", link: "sc4-bai-1.html" },
+      { num: 2, code: "SC4-B02", file: "sc4-bai-2.html", status: "active", title: "Bài tập HSK 4: Bài 2", desc: "Bài 2: 真正的朋友 (Đã hoàn thiện 50 câu)", link: "sc4-bai-2.html" },
+      { num: 3, code: "SC4-B03", file: "sc4-bai-3.html", status: "active", title: "Bài tập HSK 4: Bài 3", desc: "Bài 3: 经理对我印象不错 (Đã hoàn thiện 50 câu)", link: "sc4-bai-3.html" },
+      { num: 4, code: "SC4-B04", file: "sc4-bai-4.html", status: "active", title: "Bài tập HSK 4: Bài 4", desc: "Bài 4: 不要太着急赚钱 (Đã hoàn thiện 50 câu)", link: "sc4-bai-4.html" },
+      { num: 5, code: "SC4-B05", file: "sc4-bai-5.html", status: "active", title: "Bài tập HSK 4: Bài 5", desc: "Bài 5: 只买对的，不买贵的 (Đã hoàn thiện 50 câu)", link: "sc4-bai-5.html" },
+      { num: 6, code: "SC4-B06", file: "sc4-bai-6.html", status: "active", title: "Bài tập HSK 4: Bài 6", desc: "Bài 6: 一分钱一分货 (Đã hoàn thiện 50 câu)", link: "sc4-bai-6.html" },
+      { num: 7, code: "SC4-B07", file: "sc4-bai-7.html", status: "active", title: "Bài tập HSK 4: Bài 7", desc: "Bài 7: 最好的医生是自己 (Đã hoàn thiện 50 câu)", link: "sc4-bai-7.html" },
+      { num: 8, code: "SC4-B08", file: "sc4-bai-8.html", status: "active", title: "Bài tập HSK 4: Bài 8", desc: "Bài 8: 生活中不缺少美 (Đã hoàn thiện 50 câu)", link: "sc4-bai-8.html" },
+      { num: 9, code: "SC4-B09", file: "sc4-bai-9.html", status: "active", title: "Bài tập HSK 4: Bài 9", desc: "Bài 9: 阳光总在风雨后 (Đã hoàn thiện 50 câu)", link: "sc4-bai-9.html" },
+      { num: 10, code: "SC4-B10", file: "sc4-bai-10.html", status: "active", title: "Bài tập HSK 4: Bài 10", desc: "Bài 10: 幸福的标准 (Đã hoàn thiện 50 câu)", link: "sc4-bai-10.html" },
+      { num: 11, code: "SC4-B11", file: "sc4-bai-11.html", status: "active", title: "Bài tập HSK 4: Bài 11", desc: "Bài 11: 读书好，读好书，好读书 (Đã hoàn thiện 50 câu)", link: "sc4-bai-11.html" },
+      { num: 12, code: "SC4-B12", file: "sc4-bai-12.html", status: "active", title: "Bài tập HSK 4: Bài 12", desc: "Bài 12: 用心发现世界 (Đã hoàn thiện 50 câu)", link: "sc4-bai-12.html" },
+      { num: 13, code: "SC4-B13", file: "sc4-bai-13.html", status: "active", title: "Bài tập HSK 4: Bài 13", desc: "Bài 13: 喝着茶看京剧 (Đã hoàn thiện 50 câu)", link: "sc4-bai-13.html" },
+      { num: 14, code: "SC4-B14", file: "sc4-bai-14.html", status: "active", title: "Bài tập HSK 4: Bài 14", desc: "Bài 14: 保护地球母亲 (Đã hoàn thiện 50 câu)", link: "sc4-bai-14.html" },
+      { num: 15, code: "SC4-B15", file: "sc4-bai-15.html", status: "active", title: "Bài tập HSK 4: Bài 15", desc: "Bài 15: 教育孩子的艺术 (Đã hoàn thiện 50 câu)", link: "sc4-bai-15.html" },
+      { num: 16, code: "SC4-B16", file: "sc4-bai-16.html", status: "active", title: "Bài tập HSK 4: Bài 16", desc: "Bài 16: 生活可以更美好 (Đã hoàn thiện 50 câu)", link: "sc4-bai-16.html" },
+      { num: 17, code: "SC4-B17", file: "sc4-bai-17.html", status: "active", title: "Bài tập HSK 4: Bài 17", desc: "Bài 17: 人与自然 (Đã hoàn thiện 50 câu)", link: "sc4-bai-17.html" },
+      { num: 18, code: "SC4-B18", file: "sc4-bai-18.html", status: "active", title: "Bài tập HSK 4: Bài 18", desc: "Bài 18: 科技与世界 (Đã hoàn thiện 50 câu)", link: "sc4-bai-18.html" },
+      { num: 19, code: "SC4-B19", file: "sc4-bai-19.html", status: "active", title: "Bài tập HSK 4: Bài 19", desc: "Bài 19: 生活的味道 (Đã hoàn thiện 50 câu)", link: "sc4-bai-19.html" },
+      { num: 20, code: "SC4-B20", file: "sc4-bai-20.html", status: "active", title: "Bài tập HSK 4: Bài 20", desc: "Bài 20: 路上的风景 (Đã hoàn thiện 50 câu)", link: "sc4-bai-20.html" },
+    ]
+  },
+  "HSK5": {
+    "title": "HSK Cấp 5 (Học từ vựng 2500 từ • Đọc báo, xem phim, viết văn)",
+    "desc": "Bộ đề thi mô phỏng HSK 5 và Sách bài tập chuẩn HSK 5 Standard Course.",
+    "specs": "Nghe 45 câu • Đọc 45 câu • Viết 10 câu • Thời gian: 125 phút • Điểm tối đa: 300 điểm",
+    "exams": Array.from({length: 10}, (_, i) => ({
+      num: i + 1,
+      code: `H5100${i+1}`.replace("0010", "010"),
+      file: `hsk5-de-${i+1}.html`,
+      status: "pending",
+      title: `HSK 5 - Đề thi số 0${i+1}`.replace("010", "10"),
+      desc: `Đề thi mô phỏng HSK 5 chuẩn quốc tế số ${i+1}`,
+      link: `hsk5-de-${i+1}.html`
+    })),
+    "workbooks": Array.from({length: 20}, (_, i) => ({
+      num: i + 1,
+      code: `SC5-B${(i+1)<10?'0'+(i+1):(i+1)}`,
+      file: `sc5-bai-${i+1}.html`,
+      status: "pending",
+      title: `Bài tập HSK 5: Bài ${(i+1)}`,
+      desc: `Bài tập củng cố Giáo trình Chuẩn HSK 5 bài số ${i+1}`,
+      link: `sc5-bai-${i+1}.html`
+    }))
+  },
+  "HSK6": {
+    "title": "HSK Cấp 6 (Học từ vựng 5000+ từ • Cao cấp thành thạo)",
+    "desc": "Bộ đề thi mô phỏng HSK 6 và Sách bài tập chuẩn HSK 6 Standard Course.",
+    "specs": "Nghe 50 câu • Đọc 50 câu • Viết 1 câu rút gọn • Thời gian: 140 phút • Điểm tối đa: 300 điểm",
+    "exams": Array.from({length: 10}, (_, i) => ({
+      num: i + 1,
+      code: `H6100${i+1}`.replace("0010", "010"),
+      file: `hsk6-de-${i+1}.html`,
+      status: "pending",
+      title: `HSK 6 - Đề thi số 0${i+1}`.replace("010", "10"),
+      desc: `Đề thi mô phỏng HSK 6 chuẩn quốc tế số ${i+1}`,
+      link: `hsk6-de-${i+1}.html`
+    })),
+    "workbooks": Array.from({length: 20}, (_, i) => ({
+      num: i + 1,
+      code: `SC6-B${(i+1)<10?'0'+(i+1):(i+1)}`,
+      file: `sc6-bai-${i+1}.html`,
+      status: "pending",
+      title: `Bài tập HSK 6: Bài ${(i+1)}`,
+      desc: `Bài tập củng cố Giáo trình Chuẩn HSK 6 bài số ${i+1}`,
+      link: `sc6-bai-${i+1}.html`
+    }))
+  },
+  "HSK30": {
+    "title": "HSK 3.0 (Khung Tiêu Chuẩn Mới 9 Cấp Độ - 新HSK 3.0)",
+    "desc": "Chương trình khảo thí theo Tiêu chuẩn Đánh giá Năng lực Giáo dục Tiếng Hán Quốc tế mới nhất (Cấp 1 đến Cấp 9).",
+    "specs": "Sơ cấp (Cấp 1 - 3) • Trung cấp (Cấp 4 - 6) • Cao cấp (Cấp 7 - 9 • 11.092 từ)",
+    "exams": [
+      { num: 1, code: "HSK3.0-L1", file: "hsk30-l1.html", status: "pending", title: "HSK 3.0 - Sơ cấp 1", desc: "Đề thi thử định dạng HSK 3.0 cấp 1 (500 từ)", link: "hsk30-l1.html" },
+      { num: 2, code: "HSK3.0-L2", file: "hsk30-l2.html", status: "pending", title: "HSK 3.0 - Sơ cấp 2", desc: "Đề thi thử định dạng HSK 3.0 cấp 2 (1272 từ)", link: "hsk30-l2.html" },
+      { num: 3, code: "HSK3.0-L3", file: "hsk30-l3.html", status: "pending", title: "HSK 3.0 - Sơ cấp 3", desc: "Đề thi thử định dạng HSK 3.0 cấp 3 (2245 từ)", link: "hsk30-l3.html" },
+      { num: 4, code: "HSK3.0-L4", file: "hsk30-l4.html", status: "pending", title: "HSK 3.0 - Trung cấp 4", desc: "Đề thi thử định dạng HSK 3.0 cấp 4 (3245 từ)", link: "hsk30-l4.html" },
+      { num: 5, code: "HSK3.0-L5", file: "hsk30-l5.html", status: "pending", title: "HSK 3.0 - Trung cấp 5", desc: "Đề thi thử định dạng HSK 3.0 cấp 5 (4316 từ)", link: "hsk30-l5.html" },
+      { num: 6, code: "HSK3.0-L6", file: "hsk30-l6.html", status: "pending", title: "HSK 3.0 - Trung cấp 6", desc: "Đề thi thử định dạng HSK 3.0 cấp 6 (5456 từ)", link: "hsk30-l6.html" },
+      { num: 7, code: "HSK3.0-L7-9", file: "hsk30-l79.html", status: "pending", title: "HSK 3.0 - Cao cấp (7-9)", desc: "Đề thi năng lực dịch thuật & khẩu ngữ cao cấp (11092 từ)", link: "hsk30-l79.html" }
+    ],
+    "workbooks": []
+  }
 };
+
 let currentLevel = "HSK3";
 let currentFilter = "all"; // 'all', 'exams', 'workbooks'
+
 function initPortal() {
-const hash = window.location.hash;
-if (hash === '#WORKBOOK_HSK4' || hash === '#HSK4_WORKBOOK' || hash === '#HSK4') {
-currentLevel = 'HSK4';
-currentFilter = 'workbooks';
-document.querySelectorAll('.level-tab-btn').forEach(b => {
-b.classList.toggle('active', b.textContent.includes('HSK 4') || b.textContent.includes('HSK4'));
-});
-} else if (hash === '#WORKBOOK_HSK3' || hash === '#WORKBOOK' || hash === '#HSK3') {
-currentLevel = 'HSK3';
-currentFilter = 'workbooks';
-document.querySelectorAll('.level-tab-btn').forEach(b => {
-b.classList.toggle('active', b.textContent.includes('HSK 3') || b.textContent.includes('HSK3'));
-});
+  const hash = window.location.hash;
+  if (hash === '#WORKBOOK_HSK4' || hash === '#HSK4_WORKBOOK' || hash === '#HSK4') {
+    currentLevel = 'HSK4';
+    currentFilter = 'workbooks';
+    document.querySelectorAll('.level-tab-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.includes('HSK 4') || b.textContent.includes('HSK4'));
+    });
+  } else if (hash === '#WORKBOOK_HSK3' || hash === '#WORKBOOK' || hash === '#HSK3') {
+    currentLevel = 'HSK3';
+    currentFilter = 'workbooks';
+    document.querySelectorAll('.level-tab-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.includes('HSK 3') || b.textContent.includes('HSK3'));
+    });
+  }
+  const savedName = localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "";
+  const savedClass = localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "";
+  const savedCode = localStorage.getItem("hsk_custom_access_code") || "HSK32026";
+  
+  if (savedName) document.getElementById("inputName").value = savedName;
+  if (savedClass) document.getElementById("inputClass").value = savedClass;
+  if (savedCode) document.getElementById("inputCode").value = savedCode;
+
+  renderLevel(currentLevel);
+  updateLevelTabCounters();
 }
-const savedName = localStorage.getItem("hsk3_student_name") || localStorage.getItem("hsk4_student_name") || "";
-const savedClass = localStorage.getItem("hsk3_student_class") || localStorage.getItem("hsk4_student_class") || "";
-const savedCode = localStorage.getItem("hsk_custom_access_code") || "HSK32026";
-if (savedName) document.getElementById("inputName").value = savedName;
-if (savedClass) document.getElementById("inputClass").value = savedClass;
-if (savedCode) document.getElementById("inputCode").value = savedCode;
-renderLevel(currentLevel);
-updateLevelTabCounters();
-}
+
 function switchLevel(lvlKey, btnElement) {
-currentLevel = lvlKey;
-currentFilter = "all"; // reset sub-filter
-document.querySelectorAll(".level-tab-btn").forEach(b => b.classList.remove("active"));
-btnElement.classList.add("active");
-renderLevel(lvlKey);
+  currentLevel = lvlKey;
+  currentFilter = "all"; // reset sub-filter
+  document.querySelectorAll(".level-tab-btn").forEach(b => b.classList.remove("active"));
+  btnElement.classList.add("active");
+  renderLevel(lvlKey);
 }
+
 function setSubFilter(filterType, btnElement) {
-currentFilter = filterType;
-document.querySelectorAll(".sub-filter-btn").forEach(b => b.classList.remove("active"));
-btnElement.classList.add("active");
-renderLevel(currentLevel);
-updateLevelTabCounters();
+  currentFilter = filterType;
+  document.querySelectorAll(".sub-filter-btn").forEach(b => b.classList.remove("active"));
+  btnElement.classList.add("active");
+  renderLevel(currentLevel);
+  updateLevelTabCounters();
 }
+
+
 function updateLevelTabCounters() {
-const h3Ex = (PORTAL_DATABASE.HSK3 && PORTAL_DATABASE.HSK3.exams) ? PORTAL_DATABASE.HSK3.exams.filter(e => e.status === 'active').length : 10;
-const h3Wb = (PORTAL_DATABASE.HSK3 && PORTAL_DATABASE.HSK3.workbooks) ? PORTAL_DATABASE.HSK3.workbooks.length : 20;
-const btnH3 = document.getElementById("tab-btn-HSK3");
-if (btnH3) btnH3.textContent = `⭐ HSK 3 (${h3Ex} Đề & ${h3Wb} Bài Tập)`;
-const h4Ex = (PORTAL_DATABASE.HSK4 && PORTAL_DATABASE.HSK4.exams) ? PORTAL_DATABASE.HSK4.exams.filter(e => e.status === 'active').length : 1;
-const h4Wb = (PORTAL_DATABASE.HSK4 && PORTAL_DATABASE.HSK4.workbooks) ? PORTAL_DATABASE.HSK4.workbooks.length : 20;
-const btnH4 = document.getElementById("tab-btn-HSK4");
-if (btnH4) btnH4.textContent = `⭐ HSK 4 (${h4Ex} Đề & ${h4Wb} Bài)`;
+  const h3Ex = (PORTAL_DATABASE.HSK3 && PORTAL_DATABASE.HSK3.exams) ? PORTAL_DATABASE.HSK3.exams.filter(e => e.status === 'active').length : 10;
+  const h3Wb = (PORTAL_DATABASE.HSK3 && PORTAL_DATABASE.HSK3.workbooks) ? PORTAL_DATABASE.HSK3.workbooks.length : 20;
+  const btnH3 = document.getElementById("tab-btn-HSK3");
+  if (btnH3) btnH3.textContent = `⭐ HSK 3 (${h3Ex} Đề & ${h3Wb} Bài Tập)`;
+
+  const h4Ex = (PORTAL_DATABASE.HSK4 && PORTAL_DATABASE.HSK4.exams) ? PORTAL_DATABASE.HSK4.exams.filter(e => e.status === 'active').length : 1;
+  const h4Wb = (PORTAL_DATABASE.HSK4 && PORTAL_DATABASE.HSK4.workbooks) ? PORTAL_DATABASE.HSK4.workbooks.length : 20;
+  const btnH4 = document.getElementById("tab-btn-HSK4");
+  if (btnH4) btnH4.textContent = `⭐ HSK 4 (${h4Ex} Đề & ${h4Wb} Bài)`;
 }
+
 function renderLevel(lvlKey) {
-const lvl = PORTAL_DATABASE[lvlKey];
-const container = document.getElementById("levelContainer");
-if (!lvl) return;
-const examCount = (lvl.exams || []).length;
-const workbookCount = (lvl.workbooks || []).length;
-let html = `
-<div class="level-banner">
-<h3>${lvl.title}</h3>
-<p>${lvl.desc}</p>
-<div class="badge-specs">📋 ${lvl.specs}</div>
-</div>
-<!-- Sub-category Filter Tabs -->
-<div class="sub-filter-bar">
-<button class="sub-filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="setSubFilter('all', this)">
-🌟 Tất cả (${examCount + workbookCount})
-</button>
-<button class="sub-filter-btn ${currentFilter === 'exams' ? 'active' : ''}" onclick="setSubFilter('exams', this)">
-🎯 Bộ Đề Thi HSK (${examCount} đề)
-</button>
-${workbookCount > 0 ? `
-<button class="sub-filter-btn ${currentFilter === 'workbooks' ? 'active' : ''}" onclick="setSubFilter('workbooks', this)">
-📖 Sách Bài Tập Chuẩn (${workbookCount} bài)
-</button>
-` : ''}
-</div>
-`;
-// 1. SECTION: BỘ ĐỀ THI HSK
-if (currentFilter === 'all' || currentFilter === 'exams') {
-if (examCount > 0) {
-html += `
-<div class="section-title-wrap">
-<div class="section-title">🎯 BỘ ĐỀ THI MÔ PHỎNG HSK CHUẨN</div>
-<span class="section-count">${examCount} bộ đề</span>
-</div>
-<div class="exam-grid" id="grid-exams-${lvlKey}">
-`;
-lvl.exams.forEach(ex => {
-const isActive = (ex.status === "active");
-html += `
-<div class="exam-card ${isActive ? 'active-exam' : ''}" id="card-exam-${lvlKey}-${ex.num}">
-<div>
-<div class="exam-card-top">
-<span class="badge-status ${isActive ? 'active' : 'pending'}" id="badge-exam-${lvlKey}-${ex.num}">
-${isActive ? '● Đang mở thi' : 'Sắp mở'}
-</span>
-<span class="exam-code">${ex.code}</span>
-</div>
-<h4 class="exam-name">${ex.title}</h4>
-<p class="exam-short-desc">${ex.desc || 'Đang cập nhật nội dung bài thi.'}</p>
-</div>
-<div id="btn-wrap-exam-${lvlKey}-${ex.num}">
-${isActive
-? `<a href="${ex.link}" class="btn-launch" onclick="prepareEnterExam()">Vào Thi Ngay ➔</a>`
-: `<span class="btn-disabled" id="btn-dis-exam-${lvlKey}-${ex.num}">Đang chuẩn bị</span>`}
-</div>
-</div>
-`;
-});
-html += `</div>`;
+  const lvl = PORTAL_DATABASE[lvlKey];
+  const container = document.getElementById("levelContainer");
+  if (!lvl) return;
+
+  const examCount = (lvl.exams || []).length;
+  const workbookCount = (lvl.workbooks || []).length;
+
+  let html = `
+    <div class="level-banner">
+      <h3>${lvl.title}</h3>
+      <p>${lvl.desc}</p>
+      <div class="badge-specs">📋 ${lvl.specs}</div>
+    </div>
+
+    <!-- Sub-category Filter Tabs -->
+    <div class="sub-filter-bar">
+      <button class="sub-filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="setSubFilter('all', this)">
+        🌟 Tất cả (${examCount + workbookCount})
+      </button>
+      <button class="sub-filter-btn ${currentFilter === 'exams' ? 'active' : ''}" onclick="setSubFilter('exams', this)">
+        🎯 Bộ Đề Thi HSK (${examCount} đề)
+      </button>
+      ${workbookCount > 0 ? `
+      <button class="sub-filter-btn ${currentFilter === 'workbooks' ? 'active' : ''}" onclick="setSubFilter('workbooks', this)">
+        📖 Sách Bài Tập Chuẩn (${workbookCount} bài)
+      </button>
+      ` : ''}
+    </div>
+  `;
+
+  // 1. SECTION: BỘ ĐỀ THI HSK
+  if (currentFilter === 'all' || currentFilter === 'exams') {
+    if (examCount > 0) {
+      html += `
+        <div class="section-title-wrap">
+          <div class="section-title">🎯 BỘ ĐỀ THI MÔ PHỎNG HSK CHUẨN</div>
+          <span class="section-count">${examCount} bộ đề</span>
+        </div>
+        <div class="exam-grid" id="grid-exams-${lvlKey}">
+      `;
+      lvl.exams.forEach(ex => {
+        const isActive = (ex.status === "active");
+        html += `
+          <div class="exam-card ${isActive ? 'active-exam' : ''}" id="card-exam-${lvlKey}-${ex.num}">
+            <div>
+              <div class="exam-card-top">
+                <span class="badge-status ${isActive ? 'active' : 'pending'}" id="badge-exam-${lvlKey}-${ex.num}">
+                  ${isActive ? '● Đang mở thi' : 'Sắp mở'}
+                </span>
+                <span class="exam-code">${ex.code}</span>
+              </div>
+              <h4 class="exam-name">${ex.title}</h4>
+              <p class="exam-short-desc">${ex.desc || 'Đang cập nhật nội dung bài thi.'}</p>
+            </div>
+            <div id="btn-wrap-exam-${lvlKey}-${ex.num}">
+              ${isActive 
+                ? `<a href="${ex.link}" class="btn-launch" onclick="prepareEnterExam()">Vào Thi Ngay ➔</a>` 
+                : `<span class="btn-disabled" id="btn-dis-exam-${lvlKey}-${ex.num}">Đang chuẩn bị</span>`}
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    }
+  }
+
+  // 2. SECTION: SÁCH BÀI TẬP CHUẨN
+  if (currentFilter === 'all' || currentFilter === 'workbooks') {
+    if (workbookCount > 0) {
+      html += `
+        <div class="section-title-wrap">
+          <div class="section-title">📖 SÁCH BÀI TẬP GIÁO TRÌNH CHUẨN HSK STANDARD COURSE</div>
+          <span class="section-count">${workbookCount} bài học</span>
+        </div>
+        <div class="exam-grid" id="grid-wb-${lvlKey}">
+      `;
+      lvl.workbooks.forEach(wb => {
+        const isActive = (wb.status === "active");
+        html += `
+          <div class="exam-card ${isActive ? 'active-workbook' : ''}" id="card-wb-${lvlKey}-${wb.num}">
+            <div>
+              <div class="exam-card-top">
+                <span class="badge-status ${isActive ? 'active' : 'pending'}" id="badge-wb-${lvlKey}-${wb.num}">
+                  ${isActive ? '● Đang mở luyện' : 'Sắp mở'}
+                </span>
+                <span class="exam-code">${wb.code}</span>
+              </div>
+              <h4 class="exam-name">${wb.title}</h4>
+              <p class="exam-short-desc">${wb.desc || 'Bài tập thực hành theo giáo trình chuẩn.'}</p>
+            </div>
+            <div id="btn-wrap-wb-${lvlKey}-${wb.num}">
+              ${isActive 
+                ? `<a href="${wb.link}" class="btn-launch-workbook" onclick="prepareEnterExam()">Luyện Tập Ngay ➔</a>` 
+                : `<span class="btn-disabled" id="btn-dis-wb-${lvlKey}-${wb.num}">Đang chuẩn bị</span>`}
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    }
+  }
+
+  container.innerHTML = html;
+
+  // Auto-discovery for any newly uploaded exams or workbooks
+  if (lvl.exams) {
+    lvl.exams.forEach(ex => {
+      if (ex.status !== "active" && ex.file) {
+        checkAndActivateFile(lvlKey, ex, 'exam');
+      }
+    });
+  }
+  if (lvl.workbooks) {
+    lvl.workbooks.forEach(wb => {
+      if (wb.status !== "active" && wb.file) {
+        checkAndActivateFile(lvlKey, wb, 'wb');
+      }
+    });
+  }
 }
-}
-// 2. SECTION: SÁCH BÀI TẬP CHUẨN
-if (currentFilter === 'all' || currentFilter === 'workbooks') {
-if (workbookCount > 0) {
-html += `
-<div class="section-title-wrap">
-<div class="section-title">📖 SÁCH BÀI TẬP GIÁO TRÌNH CHUẨN HSK STANDARD COURSE</div>
-<span class="section-count">${workbookCount} bài học</span>
-</div>
-<div class="exam-grid" id="grid-wb-${lvlKey}">
-`;
-lvl.workbooks.forEach(wb => {
-const isActive = (wb.status === "active");
-html += `
-<div class="exam-card ${isActive ? 'active-workbook' : ''}" id="card-wb-${lvlKey}-${wb.num}">
-<div>
-<div class="exam-card-top">
-<span class="badge-status ${isActive ? 'active' : 'pending'}" id="badge-wb-${lvlKey}-${wb.num}">
-${isActive ? '● Đang mở luyện' : 'Sắp mở'}
-</span>
-<span class="exam-code">${wb.code}</span>
-</div>
-<h4 class="exam-name">${wb.title}</h4>
-<p class="exam-short-desc">${wb.desc || 'Bài tập thực hành theo giáo trình chuẩn.'}</p>
-</div>
-<div id="btn-wrap-wb-${lvlKey}-${wb.num}">
-${isActive
-? `<a href="${wb.link}" class="btn-launch-workbook" onclick="prepareEnterExam()">Luyện Tập Ngay ➔</a>`
-: `<span class="btn-disabled" id="btn-dis-wb-${lvlKey}-${wb.num}">Đang chuẩn bị</span>`}
-</div>
-</div>
-`;
-});
-html += `</div>`;
-}
-}
-container.innerHTML = html;
-// Auto-discovery for any newly uploaded exams or workbooks
-if (lvl.exams) {
-lvl.exams.forEach(ex => {
-if (ex.status !== "active" && ex.file) {
-checkAndActivateFile(lvlKey, ex, 'exam');
-}
-});
-}
-if (lvl.workbooks) {
-lvl.workbooks.forEach(wb => {
-if (wb.status !== "active" && wb.file) {
-checkAndActivateFile(lvlKey, wb, 'wb');
-}
-});
-}
-}
+
 function checkAndActivateFile(lvlKey, item, type) {
-if (location.protocol === 'file:') return;
-fetch(item.file, { method: 'HEAD' })
-.then(res => {
-if (res.ok) {
-item.status = "active";
-const card = document.getElementById(`card-${type}-${lvlKey}-${item.num}`);
-const badge = document.getElementById(`badge-${type}-${lvlKey}-${item.num}`);
-const btnWrap = document.getElementById(`btn-wrap-${type}-${lvlKey}-${item.num}`);
-if (card) card.classList.add(type === 'exam' ? 'active-exam' : 'active-workbook');
-if (badge) {
-badge.className = 'badge-status active';
-badge.textContent = type === 'exam' ? '● Đang mở thi' : '● Đang mở luyện';
+  if (location.protocol === 'file:') return;
+  fetch(item.file, { method: 'HEAD' })
+    .then(res => {
+      if (res.ok) {
+        item.status = "active";
+        const card = document.getElementById(`card-${type}-${lvlKey}-${item.num}`);
+        const badge = document.getElementById(`badge-${type}-${lvlKey}-${item.num}`);
+        const btnWrap = document.getElementById(`btn-wrap-${type}-${lvlKey}-${item.num}`);
+        
+        if (card) card.classList.add(type === 'exam' ? 'active-exam' : 'active-workbook');
+        if (badge) {
+          badge.className = 'badge-status active';
+          badge.textContent = type === 'exam' ? '● Đang mở thi' : '● Đang mở luyện';
+        }
+        if (btnWrap) {
+          const btnClass = (type === 'exam') ? 'btn-launch' : 'btn-launch-workbook';
+          const btnText = (type === 'exam') ? 'Vào Thi Ngay ➔' : 'Luyện Tập Ngay ➔';
+          btnWrap.innerHTML = `<a href="${item.file}" class="${btnClass}" onclick="prepareEnterExam()">${btnText}</a>`;
+        }
+      }
+    })
+    .catch(() => {});
 }
-if (btnWrap) {
-const btnClass = (type === 'exam') ? 'btn-launch' : 'btn-launch-workbook';
-const btnText = (type === 'exam') ? 'Vào Thi Ngay ➔' : 'Luyện Tập Ngay ➔';
-btnWrap.innerHTML = `<a href="${item.file}" class="${btnClass}" onclick="prepareEnterExam()">${btnText}</a>`;
-}
-}
-})
-.catch(() => {});
-}
+
 function saveStudentProfile() {
-const name = document.getElementById("inputName").value.trim();
-const cls = document.getElementById("inputClass").value.trim();
-const code = document.getElementById("inputCode").value.trim();
-if (!name) {
-alert("Vui lòng nhập họ và tên của bạn!");
-return;
+  const name = document.getElementById("inputName").value.trim();
+  const cls = document.getElementById("inputClass").value.trim();
+  const code = document.getElementById("inputCode").value.trim();
+  
+  if (!name) {
+    alert("Vui lòng nhập họ và tên của bạn!");
+    return;
+  }
+  localStorage.setItem("hsk3_student_name", name);
+  localStorage.setItem("hsk3_student_class", cls);
+  localStorage.setItem("hsk4_student_name", name);
+  localStorage.setItem("hsk4_student_class", cls);
+  if (code) localStorage.setItem("hsk_custom_access_code", code);
+  alert("Đã lưu thông tin học viên thành công! Bạn có thể chọn bài thi hoặc bài tập để bắt đầu.");
 }
-localStorage.setItem("hsk3_student_name", name);
-localStorage.setItem("hsk3_student_class", cls);
-localStorage.setItem("hsk4_student_name", name);
-localStorage.setItem("hsk4_student_class", cls);
-if (code) localStorage.setItem("hsk_custom_access_code", code);
-alert("Đã lưu thông tin học viên thành công! Bạn có thể chọn bài thi hoặc bài tập để bắt đầu.");
-}
+
 function prepareEnterExam() {
-const name = document.getElementById("inputName").value.trim();
-const cls = document.getElementById("inputClass").value.trim();
-const code = document.getElementById("inputCode").value.trim();
-if (name) {
-localStorage.setItem("hsk3_student_name", name);
-localStorage.setItem("hsk4_student_name", name);
+  const name = document.getElementById("inputName").value.trim();
+  const cls = document.getElementById("inputClass").value.trim();
+  const code = document.getElementById("inputCode").value.trim();
+  if (name) {
+    localStorage.setItem("hsk3_student_name", name);
+    localStorage.setItem("hsk4_student_name", name);
+  }
+  if (cls) {
+    localStorage.setItem("hsk3_student_class", cls);
+    localStorage.setItem("hsk4_student_class", cls);
+  }
+  if (code) localStorage.setItem("hsk_custom_access_code", code);
 }
-if (cls) {
-localStorage.setItem("hsk3_student_class", cls);
-localStorage.setItem("hsk4_student_class", cls);
-}
-if (code) localStorage.setItem("hsk_custom_access_code", code);
-}
+
 window.addEventListener("DOMContentLoaded", initPortal);
 </script>
 </body>
