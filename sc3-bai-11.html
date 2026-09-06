@@ -821,8 +821,6 @@ body.review-mode .question-item.user-wrong {
   gap: 8px;
   z-index: 998;
 }
-
-.p1-img-desc, .image-desc { display: none !important; }
 </style>
 </head>
 <body>
@@ -1830,23 +1828,41 @@ function randomizeExamData() {
 }
 
 // Helper to adjust explanation dynamically based on randomized letter
-function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
-  if (!origExp && !newLetter) return '';
-  let exp = origExp || '';
-  let rationale = exp
-    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
-    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
-    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
-    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
-    .trim();
-  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
-
-  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
-  if (correctText) {
-    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
-  }
-  if (rationale) {
-    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
+function formatDynamicExplanation(origExp, newLetter, secType) {
+  if (!origExp || !newLetter) return origExp || "";
+  let res = origExp;
+  if (secType === "lp1") {
+    if (/(?:->|→)\s*(?:Khớp hình\s*|Hình\s*)?[A-Fa-f]\b/.test(res)) {
+      res = res.replace(/(->|→)\s*(?:Khớp hình\s*|Hình\s*)?[A-Fa-f]\b/g, `$1 ${newLetter}`);
+    } else if (/[\(（][A-Fa-f][\)）]/.test(res)) {
+      res = res.replace(/[\(（][A-Fa-f][\)）]/g, `(${newLetter})`);
+    } else {
+      res += ` -> ${newLetter}`;
+    }
+  } else if (secType === "lp3" || secType === "lp4") {
+    if (/[\(（][A-Ca-c][\)）]/.test(res)) {
+      res = res.replace(/[\(（][A-Ca-c][\)）]/g, `(${newLetter})`);
+    } else if (/(?:->|→)\s*(?:Hình\s*)?[A-Ca-c]\b/.test(res)) {
+      res = res.replace(/(->|→)\s*(?:Hình\s*)?[A-Ca-c]\b/g, `$1 ${newLetter}`);
+    } else {
+      res += ` -> ${newLetter}`;
+    }
+  } else if (secType === "rp1" || secType === "rp2") {
+    if (/[\(（][A-Fa-f][\)）]/.test(res)) {
+      res = res.replace(/[\(（][A-Fa-f][\)）]/g, `(${newLetter})`);
+    } else if (/(?:->|→)\s*(?:Hình\s*)?[A-Fa-f]\b/.test(res)) {
+      res = res.replace(/(->|→)\s*(?:Hình\s*)?[A-Fa-f]\b/g, `$1 ${newLetter}`);
+    } else {
+      res += ` (${newLetter})`;
+    }
+  } else if (secType === "rp3") {
+    if (/[\(（][A-Ca-c][\)）]/.test(res)) {
+      res = res.replace(/[\(（][A-Ca-c][\)）]/g, `(${newLetter})`);
+    } else if (/(?:->|→)\s*(?:Hình\s*)?[A-Ca-c]\b/.test(res)) {
+      res = res.replace(/(->|→)\s*(?:Hình\s*)?[A-Ca-c]\b/g, `$1 ${newLetter}`);
+    } else {
+      res += ` (${newLetter})`;
+    }
   }
   return res;
 }
@@ -1909,7 +1925,7 @@ function renderExam() {
   activeData.listening.part1.questions.forEach(q => {
     const curImg = activeData.listening.part1.images.find(img => img.id === q.correctId);
     const correctLetter = curImg ? curImg.label : 'D';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1', curImg ? (curImg.label ? 'Hình ' + curImg.label : (curImg.desc || '')) : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -1917,7 +1933,7 @@ function renderExam() {
         <button class="btn-listen-again" onclick="playQuestionSnippet(${q.timestamp || 0}, '${escapeJsStr(q.dialogue)}')">▶ Nghe câu ${q.num}</button>
       </div>
       <div class="options-pills" id="opts-${q.id}">`;
-    activeData.listening.part1.images.forEach(img => {
+    activeData.listening.part1.images.filter(img => img.id !== (ex1 ? ex1.correctId : 'img_d')).forEach(img => {
       html += `
         <div class="opt-pill" onclick="selectListeningP1('${q.id}', '${img.id}', this)">
           <strong>${img.label}</strong>
@@ -1971,7 +1987,7 @@ function renderExam() {
   activeData.listening.part3.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3', opt ? opt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -2003,7 +2019,7 @@ function renderExam() {
   activeData.listening.part4.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4', opt ? opt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -2051,14 +2067,14 @@ function renderExam() {
   activeData.reading.part1.questions.forEach(q => {
     const curOpt = activeData.reading.part1.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1', curOpt ? curOpt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
         <span class="q-number">${q.num}.</span> <span class="chinese">${q.prompt}</span>
       </div>
       <div class="options-pills">`;
-    activeData.reading.part1.options.forEach(opt => {
+    activeData.reading.part1.options.filter(o => o.id !== 'e').forEach(opt => {
       html += `
         <div class="opt-pill" onclick="selectReadingOpt('${q.id}', '${opt.id}', this)">
           <strong>${opt.renderLetter}</strong>
@@ -2087,14 +2103,14 @@ function renderExam() {
   activeData.reading.part2.questions.forEach(q => {
     const curOpt = activeData.reading.part2.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2', curOpt ? curOpt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
         <span class="q-number">${q.num}.</span> <span class="chinese">${q.prompt}</span>
       </div>
       <div class="options-pills">`;
-    activeData.reading.part2.options.forEach(opt => {
+    activeData.reading.part2.options.filter(o => o.id !== 'e').forEach(opt => {
       html += `
         <div class="opt-pill" onclick="selectReadingOpt('${q.id}', '${opt.id}', this)">
           <strong>${opt.renderLetter}</strong>
@@ -2116,7 +2132,7 @@ function renderExam() {
   activeData.reading.part3.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3', opt ? opt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;line-height:1.65;background:#f8fafc;padding:10px 14px;border-radius:6px;margin-bottom:8px;" class="chinese">
