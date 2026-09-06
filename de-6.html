@@ -431,7 +431,13 @@ main.app-main {
   display: block;
 }
 
-
+.image-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding: 6px 8px;
+  background: #fff;
+  border-top: 1px solid #f0eae1;
+}
 
 /* Text Bank (Reading Part 1 & 2) */
 .text-bank-grid {
@@ -1328,17 +1334,8 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 }
 
 
-
-
-
-
-
-.p1-img-hint, 
-
-
-/* Subtle 2-4 word Vietnamese Image Tag */
 .subtle-img-tag {
-  display: block;
+  display: block !important;
   font-size: 12px;
   color: #475569;
   background: #f8fafc;
@@ -1350,25 +1347,17 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.image-bank-item {
+  background: #fff;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  transition: transform 0.2s;
+}
 .image-desc, .p1-img-desc {
   display: none !important;
-}
-
-/* Explanation Box Styling */
-.answer-explanation {
-  margin-top: 12px;
-  padding: 12px 16px;
-  background: #f0fdf4;
-  border: 1.5px solid #86efac;
-  border-left: 5px solid var(--primary);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  display: none;
-}
-body.review-mode .answer-explanation,
-.review-mode .answer-explanation {
-  display: block !important;
 }
 
 </style>
@@ -1673,32 +1662,32 @@ const MASTER_DATA = {
           {
             "id": "img_a",
             "label": "A",
-            "desc": "Cô gái lấy sách trên giá"
+            "desc": "Cô gái với tay lấy sách trên giá sách cao (去拿高处的书)"
           },
           {
             "id": "img_b",
             "label": "B",
-            "desc": "Người đàn ông kéo vali"
+            "desc": "Người đàn ông mang vali trở về nhà lấy hộ chiếu (回来拿护照)"
           },
           {
             "id": "img_c",
             "label": "C",
-            "desc": "Hai bạn cùng làm bài tập ..."
+            "desc": "Hai bạn cùng làm bài tập kiểm tra số tiền (写错三角五分)"
           },
           {
             "id": "img_d",
             "label": "D",
-            "desc": "Nữ nhân viên nghe điện th..."
+            "desc": "Ví dụ mẫu: Nữ nhân viên nghe điện thoại bàn (接电话)"
           },
           {
             "id": "img_e",
             "label": "E",
-            "desc": "Cặp đôi cùng nấu ăn rửa b..."
+            "desc": "Cặp đôi cùng nấu ăn rửa bát dọn dẹp (洗盘子换衣服)"
           },
           {
             "id": "img_f",
             "label": "F",
-            "desc": "Dòng người xếp hàng dài c..."
+            "desc": "Dòng người xếp hàng dài chờ đợi trước cửa quán (排队站了一个小时)"
           }
         ],
         "questions": [
@@ -1749,27 +1738,27 @@ const MASTER_DATA = {
           {
             "id": "img_6a",
             "label": "A",
-            "desc": "Cô gái quấn khăn uống nướ..."
+            "desc": "Cô gái quấn khăn uống nước giải khát (喝水太渴)"
           },
           {
             "id": "img_6b",
             "label": "B",
-            "desc": "Người phụ nữ cúi tìm mũ t..."
+            "desc": "Người phụ nữ cúi tìm mũ trong tủ ngăn kéo (找帽子)"
           },
           {
             "id": "img_6c",
             "label": "C",
-            "desc": "Người đàn ông ôm trán mỏi..."
+            "desc": "Người đàn ông ôm trán mỏi mắt sau khi đọc sách (眼睛有点儿累看绿树)"
           },
           {
             "id": "img_6d",
             "label": "D",
-            "desc": "Nhân viên mới đến công ty..."
+            "desc": "Nhân viên mới đến công ty giới thiệu làm quen (新来公司上班)"
           },
           {
             "id": "img_6e",
             "label": "E",
-            "desc": "Chú chó cưng đáng yêu đượ..."
+            "desc": "Chú chó cưng đáng yêu được tặng (可爱小狗)"
           }
         ],
         "questions": [
@@ -3090,38 +3079,84 @@ function randomizeExamData() {
 }
 
 /* --- RENDER ENGINE --- */
-function cleanAndFormatExplanation(origExp, newLetter, correctText) {
-  if (!origExp && !newLetter) return '';
-  let exp = origExp || '';
-  let rationale = exp
-    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
-    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
-    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
-    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
-    .trim();
-  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
-
-  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
-  if (correctText) {
-    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
-  }
-  if (rationale) {
-    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
-  }
-  return res;
-}
 
 
 function getShortImgLabel(desc) {
   if (!desc) return "Hình ảnh";
-  const map = {'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ', 'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp', 'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày', 'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch', 'em bé khóc': 'Em bé khóc', 'tra từ điển': 'Tra từ điển', 'hai mẹ con tra': 'Tra từ điển', 'từ điển': 'Tra từ điển', 'nấu ăn': 'Nấu ăn trong bếp', 'trong bếp': 'Nấu ăn trong bếp', 'thảo luận': 'Xem máy tính bàn', 'đồng nghiệp': 'Xem máy tính', 'máy tính': 'Xem máy tính', 'nghe điện thoại': 'Nghe điện thoại', 'điện thoại': 'Nghe điện thoại', 'đánh răng': 'Đánh răng rửa mặt', 'vali': 'Kéo vali du lịch', 'hành lý': 'Kéo vali hành lý', 'ghế bập bênh': 'Ghế bập bênh', 'bản đồ': 'Xem bản đồ', 'album': 'Xem album ảnh', 'cưỡi ngựa': 'Tập cưỡi ngựa', 'mỏi mắt': 'Mỏi mắt đọc sách', 'đau chân': 'Vận động viên đau chân', 'xếp hàng': 'Xếp hàng chờ đợi', 'tuyết rơi': 'Mùa đông tuyết rơi', 'uống nước': 'Uống nước giải khát', 'chó': 'Chú chó cưng', 'rửa đĩa': 'Rửa bát đĩa', 'cắt tóc': 'Thợ cắt tóc', 'bánh mì': 'Bánh mì nước quả', 'lấy sách': 'Lấy sách trên giá', 'tìm đồ': 'Mở ngăn kéo tìm đồ', 'chào đón': 'Chào đón nhân viên', 'chào mừng': 'Chào mừng ở ngân hàng', 'ăn mì': 'Hai người ăn mì', 'làm bài tập': 'Cùng làm bài tập', 'đi taxi': 'Đi xe taxi', 'tra thuốc': 'Tra thuốc nhỏ mắt', 'ôm trán': 'Mệt mỏi ôm trán', 'áo ấm': 'Mặc áo ấm mũ len', 'cảm sốt': 'Cảm sốt quấn khăn', 'tìm mũ': 'Tìm mũ trên sàn', 'thay đồ': 'Rửa đĩa dọn dẹp', 'đèn bàn': 'Mua sắm đèn bàn', 'hoa điểu': 'Tranh vẽ hoa điểu'};
-  const dLow = desc.toLowerCase();
-  for (const k in map) {
-    if (dLow.includes(k)) return map[k];
+  var map = {
+    'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ',
+    'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp',
+    'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày',
+    'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch',
+    'em bé khóc': 'Dỗ em bé khóc', 'tra từ điển': 'Tra từ điển điện tử', 'từ điển': 'Tra từ điển',
+    'nấu ăn': 'Nấu ăn trong bếp', 'bếp': 'Nấu ăn trong bếp',
+    'giải quyết': 'Thảo luận công việc', 'máy tính': 'Thảo luận công việc',
+    'điện thoại': 'Trực điện thoại', 'nghe điện thoại': 'Trực điện thoại',
+    'chuyển nhà': 'Dịch vụ dọn nhà', 'bánh mì': 'Mua bánh mì', 'thịt bò': 'Nấu thịt bò',
+    'xem phim': 'Cùng xem phim', 'đau chân': 'Chạy bộ đau chân', 'văn phòng': 'Lên văn phòng',
+    'trời mưa': 'Trời mưa không ô', 'taxi': 'Đi xe taxi', 'giảm cân': 'Chạy bộ giảm cân',
+    'sơ mi': 'Chọn áo sơ mi', 'trà hoa': 'Uống trà hoa', 'táo': 'Ăn táo tươi',
+    'sân bay': 'Gọi điện sân bay', 'quần': 'Tặng quần cho bố',
+    'dưa hấu': 'Dưa hấu tươi', 'bánh ngọt': 'Ăn bánh ngọt', 'đá bóng': 'Xem đá bóng',
+    'nghỉ ngơi': 'Đứng nghỉ ngơi', 'ảnh': 'Ngắm ảnh kỷ niệm', 'váy': 'Thử váy mới',
+    'hoa': 'Hoa đào nở', 'kính': 'Đeo kính nhìn rõ', 'xe hỏng': 'Xe ô tô hỏng',
+    'con nhỏ': 'Trông con nhỏ', 'leo núi': 'Leo núi dã ngoại', 'ngủ': 'Nằm ngủ thêm',
+    'đọc báo': 'Đọc báo đợi xe', 'ngân hàng': 'Giao dịch ngân hàng', 'gấu trúc': 'Gấu trúc đáng yêu',
+    'hỏi đường': 'Hỏi đường đi bộ', 'sợ cao': 'Tầng 15 sợ cao', 'nhận cúp': 'Nhận cúp giải nhất',
+    'lớp': 'Ảnh chụp cả lớp', 'thâm quầng': 'Mắt thâm quầng', 'cô giáo': 'Cô giáo giảng bài',
+    'yên tĩnh': 'Tìm chỗ yên tĩnh', 'đổi xe': 'Đổi xe đạp mới', 'đũa': 'Lấy đôi đũa',
+    'thể thao': 'Đại hội thể thao', 'bình hoa': 'Bình hoa đẹp', 'máy bay': 'Máy bay cất cánh',
+    'vali': 'Xếp vali hành lý', 'tắm nắng': 'Đau chân tắm nắng', 'họp': 'Họp muộn vội vã',
+    'sinh nhật': 'Tặng quà sinh nhật', 'phỏng vấn': 'Phỏng vấn công ty', 'cún': 'Cún cưng chạy lại',
+    'thực đơn': 'Xem thực đơn', 'kể chuyện': 'Kể chuyện cho bà', 'gió': 'Gió to bay ô',
+    'tủ lạnh': 'Tủ lạnh hết đồ', 'rửa bát': 'Rửa bát đĩa cốc', 'mua sắm': 'Mua sắm trung tâm',
+    'bóng rổ': 'Chơi bóng rổ', 'thịt cừu': 'Thịt cừu tươi ngon', 'răng': 'Bác sĩ khám răng',
+    'tóc dài': 'Cô gái tóc dài', 'đau đầu': 'Đau đầu đi khám', 'phong cảnh': 'Phong cảnh non nước',
+    'nghỉ': 'Đơn xin nghỉ', 'hàng xóm': 'Hàng xóm chào hỏi', 'uống nước': 'Uống nước nghỉ ngơi',
+    'tuyết': 'Mùa đông tuyết rơi', 'vườn thú': 'Vườn thú động vật', 'phòng tranh': 'Phòng tranh nghệ thuật',
+    'tai': 'Bác sĩ khám tai', 'chim': 'Chim đỏ trên cành', 'rửa mặt': 'Rửa mặt sạch sẽ',
+    'ngựa': 'Cưỡi ngựa dạo chơi', 'mì': 'Bát mì nóng', 'cá': 'Cá tươi trong tủ', 'máy ảnh': 'Máy ảnh du lịch'
+  };
+  var d = desc.toLowerCase();
+  for (var k in map) {
+    if (d.indexOf(k) !== -1) return map[k];
   }
-  let d = desc.replace(/[\(（][^)]*[\)）]/g, '').trim();
-  const words = d.split(/\s+/).filter(w => w);
-  return words.slice(0, 4).join(' ') || "Hình ảnh";
+  var clean = desc.replace(/[\(（][^\)）]*[\)）]/g, '').trim();
+  var words = clean.split(/\s+/);
+  return words.length > 4 ? words.slice(0, 3).join(' ') : clean;
+}
+
+function cleanRationale(exp) {
+  if (!exp) return "";
+  var res = exp;
+  // 1. "-> Khớp với hình C (cô gái ngồi phân vân chọn giày)" -> "-> Khớp với hình cô gái ngồi phân vân chọn giày"
+  res = res.replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "-> Khớp với hình $1");
+  res = res.replace(/(?:Khớp với hình|Khớp hình|Hình)\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "Khớp với hình $1");
+  
+  // 2. "-> Chọn A (要努力工作)" -> "-> 要努力工作"
+  res = res.replace(/(?:->|→)\s*Chọn\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "-> $1");
+  res = res.replace(/Chọn\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "$1");
+  res = res.replace(/(?:->|→)\s*Chọn\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+  res = res.replace(/Chọn\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 3. Remove " (生病了 - B)" -> " (生病了)"
+  res = res.replace(/\s*-\s*[A-Fa-f]\s*[\)）]/g, ")");
+
+  // 4. Remove standalone "-> Khớp với hình C"
+  res = res.replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 5. Remove standalone "-> C" or "→ C"
+  res = res.replace(/(?:->|→)\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 6. Remove "(C)" or "( C )"
+  res = res.replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/g, "");
+
+  // 7. Remove "Đáp án đúng: C" or "Đáp án: C"
+  res = res.replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f](?=\s|[.,;!?]|$)/gi, "");
+
+  res = res.replace(/(?:->|→)\s*$/, "").trim();
+  res = res.replace(/\s+\./g, ".").trim();
+  return res;
 }
 
 function renderExam() {
@@ -3169,7 +3204,6 @@ function renderExam() {
         ${img.svg || ''}
       </div>
       <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
-      
     `;
     imgGrid1.appendChild(card);
   });
@@ -3236,7 +3270,6 @@ function renderExam() {
         ${img.svg || ''}
       </div>
       <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
-      
     `;
     imgGrid2.appendChild(card);
   });
@@ -3666,7 +3699,7 @@ function renderExam() {
       <div class="question-header">
         <div class="question-number">${q.num}.</div>
         <div class="question-content">
-          <div class="question-prompt chinese">${(q.prompt || q.dialogue || '').replace(/\n/g, '<br>')}</div>
+          <div class="question-prompt chinese">${q.prompt.replace(/\n/g, '<br>')}</div>
           <div class="options-bank-selector" id="opts-${q.id}">
             ${activeData.reading.part2.set2.options.map(opt => `
               <button class="opt-pill" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
@@ -4106,81 +4139,73 @@ function submitExam(autoSubmitted) {
 
   let correctL = 0, correctR = 0, correctW = 0;
   let detailedSummary = [];
+
+  // Helper normalizer
   const normStr = s => (s || "").toString().replace(/[\s.,?!。？！，]/g, "").toLowerCase();
 
-  // 1. Evaluate Listening Part 1 (1-10)
+  // 1. Evaluate Listening Part 1
   [...activeData.listening.part1.set1.questions, ...activeData.listening.part1.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctL++;
     
+    // Find current letter for display
     let targetList = activeData.listening.part1.set1.images;
     let found = targetList.find(i => i.id === q.correctId);
     if (!found) {
       targetList = activeData.listening.part1.set2.images;
       found = targetList.find(i => i.id === q.correctId);
     }
-    const correctLetter = found ? found.currentLetter : "";
+    const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const shortLabel = found ? getShortImgLabel(found.desc) : "";
-    
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + (shortLabel ? " (" + shortLabel + ")" : "");
     
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.split(String.fromCharCode(10)).join('<br>')}</span></div>` +
         `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter} (${shortLabel})</div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, shortLabel)}</div>`;
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 2. Evaluate Listening Part 2 (11-20)
+  // 2. Evaluate Listening Part 2
   activeData.listening.part2.questions.forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correct);
     if (isCorrect) correctL++;
-    
-    const correctText = q.correct ? "√ Đúng" : "× Sai";
-    const expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.passage}</span></div>` +
-        `<div style="margin-bottom:4px;font-weight:700;color:var(--primary-dark);">✅ Đáp án đúng: ${correctText}</div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctText, '')}</div>`;
-    }
-    
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns === undefined ? "Chưa làm" : (userAns ? "Đúng" : "Sai") });
   });
 
-  // 3. Evaluate Listening Part 3 & 4 (21-40)
+  // 3. Evaluate Listening Part 3 & 4
   [...activeData.listening.part3.questions, ...activeData.listening.part4.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctL++;
     
+    const correctOpt = q.options.find(o => o.id === q.correctId);
     const corIdx = q.options.findIndex(o => o.id === q.correctId);
     const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : '';
-    const correctOpt = (corIdx !== -1) ? q.options[corIdx] : null;
     const optText = correctOpt ? correctOpt.text : '';
     
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
     const expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Hội thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
-        `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
+    if (expDiv && correctOpt) {
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 4. Evaluate Reading Part 1 (41-50)
+  // 4. Evaluate Reading Part 1
   [...activeData.reading.part1.set1.questions, ...activeData.reading.part1.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4192,23 +4217,21 @@ function submitExam(autoSubmitted) {
       targetList = activeData.reading.part1.set2.options;
       found = targetList.find(o => o.id === q.correctId);
     }
-    const correctLetter = found ? found.currentLetter : "";
-    const optText = found ? found.text : "";
-    
+    const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
     
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 5. Evaluate Reading Part 2 (51-60)
+  // 5. Evaluate Reading Part 2
   [...activeData.reading.part2.set1.questions, ...activeData.reading.part2.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4220,72 +4243,68 @@ function submitExam(autoSubmitted) {
       targetList = activeData.reading.part2.set2.options;
       found = targetList.find(o => o.id === q.correctId);
     }
-    const correctLetter = found ? found.currentLetter : "";
-    const optText = found ? found.text : "";
-    
+    const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
     
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 6. Evaluate Reading Part 3 (61-70)
+  // 6. Evaluate Reading Part 3
   activeData.reading.part3.questions.forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctR++;
     
+    const correctOpt = q.options.find(o => o.id === q.correctId);
     const corIdx = q.options.findIndex(o => o.id === q.correctId);
     const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : '';
-    const correctOpt = (corIdx !== -1) ? q.options[corIdx] : null;
     const optText = correctOpt ? correctOpt.text : '';
     
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
     const expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
+    if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 7. Evaluate Writing Part 1 (71-75)
+  // 7. Evaluate Writing Part 1
   activeData.writing.part1.questions.forEach(q => {
     const userAns = examState.answers[q.id] || "";
     const isCorrect = (normStr(userAns) === normStr(q.correct));
     if (isCorrect) correctW++;
-    
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án chuẩn: <span class="chinese">${q.correct}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Cấu trúc ngữ pháp:</strong> ${cleanAndFormatExplanation(q.explanation, '', '')}</div>`;
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Cấu trúc ngữ pháp:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 8. Evaluate Writing Part 2 (76-80)
+  // 8. Evaluate Writing Part 2
   activeData.writing.part2.questions.forEach(q => {
     const userAns = (examState.answers[q.id] || "").trim();
     const isCorrect = (userAns === q.correct.trim());
     if (isCorrect) correctW++;
-    
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Chữ Hán đúng: <span class="chinese" style="font-size:1.2rem;">${q.correct}</span> (${q.pinyin})</div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích từ vựng:</strong> ${cleanAndFormatExplanation(q.explanation, '', '')}</div>`;
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích từ vựng:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
@@ -4299,16 +4318,19 @@ function submitExam(autoSubmitted) {
   examState.correctCount = correctL + correctR + correctW;
   examState.score10 = ((examState.correctCount / examState.totalQuestions) * 10).toFixed(1);
   
+  // HSK Official scale /300
   const hskL = Math.round((correctL / 40) * 100);
   const hskR = Math.round((correctR / 30) * 100);
   const hskW = Math.round((correctW / 10) * 100);
   const hskTotal = hskL + hskR + hskW;
   const isPassed = hskTotal >= 180;
 
+  // Format Duration
   const durM = Math.floor(examState.durationSeconds / 60);
   const durS = examState.durationSeconds % 60;
   const durationFormatted = `${durM} phút ${durS} giây`;
 
+  // UI Updates in Modal
   document.getElementById("score10Display").textContent = examState.score10;
   document.getElementById("resultModalSubtitle").textContent = `Thí sinh: ${studentInfo.name} (${studentInfo.className}) • Lần làm thứ ${studentInfo.attemptCount} • Thời gian: ${durationFormatted}`;
   
@@ -4329,6 +4351,7 @@ function submitExam(autoSubmitted) {
   document.getElementById("statReading").textContent = `${correctR}/30`;
   document.getElementById("statWriting").textContent = `${correctW}/10`;
 
+  // Telemetry Object
   const telemetryData = {
     examCode: "H31328",
     examTitle: "HSK 3 - Đề 06 (H31328)",
@@ -4351,14 +4374,15 @@ function submitExam(autoSubmitted) {
     detailedSummary: detailedSummary
   };
 
+  // Save to Local History
   saveAttemptToHistory(telemetryData);
+
+  // Send to Webhook
   sendTelemetryToWebhook(telemetryData);
 
-  // Open Result Modal and ACTIVATE REVIEW MODE on entire page
+  // Open Result Modal
   document.getElementById("resultModal").classList.remove("hidden");
-  document.body.classList.add("review-mode");
-  const ec = document.getElementById("examContainer");
-  if (ec) ec.classList.add("review-mode");
+  document.getElementById("examContainer").classList.add("review-mode");
 }
 
 function markQuestionResult(qId, isCorrect) {
@@ -4894,17 +4918,8 @@ function jumpToNextUnanswered() {
 function viewEnlargedImage(src, title) {
   const w = window.open("", "_blank");
   w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-
-
-
-
-
-.p1-img-hint, 
-
-
-/* Subtle 2-4 word Vietnamese Image Tag */
 .subtle-img-tag {
-  display: block;
+  display: block !important;
   font-size: 12px;
   color: #475569;
   background: #f8fafc;
@@ -4916,25 +4931,17 @@ function viewEnlargedImage(src, title) {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.image-bank-item {
+  background: #fff;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  transition: transform 0.2s;
+}
 .image-desc, .p1-img-desc {
   display: none !important;
-}
-
-/* Explanation Box Styling */
-.answer-explanation {
-  margin-top: 12px;
-  padding: 12px 16px;
-  background: #f0fdf4;
-  border: 1.5px solid #86efac;
-  border-left: 5px solid var(--primary);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  display: none;
-}
-body.review-mode .answer-explanation,
-.review-mode .answer-explanation {
-  display: block !important;
 }
 
 </style></head><body><img src="${src}"></body></html>`);

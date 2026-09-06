@@ -822,73 +822,30 @@ body.review-mode .question-item.user-wrong {
   z-index: 998;
 }
 
-
-
-.p1-img-hint {
-  font-size: 0.76rem;
+.subtle-img-tag {
+  display: block !important;
+  font-size: 12px;
   color: #475569;
-  background: #f1f5f9;
-  padding: 3px 6px;
+  background: #f8fafc;
   border-top: 1px solid #e2e8f0;
+  padding: 4px 6px;
   text-align: center;
+  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: block;
 }
-
-
-.p1-img-hint, .image-desc {
-  font-size: 0.76rem !important;
-  color: #475569 !important;
-  background: #f8fafc !important;
-  padding: 4px 6px !important;
-  border-top: 1px solid #e2e8f0 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  display: block !important;
-  font-weight: 500 !important;
-}
-
-
-/* Subtle 2-4 word Vietnamese Image Tag */
-.subtle-img-tag {
-  display: block !important;
-  font-size: 11.5px !important;
-  color: #475569 !important;
-  background: #f1f5f9 !important;
-  border-top: 1px solid #e2e8f0 !important;
-  padding: 3px 6px !important;
-  text-align: center !important;
-  font-weight: 600 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  line-height: 1.3 !important;
+.image-bank-item {
+  background: #fff;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  transition: transform 0.2s;
 }
 .image-desc, .p1-img-desc {
   display: none !important;
-}
-
-/* Explanation Box Styling */
-.explanation-box, .answer-explanation {
-  margin-top: 12px !important;
-  padding: 12px 16px !important;
-  background: #f0fdf4 !important;
-  border: 1.5px solid #86efac !important;
-  border-left: 5px solid var(--primary) !important;
-  border-radius: 8px !important;
-  font-size: 0.9rem !important;
-  line-height: 1.6 !important;
-  display: none;
-}
-body.review-mode .explanation-box,
-body.review-mode .answer-explanation,
-.review-mode .explanation-box,
-.review-mode .answer-explanation {
-  display: block !important;
 }
 
 </style>
@@ -1063,38 +1020,38 @@ const MASTER_DATA = {
         {
           "id": "img_a",
           "label": "A",
-          "desc": "看菜单点菜",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🐟</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">看菜单点菜 (鱼很新鲜)</text></svg>"
+          "desc": "看菜单点菜 (鱼很新鲜)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fee2e2\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🐟</text></svg>"
         },
         {
           "id": "img_b",
           "label": "B",
-          "desc": "讲故事",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👵</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">讲故事 (给爷爷奶奶讲故事)</text></svg>"
+          "desc": "讲故事 (给爷爷奶奶讲故事)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fef3c7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">👵</text></svg>"
         },
         {
           "id": "img_c",
           "label": "C",
           "desc": "大风刮跑伞 (我的伞!)",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">☂️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">大风刮跑伞 (我的伞!)</text></svg>"
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#e0f2fe\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">☂️</text></svg>"
         },
         {
           "id": "img_d",
           "label": "D",
-          "desc": "接电话",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f1f5f9\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">📞</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">接电话 (例题)</text></svg>"
+          "desc": "接电话 (例题)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f1f5f9\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">📞</text></svg>"
         },
         {
           "id": "img_e",
           "label": "E",
-          "desc": "冰箱空了",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🧊</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">冰箱空了 (东西都吃完了)</text></svg>"
+          "desc": "冰箱空了 (东西都吃完了)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#fce7f3\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🧊</text></svg>"
         },
         {
           "id": "img_f",
           "label": "F",
-          "desc": "洗盘子杯子",
-          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍽️</text><text x=\"120\" y=\"130\" font-size=\"16\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\" font-family=\"sans-serif\">洗盘子杯子 (先把杯子洗完)</text></svg>"
+          "desc": "洗盘子杯子 (先把杯子洗完)",
+          "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#dcfce7\" rx=\"10\"/><circle cx=\"120\" cy=\"70\" r=\"35\" fill=\"#ffffff\" opacity=\"0.8\"/><text x=\"120\" y=\"78\" font-size=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\">🍽️</text></svg>"
         }
       ],
       "questions": [
@@ -1894,9 +1851,7 @@ function randomizeExamData() {
 }
 
 // Helper to adjust explanation dynamically based on randomized letter
-function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
-  return cleanAndFormatExplanation(origExp, newLetter, correctText);
-}
+
 
 function escapeJsStr(str) {
   if (!str) return '';
@@ -1908,44 +1863,99 @@ function escapeJsStr(str) {
 }
 
 
-const HSK3_IMG_MAP = {"一起看电影": "Cùng đi xem phim", "下雨没带伞": "Mưa không mang ô", "下飞机打电话": "Xuống máy bay gọi", "买新鲜面包": "Mua bánh mì tươi", "借还词典": "Mượn trả từ điển", "儿子长相": "Khuôn mặt con trai", "公司面试": "Phỏng vấn công ty", "关电脑": "Tắt màn hình máy", "冬天大雪": "Mùa đông tuyết rơi", "冰箱空了": "Tủ lạnh trống trơn", "减肥少吃": "Giảm cân ăn ít", "动物园看动物": "Đi chơi sở thú", "医生与病人 (Bác sĩ và y tá tra...": "Bác sĩ khám bệnh", "去看足球比赛": "Xem trận bóng đá", "吃新鲜苹果": "Ăn quả táo tươi", "名画展品": "Xem tranh triển lãm", "商场购物花钱": "Mua sắm trung tâm", "喝水休息": "Uống nước giải khát", "喝香甜花茶": "Uống trà hoa thơm", "坐出租车": "Ngồi xe taxi", "大风刮跑伞 (我的伞!)": "Gió thổi bay ô", "头疼看病": "Đau đầu đi khám", "孩子瘦了五斤": "Con sút năm cân", "小孩自己站起来": "Em bé tự đứng", "小狗和皮鞋": "Chú cún đôi giày", "小狗跑过来": "Chú cún chạy lại", "帮忙照顾小狗": "Chăm sóc cún cưng", "开会迟到": "Đi họp muộn giờ", "快上楼办公室": "Lên văn phòng họp", "手机上网发邮件": "Gửi thư điện tử", "打篮球水平提高": "Chơi ném bóng rổ", "找照相机 (Tìm máy ảnh trong t...": "Tìm máy chụp ảnh", "拉行李箱打电话 (Kéo vali hành lý...": "Kéo vali gọi điện", "拿一双筷子": "Cầm đôi đũa ăn", "接电话": "Nghe điện thoại bàn", "接电话 (Nữ nhân viên nghe đi...": "Nghe điện thoại bàn", "搬大箱子": "Bê thùng các tông", "搬家公司": "Chuyển nhà trọn gói", "搬行李箱": "Xách vali hành lý", "新邻居打招呼": "Chào hỏi hàng xóm", "晚饭吃牛肉": "Ăn tối thịt bò", "查字典": "Tra cứu từ điển", "检查牙齿": "Khám răng nha khoa", "母女谈心 (Hai mẹ con ngồi sof...": "Mẹ con tâm sự", "洗盘子杯子": "Rửa bát đĩa cốc", "洗碗和盘子 (Người phụ nữ rửa b...": "Rửa bát đĩa sạch", "漂亮花瓶": "Bình hoa trang trí", "看世界杯 (Xem tivi chiếu bóng...": "Xem bóng đá tivi", "看报纸查天气": "Đọc báo xem tin", "看电脑写句子 (Hai đồng nghiệp x...": "Làm việc máy tính", "看菜单点菜": "Xem thực đơn món", "站着不想坐": "Đứng không muốn ngồi", "笑着看照片的女孩": "Cô gái xem ảnh", "结婚照片 (Ảnh cưới cô dâu chú...": "Xem ảnh cưới hỏi", "肚子饿吃蛋糕": "Bụng đói ăn bánh", "腿疼晒太阳": "Đau chân tắm nắng", "讲故事": "Kể chuyện thiếu nhi", "请假批假": "Xin giấy nghỉ phép", "超市又甜又新鲜的西瓜": "Mua dưa hấu ngọt", "跑步脚疼": "Chạy bộ đau chân", "踢球喝水 (Cầu thủ bóng đá uốn...": "Uống nước giải lao", "车上电子地图": "Bản đồ xe hơi", "运动会结束": "Bế mạc đại hội", "运动跑步变瘦": "Chạy bộ tập luyện", "送爸爸裤子": "Tặng bố chiếc quần", "送生日礼物": "Tặng quà sinh nhật", "送生日礼物 (Tặng hộp quà sinh ...": "Tặng quà sinh nhật", "选衬衫颜色": "Chọn màu áo sơ", "长头发女孩": "Cô gái tóc dài", "风景如画": "Phong cảnh thiên nhiên", "飞机起飞": "Máy bay cất cánh", "餐馆新鲜羊肉": "Ăn thịt cừu tươi", "Bàn mượn sách thư viện, t...": "Mượn sách thư viện", "Bàn tiệc nhà hàng sang trọng (饭馆环境真好)": "Bàn tiệc nhà hàng", "Bác sĩ khám bệnh": "Bác sĩ khám bệnh", "Bác sĩ khám bệnh kê đơn thuốc (医生看病开药)": "Bác sĩ khám bệnh", "Bé trai đánh răng rửa mặt": "Đánh răng rửa mặt", "Chiếc ghế bập bênh cạnh b...": "Ghế bập bênh ngồi", "Chàng trai đi xe đạp đi làm": "Đi xe đạp làm", "Chàng trai đánh răng buổi...": "Đánh răng buổi sáng", "Chào mừng ở ngân hàng (欢迎来银行)": "Chào mừng ngân hàng", "Chào đón nhân viên mới đế...": "Chào đón nhân viên", "Chú chó cưng đáng yêu đượ...": "Chú chó cưng yêu", "Chú chó nhỏ dễ thương": "Chú chó cưng yêu", "Chồng cầm điều khiển tivi...": "Cầm điều khiển tivi", "Con nhỏ không rời được (孩子太小离不开人)": "Chăm sóc con nhỏ", "Cây cỏ xanh tươi ngồi trên bãi cỏ (树和草都绿了)": "Ngồi trên bãi cỏ", "Cô giáo dạy toán giảng bài (数学老师讲题)": "Cô giáo dạy toán", "Cô gái bị cảm sốt ngồi ôm...": "Cảm sốt quấn khăn", "Cô gái chọn giày": "Cô gái chọn giày", "Cô gái cưỡi ngựa đen": "Tập cưỡi ngựa đen", "Cô gái lấy sách trên giá": "Lấy sách trên giá", "Cô gái lấy sách trên giá cao": "Lấy sách trên giá", "Cô gái mặc áo ấm mũ len m...": "Mặc áo ấm mũ", "Cô gái ngắm thử váy mới (买条裙子)": "Thử chiếc váy mới", "Cô gái quấn khăn uống nướ...": "Cảm sốt quấn khăn", "Cô gái tập cưỡi ngựa": "Tập cưỡi ngựa", "Cô gái ăn sáng uống nước ...": "Ăn sáng uống nước", "Cặp đôi cùng nấu ăn rửa b...": "Cặp đôi nấu ăn", "Cặp đôi cùng xem album ản...": "Xem album ảnh cũ", "Cặp đôi xem album ảnh": "Xem album ảnh cũ", "Cặp đôi xách vali du lịch": "Kéo vali du lịch", "Cặp đôi ôm chia tay ở sân...": "Chia tay ở sân", "Cửa hàng đổi xe đạp cũ lấy mới (旧车换新车)": "Đổi xe đạp mới", "Dòng người xếp hàng dài c...": "Xếp hàng chờ đợi", "Em bé khóc, bố mẹ cùng bố mẹ": "Em bé quấy khóc", "Ghế bập bênh và cuốn sách": "Ghế bập bênh sách", "Gấu trúc dễ thương (大熊猫)": "Gấu trúc dễ thương", "Hai bạn cùng làm bài tập ...": "Cùng làm bài tập", "Hai bạn cùng mở bản đồ xe...": "Xem bản đồ đường", "Hai mẹ con tra từ điển": "Mẹ con tra từ", "Hai người ngồi làm bài tập": "Cùng làm bài tập", "Hai người xem bản đồ": "Cùng xem bản đồ", "Hai vợ chồng vui vẻ ăn mì...": "Hai người ăn mì", "Hai đồng nghiệp xem máy tính": "Làm việc máy tính", "Hoa đào nở rực rỡ mùa xuân (花都开了)": "Hoa đào nở rộ", "Hành khách đi taxi trả 35...": "Đi xe taxi về", "Hỏi đường đi bộ (就在前面)": "Hỏi đường đi bộ", "Kéo vali hành lý": "Kéo vali hành lý", "Kéo vali hành lý vào cửa": "Kéo vali vào phòng", "Kính cận nhìn rõ (眼镜看得清楚)": "Kính cận nhìn rõ", "Leo núi ba lô (越爬越高)": "Leo núi ba lô", "Leo núi kéo tay nhau (刚爬几分钟)": "Cùng nhau leo núi", "Mưa tạnh bất ngờ (雨突然不下了)": "Trời tạnh mưa rơi", "Mắt thâm như gấu trúc (眼睛跟熊猫一样)": "Quầng thâm mắt", "Mọi người xếp hàng chờ đợi": "Xếp hàng chờ đợi", "Mở tủ ngăn kéo tìm đồ đạc": "Mở ngăn kéo tủ", "Nam nhân viên xem đồng hồ": "Xem đồng hồ vội", "Nghe điện thoại chỗ ồn ào (找安静地方)": "Nghe điện thoại ồn", "Nghiêng tai nghe không rõ (听不清楚)": "Lắng tai nghe ngóng", "Người phụ nữ cúi tìm mũ t...": "Tìm mũ trên sàn", "Người đàn ông kéo vali": "Kéo vali hành lý", "Người đàn ông nấu ăn tron...": "Nấu ăn trong bếp", "Người đàn ông tra thuốc n...": "Tra thuốc nhỏ mắt", "Người đàn ông ôm trán mỏi...": "Mệt mỏi ôm trán", "Người đánh răng rửa mặt": "Đánh răng rửa mặt", "Người đọc sách mỏi mắt xo...": "Mỏi mắt đọc sách", "Ngủ nướng trên giường (多睡会儿)": "Ngủ nướng trên giường", "Nhân viên lễ tân nghe điệ...": "Lễ tân nghe máy", "Nhân viên mới chào hỏi đồ...": "Chào hỏi đồng nghiệp", "Nhân viên mới đến công ty...": "Chào đón nhân viên", "Nhìn đồng hồ vội vã (快要迟到了)": "Xem đồng hồ vội", "Nhận cúp giải nhất (拿了第一)": "Nhận cúp giải nhất", "Nói chuẩn như người Trung (跟中国人一样)": "Nói tiếng Trung chuẩn", "Nước hoa quả và bánh mì": "Bánh mì nước quả", "Nằm ngủ muốn ngủ thêm (多睡会儿)": "Nằm ngủ trên giường", "Nữ nhân viên khách sạn ch...": "Lễ tân khách sạn", "Nữ nhân viên nghe điện th...": "Nghe điện thoại bàn", "Phụ nữ tự làm việc không cần giúp (一个人可以)": "Tự tay làm việc", "Rửa đĩa và chuẩn bị thay đồ": "Rửa đĩa dọn dẹp", "Thợ cắt tóc cắt ngắn tóc ...": "Thợ cắt tóc ngắn", "Thử kính cận hài lòng (眼镜很满意)": "Thử đeo kính cận", "Tiết thể dục đá bóng (上体育课)": "Đá bóng thể dục", "Tranh hoa điểu truyền thố...": "Tranh vẽ hoa điểu", "Trời mùa đông tuyết rơi": "Mùa đông tuyết rơi", "Tầng 15 sợ độ cao (十五层太高害怕)": "Sợ độ cao tầng", "Uống nước giải khát sau k...": "Uống nước giải khát", "Ví dụ (D)": "Nghe điện thoại", "Ví dụ mẫu (接电话)": "Nghe điện thoại bàn", "Ví dụ: Trực điện thoại (接电话)": "Nghe điện thoại bàn", "Vận động viên bị đau chân": "Vận động viên đau", "Vận động viên ngồi xoa bó...": "Xoa bóp chân đau", "Xe ô tô có vấn đề (车有点儿问题)": "Xe ô tô trục", "Đi siêu thị mua đèn bàn": "Mua sắm đèn bàn", "Đọc báo chờ xe (看报纸等车)": "Đọc báo chờ xe", "Đồ dùng đi du lịch": "Đồ dùng du lịch", "Ảnh chụp lớp học (班级的照片)": "Xem ảnh chụp lớp"};
 
 function getShortImgLabel(desc) {
   if (!desc) return "Hình ảnh";
-  if (HSK3_IMG_MAP[desc]) return HSK3_IMG_MAP[desc];
-  const dLow = desc.toLowerCase();
-  for (const k in HSK3_IMG_MAP) {
-    if (dLow.includes(k.toLowerCase())) return HSK3_IMG_MAP[k];
+  var map = {
+    'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ',
+    'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp',
+    'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày',
+    'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch',
+    'em bé khóc': 'Dỗ em bé khóc', 'tra từ điển': 'Tra từ điển điện tử', 'từ điển': 'Tra từ điển',
+    'nấu ăn': 'Nấu ăn trong bếp', 'bếp': 'Nấu ăn trong bếp',
+    'giải quyết': 'Thảo luận công việc', 'máy tính': 'Thảo luận công việc',
+    'điện thoại': 'Trực điện thoại', 'nghe điện thoại': 'Trực điện thoại',
+    'chuyển nhà': 'Dịch vụ dọn nhà', 'bánh mì': 'Mua bánh mì', 'thịt bò': 'Nấu thịt bò',
+    'xem phim': 'Cùng xem phim', 'đau chân': 'Chạy bộ đau chân', 'văn phòng': 'Lên văn phòng',
+    'trời mưa': 'Trời mưa không ô', 'taxi': 'Đi xe taxi', 'giảm cân': 'Chạy bộ giảm cân',
+    'sơ mi': 'Chọn áo sơ mi', 'trà hoa': 'Uống trà hoa', 'táo': 'Ăn táo tươi',
+    'sân bay': 'Gọi điện sân bay', 'quần': 'Tặng quần cho bố',
+    'dưa hấu': 'Dưa hấu tươi', 'bánh ngọt': 'Ăn bánh ngọt', 'đá bóng': 'Xem đá bóng',
+    'nghỉ ngơi': 'Đứng nghỉ ngơi', 'ảnh': 'Ngắm ảnh kỷ niệm', 'váy': 'Thử váy mới',
+    'hoa': 'Hoa đào nở', 'kính': 'Đeo kính nhìn rõ', 'xe hỏng': 'Xe ô tô hỏng',
+    'con nhỏ': 'Trông con nhỏ', 'leo núi': 'Leo núi dã ngoại', 'ngủ': 'Nằm ngủ thêm',
+    'đọc báo': 'Đọc báo đợi xe', 'ngân hàng': 'Giao dịch ngân hàng', 'gấu trúc': 'Gấu trúc đáng yêu',
+    'hỏi đường': 'Hỏi đường đi bộ', 'sợ cao': 'Tầng 15 sợ cao', 'nhận cúp': 'Nhận cúp giải nhất',
+    'lớp': 'Ảnh chụp cả lớp', 'thâm quầng': 'Mắt thâm quầng', 'cô giáo': 'Cô giáo giảng bài',
+    'yên tĩnh': 'Tìm chỗ yên tĩnh', 'đổi xe': 'Đổi xe đạp mới', 'đũa': 'Lấy đôi đũa',
+    'thể thao': 'Đại hội thể thao', 'bình hoa': 'Bình hoa đẹp', 'máy bay': 'Máy bay cất cánh',
+    'vali': 'Xếp vali hành lý', 'tắm nắng': 'Đau chân tắm nắng', 'họp': 'Họp muộn vội vã',
+    'sinh nhật': 'Tặng quà sinh nhật', 'phỏng vấn': 'Phỏng vấn công ty', 'cún': 'Cún cưng chạy lại',
+    'thực đơn': 'Xem thực đơn', 'kể chuyện': 'Kể chuyện cho bà', 'gió': 'Gió to bay ô',
+    'tủ lạnh': 'Tủ lạnh hết đồ', 'rửa bát': 'Rửa bát đĩa cốc', 'mua sắm': 'Mua sắm trung tâm',
+    'bóng rổ': 'Chơi bóng rổ', 'thịt cừu': 'Thịt cừu tươi ngon', 'răng': 'Bác sĩ khám răng',
+    'tóc dài': 'Cô gái tóc dài', 'đau đầu': 'Đau đầu đi khám', 'phong cảnh': 'Phong cảnh non nước',
+    'nghỉ': 'Đơn xin nghỉ', 'hàng xóm': 'Hàng xóm chào hỏi', 'uống nước': 'Uống nước nghỉ ngơi',
+    'tuyết': 'Mùa đông tuyết rơi', 'vườn thú': 'Vườn thú động vật', 'phòng tranh': 'Phòng tranh nghệ thuật',
+    'tai': 'Bác sĩ khám tai', 'chim': 'Chim đỏ trên cành', 'rửa mặt': 'Rửa mặt sạch sẽ',
+    'ngựa': 'Cưỡi ngựa dạo chơi', 'mì': 'Bát mì nóng', 'cá': 'Cá tươi trong tủ', 'máy ảnh': 'Máy ảnh du lịch'
+  };
+  var d = desc.toLowerCase();
+  for (var k in map) {
+    if (d.indexOf(k) !== -1) return map[k];
   }
-  let d = desc.replace(/[\(（][^)]*[\)）]/g, '').trim();
-  d = d.replace(/^[\W_]+/, '').trim();
-  const words = d.split(/\s+/).filter(w => w);
-  if (words.length <= 4 && words.length >= 2) return words.join(' ');
-  return words.slice(0, 3).join(' ') || "Hình ảnh";
+  var clean = desc.replace(/[\(（][^\)）]*[\)）]/g, '').trim();
+  var words = clean.split(/\s+/);
+  return words.length > 4 ? words.slice(0, 3).join(' ') : clean;
 }
 
 
-function cleanAndFormatExplanation(origExp, newLetter, correctText) {
-  if (!origExp && !newLetter) return '';
-  let exp = origExp || '';
-  let rationale = exp
-    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f]\b[^.]*/gi, '')
-    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
-    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
-    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]\b/gi, '')
-    .trim();
-  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
 
-  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
-  if (correctText) {
-    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
-  }
-  if (rationale) {
-    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
-  }
+function cleanRationale(exp) {
+  if (!exp) return "";
+  var res = exp;
+  // 1. "-> Khớp với hình C (cô gái ngồi phân vân chọn giày)" -> "-> Khớp với hình cô gái ngồi phân vân chọn giày"
+  res = res.replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "-> Khớp với hình $1");
+  res = res.replace(/(?:Khớp với hình|Khớp hình|Hình)\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "Khớp với hình $1");
+  
+  // 2. "-> Chọn A (要努力工作)" -> "-> 要努力工作"
+  res = res.replace(/(?:->|→)\s*Chọn\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "-> $1");
+  res = res.replace(/Chọn\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "$1");
+  res = res.replace(/(?:->|→)\s*Chọn\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+  res = res.replace(/Chọn\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 3. Remove " (生病了 - B)" -> " (生病了)"
+  res = res.replace(/\s*-\s*[A-Fa-f]\s*[\)）]/g, ")");
+
+  // 4. Remove standalone "-> Khớp với hình C"
+  res = res.replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 5. Remove standalone "-> C" or "→ C"
+  res = res.replace(/(?:->|→)\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 6. Remove "(C)" or "( C )"
+  res = res.replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/g, "");
+
+  // 7. Remove "Đáp án đúng: C" or "Đáp án: C"
+  res = res.replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f](?=\s|[.,;!?]|$)/gi, "");
+
+  res = res.replace(/(?:->|→)\s*$/, "").trim();
+  res = res.replace(/\s+\./g, ".").trim();
   return res;
 }
 
+function formatDynamicExplanation(origExp, correctLetter, correctLabel) {
+  var res = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter || ''}`;
+  if (correctLabel && !/^([lr]p\d|part\d)$/i.test(correctLabel)) {
+    res += ` (${correctLabel})`;
+  }
+  res += `</div>`;
+  var rationale = cleanRationale(origExp);
+  if (rationale) {
+    res += `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
+  }
+  return res;
+}
 
 function renderExam() {
   const container = document.getElementById("examContainer");
@@ -1968,11 +1978,14 @@ function renderExam() {
 
     <div class="p1-images-grid">`;
   activeData.listening.part1.images.forEach(img => {
+    const vLabel = getShortImgLabel(img.desc || '');
     html += `
-      <div class="p1-img-item" id="p1-img-${img.id}">
-        <div class="p1-img-label">${img.label}
-        <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div></div>
-        ${img.svg}
+      <div class="image-bank-item" id="p1-img-${img.id}">
+        <div style="position:relative;border-radius:8px;overflow:hidden;">
+          <span style="position:absolute;top:6px;left:6px;background:var(--primary);color:#fff;font-weight:bold;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;z-index:2;">${img.label || img.currentLetter}</span>
+          ${img.svg}
+        </div>
+        <div class="subtle-img-tag">${vLabel}</div>
       </div>`;
   });
   html += `</div>`;
@@ -1997,7 +2010,8 @@ function renderExam() {
   activeData.listening.part1.questions.forEach(q => {
     const curImg = activeData.listening.part1.images.find(img => img.id === q.correctId);
     const correctLetter = curImg ? curImg.label : 'D';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp1', curImg ? (curImg.label ? 'Hình ' + curImg.label : (curImg.desc || '')) : '');
+    const curImgDesc = curImg ? getShortImgLabel(curImg.desc || '') : '';
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, curImgDesc);
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -2015,7 +2029,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${dynExp}
+        ${dynExp}
       </div>
     </div>`;
   });
@@ -2059,7 +2073,7 @@ function renderExam() {
   activeData.listening.part3.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp3', curOpt ? curOpt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, curOpt ? curOpt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -2078,7 +2092,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${dynExp}
+        ${dynExp}
       </div>
     </div>`;
   });
@@ -2091,7 +2105,7 @@ function renderExam() {
   activeData.listening.part4.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'lp4', curOpt ? curOpt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, curOpt ? curOpt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div class="q-title-row">
@@ -2110,7 +2124,7 @@ function renderExam() {
       </div>
       <div class="explanation-box" id="exp-${q.id}">
         <div style="margin-bottom:6px;"><strong>🎧 Lời thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\\n/g, "<br>")}</span></div>
-        <strong>💡 Giải thích:</strong> ${dynExp}
+        ${dynExp}
       </div>
     </div>`;
   });
@@ -2139,7 +2153,7 @@ function renderExam() {
   activeData.reading.part1.questions.forEach(q => {
     const curOpt = activeData.reading.part1.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp1', curOpt ? curOpt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, curOpt ? curOpt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
@@ -2155,7 +2169,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${dynExp}
+        ${dynExp}
       </div>
     </div>`;
   });
@@ -2175,7 +2189,7 @@ function renderExam() {
   activeData.reading.part2.questions.forEach(q => {
     const curOpt = activeData.reading.part2.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp2', curOpt ? curOpt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, curOpt ? curOpt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;margin-bottom:8px;line-height:1.6;">
@@ -2191,7 +2205,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${dynExp}
+        ${dynExp}
       </div>
     </div>`;
   });
@@ -2204,7 +2218,7 @@ function renderExam() {
   activeData.reading.part3.questions.forEach(q => {
     const curOpt = q.options.find(o => o.id === q.correctId);
     const correctLetter = curOpt ? curOpt.renderLetter : '';
-    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, 'rp3', curOpt ? curOpt.text : '');
+    const dynExp = formatDynamicExplanation(q.explanation, correctLetter, curOpt ? curOpt.text : '');
     html += `
     <div class="question-item" id="q-box-${q.id}">
       <div style="font-size:15px;line-height:1.65;background:#f8fafc;padding:10px 14px;border-radius:6px;margin-bottom:8px;" class="chinese">
@@ -2224,7 +2238,7 @@ function renderExam() {
     html += `
       </div>
       <div class="explanation-box" id="exp-${q.id}">
-        <strong>💡 Giải thích:</strong> ${dynExp}
+        ${dynExp}
       </div>
     </div>`;
   });

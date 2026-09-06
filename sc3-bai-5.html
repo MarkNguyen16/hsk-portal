@@ -467,10 +467,6 @@ body.drawer-open {
   color: var(--primary-dark);
   background: #fff;
 }
-.char-input-box:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(22, 107, 99, 0.15);
-}
 .pinyin-highlight {
   font-weight: bold;
   color: var(--primary);
@@ -609,71 +605,30 @@ body.review-mode .explanation-box {
   cursor: pointer;
 }
 
-.p1-img-hint {
-  font-size: 0.76rem;
+.subtle-img-tag {
+  display: block !important;
+  font-size: 12px;
   color: #475569;
-  background: #f1f5f9;
-  padding: 3px 6px;
+  background: #f8fafc;
   border-top: 1px solid #e2e8f0;
+  padding: 4px 6px;
   text-align: center;
+  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: block;
 }
-
-
-.p1-img-hint, .image-desc {
-  font-size: 0.76rem !important;
-  color: #475569 !important;
-  background: #f8fafc !important;
-  padding: 4px 6px !important;
-  border-top: 1px solid #e2e8f0 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  display: block !important;
-  font-weight: 500 !important;
-}
-
-
-/* Subtle 2-4 word Vietnamese Image Tag */
-.subtle-img-tag {
-  display: block !important;
-  font-size: 11.5px !important;
-  color: #475569 !important;
-  background: #f1f5f9 !important;
-  border-top: 1px solid #e2e8f0 !important;
-  padding: 3px 6px !important;
-  text-align: center !important;
-  font-weight: 600 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  line-height: 1.3 !important;
+.image-bank-item {
+  background: #fff;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  transition: transform 0.2s;
 }
 .image-desc, .p1-img-desc {
   display: none !important;
-}
-
-/* Explanation Box Styling */
-.explanation-box, .answer-explanation {
-  margin-top: 12px !important;
-  padding: 12px 16px !important;
-  background: #f0fdf4 !important;
-  border: 1.5px solid #86efac !important;
-  border-left: 5px solid var(--primary) !important;
-  border-radius: 8px !important;
-  font-size: 0.9rem !important;
-  line-height: 1.6 !important;
-  display: none;
-}
-body.review-mode .explanation-box,
-body.review-mode .answer-explanation,
-.review-mode .explanation-box,
-.review-mode .answer-explanation {
-  display: block !important;
 }
 
 </style>
@@ -701,7 +656,7 @@ body.review-mode .answer-explanation,
 <!-- Main Container -->
 <main class="main-exam-layout">
   <div class="audio-sticky-bar">
-    <span>🎧 File nghe:</span>
+    <span>🎧 File nghe Bài 5:</span>
     <audio id="mainAudioPlayer" controls src="audio/05.mp3" preload="metadata"></audio>
   </div>
   <div id="examContainer"></div>
@@ -740,37 +695,37 @@ const MASTER_DATA = {
         {
           "id": "img_a",
           "label": "A",
-          "desc": "Bác sĩ khám bệnh",
+          "desc": "Bác sĩ khám bệnh kê đơn thuốc (医生看病开药)",
           "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M105 46 Q120 28 135 46 Q140 68 100 68\" fill=\"#1e293b\"/><rect x=\"100\" y=\"70\" width=\"40\" height=\"65\" fill=\"#fff\" stroke=\"#cbd5e1\" stroke-width=\"2\" rx=\"4\"/><path d=\"M110 80 Q120 98 130 80\" fill=\"none\" stroke=\"#0284c7\" stroke-width=\"3\"/><rect x=\"115\" y=\"95\" width=\"28\" height=\"38\" rx=\"2\" fill=\"#d97706\"/><line x1=\"120\" y1=\"105\" x2=\"138\" y2=\"105\" stroke=\"#fff\" stroke-width=\"2\"/><line x1=\"120\" y1=\"112\" x2=\"138\" y2=\"112\" stroke=\"#fff\" stroke-width=\"2\"/></svg>"
         },
         {
           "id": "img_b",
           "label": "B",
-          "desc": "Cô gái thử váy mới",
+          "desc": "Cô gái ngắm thử váy mới (买条裙子)",
           "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"45\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M105 40 Q120 22 135 40 Q140 65 100 65\" fill=\"#78350f\"/><rect x=\"105\" y=\"65\" width=\"30\" height=\"30\" fill=\"#38bdf8\" rx=\"3\"/><polygon points=\"100,95 140,95 155,145 85,145\" fill=\"#ec4899\"/><circle cx=\"120\" cy=\"115\" r=\"4\" fill=\"#fff\"/></svg>"
         },
         {
           "id": "img_c",
           "label": "C",
-          "desc": "Hoa đào nở rực rỡ",
+          "desc": "Hoa đào nở rực rỡ mùa xuân (花都开了)",
           "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"70\" cy=\"65\" r=\"16\" fill=\"#f43f5e\"/><circle cx=\"100\" cy=\"80\" r=\"20\" fill=\"#fb7185\"/><circle cx=\"140\" cy=\"65\" r=\"18\" fill=\"#f43f5e\"/><circle cx=\"170\" cy=\"85\" r=\"15\" fill=\"#fda4af\"/><path d=\"M60 140 Q120 110 180 140\" stroke=\"#15803d\" stroke-width=\"5\" fill=\"none\"/></svg>"
         },
         {
           "id": "img_d",
           "label": "D",
-          "desc": "",
+          "desc": "Ví dụ mẫu (接电话)",
           "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"25\" y=\"120\" width=\"190\" height=\"45\" fill=\"#cbd5e1\" rx=\"4\"/><circle cx=\"130\" cy=\"55\" r=\"20\" fill=\"#ffcc80\"/><path d=\"M110 50 Q130 30 150 50 Q155 75 110 75\" fill=\"#1e293b\"/><path d=\"M105 80 L155 80 L160 120 L100 120 Z\" fill=\"#176b63\"/><path d=\"M142 55 Q155 70 148 85\" stroke=\"#ef4444\" stroke-width=\"6\" stroke-linecap=\"round\" fill=\"none\"/></svg>"
         },
         {
           "id": "img_e",
           "label": "E",
-          "desc": "Phụ nữ tự làm việc không ...",
+          "desc": "Phụ nữ tự làm việc không cần giúp (一个人可以)",
           "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"55\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M105 50 Q120 30 135 50\" fill=\"#475569\"/><rect x=\"105\" y=\"75\" width=\"30\" height=\"50\" fill=\"#3b82f6\" rx=\"3\"/><rect x=\"75\" y=\"110\" width=\"90\" height=\"40\" fill=\"#cbd5e1\" rx=\"3\"/></svg>"
         },
         {
           "id": "img_f",
           "label": "F",
-          "desc": "Cây cỏ xanh tươi ngồi trê...",
+          "desc": "Cây cỏ xanh tươi ngồi trên bãi cỏ (树和草都绿了)",
           "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><path d=\"M20 140 Q80 120 140 140 T220 140 L220 180 L20 180 Z\" fill=\"#86efac\"/><path d=\"M60 140 L60 80 Q75 60 90 80 L90 140\" fill=\"#15803d\"/><circle cx=\"75\" cy=\"65\" r=\"30\" fill=\"#22c55e\"/><circle cx=\"160\" cy=\"75\" r=\"25\" fill=\"#16a34a\"/></svg>"
         }
       ],
@@ -1463,10 +1418,6 @@ const MASTER_DATA = {
     }
   }
 };
-const EXAM_CONFIG = {
-  examCode: "SC3-B05",
-  examTitle: "HSK 3 - Bài 5: 我最近越来越胖了"
-};
 
 let activeData = null;
 const userAnswers = {};
@@ -1547,11 +1498,102 @@ function randomizeExamData() {
 
 function escapeJsStr(str) {
   if (!str) return '';
-  return str.split('\\').join('\\\\').split("'").join("\\'").split('\n').join(' ');
+  return str.replace(/\/g, '\\').replace(/'/g, "\'").replace(/\n/g, ' ');
 }
 
-function formatDynamicExplanation(origExp, newLetter, secType, correctText) {
-  return cleanAndFormatExplanation(origExp, newLetter, correctText);
+
+
+function getShortImgLabel(desc) {
+  if (!desc) return "Hình ảnh";
+  var map = {
+    'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ',
+    'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp',
+    'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày',
+    'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch',
+    'em bé khóc': 'Dỗ em bé khóc', 'tra từ điển': 'Tra từ điển điện tử', 'từ điển': 'Tra từ điển',
+    'nấu ăn': 'Nấu ăn trong bếp', 'bếp': 'Nấu ăn trong bếp',
+    'giải quyết': 'Thảo luận công việc', 'máy tính': 'Thảo luận công việc',
+    'điện thoại': 'Trực điện thoại', 'nghe điện thoại': 'Trực điện thoại',
+    'chuyển nhà': 'Dịch vụ dọn nhà', 'bánh mì': 'Mua bánh mì', 'thịt bò': 'Nấu thịt bò',
+    'xem phim': 'Cùng xem phim', 'đau chân': 'Chạy bộ đau chân', 'văn phòng': 'Lên văn phòng',
+    'trời mưa': 'Trời mưa không ô', 'taxi': 'Đi xe taxi', 'giảm cân': 'Chạy bộ giảm cân',
+    'sơ mi': 'Chọn áo sơ mi', 'trà hoa': 'Uống trà hoa', 'táo': 'Ăn táo tươi',
+    'sân bay': 'Gọi điện sân bay', 'quần': 'Tặng quần cho bố',
+    'dưa hấu': 'Dưa hấu tươi', 'bánh ngọt': 'Ăn bánh ngọt', 'đá bóng': 'Xem đá bóng',
+    'nghỉ ngơi': 'Đứng nghỉ ngơi', 'ảnh': 'Ngắm ảnh kỷ niệm', 'váy': 'Thử váy mới',
+    'hoa': 'Hoa đào nở', 'kính': 'Đeo kính nhìn rõ', 'xe hỏng': 'Xe ô tô hỏng',
+    'con nhỏ': 'Trông con nhỏ', 'leo núi': 'Leo núi dã ngoại', 'ngủ': 'Nằm ngủ thêm',
+    'đọc báo': 'Đọc báo đợi xe', 'ngân hàng': 'Giao dịch ngân hàng', 'gấu trúc': 'Gấu trúc đáng yêu',
+    'hỏi đường': 'Hỏi đường đi bộ', 'sợ cao': 'Tầng 15 sợ cao', 'nhận cúp': 'Nhận cúp giải nhất',
+    'lớp': 'Ảnh chụp cả lớp', 'thâm quầng': 'Mắt thâm quầng', 'cô giáo': 'Cô giáo giảng bài',
+    'yên tĩnh': 'Tìm chỗ yên tĩnh', 'đổi xe': 'Đổi xe đạp mới', 'đũa': 'Lấy đôi đũa',
+    'thể thao': 'Đại hội thể thao', 'bình hoa': 'Bình hoa đẹp', 'máy bay': 'Máy bay cất cánh',
+    'vali': 'Xếp vali hành lý', 'tắm nắng': 'Đau chân tắm nắng', 'họp': 'Họp muộn vội vã',
+    'sinh nhật': 'Tặng quà sinh nhật', 'phỏng vấn': 'Phỏng vấn công ty', 'cún': 'Cún cưng chạy lại',
+    'thực đơn': 'Xem thực đơn', 'kể chuyện': 'Kể chuyện cho bà', 'gió': 'Gió to bay ô',
+    'tủ lạnh': 'Tủ lạnh hết đồ', 'rửa bát': 'Rửa bát đĩa cốc', 'mua sắm': 'Mua sắm trung tâm',
+    'bóng rổ': 'Chơi bóng rổ', 'thịt cừu': 'Thịt cừu tươi ngon', 'răng': 'Bác sĩ khám răng',
+    'tóc dài': 'Cô gái tóc dài', 'đau đầu': 'Đau đầu đi khám', 'phong cảnh': 'Phong cảnh non nước',
+    'nghỉ': 'Đơn xin nghỉ', 'hàng xóm': 'Hàng xóm chào hỏi', 'uống nước': 'Uống nước nghỉ ngơi',
+    'tuyết': 'Mùa đông tuyết rơi', 'vườn thú': 'Vườn thú động vật', 'phòng tranh': 'Phòng tranh nghệ thuật',
+    'tai': 'Bác sĩ khám tai', 'chim': 'Chim đỏ trên cành', 'rửa mặt': 'Rửa mặt sạch sẽ',
+    'ngựa': 'Cưỡi ngựa dạo chơi', 'mì': 'Bát mì nóng', 'cá': 'Cá tươi trong tủ', 'máy ảnh': 'Máy ảnh du lịch'
+  };
+  var d = desc.toLowerCase();
+  for (var k in map) {
+    if (d.indexOf(k) !== -1) return map[k];
+  }
+  var clean = desc.replace(/[\(（][^\)）]*[\)）]/g, '').trim();
+  var words = clean.split(/\s+/);
+  return words.length > 4 ? words.slice(0, 3).join(' ') : clean;
+}
+
+
+
+function cleanRationale(exp) {
+  if (!exp) return "";
+  var res = exp;
+  // 1. "-> Khớp với hình C (cô gái ngồi phân vân chọn giày)" -> "-> Khớp với hình cô gái ngồi phân vân chọn giày"
+  res = res.replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "-> Khớp với hình $1");
+  res = res.replace(/(?:Khớp với hình|Khớp hình|Hình)\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "Khớp với hình $1");
+  
+  // 2. "-> Chọn A (要努力工作)" -> "-> 要努力工作"
+  res = res.replace(/(?:->|→)\s*Chọn\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "-> $1");
+  res = res.replace(/Chọn\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "$1");
+  res = res.replace(/(?:->|→)\s*Chọn\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+  res = res.replace(/Chọn\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 3. Remove " (生病了 - B)" -> " (生病了)"
+  res = res.replace(/\s*-\s*[A-Fa-f]\s*[\)）]/g, ")");
+
+  // 4. Remove standalone "-> Khớp với hình C"
+  res = res.replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 5. Remove standalone "-> C" or "→ C"
+  res = res.replace(/(?:->|→)\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 6. Remove "(C)" or "( C )"
+  res = res.replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/g, "");
+
+  // 7. Remove "Đáp án đúng: C" or "Đáp án: C"
+  res = res.replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f](?=\s|[.,;!?]|$)/gi, "");
+
+  res = res.replace(/(?:->|→)\s*$/, "").trim();
+  res = res.replace(/\s+\./g, ".").trim();
+  return res;
+}
+
+function formatDynamicExplanation(origExp, correctLetter, correctLabel) {
+  var res = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter || ''}`;
+  if (correctLabel && !/^([lr]p\d|part\d)$/i.test(correctLabel)) {
+    res += ` (${correctLabel})`;
+  }
+  res += `</div>`;
+  var rationale = cleanRationale(origExp);
+  if (rationale) {
+    res += `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
+  }
+  return res;
 }
 
 function renderExam() {
@@ -2010,8 +2052,14 @@ function renderDrawerGrid() {
 
 function scrollToQuestion(num) {
   let qId = '';
-  if (num <= 20) qId = `L${num}`;
+  if (num <= 5) qId = `L${num}`;
+  else if (num <= 10) qId = `L${num}`;
+  else if (num <= 15) qId = `L${num}`;
+  else if (num <= 20) qId = `L${num}`;
+  else if (num <= 25) qId = `R${num}`;
+  else if (num <= 30) qId = `R${num}`;
   else if (num <= 35) qId = `R${num}`;
+  else if (num <= 40) qId = `W${num}`;
   else qId = `W${num}`;
 
   const el = document.getElementById(`qbox-${qId}`);
@@ -2289,8 +2337,8 @@ function submitExam() {
 
   // Send to Firebase
   const payload = {
-    examCode: EXAM_CONFIG.examCode,
-    examTitle: EXAM_CONFIG.examTitle,
+    examCode: "SC3-B05",
+    examTitle: "HSK 3 - Bài 5: 我最近越来越胖了",
     studentName: studentName,
     correctCount: correctCount,
     totalQuestions: 45,
@@ -2334,10 +2382,9 @@ function submitExam() {
   alert(`KẾT QUẢ BÀI LÀM:\n\nThí sinh: ${studentName}\nĐúng: ${correctCount}/45 câu\nĐiểm số: ${finalScore10}/10\n\nBài làm đã được chuyển sang chế độ Xem Lại với đầy đủ đáp án và giải thích chi tiết.`);
 }
 
-// Initialize: Render exam immediately on DOM ready
+// Initialize
 window.addEventListener("DOMContentLoaded", () => {
-  randomizeExamData();
-  renderExam();
+  // Do not auto-close modal until student starts
 });
 </script>
 </body>

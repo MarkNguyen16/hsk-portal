@@ -431,7 +431,13 @@ main.app-main {
   display: block;
 }
 
-
+.image-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding: 6px 8px;
+  background: #fff;
+  border-top: 1px solid #f0eae1;
+}
 
 /* Text Bank (Reading Part 1 & 2) */
 .text-bank-grid {
@@ -1328,17 +1334,8 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
 }
 
 
-
-
-
-
-
-.p1-img-hint, 
-
-
-/* Subtle 2-4 word Vietnamese Image Tag */
 .subtle-img-tag {
-  display: block;
+  display: block !important;
   font-size: 12px;
   color: #475569;
   background: #f8fafc;
@@ -1350,25 +1347,17 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.image-bank-item {
+  background: #fff;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  transition: transform 0.2s;
+}
 .image-desc, .p1-img-desc {
   display: none !important;
-}
-
-/* Explanation Box Styling */
-.answer-explanation {
-  margin-top: 12px;
-  padding: 12px 16px;
-  background: #f0fdf4;
-  border: 1.5px solid #86efac;
-  border-left: 5px solid var(--primary);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  display: none;
-}
-body.review-mode .answer-explanation,
-.review-mode .answer-explanation {
-  display: block !important;
 }
 
 </style>
@@ -1470,7 +1459,7 @@ body.review-mode .answer-explanation,
 <div class="modal-backdrop" id="welcomeModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h2>Chào mừng đến với Kỳ thi HSK 3 - Đề 02</h2>
+      <h2>Chào mừng đến với Kỳ thi HSK 3 - Đề 2</h2>
       <p>Vui lòng điền thông tin để bắt đầu tính giờ làm bài và ghi nhận kết quả</p>
     </div>
     <div class="modal-body">
@@ -1673,37 +1662,37 @@ const MASTER_DATA = {
           {
             "id": "img_a",
             "label": "A",
-            "desc": "洗碗和盘子 (Người phụ nữ rửa b...",
+            "desc": "洗碗和盘子 (Người phụ nữ rửa bát đĩa)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"20\" y=\"110\" width=\"200\" height=\"50\" fill=\"#176b63\" opacity=\"0.15\" rx=\"6\"/><rect x=\"35\" y=\"90\" width=\"100\" height=\"40\" fill=\"#fff\" stroke=\"#176b63\" stroke-width=\"2\" rx=\"4\"/><path d=\"M75 90 Q75 60 95 60 Q115 60 115 85\" fill=\"none\" stroke=\"#607d8b\" stroke-width=\"5\" stroke-linecap=\"round\"/><circle cx=\"115\" cy=\"88\" r=\"4\" fill=\"#607d8b\"/><ellipse cx=\"140\" cy=\"80\" rx=\"28\" ry=\"40\" fill=\"#ffe0b2\"/><path d=\"M120 70 Q140 120 160 70\" fill=\"#176b63\"/><circle cx=\"140\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M125 45 Q140 30 155 45\" fill=\"#5d4037\" stroke=\"#5d4037\" stroke-width=\"4\"/><ellipse cx=\"65\" cy=\"115\" rx=\"20\" ry=\"8\" fill=\"#e0f2fe\" stroke=\"#0284c7\" stroke-width=\"2\"/><ellipse cx=\"75\" cy=\"110\" rx=\"18\" ry=\"7\" fill=\"#fff\" stroke=\"#0284c7\" stroke-width=\"2\"/><circle cx=\"85\" cy=\"98\" r=\"5\" fill=\"#bae6fd\" opacity=\"0.8\"/><circle cx=\"60\" cy=\"102\" r=\"7\" fill=\"#bae6fd\" opacity=\"0.8\"/><circle cx=\"95\" cy=\"108\" r=\"4\" fill=\"#bae6fd\" opacity=\"0.8\"/></svg>"
           },
           {
             "id": "img_b",
             "label": "B",
-            "desc": "找照相机 (Tìm máy ảnh trong t...",
+            "desc": "找照相机 (Tìm máy ảnh trong túi xách)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"22\" fill=\"#ffcc80\"/><path d=\"M100 45 Q120 25 140 45 Q145 70 95 70\" fill=\"#4a2e18\"/><path d=\"M95 75 Q120 120 145 75\" fill=\"#374151\"/><path d=\"M85 105 C85 90 155 90 155 105 L165 155 C165 165 75 165 75 155 Z\" fill=\"#b45309\" stroke=\"#78350f\" stroke-width=\"2\"/><path d=\"M100 100 Q120 75 140 100\" fill=\"none\" stroke=\"#78350f\" stroke-width=\"4\"/><path d=\"M105 75 L115 110\" stroke=\"#ffcc80\" stroke-width=\"8\" stroke-linecap=\"round\"/><rect x=\"110\" y=\"115\" width=\"30\" height=\"22\" rx=\"4\" fill=\"#0f172a\"/><circle cx=\"125\" cy=\"126\" r=\"6\" fill=\"#38bdf8\"/></svg>"
           },
           {
             "id": "img_c",
             "label": "C",
-            "desc": "踢球喝水 (Cầu thủ bóng đá uốn...",
+            "desc": "踢球喝水 (Cầu thủ bóng đá uống nước giải lao)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"30\" y=\"125\" width=\"180\" height=\"14\" fill=\"#8d6e63\" rx=\"3\"/><rect x=\"50\" y=\"139\" width=\"10\" height=\"30\" fill=\"#5d4037\"/><rect x=\"180\" y=\"139\" width=\"10\" height=\"30\" fill=\"#5d4037\"/><circle cx=\"85\" cy=\"65\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M70 85 L100 85 L95 125 L75 125 Z\" fill=\"#0284c7\"/><circle cx=\"150\" cy=\"60\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M135 80 L165 80 L160 125 L140 125 Z\" fill=\"#ea580c\"/><circle cx=\"190\" cy=\"148\" r=\"14\" fill=\"#fff\" stroke=\"#1e293b\" stroke-width=\"2\"/><polygon points=\"190,140 196,145 194,152 186,152 184,145\" fill=\"#1e293b\"/><rect x=\"105\" y=\"85\" width=\"8\" height=\"20\" rx=\"3\" fill=\"#38bdf8\"/></svg>"
           },
           {
             "id": "img_d",
             "label": "D",
-            "desc": "接电话 (Nữ nhân viên nghe đi...",
+            "desc": "接电话 (Ví dụ mẫu: Nữ nhân viên nghe điện thoại bàn)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"25\" y=\"120\" width=\"190\" height=\"45\" fill=\"#cbd5e1\" rx=\"4\"/><rect x=\"40\" y=\"85\" width=\"45\" height=\"35\" rx=\"3\" fill=\"#1e293b\"/><rect x=\"58\" y=\"120\" width=\"10\" height=\"10\" fill=\"#94a3b8\"/><circle cx=\"130\" cy=\"55\" r=\"20\" fill=\"#ffcc80\"/><path d=\"M110 50 Q130 30 150 50 Q155 75 110 75\" fill=\"#1e293b\"/><path d=\"M105 80 L155 80 L160 120 L100 120 Z\" fill=\"#176b63\"/><path d=\"M142 55 Q155 70 148 85\" stroke=\"#ef4444\" stroke-width=\"6\" stroke-linecap=\"round\" fill=\"none\"/><rect x=\"150\" y=\"105\" width=\"30\" height=\"15\" rx=\"3\" fill=\"#64748b\"/></svg>"
           },
           {
             "id": "img_e",
             "label": "E",
-            "desc": "结婚照片 (Ảnh cưới cô dâu chú...",
+            "desc": "结婚照片 (Ảnh cưới cô dâu chú rể)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"95\" cy=\"55\" r=\"17\" fill=\"#ffcc80\"/><path d=\"M80 50 Q95 32 110 50\" fill=\"#1e293b\"/><rect x=\"80\" y=\"75\" width=\"32\" height=\"65\" fill=\"#1e293b\" rx=\"4\"/><polygon points=\"96,80 92,92 100,92\" fill=\"#fff\"/><circle cx=\"145\" cy=\"60\" r=\"17\" fill=\"#ffcc80\"/><path d=\"M130 55 Q145 35 160 55 Q165 80 125 75\" fill=\"#78350f\"/><path d=\"M125 80 Q145 75 165 80 L175 145 L115 145 Z\" fill=\"#fff\" stroke=\"#cbd5e1\"/><ellipse cx=\"145\" cy=\"40\" rx=\"18\" ry=\"8\" fill=\"#f1f5f9\" opacity=\"0.6\"/><circle cx=\"120\" cy=\"100\" r=\"10\" fill=\"#ec4899\"/><circle cx=\"115\" cy=\"96\" r=\"6\" fill=\"#f43f5e\"/><circle cx=\"125\" cy=\"98\" r=\"5\" fill=\"#fb7185\"/></svg>"
           },
           {
             "id": "img_f",
             "label": "F",
-            "desc": "医生与病人 (Bác sĩ và y tá tra...",
+            "desc": "医生与病人 (Bác sĩ và y tá trao đổi về bệnh nhân)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"85\" cy=\"55\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M70 50 Q85 32 100 50\" fill=\"#475569\"/><rect x=\"68\" y=\"75\" width=\"34\" height=\"65\" fill=\"#fff\" stroke=\"#cbd5e1\" stroke-width=\"2\" rx=\"4\"/><path d=\"M78 85 Q85 105 92 85\" fill=\"none\" stroke=\"#0284c7\" stroke-width=\"3\"/><circle cx=\"150\" cy=\"58\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M135 52 Q150 35 165 52\" fill=\"#1e293b\"/><rect x=\"133\" y=\"78\" width=\"34\" height=\"62\" fill=\"#fff\" stroke=\"#cbd5e1\" stroke-width=\"2\" rx=\"4\"/><rect x=\"105\" y=\"90\" width=\"22\" height=\"30\" rx=\"2\" fill=\"#d97706\"/><rect x=\"108\" y=\"95\" width=\"16\" height=\"20\" rx=\"1\" fill=\"#fff\"/><line x1=\"110\" y1=\"100\" x2=\"122\" y2=\"100\" stroke=\"#94a3b8\" stroke-width=\"2\"/><line x1=\"110\" y1=\"105\" x2=\"122\" y2=\"105\" stroke=\"#94a3b8\" stroke-width=\"2\"/></svg>"
           }
         ],
@@ -1755,31 +1744,31 @@ const MASTER_DATA = {
           {
             "id": "img_6a",
             "label": "A",
-            "desc": "看电脑写句子 (Hai đồng nghiệp x...",
+            "desc": "看电脑写句子 (Hai đồng nghiệp xem máy tính thảo luận văn bản)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"25\" y=\"115\" width=\"190\" height=\"45\" fill=\"#cbd5e1\" rx=\"4\"/><circle cx=\"80\" cy=\"55\" r=\"17\" fill=\"#ffcc80\"/><path d=\"M65 50 Q80 32 95 50\" fill=\"#334155\"/><rect x=\"65\" y=\"75\" width=\"30\" height=\"45\" fill=\"#176b63\" rx=\"3\"/><circle cx=\"155\" cy=\"55\" r=\"17\" fill=\"#ffcc80\"/><path d=\"M140 50 Q155 30 170 50 Q175 75 135 70\" fill=\"#475569\"/><rect x=\"140\" y=\"75\" width=\"30\" height=\"45\" fill=\"#d97706\" rx=\"3\"/><rect x=\"85\" y=\"95\" width=\"70\" height=\"40\" rx=\"3\" fill=\"#1e293b\"/><rect x=\"88\" y=\"98\" width=\"64\" height=\"30\" rx=\"2\" fill=\"#38bdf8\"/><polygon points=\"98,110 110,118 125,105 140,115\" fill=\"#bae6fd\"/></svg>"
           },
           {
             "id": "img_6b",
             "label": "B",
-            "desc": "拉行李箱打电话 (Kéo vali hành lý...",
+            "desc": "拉行李箱打电话 (Kéo vali hành lý nghe điện thoại)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"95\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M80 45 Q95 30 110 45\" fill=\"#1e293b\"/><rect x=\"80\" y=\"70\" width=\"30\" height=\"65\" fill=\"#334155\" rx=\"3\"/><rect x=\"90\" y=\"135\" width=\"8\" height=\"30\" fill=\"#1e293b\"/><rect x=\"100\" y=\"135\" width=\"8\" height=\"30\" fill=\"#1e293b\"/><rect x=\"105\" y=\"55\" width=\"7\" height=\"14\" rx=\"2\" fill=\"#0f172a\"/><rect x=\"145\" y=\"85\" width=\"35\" height=\"55\" rx=\"5\" fill=\"#b45309\"/><line x1=\"162\" y1=\"85\" x2=\"162\" y2=\"45\" stroke=\"#78350f\" stroke-width=\"4\"/><circle cx=\"152\" cy=\"144\" r=\"5\" fill=\"#1e293b\"/><circle cx=\"172\" cy=\"144\" r=\"5\" fill=\"#1e293b\"/><line x1=\"110\" y1=\"80\" x2=\"162\" y2=\"45\" stroke=\"#78350f\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg>"
           },
           {
             "id": "img_6c",
             "label": "C",
-            "desc": "送生日礼物 (Tặng hộp quà sinh ...",
+            "desc": "送生日礼物 (Tặng hộp quà sinh nhật)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"85\" y=\"70\" width=\"70\" height=\"60\" rx=\"6\" fill=\"#ef4444\"/><rect x=\"80\" y=\"62\" width=\"80\" height=\"14\" rx=\"3\" fill=\"#dc2626\"/><rect x=\"115\" y=\"62\" width=\"10\" height=\"68\" fill=\"#fde047\"/><rect x=\"85\" y=\"95\" width=\"70\" height=\"10\" fill=\"#fde047\"/><path d=\"M120 62 Q105 40 115 45 Q120 55 120 62\" fill=\"#fde047\"/><path d=\"M120 62 Q135 40 125 45 Q120 55 120 62\" fill=\"#fde047\"/><path d=\"M35 110 Q65 100 85 105\" stroke=\"#ffcc80\" stroke-width=\"12\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M205 110 Q175 100 155 105\" stroke=\"#ffcc80\" stroke-width=\"12\" stroke-linecap=\"round\" fill=\"none\"/></svg>"
           },
           {
             "id": "img_6d",
             "label": "D",
-            "desc": "看世界杯 (Xem tivi chiếu bóng...",
+            "desc": "看世界杯 (Xem tivi chiếu bóng đá World Cup)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"40\" y=\"30\" width=\"110\" height=\"75\" rx=\"5\" fill=\"#1e293b\"/><rect x=\"45\" y=\"35\" width=\"100\" height=\"65\" rx=\"3\" fill=\"#22c55e\"/><circle cx=\"95\" cy=\"67\" r=\"14\" fill=\"#fff\" stroke=\"#000\"/><polygon points=\"95,60 100,64 98,71 92,71 90,64\" fill=\"#000\"/><rect x=\"88\" y=\"105\" width=\"14\" height=\"20\" fill=\"#475569\"/><rect x=\"75\" y=\"125\" width=\"40\" height=\"8\" rx=\"2\" fill=\"#334155\"/><circle cx=\"180\" cy=\"95\" r=\"18\" fill=\"#ffcc80\"/><path d=\"M165 90 Q180 75 195 90\" fill=\"#1e293b\"/><rect x=\"165\" y=\"115\" width=\"30\" height=\"40\" fill=\"#0284c7\" rx=\"4\"/></svg>"
           },
           {
             "id": "img_6e",
             "label": "E",
-            "desc": "母女谈心 (Hai mẹ con ngồi sof...",
+            "desc": "母女谈心 (Hai mẹ con ngồi sofa nói chuyện về bố)",
             "svg": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><rect x=\"40\" y=\"110\" width=\"160\" height=\"45\" fill=\"#d9b86c\" rx=\"8\"/><rect x=\"30\" y=\"90\" width=\"25\" height=\"50\" fill=\"#b5944d\" rx=\"6\"/><rect x=\"185\" y=\"90\" width=\"25\" height=\"50\" fill=\"#b5944d\" rx=\"6\"/><circle cx=\"85\" cy=\"65\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M70 60 Q85 40 100 60 Q105 75 75 75\" fill=\"#991b1b\"/><rect x=\"72\" y=\"83\" width=\"26\" height=\"35\" fill=\"#f43f5e\" rx=\"3\"/><circle cx=\"145\" cy=\"70\" r=\"16\" fill=\"#ffcc80\"/><path d=\"M130 65 Q145 45 160 65 Q165 80 135 80\" fill=\"#1e293b\"/><rect x=\"132\" y=\"88\" width=\"26\" height=\"32\" fill=\"#8b5cf6\" rx=\"3\"/></svg>"
           }
         ],
@@ -3158,38 +3147,86 @@ function randomizeExamData() {
 }
 
 /* --- RENDER ENGINE --- */
-function cleanAndFormatExplanation(origExp, newLetter, correctText) {
-  if (!origExp && !newLetter) return '';
-  let exp = origExp || '';
-  let rationale = exp
-    .replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f][^.]*/gi, '')
-    .replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/gi, '')
-    .replace(/-\s*[A-Fa-f]\s*[\)）]/gi, ')')
-    .replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f]/gi, '')
-    .trim();
-  rationale = rationale.replace(/(?:->|→)\s*$/, '').trim();
-
-  let res = `<span style="font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:2px 8px;border-radius:4px;">✅ Đáp án đúng: ${newLetter || ''}</span>`;
-  if (correctText) {
-    res += ` <span style="font-weight:600;color:var(--primary);">(${correctText})</span>`;
-  }
-  if (rationale) {
-    res += `<br><div style="color:var(--text-muted);font-size:0.86rem;margin-top:5px;line-height:1.5;">💡 <strong>Giải thích:</strong> ${rationale}</div>`;
-  }
-  return res;
-}
 
 
 function getShortImgLabel(desc) {
   if (!desc) return "Hình ảnh";
-  const map = {'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ', 'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp', 'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày', 'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch', 'em bé khóc': 'Em bé khóc', 'tra từ điển': 'Tra từ điển', 'hai mẹ con tra': 'Tra từ điển', 'từ điển': 'Tra từ điển', 'nấu ăn': 'Nấu ăn trong bếp', 'trong bếp': 'Nấu ăn trong bếp', 'thảo luận': 'Xem máy tính bàn', 'đồng nghiệp': 'Xem máy tính', 'máy tính': 'Xem máy tính', 'nghe điện thoại': 'Nghe điện thoại', 'điện thoại': 'Nghe điện thoại', 'đánh răng': 'Đánh răng rửa mặt', 'vali': 'Kéo vali du lịch', 'hành lý': 'Kéo vali hành lý', 'ghế bập bênh': 'Ghế bập bênh', 'bản đồ': 'Xem bản đồ', 'album': 'Xem album ảnh', 'cưỡi ngựa': 'Tập cưỡi ngựa', 'mỏi mắt': 'Mỏi mắt đọc sách', 'đau chân': 'Vận động viên đau chân', 'xếp hàng': 'Xếp hàng chờ đợi', 'tuyết rơi': 'Mùa đông tuyết rơi', 'uống nước': 'Uống nước giải khát', 'chó': 'Chú chó cưng', 'rửa đĩa': 'Rửa bát đĩa', 'cắt tóc': 'Thợ cắt tóc', 'bánh mì': 'Bánh mì nước quả', 'lấy sách': 'Lấy sách trên giá', 'tìm đồ': 'Mở ngăn kéo tìm đồ', 'chào đón': 'Chào đón nhân viên', 'chào mừng': 'Chào mừng ở ngân hàng', 'ăn mì': 'Hai người ăn mì', 'làm bài tập': 'Cùng làm bài tập', 'đi taxi': 'Đi xe taxi', 'tra thuốc': 'Tra thuốc nhỏ mắt', 'ôm trán': 'Mệt mỏi ôm trán', 'áo ấm': 'Mặc áo ấm mũ len', 'cảm sốt': 'Cảm sốt quấn khăn', 'tìm mũ': 'Tìm mũ trên sàn', 'thay đồ': 'Rửa đĩa dọn dẹp', 'đèn bàn': 'Mua sắm đèn bàn', 'hoa điểu': 'Tranh vẽ hoa điểu'};
-  const dLow = desc.toLowerCase();
-  for (const k in map) {
-    if (dLow.includes(k)) return map[k];
+  var map = {
+    'nam nhân viên': 'Xem đồng hồ', 'xem đồng hồ': 'Xem đồng hồ',
+    'chàng trai đi xe': 'Đi xe đạp', 'xe đạp': 'Đi xe đạp',
+    'cô gái ngồi': 'Cô gái chọn giày', 'cô gái chọn': 'Cô gái chọn giày', 'giày': 'Cô gái chọn giày',
+    'bác sĩ': 'Bác sĩ khám bệnh', 'đồ dùng': 'Đồ dùng du lịch', 'du lịch': 'Đồ dùng du lịch',
+    'em bé khóc': 'Dỗ em bé khóc', 'tra từ điển': 'Tra từ điển điện tử', 'từ điển': 'Tra từ điển',
+    'nấu ăn': 'Nấu ăn trong bếp', 'bếp': 'Nấu ăn trong bếp',
+    'giải quyết': 'Thảo luận công việc', 'máy tính': 'Thảo luận công việc',
+    'điện thoại': 'Trực điện thoại', 'nghe điện thoại': 'Trực điện thoại',
+    'chuyển nhà': 'Dịch vụ dọn nhà', 'bánh mì': 'Mua bánh mì', 'thịt bò': 'Nấu thịt bò',
+    'xem phim': 'Cùng xem phim', 'đau chân': 'Chạy bộ đau chân', 'văn phòng': 'Lên văn phòng',
+    'trời mưa': 'Trời mưa không ô', 'taxi': 'Đi xe taxi', 'giảm cân': 'Chạy bộ giảm cân',
+    'sơ mi': 'Chọn áo sơ mi', 'trà hoa': 'Uống trà hoa', 'táo': 'Ăn táo tươi',
+    'sân bay': 'Gọi điện sân bay', 'quần': 'Tặng quần cho bố',
+    'dưa hấu': 'Dưa hấu tươi', 'bánh ngọt': 'Ăn bánh ngọt', 'đá bóng': 'Xem đá bóng',
+    'nghỉ ngơi': 'Đứng nghỉ ngơi', 'ảnh': 'Ngắm ảnh kỷ niệm', 'váy': 'Thử váy mới',
+    'hoa': 'Hoa đào nở', 'kính': 'Đeo kính nhìn rõ', 'xe hỏng': 'Xe ô tô hỏng',
+    'con nhỏ': 'Trông con nhỏ', 'leo núi': 'Leo núi dã ngoại', 'ngủ': 'Nằm ngủ thêm',
+    'đọc báo': 'Đọc báo đợi xe', 'ngân hàng': 'Giao dịch ngân hàng', 'gấu trúc': 'Gấu trúc đáng yêu',
+    'hỏi đường': 'Hỏi đường đi bộ', 'sợ cao': 'Tầng 15 sợ cao', 'nhận cúp': 'Nhận cúp giải nhất',
+    'lớp': 'Ảnh chụp cả lớp', 'thâm quầng': 'Mắt thâm quầng', 'cô giáo': 'Cô giáo giảng bài',
+    'yên tĩnh': 'Tìm chỗ yên tĩnh', 'đổi xe': 'Đổi xe đạp mới', 'đũa': 'Lấy đôi đũa',
+    'thể thao': 'Đại hội thể thao', 'bình hoa': 'Bình hoa đẹp', 'máy bay': 'Máy bay cất cánh',
+    'vali': 'Xếp vali hành lý', 'tắm nắng': 'Đau chân tắm nắng', 'họp': 'Họp muộn vội vã',
+    'sinh nhật': 'Tặng quà sinh nhật', 'phỏng vấn': 'Phỏng vấn công ty', 'cún': 'Cún cưng chạy lại',
+    'thực đơn': 'Xem thực đơn', 'kể chuyện': 'Kể chuyện cho bà', 'gió': 'Gió to bay ô',
+    'tủ lạnh': 'Tủ lạnh hết đồ', 'rửa bát': 'Rửa bát đĩa cốc', 'mua sắm': 'Mua sắm trung tâm',
+    'bóng rổ': 'Chơi bóng rổ', 'thịt cừu': 'Thịt cừu tươi ngon', 'răng': 'Bác sĩ khám răng',
+    'tóc dài': 'Cô gái tóc dài', 'đau đầu': 'Đau đầu đi khám', 'phong cảnh': 'Phong cảnh non nước',
+    'nghỉ': 'Đơn xin nghỉ', 'hàng xóm': 'Hàng xóm chào hỏi', 'uống nước': 'Uống nước nghỉ ngơi',
+    'tuyết': 'Mùa đông tuyết rơi', 'vườn thú': 'Vườn thú động vật', 'phòng tranh': 'Phòng tranh nghệ thuật',
+    'tai': 'Bác sĩ khám tai', 'chim': 'Chim đỏ trên cành', 'rửa mặt': 'Rửa mặt sạch sẽ',
+    'ngựa': 'Cưỡi ngựa dạo chơi', 'mì': 'Bát mì nóng', 'cá': 'Cá tươi trong tủ', 'máy ảnh': 'Máy ảnh du lịch'
+  };
+  var d = desc.toLowerCase();
+  for (var k in map) {
+    if (d.indexOf(k) !== -1) return map[k];
   }
-  let d = desc.replace(/[\(（][^)]*[\)）]/g, '').trim();
-  const words = d.split(/\s+/).filter(w => w);
-  return words.slice(0, 4).join(' ') || "Hình ảnh";
+  var clean = desc.replace(/[\(（][^\)）]*[\)）]/g, '').trim();
+  var words = clean.split(/\s+/);
+  return words.length > 4 ? words.slice(0, 3).join(' ') : clean;
+}
+
+function applyFontPreferences() {}
+
+function cleanRationale(exp) {
+  if (!exp) return "";
+  var res = exp;
+  // 1. "-> Khớp với hình C (cô gái ngồi phân vân chọn giày)" -> "-> Khớp với hình cô gái ngồi phân vân chọn giày"
+  res = res.replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)?\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "-> Khớp với hình $1");
+  res = res.replace(/(?:Khớp với hình|Khớp hình|Hình)\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "Khớp với hình $1");
+  
+  // 2. "-> Chọn A (要努力工作)" -> "-> 要努力工作"
+  res = res.replace(/(?:->|→)\s*Chọn\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "-> $1");
+  res = res.replace(/Chọn\s*[A-Fa-f]\s*[\(（]([^\)）]+)[\)）]/g, "$1");
+  res = res.replace(/(?:->|→)\s*Chọn\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+  res = res.replace(/Chọn\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 3. Remove " (生病了 - B)" -> " (生病了)"
+  res = res.replace(/\s*-\s*[A-Fa-f]\s*[\)）]/g, ")");
+
+  // 4. Remove standalone "-> Khớp với hình C"
+  res = res.replace(/(?:->|→)\s*(?:Khớp với hình|Khớp hình|Hình)\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 5. Remove standalone "-> C" or "→ C"
+  res = res.replace(/(?:->|→)\s*[A-Fa-f](?=\s|[.,;!?]|$)/g, "");
+
+  // 6. Remove "(C)" or "( C )"
+  res = res.replace(/[\(（]\s*[A-Fa-f]\s*[\)）]/g, "");
+
+  // 7. Remove "Đáp án đúng: C" or "Đáp án: C"
+  res = res.replace(/Đáp án\s*(?:đúng)?\s*[:：]?\s*[A-Fa-f](?=\s|[.,;!?]|$)/gi, "");
+
+  res = res.replace(/(?:->|→)\s*$/, "").trim();
+  res = res.replace(/\s+\./g, ".").trim();
+  return res;
 }
 
 function renderExam() {
@@ -3237,7 +3274,6 @@ function renderExam() {
         ${img.svg || ''}
       </div>
       <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
-      
     `;
     imgGrid1.appendChild(card);
   });
@@ -3304,7 +3340,6 @@ function renderExam() {
         ${img.svg || ''}
       </div>
       <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
-      
     `;
     imgGrid2.appendChild(card);
   });
@@ -3734,7 +3769,7 @@ function renderExam() {
       <div class="question-header">
         <div class="question-number">${q.num}.</div>
         <div class="question-content">
-          <div class="question-prompt chinese">${(q.prompt || q.dialogue || '').replace(/\n/g, '<br>')}</div>
+          <div class="question-prompt chinese">${q.prompt.replace(/\n/g, '<br>')}</div>
           <div class="options-bank-selector" id="opts-${q.id}">
             ${activeData.reading.part2.set2.options.map(opt => `
               <button class="opt-pill" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
@@ -4174,81 +4209,73 @@ function submitExam(autoSubmitted) {
 
   let correctL = 0, correctR = 0, correctW = 0;
   let detailedSummary = [];
+
+  // Helper normalizer
   const normStr = s => (s || "").toString().replace(/[\s.,?!。？！，]/g, "").toLowerCase();
 
-  // 1. Evaluate Listening Part 1 (1-10)
+  // 1. Evaluate Listening Part 1
   [...activeData.listening.part1.set1.questions, ...activeData.listening.part1.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctL++;
     
+    // Find current letter for display
     let targetList = activeData.listening.part1.set1.images;
     let found = targetList.find(i => i.id === q.correctId);
     if (!found) {
       targetList = activeData.listening.part1.set2.images;
       found = targetList.find(i => i.id === q.correctId);
     }
-    const correctLetter = found ? found.currentLetter : "";
+    const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const shortLabel = found ? getShortImgLabel(found.desc) : "";
-    
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + (shortLabel ? " (" + shortLabel + ")" : "");
     
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.split(String.fromCharCode(10)).join('<br>')}</span></div>` +
         `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter} (${shortLabel})</div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, shortLabel)}</div>`;
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 2. Evaluate Listening Part 2 (11-20)
+  // 2. Evaluate Listening Part 2
   activeData.listening.part2.questions.forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correct);
     if (isCorrect) correctL++;
-    
-    const correctText = q.correct ? "√ Đúng" : "× Sai";
-    const expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.passage}</span></div>` +
-        `<div style="margin-bottom:4px;font-weight:700;color:var(--primary-dark);">✅ Đáp án đúng: ${correctText}</div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctText, '')}</div>`;
-    }
-    
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns === undefined ? "Chưa làm" : (userAns ? "Đúng" : "Sai") });
   });
 
-  // 3. Evaluate Listening Part 3 & 4 (21-40)
+  // 3. Evaluate Listening Part 3 & 4
   [...activeData.listening.part3.questions, ...activeData.listening.part4.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctL++;
     
+    const correctOpt = q.options.find(o => o.id === q.correctId);
     const corIdx = q.options.findIndex(o => o.id === q.correctId);
     const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : '';
-    const correctOpt = (corIdx !== -1) ? q.options[corIdx] : null;
     const optText = correctOpt ? correctOpt.text : '';
     
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
     const expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Hội thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
-        `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
+    if (expDiv && correctOpt) {
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 4. Evaluate Reading Part 1 (41-50)
+  // 4. Evaluate Reading Part 1
   [...activeData.reading.part1.set1.questions, ...activeData.reading.part1.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4260,23 +4287,21 @@ function submitExam(autoSubmitted) {
       targetList = activeData.reading.part1.set2.options;
       found = targetList.find(o => o.id === q.correctId);
     }
-    const correctLetter = found ? found.currentLetter : "";
-    const optText = found ? found.text : "";
-    
+    const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
     
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 5. Evaluate Reading Part 2 (51-60)
+  // 5. Evaluate Reading Part 2
   [...activeData.reading.part2.set1.questions, ...activeData.reading.part2.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4288,72 +4313,68 @@ function submitExam(autoSubmitted) {
       targetList = activeData.reading.part2.set2.options;
       found = targetList.find(o => o.id === q.correctId);
     }
-    const correctLetter = found ? found.currentLetter : "";
-    const optText = found ? found.text : "";
-    
+    const correctLetter = found ? (found.currentLetter || found.label || "") : "";
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
     
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 6. Evaluate Reading Part 3 (61-70)
+  // 6. Evaluate Reading Part 3
   activeData.reading.part3.questions.forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctR++;
     
+    const correctOpt = q.options.find(o => o.id === q.correctId);
     const corIdx = q.options.findIndex(o => o.id === q.correctId);
     const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : '';
-    const correctOpt = (corIdx !== -1) ? q.options[corIdx] : null;
     const optText = correctOpt ? correctOpt.text : '';
     
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
     const expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
+    if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích:</strong> ${cleanAndFormatExplanation(q.explanation, correctLetter, optText)}</div>`;
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 7. Evaluate Writing Part 1 (71-75)
+  // 7. Evaluate Writing Part 1
   activeData.writing.part1.questions.forEach(q => {
     const userAns = examState.answers[q.id] || "";
     const isCorrect = (normStr(userAns) === normStr(q.correct));
     if (isCorrect) correctW++;
-    
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án chuẩn: <span class="chinese">${q.correct}</span></div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Cấu trúc ngữ pháp:</strong> ${cleanAndFormatExplanation(q.explanation, '', '')}</div>`;
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Cấu trúc ngữ pháp:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
     detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
   });
 
-  // 8. Evaluate Writing Part 2 (76-80)
+  // 8. Evaluate Writing Part 2
   activeData.writing.part2.questions.forEach(q => {
     const userAns = (examState.answers[q.id] || "").trim();
     const isCorrect = (userAns === q.correct.trim());
     if (isCorrect) correctW++;
-    
     const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Chữ Hán đúng: <span class="chinese" style="font-size:1.2rem;">${q.correct}</span> (${q.pinyin})</div>` +
-        `<div style="color:var(--text-muted);font-size:0.86rem;">💡 <strong>Giải thích từ vựng:</strong> ${cleanAndFormatExplanation(q.explanation, '', '')}</div>`;
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích từ vựng:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
@@ -4367,16 +4388,19 @@ function submitExam(autoSubmitted) {
   examState.correctCount = correctL + correctR + correctW;
   examState.score10 = ((examState.correctCount / examState.totalQuestions) * 10).toFixed(1);
   
+  // HSK Official scale /300
   const hskL = Math.round((correctL / 40) * 100);
   const hskR = Math.round((correctR / 30) * 100);
   const hskW = Math.round((correctW / 10) * 100);
   const hskTotal = hskL + hskR + hskW;
   const isPassed = hskTotal >= 180;
 
+  // Format Duration
   const durM = Math.floor(examState.durationSeconds / 60);
   const durS = examState.durationSeconds % 60;
   const durationFormatted = `${durM} phút ${durS} giây`;
 
+  // UI Updates in Modal
   document.getElementById("score10Display").textContent = examState.score10;
   document.getElementById("resultModalSubtitle").textContent = `Thí sinh: ${studentInfo.name} (${studentInfo.className}) • Lần làm thứ ${studentInfo.attemptCount} • Thời gian: ${durationFormatted}`;
   
@@ -4397,6 +4421,7 @@ function submitExam(autoSubmitted) {
   document.getElementById("statReading").textContent = `${correctR}/30`;
   document.getElementById("statWriting").textContent = `${correctW}/10`;
 
+  // Telemetry Object
   const telemetryData = {
     examCode: "H31002",
     examTitle: "HSK 3 - Đề 02 (H31002)",
@@ -4419,14 +4444,15 @@ function submitExam(autoSubmitted) {
     detailedSummary: detailedSummary
   };
 
+  // Save to Local History
   saveAttemptToHistory(telemetryData);
+
+  // Send to Webhook
   sendTelemetryToWebhook(telemetryData);
 
-  // Open Result Modal and ACTIVATE REVIEW MODE on entire page
+  // Open Result Modal
   document.getElementById("resultModal").classList.remove("hidden");
-  document.body.classList.add("review-mode");
-  const ec = document.getElementById("examContainer");
-  if (ec) ec.classList.add("review-mode");
+  document.getElementById("examContainer").classList.add("review-mode");
 }
 
 function markQuestionResult(qId, isCorrect) {
@@ -4831,7 +4857,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Audio auto-detect
-function applyFontPreferences() {}
 window.addEventListener("DOMContentLoaded", () => {
   applyFontPreferences();
   
@@ -4962,17 +4987,8 @@ function jumpToNextUnanswered() {
 function viewEnlargedImage(src, title) {
   const w = window.open("", "_blank");
   w.document.write(`<html><head><title>${title}</title><style>body{margin:0;background:#0f172a;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-
-
-
-
-
-.p1-img-hint, 
-
-
-/* Subtle 2-4 word Vietnamese Image Tag */
 .subtle-img-tag {
-  display: block;
+  display: block !important;
   font-size: 12px;
   color: #475569;
   background: #f8fafc;
@@ -4984,25 +5000,17 @@ function viewEnlargedImage(src, title) {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.image-bank-item {
+  background: #fff;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  transition: transform 0.2s;
+}
 .image-desc, .p1-img-desc {
   display: none !important;
-}
-
-/* Explanation Box Styling */
-.answer-explanation {
-  margin-top: 12px;
-  padding: 12px 16px;
-  background: #f0fdf4;
-  border: 1.5px solid #86efac;
-  border-left: 5px solid var(--primary);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  display: none;
-}
-body.review-mode .answer-explanation,
-.review-mode .answer-explanation {
-  display: block !important;
 }
 
 </style></head><body><img src="${src}"></body></html>`);
