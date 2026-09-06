@@ -1360,6 +1360,22 @@ body.font-size-xl .chinese { font-size: 1.6em !important; line-height: 1.75 !imp
   display: none !important;
 }
 
+
+.image-desc {
+  display: block !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+  background: #f8fafc !important;
+  padding: 5px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+}
+.subtle-img-tag {
+  display: none !important;
+}
+
 </style>
 </head>
 <body>
@@ -3002,7 +3018,7 @@ const MASTER_DATA = {
   }
 };
 
-const SVG_ASSETS = {"img_a": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"105\" y=\"70\" width=\"30\" height=\"50\" fill=\"#ec4899\" rx=\"4\"/><line x1=\"135\" y1=\"75\" x2=\"165\" y2=\"35\" stroke=\"#ec4899\" stroke-width=\"5\"/><circle cx=\"168\" cy=\"32\" r=\"5\" fill=\"#ffcc80\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Giơ tay phát biểu</text></svg>", "img_b": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"55\" r=\"22\" fill=\"#ffcc80\"/><path d=\"M125 50 Q145 45 135 70 Z\" fill=\"#f8fafc\"/><rect x=\"100\" y=\"80\" width=\"40\" height=\"55\" fill=\"#3b82f6\" rx=\"4\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Dụi mắt do bụi gió</text></svg>", "img_c": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"150\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"135\" y=\"68\" width=\"28\" height=\"45\" fill=\"#f97316\" rx=\"3\"/><rect x=\"55\" y=\"65\" width=\"45\" height=\"75\" fill=\"#0284c7\" rx=\"4\"/><line x1=\"77\" y1=\"85\" x2=\"77\" y2=\"140\" stroke=\"#0369a1\" stroke-width=\"2\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Chọn mua quần bò</text></svg>", "img_d": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"105\" y=\"70\" width=\"30\" height=\"50\" fill=\"#0f172a\" rx=\"4\"/><rect x=\"40\" y=\"120\" width=\"160\" height=\"40\" fill=\"#cbd5e1\" rx=\"4\"/><path d=\"M140 50 Q150 45 155 60\" stroke=\"#0f172a\" stroke-width=\"6\" fill=\"none\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Lễ tân nghe điện thoại</text></svg>", "img_e": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"85\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"73\" y=\"68\" width=\"24\" height=\"45\" fill=\"#059669\" rx=\"3\"/><circle cx=\"155\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"143\" y=\"68\" width=\"24\" height=\"45\" fill=\"#6366f1\" rx=\"3\"/><rect x=\"105\" y=\"75\" width=\"30\" height=\"20\" fill=\"#d97706\" rx=\"2\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Trả lại cuốn sách</text></svg>", "img_f": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><ellipse cx=\"145\" cy=\"115\" rx=\"35\" ry=\"25\" fill=\"#94a3b8\"/><circle cx=\"125\" cy=\"85\" r=\"18\" fill=\"#64748b\"/><polygon points=\"115,70 125,55 130,70\" fill=\"#475569\"/><circle cx=\"85\" cy=\"55\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"70\" y=\"75\" width=\"30\" height=\"50\" fill=\"#0284c7\" rx=\"4\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Chăm sóc chú chó cưng</text></svg>", "img_6a": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><line x1=\"120\" y1=\"10\" x2=\"120\" y2=\"40\" stroke=\"#78716c\" stroke-width=\"3\"/><circle cx=\"120\" cy=\"40\" r=\"12\" fill=\"#fef08a\" stroke=\"#ca8a04\" stroke-width=\"2\"/><line x1=\"120\" y1=\"65\" x2=\"120\" y2=\"120\" stroke=\"#0284c7\" stroke-width=\"12\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Thay bóng đèn trên cao</text></svg>", "img_6b": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"90\" cy=\"50\" r=\"15\" fill=\"#ffcc80\"/><circle cx=\"150\" cy=\"50\" r=\"15\" fill=\"#ffcc80\"/><rect x=\"78\" y=\"68\" width=\"24\" height=\"40\" fill=\"#ec4899\" rx=\"3\"/><rect x=\"138\" y=\"68\" width=\"24\" height=\"40\" fill=\"#b45309\" rx=\"3\"/><ellipse cx=\"120\" cy=\"115\" rx=\"30\" ry=\"12\" fill=\"#f59e0b\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Vào bếp nấu ăn</text></svg>", "img_6c": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"80\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><circle cx=\"160\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"100\" y=\"80\" width=\"40\" height=\"25\" fill=\"#0284c7\" rx=\"3\"/><rect x=\"60\" y=\"105\" width=\"120\" height=\"35\" fill=\"#cbd5e1\" rx=\"4\"/><rect x=\"80\" y=\"90\" width=\"12\" height=\"25\" fill=\"#15803d\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Tính tiền quẹt thẻ</text></svg>", "img_6d": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"80\" cy=\"45\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"70\" y=\"62\" width=\"22\" height=\"45\" fill=\"#0284c7\" rx=\"3\"/><circle cx=\"135\" cy=\"65\" r=\"13\" fill=\"#ffcc80\"/><circle cx=\"110\" cy=\"130\" r=\"18\" fill=\"none\" stroke=\"#475569\" stroke-width=\"3\"/><circle cx=\"160\" cy=\"130\" r=\"18\" fill=\"none\" stroke=\"#475569\" stroke-width=\"3\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Tập đi xe đạp</text></svg>", "img_6e": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"85\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"70\" y=\"70\" width=\"30\" height=\"50\" fill=\"#0f172a\" rx=\"4\"/><circle cx=\"155\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"140\" y=\"70\" width=\"30\" height=\"50\" fill=\"#4338ca\" rx=\"4\"/><line x1=\"100\" y1=\"85\" x2=\"140\" y2=\"85\" stroke=\"#ffcc80\" stroke-width=\"6\"/><text x=\"120\" y=\"172\" font-size=\"12\" fill=\"#78716c\" text-anchor=\"middle\">Chào tạm biệt khách</text></svg>"};
+const SVG_ASSETS = {"img_a": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"105\" y=\"70\" width=\"30\" height=\"50\" fill=\"#ec4899\" rx=\"4\"/><line x1=\"135\" y1=\"75\" x2=\"165\" y2=\"35\" stroke=\"#ec4899\" stroke-width=\"5\"/><circle cx=\"168\" cy=\"32\" r=\"5\" fill=\"#ffcc80\"/></svg>", "img_b": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"55\" r=\"22\" fill=\"#ffcc80\"/><path d=\"M125 50 Q145 45 135 70 Z\" fill=\"#f8fafc\"/><rect x=\"100\" y=\"80\" width=\"40\" height=\"55\" fill=\"#3b82f6\" rx=\"4\"/></svg>", "img_c": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"150\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"135\" y=\"68\" width=\"28\" height=\"45\" fill=\"#f97316\" rx=\"3\"/><rect x=\"55\" y=\"65\" width=\"45\" height=\"75\" fill=\"#0284c7\" rx=\"4\"/><line x1=\"77\" y1=\"85\" x2=\"77\" y2=\"140\" stroke=\"#0369a1\" stroke-width=\"2\"/></svg>", "img_d": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"105\" y=\"70\" width=\"30\" height=\"50\" fill=\"#0f172a\" rx=\"4\"/><rect x=\"40\" y=\"120\" width=\"160\" height=\"40\" fill=\"#cbd5e1\" rx=\"4\"/><path d=\"M140 50 Q150 45 155 60\" stroke=\"#0f172a\" stroke-width=\"6\" fill=\"none\"/></svg>", "img_e": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"85\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"73\" y=\"68\" width=\"24\" height=\"45\" fill=\"#059669\" rx=\"3\"/><circle cx=\"155\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"143\" y=\"68\" width=\"24\" height=\"45\" fill=\"#6366f1\" rx=\"3\"/><rect x=\"105\" y=\"75\" width=\"30\" height=\"20\" fill=\"#d97706\" rx=\"2\"/></svg>", "img_f": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><ellipse cx=\"145\" cy=\"115\" rx=\"35\" ry=\"25\" fill=\"#94a3b8\"/><circle cx=\"125\" cy=\"85\" r=\"18\" fill=\"#64748b\"/><polygon points=\"115,70 125,55 130,70\" fill=\"#475569\"/><circle cx=\"85\" cy=\"55\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"70\" y=\"75\" width=\"30\" height=\"50\" fill=\"#0284c7\" rx=\"4\"/></svg>", "img_6a": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"120\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><line x1=\"120\" y1=\"10\" x2=\"120\" y2=\"40\" stroke=\"#78716c\" stroke-width=\"3\"/><circle cx=\"120\" cy=\"40\" r=\"12\" fill=\"#fef08a\" stroke=\"#ca8a04\" stroke-width=\"2\"/><line x1=\"120\" y1=\"65\" x2=\"120\" y2=\"120\" stroke=\"#0284c7\" stroke-width=\"12\"/></svg>", "img_6b": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"90\" cy=\"50\" r=\"15\" fill=\"#ffcc80\"/><circle cx=\"150\" cy=\"50\" r=\"15\" fill=\"#ffcc80\"/><rect x=\"78\" y=\"68\" width=\"24\" height=\"40\" fill=\"#ec4899\" rx=\"3\"/><rect x=\"138\" y=\"68\" width=\"24\" height=\"40\" fill=\"#b45309\" rx=\"3\"/><ellipse cx=\"120\" cy=\"115\" rx=\"30\" ry=\"12\" fill=\"#f59e0b\"/></svg>", "img_6c": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"80\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><circle cx=\"160\" cy=\"50\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"100\" y=\"80\" width=\"40\" height=\"25\" fill=\"#0284c7\" rx=\"3\"/><rect x=\"60\" y=\"105\" width=\"120\" height=\"35\" fill=\"#cbd5e1\" rx=\"4\"/><rect x=\"80\" y=\"90\" width=\"12\" height=\"25\" fill=\"#15803d\"/></svg>", "img_6d": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"80\" cy=\"45\" r=\"16\" fill=\"#ffcc80\"/><rect x=\"70\" y=\"62\" width=\"22\" height=\"45\" fill=\"#0284c7\" rx=\"3\"/><circle cx=\"135\" cy=\"65\" r=\"13\" fill=\"#ffcc80\"/><circle cx=\"110\" cy=\"130\" r=\"18\" fill=\"none\" stroke=\"#475569\" stroke-width=\"3\"/><circle cx=\"160\" cy=\"130\" r=\"18\" fill=\"none\" stroke=\"#475569\" stroke-width=\"3\"/></svg>", "img_6e": "<svg viewBox=\"0 0 240 180\" class=\"q-svg\"><rect width=\"240\" height=\"180\" fill=\"#f4ede2\" rx=\"10\"/><circle cx=\"85\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"70\" y=\"70\" width=\"30\" height=\"50\" fill=\"#0f172a\" rx=\"4\"/><circle cx=\"155\" cy=\"50\" r=\"18\" fill=\"#ffcc80\"/><rect x=\"140\" y=\"70\" width=\"30\" height=\"50\" fill=\"#4338ca\" rx=\"4\"/><line x1=\"100\" y1=\"85\" x2=\"140\" y2=\"85\" stroke=\"#ffcc80\" stroke-width=\"6\"/></svg>"};
 MASTER_DATA.listening.part1.set1.images.forEach(img => { img.svg = SVG_ASSETS[img.id] || ""; });
 MASTER_DATA.listening.part1.set2.images.forEach(img => { img.svg = SVG_ASSETS[img.id] || ""; });
 
@@ -3149,6 +3165,20 @@ function cleanAndFormatExplanation(origExp, newLetter, correctText) {
 }
 
 function renderExam() {
+  // Ensure prompt populated for Reading Part 2
+  if (activeData.reading && activeData.reading.part2) {
+    if (activeData.reading.part2.set1 && activeData.reading.part2.set1.questions) {
+      activeData.reading.part2.set1.questions.forEach(q => {
+        if (!q.prompt && (q.before || q.after)) q.prompt = (q.before || "") + (q.after || "");
+      });
+    }
+    if (activeData.reading.part2.set2 && activeData.reading.part2.set2.questions) {
+      activeData.reading.part2.set2.questions.forEach(q => {
+        if (!q.prompt && (q.before || q.after)) q.prompt = (q.before || "") + (q.after || "");
+      });
+    }
+  }
+
   const container = document.getElementById("examContainer");
   container.innerHTML = "";
 
@@ -3192,8 +3222,8 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
-      <div class="image-desc">${(img.desc || "").replace(/\s*\(.*?\)/g, "")}</div>
-      <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
+      <div class="image-desc">${getShortImgLabel(img.desc)}</div>
+      
     `;
     imgGrid1.appendChild(card);
   });
@@ -3259,8 +3289,8 @@ function renderExam() {
         <span style="position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-weight:bold;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;z-index:2;">${img.currentLetter}</span>
         ${img.svg || ''}
       </div>
-      <div class="image-desc">${(img.desc || "").replace(/\s*\(.*?\)/g, "")}</div>
-      <div class="subtle-img-tag">${getShortImgLabel(img.desc)}</div>
+      <div class="image-desc">${getShortImgLabel(img.desc)}</div>
+      
     `;
     imgGrid2.appendChild(card);
   });
@@ -3516,7 +3546,7 @@ function renderExam() {
       <div class="question-header">
         <div class="question-number">${q.num}.</div>
         <div class="question-content">
-          <div class="question-prompt chinese">${q.prompt}</div>
+          <div class="question-prompt chinese">${(q.prompt || ((q.before || "") + (q.after || ""))).replace(/\n/g, "<br>")}</div>
           <div class="options-bank-selector" id="opts-${q.id}">
             ${activeData.reading.part1.set1.options.map(opt => `
               <button class="opt-pill" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
@@ -3565,7 +3595,7 @@ function renderExam() {
       <div class="question-header">
         <div class="question-number">${q.num}.</div>
         <div class="question-content">
-          <div class="question-prompt chinese">${q.prompt}</div>
+          <div class="question-prompt chinese">${(q.prompt || ((q.before || "") + (q.after || ""))).replace(/\n/g, "<br>")}</div>
           <div class="options-bank-selector" id="opts-${q.id}">
             ${activeData.reading.part1.set2.options.map(opt => `
               <button class="opt-pill" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
@@ -3632,7 +3662,7 @@ function renderExam() {
       <div class="question-header">
         <div class="question-number">${q.num}.</div>
         <div class="question-content">
-          <div class="question-prompt chinese">${q.prompt}</div>
+          <div class="question-prompt chinese">${(q.prompt || ((q.before || "") + (q.after || ""))).replace(/\n/g, "<br>")}</div>
           <div class="options-bank-selector" id="opts-${q.id}">
             ${activeData.reading.part2.set1.options.map(opt => `
               <button class="opt-pill" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
@@ -3690,7 +3720,7 @@ function renderExam() {
       <div class="question-header">
         <div class="question-number">${q.num}.</div>
         <div class="question-content">
-          <div class="question-prompt chinese">${q.prompt.replace(/\n/g, '<br>')}</div>
+          <div class="question-prompt chinese">${(q.prompt || ((q.before || "") + (q.after || ""))).replace(/\n/g, "<br>")}</div>
           <div class="options-bank-selector" id="opts-${q.id}">
             ${activeData.reading.part2.set2.options.map(opt => `
               <button class="opt-pill" onclick="selectBankOption('${q.id}', '${opt.id}', this)">
@@ -4134,13 +4164,12 @@ function submitExam(autoSubmitted) {
   // Helper normalizer
   const normStr = s => (s || "").toString().replace(/[\s.,?!。？！，]/g, "").toLowerCase();
 
-  // 1. Evaluate Listening Part 1
+  // 1. Evaluate Listening Part 1 (1 - 10)
   [...activeData.listening.part1.set1.questions, ...activeData.listening.part1.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
     if (isCorrect) correctL++;
     
-    // Find current letter for display
     let targetList = activeData.listening.part1.set1.images;
     let found = targetList.find(i => i.id === q.correctId);
     if (!found) {
@@ -4152,27 +4181,44 @@ function submitExam(autoSubmitted) {
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + (shortLabel ? " (" + shortLabel + ")" : "");
     
-    expDiv = document.getElementById("exp-" + q.id);
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Lời thoại:</strong><br><span class="chinese">${q.dialogue.split(String.fromCharCode(10)).join('<br>')}</span></div>` +
         `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter} (${shortLabel})</div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
+    let userFound = targetList.find(i => i.id === userAns);
+    let userLetter = userFound ? (userFound.currentLetter || userFound.label || "") : "";
+    let userLabel = userFound ? getShortImgLabel(userFound.desc) : "";
+    let userDisplay = userLetter ? (userLetter + (userLabel ? " (" + userLabel + ")" : "")) : (userAns || "Chưa làm");
+    let correctDisplay = correctLetter + (shortLabel ? " (" + shortLabel + ")" : "");
+
     markQuestionResult(q.id, isCorrect);
-    detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
+    detailedSummary.push({ qId: q.id, num: q.num, isCorrect: isCorrect, correct: isCorrect, userAns: userDisplay, correctAns: correctDisplay, explanation: cleanRationale(q.explanation) });
   });
 
-  // 2. Evaluate Listening Part 2
+  // 2. Evaluate Listening Part 2 (11 - 20)
   activeData.listening.part2.questions.forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correct);
     if (isCorrect) correctL++;
+    
+    const userDisplay = userAns === undefined ? "Chưa làm" : (userAns ? "✓ Đúng (正确)" : "✕ Sai (错误)");
+    const correctDisplay = q.correct ? "✓ Đúng (正确)" : "✕ Sai (错误)";
+
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (expDiv) {
+      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Nội dung nghe:</strong><br><span class="chinese">${q.passage.replace(/\n/g, '<br>')}</span></div>` +
+        `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctDisplay}</div>` +
+        `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
+    }
+
     markQuestionResult(q.id, isCorrect);
-    detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns === undefined ? "Chưa làm" : (userAns ? "Đúng" : "Sai") });
+    detailedSummary.push({ qId: q.id, num: q.num, isCorrect: isCorrect, correct: isCorrect, userAns: userDisplay, correctAns: correctDisplay, explanation: cleanRationale(q.explanation) });
   });
 
-  // 3. Evaluate Listening Part 3 & 4
+  // 3. Evaluate Listening Part 3 & 4 (21 - 40)
   [...activeData.listening.part3.questions, ...activeData.listening.part4.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4180,23 +4226,31 @@ function submitExam(autoSubmitted) {
     
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const corIdx = q.options.findIndex(o => o.id === q.correctId);
-    const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : '';
+    const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : (correctOpt ? (correctOpt.currentLetter || correctOpt.renderLetter || '') : '');
     const optText = correctOpt ? correctOpt.text : '';
     
     const ansSpan = document.getElementById("ans-text-" + q.id);
     if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
     
-    expDiv = document.getElementById("exp-" + q.id);
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
-      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
+      expDiv.innerHTML = `<div style="margin-bottom:6px;"><strong>🎧 Đối thoại & câu hỏi:</strong><br><span class="chinese">${q.dialogue.replace(/\n/g, '<br>')}</span></div>` +
+        `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
+    const userOpt = q.options.find(o => o.id === userAns);
+    const uIdx = q.options.findIndex(o => o.id === userAns);
+    const userLetter = (uIdx !== -1) ? ['A', 'B', 'C'][uIdx] : (userOpt ? (userOpt.currentLetter || userOpt.renderLetter || '') : '');
+    const userText = userOpt ? userOpt.text : '';
+    const userDisplay = userOpt ? `${userLetter}. ${userText}` : (userAns || "Chưa làm");
+    const correctDisplay = `${correctLetter}. ${optText}`;
+
     markQuestionResult(q.id, isCorrect);
-    detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
+    detailedSummary.push({ qId: q.id, num: q.num, isCorrect: isCorrect, correct: isCorrect, userAns: userDisplay, correctAns: correctDisplay, explanation: cleanRationale(q.explanation) });
   });
 
-  // 4. Evaluate Reading Part 1
+  // 4. Evaluate Reading Part 1 (41 - 50)
   [...activeData.reading.part1.set1.questions, ...activeData.reading.part1.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4209,24 +4263,28 @@ function submitExam(autoSubmitted) {
       found = targetList.find(o => o.id === q.correctId);
     }
     const correctLetter = found ? (found.currentLetter || found.label || "") : "";
-    const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
-    }
+    const correctText = found ? found.text : "";
+    const correctDisplay = `${correctLetter}. ${correctText}`;
     
-    expDiv = document.getElementById("exp-" + q.id);
+    const ansSpan = document.getElementById("ans-text-" + q.id);
+    if (ansSpan) ansSpan.textContent = correctDisplay;
+
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${correctText}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
+    let userOpt = targetList.find(o => o.id === userAns);
+    let userLetter = userOpt ? (userOpt.currentLetter || userOpt.label || "") : "";
+    let userText = userOpt ? userOpt.text : "";
+    let userDisplay = userOpt ? `${userLetter}. ${userText}` : (userAns || "Chưa làm");
+
     markQuestionResult(q.id, isCorrect);
-    detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
+    detailedSummary.push({ qId: q.id, num: q.num, isCorrect: isCorrect, correct: isCorrect, userAns: userDisplay, correctAns: correctDisplay, explanation: cleanRationale(q.explanation) });
   });
 
-  // 5. Evaluate Reading Part 2
+  // 5. Evaluate Reading Part 2 (51 - 60)
   [...activeData.reading.part2.set1.questions, ...activeData.reading.part2.set2.questions].forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4239,24 +4297,28 @@ function submitExam(autoSubmitted) {
       found = targetList.find(o => o.id === q.correctId);
     }
     const correctLetter = found ? (found.currentLetter || found.label || "") : "";
+    const correctText = found ? found.text : "";
+    const correctDisplay = `${correctLetter}. ${correctText}`;
+
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + (found ? found.text : "");
-    expDiv = document.getElementById("exp-" + q.id);
+    if (ansSpan) ansSpan.textContent = correctDisplay;
+
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
-      expDiv.innerHTML = cleanAndFormatExplanation(q.explanation, correctLetter, found ? found.text : '');
-    }
-    
-    expDiv = document.getElementById("exp-" + q.id);
-    if (expDiv) {
-      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${found ? found.text : ''}</span></div>` +
+      expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${correctText}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
+    let userOpt = targetList.find(o => o.id === userAns);
+    let userLetter = userOpt ? (userOpt.currentLetter || userOpt.label || "") : "";
+    let userText = userOpt ? userOpt.text : "";
+    let userDisplay = userOpt ? `${userLetter}. ${userText}` : (userAns || "Chưa làm");
+
     markQuestionResult(q.id, isCorrect);
-    detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
+    detailedSummary.push({ qId: q.id, num: q.num, isCorrect: isCorrect, correct: isCorrect, userAns: userDisplay, correctAns: correctDisplay, explanation: cleanRationale(q.explanation) });
   });
 
-  // 6. Evaluate Reading Part 3
+  // 6. Evaluate Reading Part 3 (61 - 70)
   activeData.reading.part3.questions.forEach(q => {
     const userAns = examState.answers[q.id];
     const isCorrect = (userAns === q.correctId);
@@ -4264,50 +4326,57 @@ function submitExam(autoSubmitted) {
     
     const correctOpt = q.options.find(o => o.id === q.correctId);
     const corIdx = q.options.findIndex(o => o.id === q.correctId);
-    const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : '';
+    const correctLetter = (corIdx !== -1) ? ['A', 'B', 'C'][corIdx] : (correctOpt ? (correctOpt.currentLetter || correctOpt.renderLetter || '') : '');
     const optText = correctOpt ? correctOpt.text : '';
+    const correctDisplay = `${correctLetter}. ${optText}`;
     
     const ansSpan = document.getElementById("ans-text-" + q.id);
-    if (ansSpan) ansSpan.textContent = correctLetter + ". " + optText;
+    if (ansSpan) ansSpan.textContent = correctDisplay;
     
-    expDiv = document.getElementById("exp-" + q.id);
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv && correctOpt) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án đúng: ${correctLetter}. <span class="chinese">${optText}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
+    const userOpt = q.options.find(o => o.id === userAns);
+    const uIdx = q.options.findIndex(o => o.id === userAns);
+    const userLetter = (uIdx !== -1) ? ['A', 'B', 'C'][uIdx] : (userOpt ? (userOpt.currentLetter || userOpt.renderLetter || '') : '');
+    const userText = userOpt ? userOpt.text : '';
+    const userDisplay = userOpt ? `${userLetter}. ${userText}` : (userAns || "Chưa làm");
+
     markQuestionResult(q.id, isCorrect);
-    detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
+    detailedSummary.push({ qId: q.id, num: q.num, isCorrect: isCorrect, correct: isCorrect, userAns: userDisplay, correctAns: correctDisplay, explanation: cleanRationale(q.explanation) });
   });
 
-  // 7. Evaluate Writing Part 1
+  // 7. Evaluate Writing Part 1 (71 - 75)
   activeData.writing.part1.questions.forEach(q => {
     const userAns = examState.answers[q.id] || "";
     const isCorrect = (normStr(userAns) === normStr(q.correct));
     if (isCorrect) correctW++;
-    expDiv = document.getElementById("exp-" + q.id);
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Đáp án chuẩn: <span class="chinese">${q.correct}</span></div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Cấu trúc ngữ pháp:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
-    detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
+    detailedSummary.push({ qId: q.id, num: q.num, isCorrect: isCorrect, correct: isCorrect, userAns: userAns || "Chưa làm", correctAns: q.correct, explanation: cleanRationale(q.explanation) });
   });
 
-  // 8. Evaluate Writing Part 2
+  // 8. Evaluate Writing Part 2 (76 - 80)
   activeData.writing.part2.questions.forEach(q => {
     const userAns = (examState.answers[q.id] || "").trim();
     const isCorrect = (userAns === q.correct.trim());
     if (isCorrect) correctW++;
-    expDiv = document.getElementById("exp-" + q.id);
+    const expDiv = document.getElementById("exp-" + q.id);
     if (expDiv) {
       expDiv.innerHTML = `<div style="font-weight:700;color:var(--primary-dark);margin-bottom:4px;">✅ Chữ Hán đúng: <span class="chinese" style="font-size:1.2rem;">${q.correct}</span> (${q.pinyin})</div>` +
         `<div style="color:var(--text-muted);font-size:0.88rem;line-height:1.6;">💡 <strong>Giải thích từ vựng:</strong> ${cleanRationale(q.explanation)}</div>`;
     }
     
     markQuestionResult(q.id, isCorrect);
-    detailedSummary.push({ qId: q.id, num: q.num, correct: isCorrect, userAns: userAns || "Chưa làm" });
+    detailedSummary.push({ qId: q.id, num: q.num, isCorrect: isCorrect, correct: isCorrect, userAns: userAns || "Chưa làm", correctAns: `${q.correct} (${q.pinyin})`, explanation: cleanRationale(q.explanation) });
   });
 
   // Score aggregation
@@ -4939,6 +5008,22 @@ function viewEnlargedImage(src, title) {
   transition: transform 0.2s;
 }
 .image-desc, .p1-img-desc {
+  display: none !important;
+}
+
+
+.image-desc {
+  display: block !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+  background: #f8fafc !important;
+  padding: 5px 6px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+}
+.subtle-img-tag {
   display: none !important;
 }
 
