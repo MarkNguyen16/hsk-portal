@@ -485,7 +485,7 @@ footer.portal-footer {
     <button class="level-tab-btn" onclick="switchLevel('HSK1', this)">HSK 1</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK2', this)">HSK 2</button>
     <button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK3', this)">⭐ HSK 3 (7 Đề & 20 Bài Tập)</button>
-    <button class="level-tab-btn active highlight-tab" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (Bài 1 - 12)</button>
+    <button class="level-tab-btn active highlight-tab" onclick="switchLevel('HSK4', this)">⭐ HSK 4 (Đề 01 & Trọn bộ 20 Bài)</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK5', this)">HSK 5</button>
     <button class="level-tab-btn" onclick="switchLevel('HSK6', this)">HSK 6</button>
     <button class="level-tab-btn highlight-tab" onclick="switchLevel('HSK30', this)">✨ HSK 3.0 (Chuẩn Mới)</button>
@@ -600,9 +600,9 @@ const PORTAL_DATABASE = {
       num: i + 1,
       code: `H4100${i+1}`.replace("0010", "010"),
       file: `hsk4-de-${i+1}.html`,
-      status: "pending",
+      status: (i === 0) ? "active" : "pending",
       title: `HSK 4 - Đề thi số 0${i+1}`.replace("010", "10"),
-      desc: `Đề thi mô phỏng HSK 4 chuẩn quốc tế số ${i+1}`,
+      desc: (i === 0) ? "Đề thi mô phỏng HSK 4 chuẩn quốc tế số 01 (100 câu • 105 phút • Đầy đủ Nghe - Đọc - Viết)" : `Đề thi mô phỏng HSK 4 chuẩn quốc tế số ${i+1}`,
       link: `hsk4-de-${i+1}.html`
     })),
     "workbooks": [
@@ -618,14 +618,14 @@ const PORTAL_DATABASE = {
       { num: 10, code: "SC4-B10", file: "sc4-bai-10.html", status: "active", title: "Bài tập HSK 4: Bài 10", desc: "Bài 10: 幸福的标准 (Đã hoàn thiện 50 câu)", link: "sc4-bai-10.html" },
       { num: 11, code: "SC4-B11", file: "sc4-bai-11.html", status: "active", title: "Bài tập HSK 4: Bài 11", desc: "Bài 11: 读书好，读好书，好读书 (Đã hoàn thiện 50 câu)", link: "sc4-bai-11.html" },
       { num: 12, code: "SC4-B12", file: "sc4-bai-12.html", status: "active", title: "Bài tập HSK 4: Bài 12", desc: "Bài 12: 用心发现世界 (Đã hoàn thiện 50 câu)", link: "sc4-bai-12.html" },
-      { num: 13, code: "SC4-B13", file: "sc4-bai-13.html", status: "pending", title: "Bài tập HSK 4: Bài 13", desc: "Bài 13: 喝着茶看京剧 (Đang cập nhật)", link: "sc4-bai-13.html" },
-      { num: 14, code: "SC4-B14", file: "sc4-bai-14.html", status: "pending", title: "Bài tập HSK 4: Bài 14", desc: "Bài 14: 保护地球母亲 (Đang cập nhật)", link: "sc4-bai-14.html" },
-      { num: 15, code: "SC4-B15", file: "sc4-bai-15.html", status: "pending", title: "Bài tập HSK 4: Bài 15", desc: "Bài 15: 教育孩子的艺术 (Đang cập nhật)", link: "sc4-bai-15.html" },
-      { num: 16, code: "SC4-B16", file: "sc4-bai-16.html", status: "pending", title: "Bài tập HSK 4: Bài 16", desc: "Bài 16: 生活可以更美好 (Đang cập nhật)", link: "sc4-bai-16.html" },
-      { num: 17, code: "SC4-B17", file: "sc4-bai-17.html", status: "pending", title: "Bài tập HSK 4: Bài 17", desc: "Bài 17: 人与自然 (Đang cập nhật)", link: "sc4-bai-17.html" },
-      { num: 18, code: "SC4-B18", file: "sc4-bai-18.html", status: "pending", title: "Bài tập HSK 4: Bài 18", desc: "Bài 18: 科技与世界 (Đang cập nhật)", link: "sc4-bai-18.html" },
-      { num: 19, code: "SC4-B19", file: "sc4-bai-19.html", status: "pending", title: "Bài tập HSK 4: Bài 19", desc: "Bài 19: 生活的味道 (Đang cập nhật)", link: "sc4-bai-19.html" },
-      { num: 20, code: "SC4-B20", file: "sc4-bai-20.html", status: "pending", title: "Bài tập HSK 4: Bài 20", desc: "Bài 20: 路上的风景 (Đang cập nhật)", link: "sc4-bai-20.html" },
+      { num: 13, code: "SC4-B13", file: "sc4-bai-13.html", status: "active", title: "Bài tập HSK 4: Bài 13", desc: "Bài 13: 喝着茶看京剧 (Đã hoàn thiện 50 câu)", link: "sc4-bai-13.html" },
+      { num: 14, code: "SC4-B14", file: "sc4-bai-14.html", status: "active", title: "Bài tập HSK 4: Bài 14", desc: "Bài 14: 保护地球母亲 (Đã hoàn thiện 50 câu)", link: "sc4-bai-14.html" },
+      { num: 15, code: "SC4-B15", file: "sc4-bai-15.html", status: "active", title: "Bài tập HSK 4: Bài 15", desc: "Bài 15: 教育孩子的艺术 (Đã hoàn thiện 50 câu)", link: "sc4-bai-15.html" },
+      { num: 16, code: "SC4-B16", file: "sc4-bai-16.html", status: "active", title: "Bài tập HSK 4: Bài 16", desc: "Bài 16: 生活可以更美好 (Đã hoàn thiện 50 câu)", link: "sc4-bai-16.html" },
+      { num: 17, code: "SC4-B17", file: "sc4-bai-17.html", status: "active", title: "Bài tập HSK 4: Bài 17", desc: "Bài 17: 人与自然 (Đã hoàn thiện 50 câu)", link: "sc4-bai-17.html" },
+      { num: 18, code: "SC4-B18", file: "sc4-bai-18.html", status: "active", title: "Bài tập HSK 4: Bài 18", desc: "Bài 18: 科技与世界 (Đã hoàn thiện 50 câu)", link: "sc4-bai-18.html" },
+      { num: 19, code: "SC4-B19", file: "sc4-bai-19.html", status: "active", title: "Bài tập HSK 4: Bài 19", desc: "Bài 19: 生活的味道 (Đã hoàn thiện 50 câu)", link: "sc4-bai-19.html" },
+      { num: 20, code: "SC4-B20", file: "sc4-bai-20.html", status: "active", title: "Bài tập HSK 4: Bài 20", desc: "Bài 20: 路上的风景 (Đã hoàn thiện 50 câu)", link: "sc4-bai-20.html" },
     ]
   },
   "HSK5": {
